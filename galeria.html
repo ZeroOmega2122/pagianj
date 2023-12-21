@@ -21,6 +21,7 @@
             color: #ffffff;
             margin-top: 50px;
         }
+
         h2 {
             font-size: 48px;
             color: #ffffff;
@@ -34,13 +35,13 @@
         }
 
         .imagen-galeria {
-            width: 300px; /* Tamaño ajustado para un término medio */
+            width: 300px;
             height: 300px;
             border-radius: 10px;
             margin: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             cursor: pointer;
-            transition: transform 0.5s, z-index 0s 0.3s; /* Añadido un delay para z-index */
+            transition: transform 0.3s, z-index 0s 0.3s;
         }
 
         .imagen-galeria:hover {
@@ -70,12 +71,35 @@
             opacity: 1;
         }
 
+        #botones-musica {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #botones-musica button {
+            font-size: 24px;
+            margin-right: 10px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #botones-musica button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 
 <body>
     <h1>Galería de Recuerdos</h1>
     <h2>Aqui una pequeña recopilacion espero le guste :D</h2>
+
+    <div id="botones-musica">
+        <button onclick="reproducirCancion('y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3')">Canción 1</button>
+        <button onclick="reproducirCancion('y2mate.com - Inuyasha Ending 3 Latino Remasterizado Digital.mp3')">Canción 2</button>
+        <button onclick="reproducirCancion('y2mate.com - Inuyasha OST 2  Beautiful Memories.mp3')">Canción 3</button>
+    </div>
+
     <div class="fila-imagenes">
         <!-- Agrega tus 22 imágenes de la galería -->
         <div class="imagen-container">
@@ -98,7 +122,7 @@
                 <img class="imagen-galeria" src= "./WhatsApp Image 2023-12-18 at 22.25.01.webp" alt="Recuerdo 3">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 3</p>
-                    <p>Un día muy especial, al menos para Nico; creo que se sorprendió bastante. 😄</p>
+                    <p>Un dia bastante especial al menos para el Nico, yo creo que se sorprendio mucho jsjsjs</p>
                 </div>
             </div>
             <div class="imagen-container">
@@ -120,7 +144,7 @@
                 <img class="imagen-galeria" src= "./WhatsApp Image 2023-12-18 at 22.25.01 (3).webp" alt="Recuerdo 6">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 6</p>
-                    <p>El día en que te transformaste en erizo.</p>
+                    <p>El dia en que te convertiste en erizo.</p>
                 </div>
             </div>
             <div class="imagen-container">
@@ -155,7 +179,7 @@
                 <img class="imagen-galeria" src= "./WhatsApp Image 2023-12-18 at 22.25.02 (4).webp" alt="Recuerdo 11">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 11</p>
-                    <p>Recuerdo cuando comenzaron a bailar cueca y el momento en que hicimos volar el volantín, fue un día encantador.</p>
+                    <p>Me acuerdo cuando se pusieron a bailar cueca y cuando volamos el volantin estuvo lindo ese dia.</p>
                 </div>
             </div>
             <div class="imagen-container">
@@ -252,6 +276,7 @@
         </div>
     </div>
 
+
     <div id="modal">
         <div id="modal-contenido">
             <img id="modal-imagen" alt="Imagen Ampliada">
@@ -264,37 +289,14 @@
     </div>
 
     <script>
-        const imagenes = [
-            // Agrega las rutas de tus imágenes aquí
-        ];
+        let audio;
 
-        document.addEventListener('DOMContentLoaded', function () {
-            cargarGaleria();
-        });
-
-        function cargarGaleria() {
-            const galeria = document.querySelector('.fila-imagenes');
-
-            imagenes.forEach((ruta, indice) => {
-                const imagenContainer = document.createElement('div');
-                imagenContainer.className = 'imagen-container';
-
-                const imagen = document.createElement('img');
-                imagen.src = ruta;
-                imagen.alt = `Recuerdo ${indice + 1}`;
-                imagen.className = 'imagen-galeria';
-
-                const descripcionImagen = document.createElement('div');
-                descripcionImagen.className = 'descripcion-imagen';
-                descripcionImagen.innerHTML = `
-                    <p>Descripción del recuerdo ${indice + 1}</p>
-                    <p>Opinión personal sobre el recuerdo ${indice + 1}</p>
-                `;
-
-                imagenContainer.appendChild(imagen);
-                imagenContainer.appendChild(descripcionImagen);
-                galeria.appendChild(imagenContainer);
-            });
+        function reproducirCancion(ruta) {
+            if (audio) {
+                audio.pause();
+            }
+            audio = new Audio(ruta);
+            audio.play();
         }
     </script>
 </body>
