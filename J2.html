@@ -20,17 +20,32 @@
         #contenido {
             text-align: center;
             padding: 20px;
-            opacity: 0; /* Establece la opacidad inicial en 0 */
-            transition: opacity 1s ease-in-out; /* Agrega una transición suave */
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
 
         #contenido.fadeIn {
-            opacity: 1; /* Cambia la opacidad a 1 cuando se agrega la clase "fadeIn" */
+            opacity: 1;
+        }
+        #botones-musica {
+            text-align: center;
+            margin-top: 20px;
         }
 
+        #botones-musica button {
+            font-size: 24px;
+            margin-right: 10px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #botones-musica button:hover {
+            background-color: #45a049;
+        }
         h1 {
             font-size: 90px;
-            color: #230441; /* Amarillo */
+            color: #230441;
             margin-bottom: 20px;
             transition: color 0.5s ease;
         }
@@ -38,14 +53,14 @@
         h2 {
             font-size: 45px;
             margin-bottom: 10px;
-            color: #ff4500; /* Rojo oscuro */
+            color: #ff4500;
             transition: color 0.5s ease;
         }
 
         #subtitulo {
             font-size: 36px;
             margin-top: 10px;
-            color: #45a049; /* Verde */
+            color: #45a049;
             transition: color 0.5s ease;
         }
 
@@ -54,7 +69,7 @@
             padding: 15px;
             border-radius: 10px;
             margin-top: 20px;
-            color: #0066cc; /* Azul */
+            color: #0066cc;
             transition: background-color 0.5s ease, color 0.5s ease;
         }
 
@@ -84,7 +99,7 @@
         #contador {
             font-size: 35px;
             margin-top: 15px;
-            color: #ffcc00; /* Amarillo */
+            color: #ffcc00;
             background-color: #333;
             padding: 8px;
             border-radius: 8px;
@@ -98,14 +113,14 @@
 
         #boton-galeria a {
             display: inline-block;
-            border: 2px solid #4CAF50; /* Color del borde del botón */
+            border: 2px solid #4CAF50;
             border-radius: 8px;
             overflow: hidden;
         }
 
         #boton-galeria a img {
-            width: 160px; /* Ancho del botón */
-            height: 160px; /* Altura del botón */
+            width: 160px;
+            height: 160px;
             border-radius: 8px;
             cursor: pointer;
             transition: transform 0.3s ease;
@@ -113,10 +128,10 @@
 
         #texto-personalizado {
             margin-top: 20px;
-            color: #ffcc00; /* Amarillo */
+            color: #ffcc00;
             text-align: left;
             padding: 15px;
-            border: 2px solid #ffcc00; /* Amarillo */
+            border: 2px solid #ffcc00;
             border-radius: 8px;
             background-color: rgba(0, 0, 0, 0.7);
             font-size: 35px;
@@ -136,6 +151,23 @@
                 opacity: 1;
             }
         }
+
+        #boton-cancion {
+            font-size: 35px;
+            margin-top: 20px;
+        }
+
+        #boton-cancion button {
+            font-size: 24px;
+            margin-right: 10px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #boton-cancion button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 
@@ -148,26 +180,31 @@
             <p>Hola Doña Julianne,</p>
 
             <p>Confío en que este mensaje te encuentre en un buen momento.</p>
-            
-            <p>Quiero compartir contigo un rincón especial llamado Épocas Radiantes de Amistad (ERA). Aquí, la esencia de nuestra conexión se refleja en cada palabra y detalle. La amistad, como los versículos que reposan aquí, ilumina nuestros días de una manera única.</p>
-            
-            <p>Cada jornada a tu lado es un recordatorio de la luz que compartimos, una luz que ilumina los días grises y destaca los momentos llenos de color. Eres esa chispa única que hace que esta amistad sea tan especial.</p>
-            
-            <p>Al emprender nuevos caminos, que encuentres en estos versículos una guía reconfortante y en la galería, recuerdos que pintan sonrisas en tu rostro. Estoy aquí para celebrar cada logro contigo y ser tu apoyo en los desafíos que se cruzan en tu camino.</p>
-            
-            <p>Que la vida universitaria te regale experiencias inolvidables y que cada día esté impregnado de la gracia divina que te guía. Que este espacio te inspire a reflexionar, a encontrar fuerza en la fe y a descubrir la belleza en cada capítulo.</p>
-            
-            <p>Con cariño y admiración,<br>
-            Don Demonaru :D </p>
-            
-            <p><em>"Que en cada capítulo encuentres una razón para sonreír y en cada día, una oportunidad para descubrir algo nuevo."</em></p>
-                  
-        </div>
 
+            <p>Quiero compartir contigo un rincón especial llamado Épocas Radiantes de Amistad (ERA). Aquí, la esencia de nuestra conexión se refleja en cada palabra y detalle. La amistad, como los versículos que reposan aquí, ilumina nuestros días de una manera única.</p>
+
+            <p>Cada jornada a tu lado es un recordatorio de la luz que compartimos, una luz que ilumina los días grises y destaca los momentos llenos de color. Eres esa chispa única que hace que esta amistad sea tan especial.</p>
+
+            <p>Al emprender nuevos caminos, que encuentres en estos versículos una guía reconfortante y en la galería, recuerdos que pintan sonrisas en tu rostro. Estoy aquí para celebrar cada logro contigo y ser tu apoyo en los desafíos que se cruzan en tu camino.</p>
+
+            <p>Que la vida universitaria te regale experiencias inolvidables y que cada día esté impregnado de la gracia divina que te guía. Que este espacio te inspire a reflexionar, a encontrar fuerza en la fe y a descubrir la belleza en cada capítulo.</p>
+
+            <p>Con cariño y admiración,<br>
+                Don Demonaru :D </p>
+
+            <p><em>"Que en cada capítulo encuentres una razón para sonreír y en cada día, una oportunidad para descubrir algo nuevo."</em></p>
+
+        </div>
+        <div id="boton-cancion">
+            <button onclick="cambiarCancion(1)">Canción 1</button>
+            <button onclick="cambiarCancion(2)">Canción 2</button>
+            <button onclick="cambiarCancion(3)">Canción 3</button>
+        </div>
         <div id="versiculo-container">
             <h2>Versículo del Día</h2>
             <p id="versiculo"></p>
             <button onclick="generarNuevoVersiculo()">Generar Nuevo Versículo</button>
+            <button onclick="mutearDesmutar()">Mutar/Desmutar</button>
             <p id="contador">Próxima actualización en 24 horas</p>
 
             <div id="boton-galeria">
@@ -182,11 +219,36 @@
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('contenido').classList.add('fadeIn');
             cargarVersiculos();
+            cargarCanciones();
             generarNuevoVersiculo();
             iniciarContadorActualizacion();
         });
 
-        const versiculos = [
+        let audio1, audio2, audio3;
+        let isMuted = false;
+        let currentSong = 1;
+
+        function cargarCanciones() {
+            audio1 = new Audio('y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3');
+            audio2 = new Audio('y2mate.com - Inuyasha Ending 3 Latino Remasterizado Digital.mp3');
+            audio3 = new Audio('y2mate.com - Inuyasha OST 2  Beautiful Memories.mp3');
+        }
+
+        function cambiarCancion(cancion) {
+            if (cancion === currentSong) return;
+
+            if (currentSong === 1) audio1.pause();
+            else if (currentSong === 2) audio2.pause();
+            else if (currentSong === 3) audio3.pause();
+
+            currentSong = cancion;
+
+            if (cancion === 1) audio1.play();
+            else if (cancion === 2) audio2.play();
+            else if (cancion === 3) audio3.play();
+        }
+        function cargarVersiculos() {
+            versiculos = [
             "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree no se pierda, mas tenga vida eterna. - Juan 3:16",
             "Jehová es mi pastor; nada me faltará. - Salmo 23:1",
             "La bondad y la misericordia me seguirán todos los días de mi vida, y en la casa de Jehová moraré por largos días. - Salmo 23:6",
@@ -258,21 +320,17 @@
             "El nombre de Jehová es torre fuerte; el justo correrá a ella, y será levantado. - Proverbios 18:10",
             "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te fortalezco; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia. - Isaías 41:10",
             "Porque tú formaste mis entrañas; tú me hiciste en el vientre de mi madre. - Salmo 139:13",
-        ];
+            ];
+        }
 
         let versiculoActual = '';
-        let contadorActualizacion = 24 * 60 * 60 * 1000;
-
-        function cargarVersiculos() {
-            // Puedes hacer algo aquí para cargar versículos desde un servicio externo si lo prefieres
-        }
+        let contadorActualizacion = 24 * 60 * 60 * 1000; // 24 horas en milisegundos
 
         function obtenerVersiculoAleatorio() {
             const versiculosNoMostrados = versiculos.filter(versiculo => versiculo !== versiculoActual);
             const totalVersiculos = versiculosNoMostrados.length;
 
             if (totalVersiculos < 50) {
-                // Si quedan menos de 50 versículos no mostrados, reiniciamos la lista
                 versiculoActual = '';
             }
 
@@ -302,8 +360,15 @@
             const nuevoVersiculo = obtenerVersiculoAleatorio();
             document.getElementById('versiculo').textContent = nuevoVersiculo;
 
-            // Reiniciar el contador de actualización
             reiniciarContadorActualizacion();
+        }
+
+        function mutearDesmutar() {
+            if (audio1) audio1.muted = isMuted;
+            if (audio2) audio2.muted = isMuted;
+            if (audio3) audio3.muted = isMuted;
+
+            isMuted = !isMuted;
         }
 
         function reiniciarContadorActualizacion() {
@@ -313,7 +378,6 @@
         }
 
         function iniciarContadorActualizacion() {
-            // Actualizar el contador cada segundo
             setInterval(actualizarContador, 1000);
         }
 
