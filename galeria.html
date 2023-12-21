@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Recuerdos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Pacifico', cursive;
+            margin: 0;
+            padding: 0;
+            background: url('./OIP (7).webp') center/cover fixed no-repeat;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #ffffff;
+            margin-top: 50px;
+        }
+        h2 {
+            font-size: 48px;
+            color: #ffffff;
+            margin-top: 50px;
+        }
+
+        .fila-imagenes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .imagen-galeria {
+            width: 300px; /* Tamaño ajustado para un término medio */
+            height: 300px;
+            border-radius: 10px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s, z-index 0s 0.3s; /* Añadido un delay para z-index */
+        }
+
+        .imagen-galeria:hover {
+            transform: scale(1.25);
+            z-index: 1;
+        }
+
+        .imagen-container {
+            position: relative;
+        }
+
+        .descripcion-imagen {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-size: 17px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .imagen-container:hover .descripcion-imagen {
+            opacity: 1;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Galería de Recuerdos</h1>
+    <h2>Aqui una pequeña recopilacion espero le guste :D</h2>
+        <div class="fila-imagenes">
+            <!-- Agrega tus 22 imágenes de la galería -->
+            <div class="imagen-container">
+                <img class="imagen-galeria" src="C:\Users\nicol\Downloads\WhatsApp Image 2023-12-18 at 22.25.00.jpeg" alt="Recuerdo 1">
+                <div class="descripcion-imagen">
+                    <p>Descripción del recuerdo 1</p>
+                    <p>Un descanso tranquilo acompañado con melodia de inuyasha </p>
+                    <p>y perritos de la u :D My moment favorite </p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.25.00 (1).jpeg" alt="Recuerdo 2">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 2</p>
+                    <p>Paz en una imagen, la vale queria comer pizza jsjs</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.25.01.jpeg" alt="Recuerdo 3">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 3</p>
+                    <p>Un dia bastante especial al menos para el Nico, yo creo que se sorprendio mucho jsjsjs</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.25.01 (1).jpeg" alt="Recuerdo 4">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 4</p>
+                    <p>Los maleantes del cedehp.</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 23.11.15 (1).jpeg" alt="Recuerdo 5">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 5</p>
+                    <p>Los InuMoon o SailorYasha.</p>
+                    <p>El Seshumaru y rin JAJA</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.25.01 (3).jpeg" alt="Recuerdo 6">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 6</p>
+                    <p>El dia en que te convertiste en erizo.</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.25.01 (4).jpeg" alt="Recuerdo 7">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 7</p>
+                    <p>Tres</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.25.02.jpeg" alt="Recuerdo 8">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 8</p>
+                    <p>Joyas</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.25.02 (1).jpeg" alt="Recuerdo 9">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 9</p>
+                    <p>Bien pulidas.</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.25.02 (3).jpeg" alt="Recuerdo 10">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 10</p>
+                    <p>Volantina chismosa.</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.25.02 (4).jpeg" alt="Recuerdo 11">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 11</p>
+                    <p>Me acuerdo cuando se pusieron a bailar cueca y cuando volamos el volantin estuvo lindo ese dia.</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.25.03.jpeg" alt="Recuerdo 12">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 12</p>
+                    <p>Una visita al viejo oeste.</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.25.03 (1).jpeg" alt="Recuerdo 13">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 13</p>
+                    <p>Dos niñas, Nina y Anita,
+                        comen papas fritas bonitas.
+                        Nina pica, Anita pela,
+                        papas fritas sabrosas, ¡qué buena estrella!</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.25.03 (4).jpeg" alt="Recuerdo 14">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 14</p>
+                    <p>El entierro.</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.25.03 (5).jpeg" alt="Recuerdo 15">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 15</p>
+                    <p>Televisa presenta...</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.25.04.jpeg" alt="Recuerdo 16">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 16</p>
+                    <p>De compras con Nico lechuga y valantina :D</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.25.04 (1).jpeg" alt="Recuerdo 17">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 17</p>
+                    <p>Vale pou.</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.30.51.jpeg" alt="Recuerdo 18">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 18</p>
+                    <p>Jovenes Paleontólogos</p>
+                    <p>creo que eraun Suchomimus: tenía características de cocodrilo y dinosaurio.</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.30.52.jpeg" alt="Recuerdo 19">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 19</p>
+                    <p>Aqui descubrimos un</p>
+                    <p>T-Rex es el dinosaurio más tranquilo Y el más lento de los carnívoros</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\\Users\\nicol\\Downloads\\WhatsApp Image 2023-12-18 at 22.30.52 (1).jpeg" alt="Recuerdo 20">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 20</p>
+                    <p>NOOOOOOOOOOOOOOOOOOOOO</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\Users\nicol\Downloads\WhatsApp Image 2023-12-20 at 20.31.51.jpeg" alt="Recuerdo 20">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 21</p>
+                    <p>La futura veterinaria :D</p>
+                    <p>Futura fundadora de zoologico.</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\Users\nicol\Downloads\WhatsApp Image 2023-12-20 at 20.31.51 (1).jpeg" alt="Recuerdo 22">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 22</p>
+                    <p>Dia de playa la tierra me hacia muchas coscillas jsjs</p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "C:\Users\nicol\Downloads\WhatsApp Image 2023-12-20 at 18.48.49 (1).jpeg" alt="Recuerdo 23">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 23</p>
+                    <p>Los guapos del cedehp</p>
+                </div>
+            </div>
+            <!-- Repite el bloque anterior para cada imagen -->
+        </div>
+    </div>
+
+    <div id="modal">
+        <div id="modal-contenido">
+            <img id="modal-imagen" alt="Imagen Ampliada">
+            <p id="descripcion-modal"></p>
+            <div id="sistema-comentarios">
+                <div class="comentario"></div>
+                <!-- Puedes cargar los comentarios dinámicamente aquí -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const imagenes = [
+            // Agrega las rutas de tus imágenes aquí
+        ];
+
+        document.addEventListener('DOMContentLoaded', function () {
+            cargarGaleria();
+        });
+
+        function cargarGaleria() {
+            const galeria = document.querySelector('.fila-imagenes');
+
+            imagenes.forEach((ruta, indice) => {
+                const imagenContainer = document.createElement('div');
+                imagenContainer.className = 'imagen-container';
+
+                const imagen = document.createElement('img');
+                imagen.src = ruta;
+                imagen.alt = `Recuerdo ${indice + 1}`;
+                imagen.className = 'imagen-galeria';
+
+                const descripcionImagen = document.createElement('div');
+                descripcionImagen.className = 'descripcion-imagen';
+                descripcionImagen.innerHTML = `
+                    <p>Descripción del recuerdo ${indice + 1}</p>
+                    <p>Opinión personal sobre el recuerdo ${indice + 1}</p>
+                `;
+
+                imagenContainer.appendChild(imagen);
+                imagenContainer.appendChild(descripcionImagen);
+                galeria.appendChild(imagenContainer);
+            });
+        }
+    </script>
+</body>
+
+</html>
