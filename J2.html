@@ -236,21 +236,21 @@
                         audio4 = new Audio('y2mate.com - Inuyasha Ending 1 Full Edit 2020   My Will  Gabriela Vega LATINO.mp3');
         }
 
-        function cambiarCancion(cancion) {
-            if (cancion === currentSong) return;
+function cambiarCancion(cancion) {
+    if (cancion === currentSong) return;
 
-            if (currentSong === 1) audio1.pause();
-            else if (currentSong === 2) audio2.pause();
-            else if (currentSong === 3) audio3.pause();
-                        else if (currentSong === 4) audio4.pause();
+    if (currentSong === 1) audio1.pause();
+    else if (currentSong === 2) audio2.pause();
+    else if (currentSong === 3) audio3.pause();
+    else if (currentSong === 4) audio4.pause(); // Corrected line
 
-            currentSong = cancion;
+    currentSong = cancion;
 
-            if (cancion === 1) audio1.play();
-            else if (cancion === 2) audio2.play();
-            else if (cancion === 3) audio3.play();
-                        else if (cancion === 4) audio3.play();
-        }
+    if (cancion === 1) audio1.play();
+    else if (cancion === 2) audio2.play();
+    else if (cancion === 3) audio3.play();
+    else if (cancion === 4) audio4.play(); // Corrected line
+}
         function cargarVersiculos() {
             versiculos = [
             "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree no se pierda, mas tenga vida eterna. - Juan 3:16",
