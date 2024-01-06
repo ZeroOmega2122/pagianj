@@ -87,6 +87,19 @@
         #botones-musica button:hover {
             background-color: #45a049;
         }
+                .comentario-form-container {
+            margin-top: 10px;
+        }
+
+        .comentarios-container {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .comentario {
+            border-bottom: 1px solid #ddd;
+            padding: 5px;
+        }
     </style>
 </head>
 
@@ -105,13 +118,21 @@
 
     <div class="fila-imagenes">
         <!-- Agrega tus 22 imágenes de la galería -->
-        <div class="imagen-container">
+        <div class="imagen-container" data-imagen="imagen-id-1">
             <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.00.webp" alt="Recuerdo 1">
             <div class="descripcion-imagen">
                 <p>Descripción del recuerdo 1</p>
-                <p>Un descanso tranquilo acompañado con melodía de Inuyasha </p>
-                <p>y perritos de la U :D My moment favorite </p>
-            </div>
+                <p>Un descanso tranquilo acompañado con melodía de Inuyasha</p>
+                <p>y perritos de la U :D My moment favorite</p>
+                <div class="comentario-form-container">
+                    <form class="comentario-form">
+                        <textarea name="comentario" placeholder="Escribe tu comentario"></textarea>
+                        <button type="button" onclick="agregarComentario('imagen-id-1')">Agregar Comentario</button>
+                    </form>
+                </div>
+                <div class="comentarios-container" data-imagen="imagen-id-1">
+                    <!-- Aquí se mostrarán los comentarios -->
+
         </div>
             </div>
             <div class="imagen-container">
@@ -300,6 +321,45 @@
             }
             audio = new Audio(ruta);
             audio.play();
+        }
+        
+        function agregarComentario(imagenId) {
+            const comentarioInput = document.querySelector(`[data-imagen="${imagenId}"] textarea`);
+            const comentario = comentarioInput.value.trim();
+
+            if (comentario !== '') {
+                // Obtener comentarios existentes o inicializar un array vacío
+                const comentarios = JSON.parse(localStorage.getItem(imagenId)) || [];
+
+                // Agregar el nuevo comentario
+                comentarios.push(comentario);
+
+                // Almacenar los comentarios actualizados en el Local Storage
+                localStorage.setItem(imagenId, JSON.stringify(comentarios));
+
+                // Actualizar la interfaz de usuario para mostrar el nuevo comentario
+                mostrarComentarios(imagenId);
+            }
+
+            // Limpiar el área de entrada de comentarios
+            comentarioInput.value = '';
+        }
+
+        function mostrarComentarios(imagenId) {
+            const comentariosContainer = document.querySelector(`[data-imagen="${imagenId}"] .comentarios-container`);
+            const comentarios = JSON.parse(localStorage.getItem(imagenId)) || [];
+
+            // Limpiar el área de comentarios
+            comentariosContainer.innerHTML = '';
+
+            // Mostrar los comentarios
+            comentarios.forEach((comentario, index) => {
+                const comentarioElement = document.createElement('div');
+                comentarioElement.classList.add('comentario');
+                comentarioElement.textContent = `Comentario ${index + 1}: ${comentario}`;
+
+                comentariosContainer.appendChild(comentarioElement);
+            });
         }
     </script>
 </body>
