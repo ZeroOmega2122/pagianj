@@ -16,13 +16,7 @@
             text-align: center;
         }
 
-        h1 {
-            font-size: 48px;
-            color: #ffffff;
-            margin-top: 50px;
-        }
-
-        h2 {
+        h1, h2 {
             font-size: 48px;
             color: #ffffff;
             margin-top: 50px;
@@ -105,9 +99,9 @@
 
 <body>
     <h1>Galería de Recuerdos</h1>
-    <h2>Aqui una pequeña recopilacion espero le guste :D</h2>
-        <h2>Las fotos tienes descripciones tiene que apretarlas para leerlas</h2>
-            <h2>Quizas en un futuro agregue mas quien sabe, el tiempo lo dira.</h2>
+    <h2>Aquí una pequeña recopilación, espero que les guste :D</h2>
+    <h2>Las fotos tienen descripciones, haz clic en ellas para leerlas.</h2>
+    <h2>Quizás en un futuro agregaré más, quien sabe, el tiempo lo dirá.</h2>
 
     <div id="botones-musica">
         <button onclick="reproducirCancion('y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3')">Futari no Kimochi</button>
@@ -121,6 +115,7 @@
         <div class="imagen-container" data-imagen="imagen-id-1">
             <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.00.webp" alt="Recuerdo 1">
             <div class="descripcion-imagen">
+                <!-- Contenido del recuerdo 1 -->
                 <p>Descripción del recuerdo 1</p>
                 <p>Un descanso tranquilo acompañado con melodía de Inuyasha</p>
                 <p>y perritos de la U :D My moment favorite</p>
@@ -132,9 +127,9 @@
                 </div>
                 <div class="comentarios-container" data-imagen="imagen-id-1">
                     <!-- Aquí se mostrarán los comentarios -->
-
-        </div>
+                </div>
             </div>
+        </div>
             <div class="imagen-container">
                 <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.00 (1).webp" alt="Recuerdo 2">
                 <div class="descripcion-imagen">
@@ -306,13 +301,11 @@
             <img id="modal-imagen" alt="Imagen Ampliada">
             <p id="descripcion-modal"></p>
             <div id="sistema-comentarios">
-                <div class="comentario"></div>
                 <!-- Puedes cargar los comentarios dinámicamente aquí -->
             </div>
         </div>
     </div>
-
-    <script>
+    <script defer>
         let audio;
 
         function reproducirCancion(ruta) {
@@ -322,7 +315,7 @@
             audio = new Audio(ruta);
             audio.play();
         }
-        
+
         function agregarComentario(imagenId) {
             const comentarioInput = document.querySelector(`[data-imagen="${imagenId}"] textarea`);
             const comentario = comentarioInput.value.trim();
