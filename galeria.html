@@ -1,7 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 
+
 <head>
+    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-analytics.js"></script>
+ 
+    <script defer>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBfG8f5B12Xx8VwrQhgmA7mKaX460hm7wA",
+            authDomain: "recuerdos-996ee.firebaseapp.com",
+            projectId: "recuerdos-996ee",
+            storageBucket: "recuerdos-996ee.appspot.com",
+            messagingSenderId: "189956469020",
+            appId: "1:189956469020:web:94c2c26267be297e024ad9"
+        };
+
+        // Inicializar Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería de Recuerdos</title>
@@ -305,7 +325,7 @@
             </div>
         </div>
     </div>
-    <script defer>
+     <script defer>
         let audio;
 
         function reproducirCancion(ruta) {
@@ -321,14 +341,18 @@
             const comentario = comentarioInput.value.trim();
 
             if (comentario !== '') {
+                // Obtener referencia a la ubicación de comentarios en Firebase
+                const comentariosRef = ref(database, `comentarios/${imagenId}`);
+
                 // Obtener comentarios existentes o inicializar un array vacío
-                const comentarios = JSON.parse(localStorage.getItem(imagenId)) || [];
+                const comentariosSnapshot = await get(comentariosRef);
+                const comentarios = comentariosSnapshot.exists() ? comentariosSnapshot.val() : [];
 
                 // Agregar el nuevo comentario
                 comentarios.push(comentario);
 
-                // Almacenar los comentarios actualizados en el Local Storage
-                localStorage.setItem(imagenId, JSON.stringify(comentarios));
+                // Almacenar los comentarios actualizados en Firebase
+                await set(comentariosRef, comentarios);
 
                 // Actualizar la interfaz de usuario para mostrar el nuevo comentario
                 mostrarComentarios(imagenId);
@@ -338,9 +362,15 @@
             comentarioInput.value = '';
         }
 
-        function mostrarComentarios(imagenId) {
+        async function mostrarComentarios(imagenId) {
             const comentariosContainer = document.querySelector(`[data-imagen="${imagenId}"] .comentarios-container`);
-            const comentarios = JSON.parse(localStorage.getItem(imagenId)) || [];
+
+            // Obtener referencia a la ubicación de comentarios en Firebase
+            const comentariosRef = ref(database, `comentarios/${imagenId}`);
+
+            // Obtener comentarios desde Firebase
+            const comentariosSnapshot = await get(comentariosRef);
+            const comentarios = comentariosSnapshot.exists() ? comentariosSnapshot.val() : [];
 
             // Limpiar el área de comentarios
             comentariosContainer.innerHTML = '';
