@@ -325,10 +325,10 @@
             </div>
         </div>
     </div>
-     <script defer>
+    <script defer>
         let audio;
 
-        function reproducirCancion(ruta) {
+        async function reproducirCancion(ruta) {
             if (audio) {
                 audio.pause();
             }
@@ -336,7 +336,7 @@
             audio.play();
         }
 
-        function agregarComentario(imagenId) {
+        async function agregarComentario(imagenId) {
             const comentarioInput = document.querySelector(`[data-imagen="${imagenId}"] textarea`);
             const comentario = comentarioInput.value.trim();
 
