@@ -164,7 +164,8 @@
         <button onclick="reproducirCancion('y2mate.com - Moon Revenge Español  Sailor Moon.mp3')">Moon Revenge</button>
         <button onclick="reproducirCancion('y2mate.com - Sailor Moon  Nagareboshi He Sub Español.mp3')">Nagareboshi He</button>
     </div>
- <div class="fila-imagenes">
+
+    <div class="fila-imagenes">
         <!-- Agrega tus 22 imágenes de la galería -->
         <div class="imagen-container" data-imagen="imagen-id-1">
             <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.00.webp" alt="Recuerdo 1">
@@ -174,6 +175,10 @@
                 <p>Un descanso tranquilo acompañado con melodía de Inuyasha</p>
                 <p>y perritos de la U :D My moment favorite</p>
                 <div class="comentario-form-container">
+                    <form class="comentario-form">
+                        <textarea name="comentario" placeholder="Escribe tu comentario"></textarea>
+                        <button type="button" onclick="agregarComentario('imagen-id-1')">Agregar Comentario</button>
+                    </form>
                 </div>
                 <div class="comentarios-container" data-imagen="imagen-id-1">
                     <!-- Aquí se mostrarán los comentarios -->
@@ -738,6 +743,8 @@
                 <div class="descripcion-imagen">
                     <p>Recuerdo 80</p>
                     <p></p>
+                </div>
+            </div>
                 </div>
             </div>
     <div id="modal">
