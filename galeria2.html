@@ -25,6 +25,31 @@
             margin-top: 50px;
             animation: titulo-animacion 2s ease-in-out infinite alternate;
         }
+        
+
+        #boton-galeria {
+            margin-top: 20px;
+        }
+
+        #boton-galeria a {
+            display: inline-block;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+        #boton-galeria a img {
+            width: 160px;
+            height: 160px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #boton-galeria a img:hover {
+            transform: scale(1.1);
+        }
 
         .fila-imagenes {
             display: flex;
@@ -120,11 +145,6 @@
     <h2>Tuve que mover las fotos en otra pagina :)</h2>
         <h2>Debido a un limite jsjs.</h2>
 
-     <div id="boton-galeria">
-                <a href="galeria.html">
-                    <img src="R (1).webp" alt="Ir a la Galería">
-                </a>
-            </div>
     <div id="botones-musica">
         <button onclick="reproducirCancion('y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3')">Futari no Kimochi</button>
         <button onclick="reproducirCancion('y2mate.com - Inuyasha Ending 3 Latino Remasterizado Digital.mp3')">Dearest</button>
@@ -332,6 +352,12 @@
             </div>
         </div>
     </div>
+        
+     <div id="boton-galeria">
+                <a href="galeria.html">
+                    <img src="R (1).webp" alt="Ir a la Galería">
+                </a>
+            </div>
         
     <script defer>
         let audio;
