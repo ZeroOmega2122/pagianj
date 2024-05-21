@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,23 +15,19 @@
             background-attachment: fixed;
             background-size: cover;
         }
-
         #contenido {
             text-align: center;
             padding: 20px;
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
-
         #contenido.fadeIn {
             opacity: 1;
         }
-
         #botones-musica {
             text-align: center;
             margin-top: 20px;
         }
-
         #botones-musica button {
             font-size: 24px;
             margin-right: 10px;
@@ -40,7 +35,6 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
         #botones-musica button:hover {
             background-color: #45a049;
         }
@@ -50,22 +44,18 @@
             margin-bottom: 20px;
             transition: color 0.5s ease;
         }
-
         h2 {
             font-size: 45px;
             margin-bottom: 10px;
             color: #ff4500;
             transition: color 0.5s ease;
         }
-
         #subtitulo {
             font-size: 24px;
             margin-top: 10px;
             color: #45a049;
             transition: color 0.5s ease;
         }
-
-
         #versiculo-container {
             background: rgba(255, 255, 255, 0.9);
             padding: 15px;
@@ -74,15 +64,12 @@
             color: #0066cc;
             transition: background-color 0.5s ease, color 0.5s ease;
         }
-
-         #versiculo {
+        #versiculo {
             font-size: 24px;
             margin-bottom: 15px;
             color: #333;
             transition: color 0.5s ease;
         }
-
-
         button {
             background-color: #4CAF50;
             color: white;
@@ -94,17 +81,12 @@
             margin: 0 10px;
             transition: background-color 0.3s ease;
         }
-
         button:hover {
             background-color: #45a049;
         }
-
-
-
         #boton-galeria {
             margin-top: 20px;
         }
-
         #boton-galeria a {
             display: inline-block;
             border: 2px solid #4CAF50;
@@ -112,7 +94,6 @@
             overflow: hidden;
             margin: 10px;
         }
-
         #boton-galeria a img {
             width: 160px;
             height: 160px;
@@ -120,11 +101,9 @@
             cursor: pointer;
             transition: transform 0.3s ease;
         }
-
         #boton-galeria a img:hover {
             transform: scale(1.1);
         }
-
         #texto-personalizado {
             margin-top: 20px;
             color: #ffcc00;
@@ -137,11 +116,9 @@
             line-height: 1.5;
             transition: color 0.5s ease, border-color 0.5s ease;
         }
-
         .fadeIn {
             animation: fadeInAnimation 0.5s ease;
         }
-
         @keyframes fadeInAnimation {
             from {
                 opacity: 0;
@@ -150,12 +127,10 @@
                 opacity: 1;
             }
         }
-
         #boton-cancion {
             font-size: 35px;
             margin-top: 20px;
         }
-
         #boton-cancion button {
             font-size: 24px;
             margin-right: 10px;
@@ -163,39 +138,33 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
         #boton-cancion button:hover {
             background-color: #45a049;
         }
     </style>
 </head>
-
 <body>
     <div id="contenido">
         <h1>Mi Página de Recuerdo</h1>
         <h2 id="subtitulo">Un lugar especial para recordar momentos inolvidables</h2>
-
         <div id="texto-personalizado">
-    <h1>Small Lady Litle sheep,</h1>
-
-    <p>
-       Mi cariño está aquí, incondicional, como un compañero silencioso que te apoya desde la distancia. Que tengas un día lleno de buenos momentos, confiando en que la guía divina de Dios ilumine tus caminos y te lleve hacia la plenitud que mereces. 
-    </p>
-
-    <p>
-       Estuve pensando que significa para ti ser valiente?
-    </p>
-
-    <p>Con aprecio y cariño,<br>
-        Nicolas Andres (Joven Valiente) :)</p>
-</div>
+            <h1>Small Lady Litle sheep,</h1>
+            <p>
+                Mi cariño está aquí, incondicional, como un compañero silencioso que te apoya desde la distancia. Que tengas un día lleno de buenos momentos, confiando en que la guía divina de Dios ilumine tus caminos y te lleve hacia la plenitud que mereces.
+            </p>
+            <p>
+                Estuve pensando que significa para ti ser valiente?
+            </p>
+            <p>Con aprecio y cariño,<br>
+                Nicolas Andres (Joven Valiente) :)
+            </p>
+        </div>
         <div id="versiculo-container">
             <h2>Versículo del Día</h2>
             <p id="versiculo"></p>
             <button onclick="generarNuevoVersiculo()">Generar Nuevo Versículo</button>
             <button onclick="mutearDesmutar()">Mutar/Desmutar</button>
             <p id="contador">Próxima actualización en 24 horas</p>
-
             <div id="boton-galeria">
                 <a href="galeria.html">
                     <img src="R (1).webp" alt="Ir a la Galería">
@@ -203,191 +172,51 @@
             </div>
         </div>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('contenido').classList.add('fadeIn');
             cargarVersiculos();
-            cargarCanciones();
             generarNuevoVersiculo();
-            iniciarContadorActualizacion();
         });
 
-        let audio1, audio2, audio3;
-        let isMuted = false;
-        let currentSong = 1;
+        let versiculos = [];
+        let versiculoActual = '';
 
-        function cargarCanciones() {
-
-        }
-
-function cambiarCancion(cancion) {
-    if (cancion === currentSong) return;
-
-    // Pausar la canción actual
-    if (currentSong === 1) audio1.pause();
-    else if (currentSong === 2) audio2.pause();
-    else if (currentSong === 3) audio3.pause();
-    else if (currentSong === 4) audio4.pause();
-
-    // Establecer la nueva canción
-    currentSong = cancion;
-
-    // Reproducir la nueva canción
-    if (cancion === 1) audio1.play();
-    else if (cancion === 2) audio2.play();
-    else if (cancion === 3) audio3.play();
-    else if (cancion === 4) audio4.play();
-}
         function cargarVersiculos() {
             versiculos = [
-            "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree no se pierda, mas tenga vida eterna. - Juan 3:16",
-            "Jehová es mi pastor; nada me faltará. - Salmo 23:1",
-            "La bondad y la misericordia me seguirán todos los días de mi vida, y en la casa de Jehová moraré por largos días. - Salmo 23:6",
-            "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia. - Isaías 41:10",
-            "Bienaventurado el hombre que no anda en el consejo de los impíos, ni se detiene en el camino de los pecadores, ni se sienta en la silla de los burladores. - Salmo 1:1",
-            "Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones. - Salmo 46:1",
-            "Cree en el Señor Jesucristo, y serás salvo, tú y tu casa. - Hechos 16:31",
-            "El amor sea sin fingimiento. Aborreced lo malo, seguid lo bueno. - Romanos 12:9",
-            "El que guarda su boca guarda su alma, pero el que mucho abre sus labios tendrá calamidad. - Proverbios 13:3",
-            "El principio de la sabiduría es el temor de Jehová; buen entendimiento tienen todos los que practican sus mandamientos. - Salmo 111:10",
-            "Por tanto, no os afanéis por el día de mañana, porque el día de mañana traerá su afán. - Mateo 6:34",
-            "Si Jehová no edificare la casa, en vano trabajan los que la edifican. - Salmo 127:1",
-            "El que perdona la ofensa cultiva el amor; el que insiste en la ofensa divide a los amigos. - Proverbios 17:9",
-            "Los que confían en Jehová son como el monte Sion, que no se mueve, sino que permanece para siempre. - Salmo 125:1",
-            "El Señor te bendiga y te guarde; el Señor haga resplandecer su rostro sobre ti y tenga de ti misericordia; el Señor alce sobre ti su rostro y te dé paz. - Números 6:24-26",
-            "El que camina en integridad anda confiado; pero el que pervierte sus caminos será conocido. - Proverbios 10:9",
-            "Porque yo Jehová soy tu Dios, quien te sostiene de tu mano derecha, y te dice: No temas, yo te ayudo. - Isaías 41:13",
-            "Porque ¿quién es Dios, sino solo Jehová? ¿Y quién es la roca, sino nuestro Dios? - Salmo 18:31",
-            "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia. - Isaías 41:10",
-            "Toda palabra de Dios es limpia; él es escudo a los que en él confían. - Proverbios 30:5",
-            "El camino de Dios es perfecto; la palabra del Señor es acrisolada. Escudo es a todos los que en él esperan. - 2 Samuel 22:31",
-            "De cierto, de cierto os digo: El que cree en mí, las obras que yo hago, él las hará también; y aun mayores hará, porque yo voy al Padre. - Juan 14:12",
-            "Jehová está cerca de todos los que le invocan, de todos los que le invocan de veras. - Salmo 145:18",
-            "No améis al mundo, ni las cosas que están en el mundo. Si alguno ama al mundo, el amor del Padre no está en él. - 1 Juan 2:15",
-            "Pero tú, cuando ores, entra en tu aposento, y cerrada la puerta, ora a tu Padre que está en secreto; y tu Padre que ve en lo secreto te recompensará en público. - Mateo 6:6",
-            "Mas el que persevera hasta el fin será salvo. - Mateo 24:13",
-            "Los que confían en Jehová son como el monte Sion, que no se mueve, sino que permanece para siempre. - Salmo 125:1",
-            "El justo será recompensado en la tierra; ciertamente será cortado el malo. - Proverbios 11:31",
-            "No os conforméis a este siglo, sino transformaos por medio de la renovación de vuestro entendimiento, para que comprobéis cuál sea la buena voluntad de Dios, agradable y perfecta. - Romanos 12:2",
-            "Jehová es mi luz y mi salvación; ¿a quién temeré? El Señor es la fortaleza de mi vida; ¿de quién tendré miedo? - Salmo 27:1",
-            "Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres. - Colosenses 3:23",
-            "El que perdona la ofensa cultiva el amor; el que insiste en la ofensa divide a los amigos. - Proverbios 17:9",
-            "Bienaventurados los que lloran, porque ellos recibirán consolación. - Mateo 5:4",
-            "En el mundo tendréis aflicción; pero confiad, yo he vencido al mundo. - Juan 16:33",
-            "No os conforméis a este siglo, sino transformaos por medio de la renovación de vuestro entendimiento, para que comprobéis cuál sea la buena voluntad de Dios, agradable y perfecta. - Romanos 12:2",
-            "Acercaos a Dios, y él se acercará a vosotros. - Santiago 4:8",
-            "Pero los frutos del Espíritu son amor, gozo, paz, paciencia, benignidad, bondad, fe, mansedumbre, templanza; contra tales cosas no hay ley. - Gálatas 5:22-23",
-            "El Señor está cerca de los quebrantados de corazón; y salva a los contritos de espíritu. - Salmo 34:18",
-            "Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien, esto es, a los que conforme a su propósito son llamados. - Romanos 8:28",
-            "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia. - Isaías 41:10",
-            "Porque tú formaste mis entrañas; tú me hiciste en el vientre de mi madre. - Salmo 139:13",
-            "Mas buscad primeramente el reino de Dios y su justicia, y todas estas cosas os serán añadidas. - Mateo 6:33",
-            "El que da al pobre no tendrá falta, pero el que cierra sus ojos tendrá muchas maldiciones. - Proverbios 28:27",
-            "Por tanto, os digo que todo lo que orando pidáis, creed que lo recibiréis, y os vendrá. - Marcos 11:24",
-            "Porque tú eres mi roca y mi castillo; por tu nombre me guiarás y me encaminarás. - Salmo 31:3",
-            "Honra a Jehová con tus bienes, y con las primicias de todos tus frutos; y serán llenos tus graneros con abundancia, y tus lagares rebosarán de mosto. - Proverbios 3:9-10",
-            "Jehová es mi luz y mi salvación; ¿a quién temeré? - Salmo 27:1",
-            "Y el Dios de toda gracia, que nos llamó a su gloria eterna en Jesucristo, después que hayáis padecido un poco de tiempo, él mismo os perfeccione, afirme, fortalezca y establezca. - 1 Pedro 5:10",
-            "Porque el Señor tu Dios está en medio de ti como guerrero victorioso. Se deleitará en ti con gozo, te renovará con su amor y te celebrará con cánticos. - Sofonías 3:17",
-            "No sean vencidos por el mal, sino vence con el bien el mal. - Romanos 12:21",
-            "El que guarda su boca y su lengua, su alma guarda de angustias. - Proverbios 21:23",
-            "El que anda con sabios, sabio será; mas el que se junta con necios será quebrantado. - Proverbios 13:20",
-            "No os conforméis a este mundo, sino transformaos por medio de la renovación de vuestro entendimiento. - Romanos 12:2",
-            "El nombre de Jehová es torre fuerte; el justo correrá a ella, y será levantado. - Proverbios 18:10",
-            "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te fortalezco; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia. - Isaías 41:10",
-            "Porque tú formaste mis entrañas; tú me hiciste en el vientre de mi madre. - Salmo 139:13",
-            "Mas buscad primeramente el reino de Dios y su justicia, y todas estas cosas os serán añadidas. - Mateo 6:33",
-            "El que da al pobre no tendrá falta, pero el que cierra sus ojos tendrá muchas maldiciones. - Proverbios 28:27",
-            "Por tanto, os digo que todo lo que orando pidáis, creed que lo recibiréis, y os vendrá. - Marcos 11:24",
-            "Porque tú eres mi roca y mi castillo; por tu nombre me guiarás y me encaminarás. - Salmo 31:3",
-            "Honra a Jehová con tus bienes, y con las primicias de todos tus frutos; y serán llenos tus graneros con abundancia, y tus lagares rebosarán de mosto. - Proverbios 3:9-10",
-            "Jehová es mi luz y mi salvación; ¿a quién temeré? - Salmo 27:1",
-            "Y el Dios de toda gracia, que nos llamó a su gloria eterna en Jesucristo, después que hayáis padecido un poco de tiempo, él mismo os perfeccione, afirme, fortalezca y establezca. - 1 Pedro 5:10",
-            "Porque el Señor tu Dios está en medio de ti como guerrero victorioso. Se deleitará en ti con gozo, te renovará con su amor y te celebrará con cánticos. - Sofonías 3:17",
-            "No sean vencidos por el mal, sino vence con el bien el mal. - Romanos 12:21",
-            "El que guarda su boca y su lengua, su alma guarda de angustias. - Proverbios 21:23",
-            "El que anda con sabios, sabio será; mas el que se junta con necios será quebrantado. - Proverbios 13:20",
-            "No os conforméis a este mundo, sino transformaos por medio de la renovación de vuestro entendimiento. - Romanos 12:2",
-            "El nombre de Jehová es torre fuerte; el justo correrá a ella, y será levantado. - Proverbios 18:10",
-            "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te fortalezco; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia. - Isaías 41:10",
-            "Porque tú formaste mis entrañas; tú me hiciste en el vientre de mi madre. - Salmo 139:13",
+                "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree no se pierda, mas tenga vida eterna. - Juan 3:16",
+                "Jehová es mi pastor; nada me faltará. - Salmo 23:1",
+                "La bondad y la misericordia me seguirán todos los días de mi vida, y en la casa de Jehová moraré por largos días. - Salmo 23:6",
+                "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia. - Isaías 41:10",
+                "Bienaventurado el hombre que no anda en el consejo de los impíos, ni se detiene en el camino de los pecadores, ni se sienta en la silla de los burladores. - Salmo 1:1",
+                "Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones. - Salmo 46:1",
+                "Cree en el Señor Jesucristo, y serás salvo, tú y tu casa. - Hechos 16:31",
+                "El amor sea sin fingimiento. Aborreced lo malo, seguid lo bueno. - Romanos 12:9",
+                "El que guarda su boca guarda su alma, pero el que mucho abre sus labios tendrá calamidad. - Proverbios 13:3",
+                "El principio de la sabiduría es el temor de Jehová; buen entendimiento tienen todos los que practican sus mandamientos. - Salmo 111:10",
+                "Por tanto, no os afanéis por el día de mañana, porque el día de mañana traerá su afán. - Mateo 6:34",
+                "Si Jehová no edificare la casa, en vano trabajan los que la edifican. - Salmo 127:1",
+                "El que perdona la ofensa cultiva el amor; el que insiste en la ofensa divide a los amigos. - Proverbios 17:9",
+                "Los que confían en Jehová son como el monte Sion, que no se mueve, sino que permanece para siempre. - Salmo 125:1",
+                "Pedid, y se os dará; buscad, y hallaréis; llamad, y se os abrirá. - Mateo 7:7",
+                "El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente. - Salmo 91:1"
             ];
         }
 
-
-
         function obtenerVersiculoAleatorio() {
-            const versiculosNoMostrados = versiculos.filter(versiculo => versiculo !== versiculoActual);
-            const totalVersiculos = versiculosNoMostrados.length;
-
-            if (totalVersiculos < 50) {
-                versiculoActual = '';
-            }
-
-            const probabilidades = versiculosNoMostrados.map(() => 1 / (totalVersiculos >= 50 ? totalVersiculos : 1));
-            const índice = seleccionarIndiceConProbabilidades(probabilidades);
-
-            versiculoActual = versiculosNoMostrados[índice];
-            return versiculoActual;
-        }
-
-        function seleccionarIndiceConProbabilidades(probabilidades) {
-            const probabilidadAcumulada = [];
-            let acumulado = 0;
-
-            for (const probabilidad of probabilidades) {
-                acumulado += probabilidad;
-                probabilidadAcumulada.push(acumulado);
-            }
-
-            const random = Math.random();
-            const índice = probabilidadAcumulada.findIndex(acumulado => random <= acumulado);
-
-            return Math.max(0, índice);
+            const índice = Math.floor(Math.random() * versiculos.length);
+            return versiculos[índice];
         }
 
         function generarNuevoVersiculo() {
             const nuevoVersiculo = obtenerVersiculoAleatorio();
             document.getElementById('versiculo').textContent = nuevoVersiculo;
-
-            reiniciarContadorActualizacion();
         }
 
         function mutearDesmutar() {
-            if (audio1) audio1.muted = isMuted;
-            if (audio2) audio2.muted = isMuted;
-            if (audio3) audio3.muted = isMuted;
-
-            isMuted = !isMuted;
-        }
-
-        function reiniciarContadorActualizacion() {
-            setTimeout(() => {
-                generarNuevoVersiculo();
-            }, contadorActualizacion);
-        }
-
-        function iniciarContadorActualizacion() {
-            setInterval(actualizarContador, 1000);
-        }
-
-        function actualizarContador() {
-            contadorActualizacion -= 1000;
-
-            if (contadorActualizacion < 0) {
-                contadorActualizacion = 0;
-            }
-
-            const segundosRestantes = Math.floor(contadorActualizacion / 1000);
-            const horas = Math.floor(segundosRestantes / 3600);
-            const minutos = Math.floor((segundosRestantes % 3600) / 60);
-            const segundos = segundosRestantes % 60;
-
-            document.getElementById('contador').textContent =
-                `Próxima actualización en ${horas}h ${minutos}m ${segundos}s`;
+            // Función de ejemplo para mutear/desmutar, debes implementar la lógica según tus necesidades
+            alert("Función de mutear/desmutar llamada.");
         }
     </script>
 </body>
-
 </html>
