@@ -25,7 +25,31 @@
             margin-top: 50px;
             animation: titulo-animacion 2s ease-in-out infinite alternate;
         }
-//aqui falta
+
+
+        #boton-galeria {
+            margin-top: 20px;
+        }
+
+        #boton-galeria a {
+            display: inline-block;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+        #boton-galeria a img {
+            width: 160px;
+            height: 160px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #boton-galeria a img:hover {
+            transform: scale(1.1);
+        }
         }
 
         .fila-imagenes {
@@ -123,16 +147,7 @@
         <h2>Ahora para agrandar las fotos tiene que apretar en la parte superior de la foto y inferior para las descripciones.</h2>
     <h2>LO LOGRAMOS LLEGAMOS A LAS 100 FOTOS JSJS espero podemos llegar a mas, si Dios quiere nos juntaremos mas adelante denuevo ya se les hecha de menos :,).</h2>
 
-       <div id="boton-galeria">
-                <a href="J2">
-                    <img src="R (1).webp" alt="Ir a la Galería">
-                </a>
-            </div>
-            <div id="boton-galeria">
-                <a href="galeria2.html">
-                    <img src="14667704.webp" alt="Ir a la Galería">
-                </a>
-            </div>
+       
     <div id="botones-musica">
         <button onclick="reproducirCancion('y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3')">Futari no Kimochi</button>
         <button onclick="reproducirCancion('y2mate.com - Inuyasha Ending 3 Latino Remasterizado Digital.mp3')">Dearest</button>
@@ -740,7 +755,16 @@
      
         </div>
     </div>
-
+<div id="boton-galeria">
+                <a href="J2">
+                    <img src="R (1).webp" alt="Ir a la Galería">
+                </a>
+            </div>
+            <div id="boton-galeria">
+                <a href="galeria2.html">
+                    <img src="14667704.webp" alt="Ir a la Galería">
+                </a>
+            </div>
 
     <script defer>
         
