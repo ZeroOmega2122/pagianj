@@ -26,30 +26,13 @@
             animation: titulo-animacion 2s ease-in-out infinite alternate;
         }
 
-
-        #boton-galeria {
-            margin-top: 20px;
-        }
-
-        #boton-galeria a {
-            display: inline-block;
-            border: 2px solid #4CAF50;
-            border-radius: 8px;
-            overflow: hidden;
-            margin: 10px;
-        }
-
-        #boton-galeria a img {
-            width: 160px;
-            height: 160px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        #boton-galeria a img:hover {
-            transform: scale(1.1);
-        }
+        @keyframes titulo-animacion {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
         }
 
         .fila-imagenes {
@@ -115,6 +98,15 @@
             background-color: #45a049;
         }
 
+        @keyframes boton-animacion {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
         .comentario-form-container {
             margin-top: 10px;
         }
@@ -133,22 +125,11 @@
 
 <body>
     <h1>Galería de Recuerdos</h1>
-    <h2>Actualizacion 20/05</h2>
+    <h2>Actualizacion 14/02</h2>
     <h2>Las fotos tienen descripciones, haz clic en ellas para leerlas.</h2>
-        <h2>Aproveche su receso :).</h2>
-    <h2>FELICES 100 FOTOS JSJS espero lleguemos a mas :,).</h2>
+        <h2>Ahora para agrandar las fotos tiene que apretar en la parte superior de la foto y inferior para las descripciones.</h2>
+    <h2>LO LOGRAMOS LLEGAMOS A LAS 100 FOTOS JSJS espero podemos llegar a mas, si Dios quiere nos juntaremos mas adelante denuevo ya se les hecha de menos :,).</h2>
 
-    <div id="boton-galeria">
-                <a href="J2">
-                    <img src="R (1).webp" alt="Ir a la Galería">
-                </a>
-            </div>
-            <div id="boton-galeria">
-                <a href="galeria2.html">
-                    <img src="14667704.webp" alt="Ir a la Galería">
-                </a>
-            </div>
-       
     <div id="botones-musica">
         <button onclick="reproducirCancion('y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3')">Futari no Kimochi</button>
         <button onclick="reproducirCancion('y2mate.com - Inuyasha Ending 3 Latino Remasterizado Digital.mp3')">Dearest</button>
@@ -174,6 +155,15 @@
                 <p>Descripción del recuerdo 1</p>
                 <p>Un descanso tranquilo acompañado con melodía de Inuyasha</p>
                 <p>y perritos de la U :D My moment favorite</p>
+                <div class="comentario-form-container">
+                    <form class="comentario-form">
+                        <textarea name="comentario" placeholder="Escribe tu comentario"></textarea>
+                        <button type="button" onclick="agregarComentario('imagen-id-1')">Agregar Comentario</button>
+                    </form>
+                </div>
+                <div class="comentarios-container" data-imagen="imagen-id-1">
+                    <!-- Aquí se mostrarán los comentarios -->
+                </div>
             </div>
         </div>
             <div class="imagen-container">
@@ -736,16 +726,179 @@
                     <p></p>
                 </div>
             </div>
+                 <div class="imagen-container">
+                <img class="imagen-galeria" src= "./WhatsApp Image 2024-01-23 at 16.57.20.webp" alt="Recuerdo 81">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 81</p>
+                    <p></p>
+                </div>
+            </div>
+                 <div class="imagen-container">
+                <img class="imagen-galeria" src= "./WhatsApp Image 2024-01-23 at 16.57.21.webp" alt="Recuerdo 82">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 82</p>
+                    <p></p>
+                </div>
+            </div
+                 <div class="imagen-container">
+             <img class="imagen-galeria" src= ".WhatsApp Image 2024-02-14 at 12.35.37 (1).jpeg" alt="Recuerdo 83">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 83</p>
+                    <p></p>
+                </div>
+            </div>
+                 <div class="imagen-container">
+                    <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.37.jpeg" alt="Recuerdo 84">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 84</p>
+                    <p></p>
+                </div>
+            </div>
+                 <div class="imagen-container">
+                    <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.38 (1).jpeg" alt="Recuerdo 85">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 85</p>
+                    <p></p>
+                </div>
+            </div>
+              <div class="imagen-container">
+                    <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.38 (2).jpegp" alt="Recuerdo 86">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 86</p>
+                    <p></p>
+                </div>
+            </div>
+              <div class="imagen-container">
+                        <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.38.jpeg" alt="Recuerdo 87">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 87</p>
+                    <p></p>
+                </div>
+            </div>
+              <div class="imagen-container">
+                        <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.39.jpeg" alt="Recuerdo 88">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 88</p>
+                    <p></p>
+                </div>
+            </div>
+              <div class="imagen-container">
+                        <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.41 (1).jpeg" alt="Recuerdo 89">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 89</p>
+                    <p></p>
+                </div>
+            </div>
+         <div class="imagen-container">
+                        <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.41 (2).jpeg" alt="Recuerdo 90">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 90</p>
+                    <p></p>
+                </div>
+            </div>
+         <div class="imagen-container">
+                        <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.41 (3).jpeg" alt="Recuerdo 91">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 91</p>
+                    <p></p>
+                </div>
+            </div>
+              <div class="imagen-container">
+                        <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.41.jpeg" alt="Recuerdo 92">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 92</p>
+                    <p></p>
+                </div>
+            </div>
+              <div class="imagen-container">
+             <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42 (1).jpeg" alt="Recuerdo 93">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 93</p>
+                    <p></p>
+                </div>
+            </div>
+              <div class="imagen-container">
+             <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42 (2).jpeg" alt="Recuerdo 94">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 94</p>
+                    <p></p>
+                </div>
+            </div>
+                  <div class="imagen-container">
+                <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42 (3).jpeg" alt="Recuerdo 95">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 95</p>
+                    <p></p>
+                </div>
+            </div>
+              <div class="imagen-container">
+             <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42 (4).jpeg" alt="Recuerdo 96">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 96</p>
+                    <p></p>
+                </div>
+            </div>
+         <div class="imagen-container">
+          <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42.jpeg" alt="Recuerdo 97">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 97</p>
+                    <p></p>
+                </div>
+            </div>
+         <div class="imagen-container">
+          <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42.jpeg" alt="Recuerdo 98">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 98</p>
+                    <p></p>
+                </div>
+            </div>
+              <div class="imagen-container">
+              <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.39.05 (1).jpeg" alt="Recuerdo 99">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 99</p>
+                    <p></p>
+                </div>
+            </div>
+                   <div class="imagen-container">
+              <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.39.05.jpeg" alt="Recuerdo 100">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 100</p>
+                    <p></p>
+                </div>
+            </div>
+                 <div class="imagen-container">
+             <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.39.06 (1).jpeg" alt="Recuerdo 101">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 101</p>
+                    <p></p>
+                </div>
+            </div>
+              <div class="imagen-container">
+             <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.39.06 (2).jpeg" alt="Recuerdo 102">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 102</p>
+                    <p></p>
+                </div>
+            </div>
+         <div class="imagen-container">
+              <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.39.06.jpeg" alt="Recuerdo 103">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 103</p>
+                    <p></p>
+                </div>
+            </div>
+                </div>
+            </div>
     <div id="modal">
         <div id="modal-contenido">
-            <img id="modal-imagen" alt="">
+            <img id="modal-imagen" alt="Imagen Ampliada">
             <p id="descripcion-modal"></p>
             <div id="sistema-comentarios">
                 <!-- Puedes cargar los comentarios dinámicamente aquí -->
             </div>
         </div>
+    </div>
     <script defer>
-        
         let audio;
 
         async function reproducirCancion(ruta) {
