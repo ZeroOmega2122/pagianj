@@ -162,8 +162,7 @@
     <h2>Las fotos tienen descripciones, haz clic en ellas para leerlas.</h2>
     <h2>Tuve que agregar otra página por un tema de límites de la página.</h2>
     <h2>Felices 100 FOTOS JSJS, si Dios quiere nos juntaremos más adelante de nuevo :,).</h2>
-
-       <div id="botones-musica">
+    <div id="botones-musica">
         <button onclick="reproducirCancion('y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3')">Futari no Kimochi</button>
         <button onclick="reproducirCancion('y2mate.com - Inuyasha Ending 3 Latino Remasterizado Digital.mp3')">Dearest</button>
         <button onclick="reproducirCancion('y2mate.com - Inuyasha OST 2  Beautiful Memories.mp3')">Beautiful Memories</button>
@@ -270,7 +269,8 @@
                 </div>
             </div>
                 
-                </di
+        <!-- Aquí continúa el resto de tus imágenes -->
+    </div>
 
     <div id="modal">
         <div id="modal-contenido">
@@ -290,7 +290,7 @@
             const imagenes = document.querySelectorAll('.imagen-galeria');
 
             imagenes.forEach(imagen => {
-                imagen.addEventListener('dblclick', () => {
+                imagen.addEventListener('click', () => {
                     const modal = document.getElementById('modal');
                     const modalImagen = document.getElementById('modal-imagen');
                     const modalContenido = document.getElementById('modal-contenido');
@@ -310,8 +310,8 @@
                 modalContenido.style.display = 'none';
                 modal.style.display = 'none';
             });
-            });
         });
     </script>
 </body>
 </html>
+
