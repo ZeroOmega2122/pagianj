@@ -20,10 +20,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-        let versiculos = [];
-        let versiculoActual = '';
+let versiculos = [];
+let versiculosDisponibles = [];
+let versiculoActual = '';
+const maxRepetitions = 15;
 
-        function cargarVersiculos() {
+   function cargarVersiculos() {
             versiculos = [
                 "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree no se pierda, mas tenga vida eterna. - Juan 3:16",
                 "Jehová es mi pastor; nada me faltará. - Salmo 23:1",
@@ -79,13 +81,35 @@ document.addEventListener('DOMContentLoaded', function () {
                 "El que guarda su boca guarda su alma, pero el que mucho abre sus labios tendrá calamidad. - Proverbios 13:3"
             ];
         }
+    // Al inicio, todos los versículos están disponibles para seleccionarse
+    versiculosDisponibles = versiculos.slice();
+}
 
-        function obtenerVersiculoAleatorio() {
-            const índice = Math.floor(Math.random() * versiculos.length);
-            return versiculos[índice];
-        }
+function obtenerVersiculoAleatorio() {
+    // Se elige aleatoriamente un versículo de los disponibles
+    const índice = Math.floor(Math.random() * versiculosDisponibles.length);
+    return versiculosDisponibles[índice];
+}
 
-        function generarNuevoVersiculo() {
-            const nuevoVersiculo = obtenerVersiculoAleatorio();
-            document.getElementById('versiculo').textContent = nuevoVersiculo;
-        }
+function generarNuevoVersiculo() {
+    // Se comprueba si hay versículos disponibles para seleccionar
+    if (versiculosDisponibles.length === 0) {
+        // Si no hay más versículos disponibles, se reinicia la lista
+        versiculosDisponibles = versiculos.slice();
+    }
+    
+    // Se elige aleatoriamente un versículo de los disponibles
+    const nuevoVersiculo = obtenerVersiculoAleatorio();
+    
+    // Se actualiza el contenido del elemento con el ID 'versiculo'
+    document.getElementById('versiculo').textContent = nuevoVersiculo;
+    
+    // Se actualiza la lista de versículos disponibles, eliminando el versículo seleccionado
+    const indexToRemove = versiculosDisponibles.indexOf(nuevoVersiculo);
+    versiculosDisponibles.splice(indexToRemove, 1);
+    
+    // Se añade el versículo seleccionado al final de la lista, si no se ha alcanzado el límite de repeticiones
+    if (versiculosDisponibles.length < versiculos.length * maxRepetitions) {
+        versiculosDisponibles.push(nuevoVersiculo);
+    }
+}
