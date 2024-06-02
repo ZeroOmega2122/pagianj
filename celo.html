@@ -3,34 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería de imágenes</title>
+    <title>Mi Página de Recuerdo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
-        body, html {
+        body {
             font-family: 'Pacifico', cursive;
             margin: 0;
             padding: 0;
+            background: url('./ovejas.webp') center/cover fixed no-repeat;
             color: #333;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        #contenido {
             text-align: center;
-            height: 100%;
+            padding: 20px;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
         }
-
-        body {
-            background: url('./OIP (7).webp') center/cover fixed no-repeat;
-            min-height: 100vh;
-            overflow-x: hidden;
+        #contenido.fadeIn {
+            opacity: 1;
+            transform: scale(1);
         }
-
-        h1, h2 {
-            font-size: 48px;
-            color: #ffffff;
-            margin-top: 50px;
-            animation: titulo-animacion 2s ease-in-out infinite alternate;
+        #botones-musica {
+            text-align: center;
+            margin-top: 20px;
         }
-
+        #botones-musica button {
+            font-size: 24px;
+            margin-right: 10px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #botones-musica button:hover {
+            background-color: #45a049;
+        }
+        h1 {
+            font-size: 60px;
+            color: #FFC0CB;
+            margin-bottom: 20px;
+            transition: color 0.5s ease;
+        }
+        h2 {
+            font-size: 45px;
+            margin-bottom: 10px;
+            color: #ff4500;
+            transition: color 0.5s ease;
+        }
+        #subtitulo {
+            font-size: 24px;
+            margin-top: 10px;
+            color: #45a049;
+            transition: color 0.5s ease;
+        }
+        #versiculo-container {
+            background: rgba(255, 255, 255, 0.1); /* Fondo blanco con 10% de opacidad */
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            color: #0066cc;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        #versiculo {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+            transition: color 0.5s ease;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
         #boton-galeria {
             margin-top: 20px;
         }
-
         #boton-galeria a {
             display: inline-block;
             border: 2px solid #4CAF50;
@@ -38,7 +96,6 @@
             overflow: hidden;
             margin: 10px;
         }
-
         #boton-galeria a img {
             width: 160px;
             height: 160px;
@@ -46,271 +103,139 @@
             cursor: pointer;
             transition: transform 0.3s ease;
         }
-
         #boton-galeria a img:hover {
             transform: scale(1.1);
         }
-
-        .fila-imagenes {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-        }
-
-        .imagen-galeria {
-            width: 300px;
-            height: 300px;
-            border-radius: 10px;
-            margin: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: transform 0.3s, z-index 0s 0.3s;
-            position: relative;
-        }
-
-        .imagen-galeria:hover {
-            transform: scale(1.25);
-            z-index: 1;
-        }
-
-        .imagen-container {
-            position: relative;
-        }
-
-        .descripcion-imagen {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            font-size: 17px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            padding: 10px;
-            box-sizing: border-box;
-            opacity: 0;
-            transition: opacity 0.3s;
-            border-radius: 10px;
-        }
-
-        .imagen-container:hover .descripcion-imagen {
-            opacity: 1;
-        }
-
-     #modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Cambia el valor de opacidad aquí */
-    z-index: 999;
-    overflow: auto; /* Habilitar el desplazamiento vertical si es necesario */
-}
-
-#modal-contenido {
-    position: fixed; /* Cambiado de absolute a fixed */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 90%;
-    max-height: 90%;
-}
-
-        #modal-imagen {
-            max-width: 100%;
-            max-height: 100%;
-            margin-bottom: 20px;
-        }
-
-        #cerrar-modal {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 24px;
-            color: #333;
-        }
-
-        #botones-musica {
+        #texto-personalizado {
             margin-top: 20px;
+            color: #ffcc00;
+            text-align: left;
+            padding: 15px;
+            border: 2px solid #ffcc00;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.7);
+            font-size: 35px;
+            line-height: 1.5;
+            transition: color 0.5s ease, border-color 0.5s ease;
         }
-
-        #botones-musica button {
-            margin: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        @keyframes fadeInScaleAnimation {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
-
-        #botones-musica button:hover {
-            background-color: #45a049;
+        .fadeIn {
+            animation: fadeInScaleAnimation 1s ease-in-out;
         }
     </style>
 </head>
 <body>
-    <h1>Galería de Recuerdos</h1>
-    <h2>Actualización 20/05</h2>
-    <h2>Las fotos tienen descripciones, haz clic en ellas para leerlas.</h2>
-    <h2>Tuve que agregar otra página por un tema de límites de la página.</h2>
-    <h2>Felices 100 FOTOS JSJS, si Dios quiere nos juntaremos más adelante de nuevo :,).</h2>
-    <div id="botones-musica">
-        <button onclick="reproducirCancion('y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3')">Futari no Kimochi</button>
-        <button onclick="reproducirCancion('y2mate.com - Inuyasha Ending 3 Latino Remasterizado Digital.mp3')">Dearest</button>
-        <button onclick="reproducirCancion('y2mate.com - Inuyasha OST 2  Beautiful Memories.mp3')">Beautiful Memories</button>
-        <button onclick="reproducirCancion('y2mate.com - Inuyasha Ending 1 Full Edit 2020   My Will  Gabriela Vega LATINO.mp3')">My will</button>
-        <button onclick="reproducirCancion('y2mate.com - Sailor Moon  En mis Sueños.mp3')"> En mis sueños </button>
-        <button onclick="reproducirCancion('y2mate.com - Resplandeciente cristal de plata Letra.mp3')">Resplandeciente cristal de plata</button>
-        <button onclick="reproducirCancion('y2mate.com - SM Destino de la Luz de Luna By Marisa De Lille.mp3')">Destino de la Luz de Luna</button>
-        <button onclick="reproducirCancion('y2mate.com - Marisa De Lille Ilusión de Amor Tuxedo Mirage.mp3')">Ilusión de Amor</button>
-        <button onclick="reproducirCancion('y2mate.com - Marisa De Lille  Quiero estar contigo siempre.mp3')">Quiero estar contigo siempre</button>
-        <button onclick="reproducirCancion('y2mate.com - Sailor Moon  La Princesa De La Luna Letra.mp3')">La Princesa De La Luna</button>
-        <button onclick="reproducirCancion('y2mate.com - SailorMoon  Moonlight  Caja musical.mp3')">Moonlight  Caja musical</button>
-        <button onclick="reproducirCancion('y2mate.com - Moon Revenge Español  Sailor Moon.mp3')">Moon Revenge</button>
-        <button onclick="reproducirCancion('y2mate.com - Sailor Moon  Nagareboshi He Sub Español.mp3')">Nagareboshi He</button>
-    </div>
-
-    <div class="fila-imagenes">
-        <!-- Agrega tus 22 imágenes de la galería -->
-        <div class="imagen-container" data-imagen="imagen-id-1">
-            <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.00.webp" alt="Recuerdo 1">
-            <div class="descripcion-imagen">
-                <!-- Contenido del recuerdo 1 -->
-                <p>Descripción del recuerdo 1</p>
-                <p>Un descanso tranquilo acompañado con melodía de Inuyasha</p>
-                <p>y perritos de la U :D My moment favorite</p>
-              
+    <div id="contenido" class="fadeIn">
+        <h1>Mi Página de Recuerdo</h1>
+        <h2 id="subtitulo">Un lugar especial para recordar momentos inolvidables</h2>
+        <div id="texto-personalizado">
+            <h1>Small Lady Little sheep,</h1>
+            <p>
+             Mi cariño permanece aquí, incondicional y silencioso, acompañándote desde la distancia. Te deseo un día colmado de buenos momentos, con la certeza de que la guía divina de Dios iluminará tus caminos y te llevará hacia la plenitud que mereces.
+            </p>
+            <p>
+                Estuve pensando, ¿qué significa para ti ser valiente?
+            </p>
+            <p>Con aprecio y cariño,<br>
+                Nicolas Andres (Joven Valiente) :)
+            </p>
+        </div>
+        <div id="versiculo-container">
+            <h2>Versículo del Día</h2>
+            <p id="versiculo"></p>
+            <button id="generar-versiculo">Generar Nuevo Versículo</button>
+            <div id="boton-galeria">
+                <a href="galeria.html">
+                    <img src="R (1).webp" alt="Ir a la Galería">
+                </a>
             </div>
         </div>
-            <div class="imagen-container">
-                <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.00 (1).webp" alt="Recuerdo 2">
-                <div class="descripcion-imagen">
-                    <p>Recuerdo 2</p>
-                    <p>N: Paz en una imagen, la vale queria comer pizza jsjs</p>
-                </div>
-            </div>
-            <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2023-12-18 at 22.25.01.webp" alt="Recuerdo 3">
-                <div class="descripcion-imagen">
-                    <p>Recuerdo 3</p>
-                    <p>N: Un dia bastante especial al menos para el Nico, yo creo que se sorprendio mucho jsjsjs</p>
-                </div>
-            </div>
-            <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2023-12-18 at 22.25.01 (1).webp" alt="Recuerdo 4">
-                <div class="descripcion-imagen">
-                    <p>Recuerdo 4</p>
-                    <p>N: Los maleantes del cedehp.</p>
-                </div>
-            </div>
-            <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2023-12-18 at 23.11.15 (1).webp" alt="Recuerdo 5">
-                <div class="descripcion-imagen">
-                    <p>Recuerdo 5</p>
-                    <p>N: Los InuMoon o SailorYasha.</p>
-                    <p>El Seshumaru y rin JAJA</p>
-                </div>
-            </div>
-            <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2023-12-18 at 22.25.01 (3).webp" alt="Recuerdo 6">
-                <div class="descripcion-imagen">
-                    <p>Recuerdo 6</p>
-                    <p>N: El dia en que te convertiste en erizo.</p>
-                </div>
-            </div>
-            <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2023-12-18 at 22.25.01 (4).webp" alt="Recuerdo 7">
-                <div class="descripcion-imagen">
-                    <p>Recuerdo 7</p>
-                    <p>Tres</p>
-                </div>
-            </div>
-            <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2023-12-18 at 22.25.02.webp" alt="Recuerdo 8">
-                <div class="descripcion-imagen">
-                    <p>Recuerdo 8</p>
-                    <p>Joyas</p>
-                </div>
-            </div>
-            <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2023-12-18 at 22.25.02 (1).webp" alt="Recuerdo 9">
-                <div class="descripcion-imagen">
-                    <p>Recuerdo 9</p>
-                    <p>Bien pulidas.</p>
-                </div>
-            </div>
-            <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2023-12-18 at 22.25.02 (3).webp" alt="Recuerdo 10">
-                <div class="descripcion-imagen">
-                    <p>Recuerdo 10</p>
-                    <p>N: Volantina chismosa.</p>
-                </div>
-            </div>
-            <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2023-12-18 at 22.25.02 (4).webp" alt="Recuerdo 11">
-                <div class="descripcion-imagen">
-                    <p>Recuerdo 11</p>
-                    <p>N:Me acuerdo cuando se pusieron a bailar cueca y cuando volamos el volantin estuvo lindo ese dia.</p>
-                </div>
-            </div>
-            <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2023-12-18 at 22.25.03.webp" alt="Recuerdo 12">
-                <div class="descripcion-imagen">
-                    <p>Recuerdo 12</p>
-                    <p>N:Una visita al viejo oeste.</p>
-                </div>
-            </div>
-                
-        <!-- Aquí continúa el resto de tus imágenes -->
     </div>
+    <script>
+        // Evento para cargar el contenido al iniciar la página
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('contenido').classList.add('fadeIn');
+            cargarVersiculos();
+            generarNuevoVersiculo();
+            iniciarContadorActualizacion();
+        });
 
-    <div id="modal">
-        <div id="modal-contenido">
-            <span id="cerrar-modal">&times;</span>
-            <img id="modal-imagen" alt="Imagen Ampliada">
-        </div>
-    </div>
- <script>
-        // Función para reproducir canciones
-        function reproducirCancion(cancion) {
-            const reproductor = new Audio(cancion);
-            reproductor.play();
+        // Evento para generar un nuevo versículo cuando se hace clic en el botón
+        document.getElementById('generar-versiculo').addEventListener('click', function () {
+            generarNuevoVersiculo();
+        });
+
+        let versiculos = [];
+        let versiculoActual = '';
+        let contadorActualizacion = 86400000; // 24 horas en milisegundos
+
+        function cargarVersiculos() {
+            // Versículos de muestra
+            versiculos = [
+                "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree no se pierda, mas tenga vida eterna. - Juan 3:16",
+                "Jehová es mi pastor; nada me faltará. - Salmo 23:1",
+                "La bondad y la misericordia me seguirán todos los días de mi vida, y en la casa de Jehová moraré por largos días. - Salmo 23:6",
+                "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia. - Isaías 41:10",
+                "Bienaventurado el hombre que no anda en el consejo de los impíos, ni se detiene en el camino de los pecadores, ni se sienta en la silla de los burladores. - Salmo 1:1",
+                "Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones. - Salmo 46:1",
+                "Cree en el Señor Jesucristo, y serás salvo, tú y tu casa. - Hechos 16:31",
+                "El amor sea sin fingimiento. Aborreced lo malo, seguid lo bueno. - Romanos 12:9",
+                "El que guarda su boca guarda su alma, pero el que mucho abre sus labios tendrá calamidad. - Proverbios 13:3",
+                "El principio de la sabiduría es el temor de Jehová; buen entendimiento tienen todos los que practican sus mandamientos. - Salmo 111:10",
+                "Por tanto, no os afanéis por el día de mañana, porque el día de mañana traerá su afán. - Mateo 6:34",
+                "Si Jehová no edificare la casa, en vano trabajan los que la edifican. - Salmo 127:1",
+                "El que perdona la ofensa cultiva el amor; el que insiste en la ofensa divide a los amigos. - Proverbios 17:9",
+                "Los que confían en Jehová son como el monte Sion, que no se mueve, sino que permanece para siempre. - Salmo 125:1",
+                "Pedid, y se os dará; buscad, y hallaréis; llamad, y se os abrirá. - Mateo 7:7",
+                "El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente. - Salmo 91:1"
+            ];
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const imagenes = document.querySelectorAll('.imagen-galeria');
+        function generarNuevoVersiculo() {
+            const nuevoVersiculo = obtenerVersiculoAleatorio();
+            document.getElementById('versiculo').textContent = nuevoVersiculo;
+        }
 
-            imagenes.forEach(imagen => {
-                imagen.addEventListener('click', () => {
-                    const modal = document.getElementById('modal');
-                    const modalImagen = document.getElementById('modal-imagen');
-                    const modalContenido = document.getElementById('modal-contenido');
+        function obtenerVersiculoAleatorio() {
+            const versiculosNoMostrados = versiculos.filter(versiculo => versiculo !== versiculoActual);
+            const totalVersiculos = versiculosNoMostrados.length;
 
-                    modalImagen.src = imagen.src;
-                    modalImagen.alt = imagen.alt;
+            if (totalVersiculos < 1) {
+                versiculoActual = '';
+            }
 
-                    modalContenido.style.display = 'block';
-                    modal.style.display = 'block';
-                });
-            });
+            const probabilidades = versiculosNoMostrados.map(() => 1 / (totalVersiculos >= 1 ? totalVersiculos : 1));
+            const indice = seleccionarIndiceConProbabilidades(probabilidades);
 
-            document.getElementById('cerrar-modal').addEventListener('click', () => {
-                const modal = document.getElementById('modal');
-                const modalContenido = document.getElementById('modal-contenido');
+            versiculoActual = versiculosNoMostrados[indice];
+            return versiculoActual;
+        }
 
-                modalContenido.style.display = 'none';
-                modal.style.display = 'none';
-            });
-        });
+        function seleccionarIndiceConProbabilidades(probabilidades) {
+            const total = probabilidades.reduce((a, b) => a + b, 0);
+            const random = Math.random() * total;
+
+            let acumulado = 0;
+            for (let i = 0; i < probabilidades.length; i++) {
+                acumulado += probabilidades[i];
+                if (random <= acumulado) {
+                    return i;
+                }
+            }
+        }
+
+        function iniciarContadorActualizacion() {
+            setInterval(generarNuevoVersiculo, contadorActualizacion);
+        }
     </script>
 </body>
 </html>
-
