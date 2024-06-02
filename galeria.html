@@ -1,11 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería de imágenes</title>
+    <title>Galería de imágenes 2</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
         body, html {
             font-family: 'Pacifico', cursive;
             margin: 0;
@@ -16,7 +17,7 @@
         }
 
         body {
-            background: url('./OIP (7).webp') center/cover fixed no-repeat;
+            background: url('./desktop-wallpaper-usagi-and-mamoru-falling-princess-usagi-mamoru-dekstop (1).webp') center/cover fixed no-repeat;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -98,29 +99,29 @@
             opacity: 1;
         }
 
-     #modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Cambia el valor de opacidad aquí */
-    z-index: 999;
-    overflow: auto; /* Habilitar el desplazamiento vertical si es necesario */
-}
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            overflow: auto;
+        }
 
-#modal-contenido {
-    position: fixed; /* Cambiado de absolute a fixed */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 90%;
-    max-height: 90%;
-}
+        #modal-contenido {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 90%;
+            max-height: 90%;
+        }
 
         #modal-imagen {
             max-width: 100%;
@@ -154,6 +155,17 @@
 
         #botones-musica button:hover {
             background-color: #45a049;
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fadeIn {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -780,32 +792,54 @@
     <audio id="audio-player"></audio>
 
     <script>
-        function reproducirCancion(ruta) {
-            var audio = document.getElementById('audio-player');
-            audio.src = ruta;
-            audio.play();
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+            const hiddenElements = document.querySelectorAll('.hidden');
+            const options = {
+                threshold: 0.5
+            };
 
-        var modal = document.getElementById('modal');
-        var modalImagen = document.getElementById('modal-imagen');
-        var cerrarModal = document.getElementById('cerrar-modal');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fadeIn');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, options);
 
-        document.querySelectorAll('.imagen-galeria').forEach(function (img) {
-            img.addEventListener('click', function () {
-                modal.style.display = 'block';
-                modalImagen.src = this.src;
+            hiddenElements.forEach(element => {
+                observer.observe(element);
             });
         });
 
-        cerrarModal.addEventListener('click', function () {
-            modal.style.display = 'none';
+        function reproducirCancion(cancion) {
+            const audio = document.getElementById('audio');
+            const audioSource = document.getElementById('audio-source');
+            audioSource.src = cancion;
+            audio.load();
+            audio.play();
+        }
+
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modal-imagen');
+        const cerrarModal = document.getElementById('cerrar-modal');
+
+        document.querySelectorAll('.imagen-galeria').forEach(img => {
+            img.onclick = () => {
+                modal.style.display = 'block';
+                modalImg.src = img.src;
+            };
         });
 
-        window.addEventListener('click', function (event) {
+        cerrarModal.onclick = () => {
+            modal.style.display = 'none';
+        };
+
+        window.onclick = (event) => {
             if (event.target === modal) {
                 modal.style.display = 'none';
             }
-        });
+        };
     </script>
 </body>
 </html>
