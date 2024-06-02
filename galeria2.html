@@ -367,38 +367,39 @@
 
     <audio id="audio-player"></audio>
 
-    <script>
-        function reproducirCancion(ruta) {
-            var audio = document.getElementById('audio-player');
-            audio.src = ruta;
-            audio.play();
-        }
+ <script>
+    function reproducirCancion(ruta) {
+        var audio = document.getElementById('audio-player');
+        audio.src = ruta;
+        audio.play();
+    }
 
-        var modal = document.getElementById('modal');
-        var modalImagen = document.getElementById('modal-imagen');
-        var cerrarModal = document.getElementById('cerrar-modal');
+    var modal = document.getElementById('modal');
+    var modalImagen = document.getElementById('modal-imagen');
+    var cerrarModal = document.getElementById('cerrar-modal');
 
-        document.querySelectorAll('.imagen-galeria').forEach(function (img) {
-            img.addEventListener('click', function () {
-                modal.style.display = 'block';
-                modalImagen.src = this.src;
-            });
+    document.querySelectorAll('.imagen-galeria').forEach(function (img) {
+        img.addEventListener('click', function () {
+            modal.style.display = 'block';
+            modalImagen.src = this.src;
         });
+    });
 
-        cerrarModal.addEventListener('click', function () {
+    cerrarModal.addEventListener('click', function () {
+        modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function (event) {
+        if (event.target === modal) {
             modal.style.display = 'none';
-        });
+        }
+    });
 
-        window.addEventListener('click', function (event) {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-        <script>
     window.addEventListener('scroll', function() {
         var botonGaleria = document.getElementById('boton-galeria');
         botonGaleria.style.top = (20 + window.scrollY) + 'px';
     });
-    </script>
+</script>
+
 </body>
 </html>
