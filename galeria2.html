@@ -27,9 +27,12 @@
             animation: titulo-animacion 2s ease-in-out infinite alternate;
         }
 
-        #boton-galeria {
-            margin-top: 20px;
-        }
+     #boton-galeria {
+    position: fixed;
+    top: 20px; /* Puedes ajustar esta posición según tus necesidades */
+    left: 20px; /* Puedes ajustar esta posición según tus necesidades */
+    z-index: 9999; /* Asegura que el botón esté por encima de otros elementos */
+}
 
         #boton-galeria a {
             display: inline-block;
