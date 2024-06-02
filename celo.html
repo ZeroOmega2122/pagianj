@@ -279,39 +279,45 @@
         </div>
     </div>
 
-    <script>
-        // Función para reproducir canciones
-        function reproducirCancion(cancion) {
-            const reproductor = new Audio(cancion);
-            reproductor.play();
-        }
+<script>
+    // Función para reproducir canciones
+    function reproducirCancion(cancion) {
+        const reproductor = new Audio(cancion);
+        reproductor.play();
+    }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const imagenes = document.querySelectorAll('.imagen-galeria');
+    document.addEventListener('DOMContentLoaded', () => {
+        const imagenes = document.querySelectorAll('.imagen-galeria');
 
-            imagenes.forEach(imagen => {
-                imagen.addEventListener('click', () => {
-                    const modal = document.getElementById('modal');
-                    const modalImagen = document.getElementById('modal-imagen');
-                    const modalContenido = document.getElementById('modal-contenido');
-
-                    modalImagen.src = imagen.src;
-                    modalImagen.alt = imagen.alt;
-
-                    modalContenido.style.display = 'block';
-                    modal.style.display = 'block';
-                });
-            });
-
-            document.getElementById('cerrar-modal').addEventListener('click', () => {
+        imagenes.forEach(imagen => {
+            imagen.addEventListener('click', () => {
                 const modal = document.getElementById('modal');
+                const modalImagen = document.getElementById('modal-imagen');
                 const modalContenido = document.getElementById('modal-contenido');
+                const descripcionImagen = imagen.nextElementSibling.innerHTML; // Obtener la descripción de la imagen
 
-                modalContenido.style.display = 'none';
-                modal.style.display = 'none';
+                modalImagen.src = imagen.src;
+                modalImagen.alt = imagen.alt;
+
+                // Limpiar contenido previo del modal
+                modalContenido.innerHTML = '';
+
+                // Agregar la descripción y el número del recuerdo al modal
+                modalContenido.innerHTML += descripcionImagen;
+                modalContenido.style.display = 'block';
+                modal.style.display = 'block';
             });
         });
-    </script>
+
+        document.getElementById('cerrar-modal').addEventListener('click', () => {
+            const modal = document.getElementById('modal');
+            const modalContenido = document.getElementById('modal-contenido');
+
+            modalContenido.style.display = 'none';
+            modal.style.display = 'none';
+        });
+    });
+</script>
 </body>
 </html>
 
