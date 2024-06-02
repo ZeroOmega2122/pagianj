@@ -12,11 +12,8 @@
             background: url('./OIP (7).webp') center/cover fixed no-repeat;
             color: #333;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             min-height: 100vh;
+            overflow-x: hidden; /* Evitar el desplazamiento horizontal */
         }
 
         h1, h2 {
@@ -105,6 +102,7 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.8);
             z-index: 999;
+            overflow: auto; /* Habilitar el desplazamiento vertical si es necesario */
         }
 
         #modal-contenido {
@@ -115,11 +113,13 @@
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
+            max-width: 90%; /* Limitar el ancho del contenido */
+            max-height: 90%; /* Limitar la altura del contenido */
         }
 
         #modal-imagen {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 100%;
+            max-height: 100%;
             margin-bottom: 20px;
         }
 
@@ -135,10 +135,10 @@
 </head>
 <body>
     <h1>Galería de Recuerdos</h1>
-    <h2>Actualizacion 20/05</h2>
+    <h2>Actualización 20/05</h2>
     <h2>Las fotos tienen descripciones, haz clic en ellas para leerlas.</h2>
-    <h2>Tuve que agregar otra pagina por un tema de limites de la pagina.</h2>
-    <h2>Felices 100 FOTOS JSJS, si Dios quiere nos juntaremos mas adelante denuevo :,).</h2>
+    <h2>Tuve que agregar otra página por un tema de límites de la página.</h2>
+    <h2>Felices 100 FOTOS JSJS, si Dios quiere nos juntaremos más adelante de nuevo :,).</h2>
 
       <div id="botones-musica">
         <button onclick="reproducirCancion('y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3')">Futari no Kimochi</button>
@@ -246,9 +246,6 @@
                     <p>N:Una visita al viejo oeste.</p>
                 </div>
             </div>
-                
-                </di
-
     <div id="modal">
         <div id="modal-contenido">
             <span id="cerrar-modal">&times;</span>
@@ -257,6 +254,12 @@
     </div>
 
     <script>
+        // Función para reproducir canciones
+        function reproducirCancion(cancion) {
+            const reproductor = new Audio(cancion);
+            reproductor.play();
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const imagenes = document.querySelectorAll('.imagen-galeria');
 
