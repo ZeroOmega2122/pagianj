@@ -278,46 +278,39 @@
             <img id="modal-imagen" alt="Imagen Ampliada">
         </div>
     </div>
+ <script>
+        // Función para reproducir canciones
+        function reproducirCancion(cancion) {
+            const reproductor = new Audio(cancion);
+            reproductor.play();
+        }
 
-<script>
-    // Función para reproducir canciones
-    function reproducirCancion(cancion) {
-        const reproductor = new Audio(cancion);
-        reproductor.play();
-    }
+        document.addEventListener('DOMContentLoaded', () => {
+            const imagenes = document.querySelectorAll('.imagen-galeria');
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const imagenes = document.querySelectorAll('.imagen-galeria');
+            imagenes.forEach(imagen => {
+                imagen.addEventListener('click', () => {
+                    const modal = document.getElementById('modal');
+                    const modalImagen = document.getElementById('modal-imagen');
+                    const modalContenido = document.getElementById('modal-contenido');
 
-        imagenes.forEach(imagen => {
-            imagen.addEventListener('click', () => {
+                    modalImagen.src = imagen.src;
+                    modalImagen.alt = imagen.alt;
+
+                    modalContenido.style.display = 'block';
+                    modal.style.display = 'block';
+                });
+            });
+
+            document.getElementById('cerrar-modal').addEventListener('click', () => {
                 const modal = document.getElementById('modal');
-                const modalImagen = document.getElementById('modal-imagen');
                 const modalContenido = document.getElementById('modal-contenido');
-                const descripcionImagen = imagen.nextElementSibling.innerHTML; // Obtener la descripción de la imagen
 
-                modalImagen.src = imagen.src;
-                modalImagen.alt = imagen.alt;
-
-                // Limpiar contenido previo del modal
-                modalContenido.innerHTML = '';
-
-                // Agregar la descripción y el número del recuerdo al modal
-                modalContenido.innerHTML += descripcionImagen;
-                modalContenido.style.display = 'block';
-                modal.style.display = 'block';
+                modalContenido.style.display = 'none';
+                modal.style.display = 'none';
             });
         });
-
-        document.getElementById('cerrar-modal').addEventListener('click', () => {
-            const modal = document.getElementById('modal');
-            const modalContenido = document.getElementById('modal-contenido');
-
-            modalContenido.style.display = 'none';
-            modal.style.display = 'none';
-        });
-    });
-</script>
+    </script>
 </body>
 </html>
 
