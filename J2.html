@@ -160,7 +160,18 @@
         </div>
     </div>
     <script>
-        // Tu JavaScript aquí
+          // Evento para cargar el contenido al iniciar la página
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('contenido').classList.add('fadeIn');
+            cargarVersiculos();
+            generarNuevoVersiculo();
+            iniciarContadorActualizacion();
+        });
+
+        // Evento para generar un nuevo versículo cuando se hace clic en el botón
+        document.getElementById('generar-versiculo').addEventListener('click', function () {
+            generarNuevoVersiculo();
+        });
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('contenido').classList.add('fadeIn');
             cargarVersiculos();
