@@ -394,6 +394,11 @@
                 modal.style.display = 'none';
             }
         });
+        <script>
+    window.addEventListener('scroll', function() {
+        var botonGaleria = document.getElementById('boton-galeria');
+        botonGaleria.style.top = (20 + window.scrollY) + 'px';
+    });
     </script>
 </body>
 </html>
