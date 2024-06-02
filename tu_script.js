@@ -99,38 +99,22 @@ function obtenerVersiculoAleatorio() {
     
     return versiculoElegido;
 }
+// Define una lista de versículos bíblicos (puedes reemplazarla con una API real)
+var versiculos = [
+    "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree no se pierda, sino que tenga vida eterna. - Juan 3:16",
+    "El Señor es mi pastor; nada me faltará. - Salmo 23:1",
+    "Porque para mí el vivir es Cristo, y el morir es ganancia. - Filipenses 1:21"
+];
 
-function generarNuevoVersiculo() {
-    // Se comprueba si ya se han mostrado suficientes versículos para permitir repeticiones
-    if (versiculosDisponibles.length === 0 && versiculos.length > maxRepetitions) {
-        // Se restablece la lista de versículos disponibles
-        versiculosDisponibles = versiculos.slice();
-    }
-    
-    // Se elige aleatoriamente un versículo de los disponibles o uno ya mostrado
-    const nuevoVersiculo = obtenerVersiculoAleatorio();
-    
-    // Se actualiza el contenido del elemento con el ID 'versiculo'
-    document.getElementById('versiculo').textContent = nuevoVersiculo;
-    
-    // Se actualiza la lista de versículos disponibles, eliminando el versículo seleccionado
-    const indexToRemove = versiculosDisponibles.indexOf(nuevoVersiculo);
-    versiculosDisponibles.splice(indexToRemove, 1);
-    
-    // Se añade el versículo seleccionado al final de la lista, si no se ha alcanzado el límite de repeticiones
-    if (versiculosDisponibles.length < versiculos.length * maxRepetitions) {
-        versiculosDisponibles.push(nuevoVersiculo);
-    }
+// Función para generar un versículo aleatorio del día
+function generarVersiculoDelDia() {
+    // Genera un índice aleatorio para seleccionar un versículo de la lista
+    var indice = Math.floor(Math.random() * versiculos.length);
+    // Obtiene el elemento del DOM donde se mostrará el versículo
+    var versiculoElemento = document.getElementById("versiculo");
+    // Muestra el versículo seleccionado en el elemento del DOM
+    versiculoElemento.textContent = versiculos[indice];
 }
-    // Se actualiza el contenido del elemento con el ID 'versiculo'
-    document.getElementById('versiculo').textContent = nuevoVersiculo;
-    
-    // Se actualiza la lista de versículos disponibles, eliminando el versículo seleccionado
-    const indexToRemove = versiculosDisponibles.indexOf(nuevoVersiculo);
-    versiculosDisponibles.splice(indexToRemove, 1);
-    
-    // Se añade el versículo seleccionado al final de la lista, si no se ha alcanzado el límite de repeticiones
-    if (versiculosDisponibles.length < versiculos.length * maxRepetitions) {
-        versiculosDisponibles.push(nuevoVersiculo);
-    }
-}
+
+// Agrega un listener de evento al botón para generar un nuevo versículo del día al hacer clic
+document.getElementById("generar-versiculo").addEventListener("click", generarVersiculoDelDia);
