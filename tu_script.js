@@ -86,21 +86,42 @@ const maxRepetitions = 15;
 }
 
 function obtenerVersiculoAleatorio() {
-    // Se elige aleatoriamente un versículo de los disponibles
-    const índice = Math.floor(Math.random() * versiculosDisponibles.length);
-    return versiculosDisponibles[índice];
+    let versiculoElegido;
+    
+    // Se elige aleatoriamente entre un versículo disponible o uno ya mostrado
+    if (Math.random() < probabilidadInicial && versiculosDisponibles.length > 0) {
+        const index = Math.floor(Math.random() * versiculosDisponibles.length);
+        versiculoElegido = versiculosDisponibles[index];
+    } else {
+        const index = Math.floor(Math.random() * versiculos.length);
+        versiculoElegido = versiculos[index];
+    }
+    
+    return versiculoElegido;
 }
 
 function generarNuevoVersiculo() {
-    // Se comprueba si hay versículos disponibles para seleccionar
-    if (versiculosDisponibles.length === 0) {
-        // Si no hay más versículos disponibles, se reinicia la lista
+    // Se comprueba si ya se han mostrado suficientes versículos para permitir repeticiones
+    if (versiculosDisponibles.length === 0 && versiculos.length > maxRepetitions) {
+        // Se restablece la lista de versículos disponibles
         versiculosDisponibles = versiculos.slice();
     }
     
-    // Se elige aleatoriamente un versículo de los disponibles
+    // Se elige aleatoriamente un versículo de los disponibles o uno ya mostrado
     const nuevoVersiculo = obtenerVersiculoAleatorio();
     
+    // Se actualiza el contenido del elemento con el ID 'versiculo'
+    document.getElementById('versiculo').textContent = nuevoVersiculo;
+    
+    // Se actualiza la lista de versículos disponibles, eliminando el versículo seleccionado
+    const indexToRemove = versiculosDisponibles.indexOf(nuevoVersiculo);
+    versiculosDisponibles.splice(indexToRemove, 1);
+    
+    // Se añade el versículo seleccionado al final de la lista, si no se ha alcanzado el límite de repeticiones
+    if (versiculosDisponibles.length < versiculos.length * maxRepetitions) {
+        versiculosDisponibles.push(nuevoVersiculo);
+    }
+}
     // Se actualiza el contenido del elemento con el ID 'versiculo'
     document.getElementById('versiculo').textContent = nuevoVersiculo;
     
