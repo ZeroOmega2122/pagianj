@@ -365,7 +365,22 @@
             <img id="modal-imagen" alt="Imagen Ampliada">
         </div>
     </div>
- <script>
+  <script>
+        // Variable global para mantener la referencia al reproductor actual
+        let reproductorActual;
+
+        // Función para reproducir canciones
+        function reproducirCancion(cancion) {
+            // Si hay una canción en reproducción, detenla
+            if (reproductorActual) {
+                reproductorActual.pause();
+            }
+            
+            // Crea un nuevo reproductor para la canción seleccionada
+            reproductorActual = new Audio(cancion);
+            reproductorActual.play();
+        }
+
         // Función para reproducir canciones
         function reproducirCancion(cancion) {
             const reproductor = new Audio(cancion);
