@@ -7,130 +7,7 @@
     <title>Mi Página de Recuerdo</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Pacifico', cursive;
-            margin: 0;
-            padding: 0;
-            background: url('./ovejas.webp') center/cover fixed no-repeat;
-            color: #333;
-            background-attachment: fixed;
-            background-size: cover;
-        }
-
-        #contenido {
-            text-align: center;
-            padding: 20px;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        #contenido.fadeIn {
-            opacity: 1;
-        }
-
-        h1 {
-            font-size: 60px;
-            color: #FFC0CB;
-            margin-bottom: 20px;
-            transition: color 0.5s ease;
-        }
-
-        h2 {
-            font-size: 45px;
-            margin-bottom: 10px;
-            color: #ff4500;
-            transition: color 0.5s ease;
-        }
-
-        #subtitulo {
-            font-size: 24px;
-            margin-top: 10px;
-            color: #45a049;
-            transition: color 0.5s ease;
-        }
-
-        #versiculo-container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            color: #0066cc;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
-
-        #versiculo {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #333;
-            transition: color 0.5s ease;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            font-size: 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 0 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        #boton-galeria {
-            margin-top: 20px;
-        }
-
-        #boton-galeria a {
-            display: inline-block;
-            border: 2px solid #4CAF50;
-            border-radius: 8px;
-            overflow: hidden;
-            margin: 10px;
-        }
-
-        #boton-galeria a img {
-            width: 160px;
-            height: 160px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        #boton-galeria a img:hover {
-            transform: scale(1.1);
-        }
-
-        #texto-personalizado {
-            margin-top: 20px;
-            color: #ffcc00;
-            text-align: left;
-            padding: 15px;
-            border: 2px solid #ffcc00;
-            border-radius: 8px;
-            background-color: rgba(0, 0, 0, 0.7);
-            font-size: 35px;
-            line-height: 1.5;
-            transition: color 0.5s ease, border-color 0.5s ease;
-        }
-
-        .fadeIn {
-            animation: fadeInAnimation 0.5s ease;
-        }
-
-        @keyframes fadeInAnimation {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
+        /* Tu CSS aquí */
     </style>
 </head>
 
@@ -138,27 +15,23 @@
     <div id="contenido">
         <h1>Mi Página de Recuerdo</h1>
         <h2 id="subtitulo">Un lugar especial para recordar momentos inolvidables</h2>
-
         <div id="texto-personalizado">
-            <h1>Querida doña Juli,</h1>
-            <p>En este día de San Valentín, solo quiero desearte lo mejor en el camino que eliges recorrer. Que encuentres la felicidad en cada paso, y que la vida te regale momentos llenos de luz y bienestar.</p>
-            <p>Mi cariño está aquí, incondicional, como un compañero silencioso que te apoya desde la distancia. Que tengas un día lleno de buenos momentos, confiando en que la guía divina de Dios ilumine tus caminos y te lleve hacia la plenitud que mereces.</p>
-            <p>Con aprecio y cariño,<br> Nicolas Andres :D</p>
+            <!-- Tu contenido personalizado aquí -->
         </div>
-
         <div id="versiculo-container">
             <h2>Versículo del Día</h2>
             <p id="versiculo"></p>
-            <button onclick="generarNuevoVersiculo()">Generar Nuevo Versículo</button>
+            <button id="generar-versiculo">Generar Nuevo Versículo</button>
+            <button id="siguiente-html" onclick="window.location.href='galeria.html'">Siguiente Página</button>
             <div id="boton-galeria">
                 <a href="galeria.html">
-                    <img src="C:\Users\nicol\Desktop\OIP (6).jpeg" alt="Ir a la Galería">
+                    <img src="R (1).webp" alt="Ir a la Galería">
                 </a>
             </div>
         </div>
     </div>
-
     <script>
+        // Tu JavaScript aquí
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('contenido').classList.add('fadeIn');
             cargarVersiculos();
@@ -171,26 +44,31 @@
         let contadorActualizacion = 86400000; // 24 horas en milisegundos
 
         function cargarVersiculos() {
-            // Aquí puedes cargar tus versículos como lo hacías antes
+            // Versículos de muestra
             versiculos = [
                 "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree no se pierda, mas tenga vida eterna. - Juan 3:16",
                 "Jehová es mi pastor; nada me faltará. - Salmo 23:1",
-                // Agrega aquí más versículos
+                // Agrega más versículos aquí
             ];
+        }
+
+        function generarNuevoVersiculo() {
+            const nuevoVersiculo = obtenerVersiculoAleatorio();
+            document.getElementById('versiculo').textContent = nuevoVersiculo;
         }
 
         function obtenerVersiculoAleatorio() {
             const versiculosNoMostrados = versiculos.filter(versiculo => versiculo !== versiculoActual);
             const totalVersiculos = versiculosNoMostrados.length;
 
-            if (totalVersiculos < 50) {
+            if (totalVersiculos < 1) {
                 versiculoActual = '';
             }
 
-            const probabilidades = versiculosNoMostrados.map(() => 1 / (totalVersiculos >= 50 ? totalVersiculos : 1));
-            const índice = seleccionarIndiceConProbabilidades(probabilidades);
+            const probabilidades = versiculosNoMostrados.map(() => 1 / (totalVersiculos >= 1 ? totalVersiculos : 1));
+            const indice = seleccionarIndiceConProbabilidades(probabilidades);
 
-            versiculoActual = versiculosNoMostrados[índice];
+            versiculoActual = versiculosNoMostrados[indice];
             return versiculoActual;
         }
 
@@ -204,41 +82,11 @@
             }
 
             const random = Math.random();
-            const índice = probabilidadAcumulada.findIndex(acumulado => random <= acumulado);
+            const indice = probabilidadAcumulada.findIndex(acumulado => random <= acumulado);
 
-            return Math.max(0, índice);
+            return Math.max(0, indice);
         }
-
     </script>
-    <body>
-    <div id="contenido">
-        <h1>Mi Página de Recuerdo</h1>
-        <h2 id="subtitulo">Un lugar especial para recordar momentos inolvidables</h2>
-        <div id="texto-personalizado">
-            <h1>Small Lady Litle sheep,</h1>
-            <p>
-             Mi cariño permanece aquí, incondicional y silencioso, acompañándote desde la distancia. Te deseo un día colmado de buenos momentos, con la certeza de que la guía divina de Dios iluminará tus caminos y te llevará hacia la plenitud que mereces.
-            </p>
-            <p>
-                Estuve pensando que significa para ti ser valiente?
-            </p>
-            <p>Con aprecio y cariño,<br>
-                Nicolas Andres (Joven Valiente) :)
-            </p>
-        </div>
-<div id="versiculo-container">
-    <h2>Versículo del Día</h2>
-    <p id="versiculo"></p>
-    <button id="generar-versiculo">Generar Nuevo Versículo</button>
-    <button id="siguiente-html" onclick="window.location.href='galeria.html'">Siguiente Página</button>
-    <!-- El botón siguiente-html redirige a la siguiente página, reemplaza 'siguiente_pagina.html' con la ruta correcta -->
-    <div id="boton-galeria">
-        <a href="galeria.html">
-            <img src="R (1).webp" alt="Ir a la Galería">
-        </a>
-    </div>
-</div>
-    <script src="tu_script.js"></script>
 </body>
 
 </html>
