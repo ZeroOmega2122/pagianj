@@ -209,39 +209,36 @@
             return Math.max(0, índice);
         }
 
-        function generarNuevoVersiculo() {
-            const nuevoVersiculo = obtenerVersiculoAleatorio();
-            document.getElementById('versiculo').textContent = nuevoVersiculo;
-
-            reiniciarContadorActualizacion();
-        }
-
-        function reiniciarContadorActualizacion() {
-            setTimeout(() => {
-                generarNuevoVersiculo();
-            }, contadorActualizacion);
-        }
-
-        function iniciarContadorActualizacion() {
-            setInterval(actualizarContador, 1000);
-        }
-
-        function actualizarContador() {
-            contadorActualizacion -= 1000;
-
-            if (contadorActualizacion < 0) {
-                contadorActualizacion = 0;
-            }
-
-            const segundosRestantes = Math.floor(contadorActualizacion / 1000);
-            const horas = Math.floor(segundosRestantes / 3600);
-            const minutos = Math.floor((segundosRestantes % 3600) / 60);
-            const segundos = segundosRestantes % 60;
-
-            document.getElementById('contador').textContent =
-                `Próxima actualización en ${horas}h ${minutos}m ${segundos}s`;
-        }
     </script>
+    <body>
+    <div id="contenido">
+        <h1>Mi Página de Recuerdo</h1>
+        <h2 id="subtitulo">Un lugar especial para recordar momentos inolvidables</h2>
+        <div id="texto-personalizado">
+            <h1>Small Lady Litle sheep,</h1>
+            <p>
+             Mi cariño permanece aquí, incondicional y silencioso, acompañándote desde la distancia. Te deseo un día colmado de buenos momentos, con la certeza de que la guía divina de Dios iluminará tus caminos y te llevará hacia la plenitud que mereces.
+            </p>
+            <p>
+                Estuve pensando que significa para ti ser valiente?
+            </p>
+            <p>Con aprecio y cariño,<br>
+                Nicolas Andres (Joven Valiente) :)
+            </p>
+        </div>
+<div id="versiculo-container">
+    <h2>Versículo del Día</h2>
+    <p id="versiculo"></p>
+    <button id="generar-versiculo">Generar Nuevo Versículo</button>
+    <button id="siguiente-html" onclick="window.location.href='galeria.html'">Siguiente Página</button>
+    <!-- El botón siguiente-html redirige a la siguiente página, reemplaza 'siguiente_pagina.html' con la ruta correcta -->
+    <div id="boton-galeria">
+        <a href="galeria.html">
+            <img src="R (1).webp" alt="Ir a la Galería">
+        </a>
+    </div>
+</div>
+    <script src="tu_script.js"></script>
 </body>
 
 </html>
