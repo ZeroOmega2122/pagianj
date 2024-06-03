@@ -402,6 +402,18 @@
         var botonGaleria = document.getElementById('boton-galeria');
         botonGaleria.style.top = (20 + window.scrollY) + 'px';
     });
+    // Función para ajustar la posición del botón al desplazarse
+    function ajustarPosicionBoton() {
+        var botonGaleria = document.getElementById('boton-galeria');
+        botonGaleria.style.top = (20 + window.scrollY) + 'px';
+    }
+
+    // Ejecutar la función inicialmente para posicionar el botón correctamente
+    ajustarPosicionBoton();
+
+    // Volver a ajustar la posición del botón al desplazarse
+    window.addEventListener('scroll', ajustarPosicionBoton);
+
 </script>
 
 </body>
