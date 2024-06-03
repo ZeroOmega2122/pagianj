@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,13 +27,19 @@
             margin-top: 50px;
             animation: titulo-animacion 2s ease-in-out infinite alternate;
         }
+#boton-galeria-1 {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+}
 
-        #boton-galeria {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 9999;
-        }
+#boton-galeria-2 {
+    position: fixed;
+    top: 120px; /* ajusta según sea necesario */
+    left: 20px;
+    z-index: 9999;
+}
 
         #boton-galeria a {
             display: inline-block;
@@ -107,13 +114,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.8); /* Cambia el valor de opacidad aquí */
             z-index: 999;
-            overflow: auto;
+            overflow: auto; /* Habilitar el desplazamiento vertical si es necesario */
         }
 
         #modal-contenido {
-            position: fixed;
+            position: fixed; /* Cambiado de absolute a fixed */
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -157,18 +164,24 @@
         #botones-musica button:hover {
             background-color: #45a049;
         }
+           #boton-galeria-1 img,
+        #boton-galeria-2 img {
+            max-width: 100px; /* ajusta según sea necesario */
+            max-height: 100px; /* ajusta según sea necesario */
+        }
     </style>
 </head>
+ <div class="boton-galeria" id="boton-galeria-1">
+    <a href="galeria.html">
+        <img src="R (1).webp" alt="Ir a la Galería">
+    </a>
+</div>
+
 <body>
-    <div id="boton-galeria">
-        <a href="galeria.html">
-            <img src="R (1).webp" alt="Ir a la Galería">
-        </a>
-    </div>
-    <h1>Galería de Recuerdos 2</h1>
+  <h1>Galería de Recuerdos 2</h1>
     <h2>Actualizacion 20/05</h2>
     <h2>Tuve que mover las fotos en otra pagina :)</h2>
-    <h2>Debido a un limite jsjs.</h2>
+        <h2>Debido a un limite jsjs.</h2>
 
     <div id="botones-musica">
         <button onclick="reproducirCancion('y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3')">Futari no Kimochi</button>
@@ -180,13 +193,9 @@
         <button onclick="reproducirCancion('y2mate.com - SM Destino de la Luz de Luna By Marisa De Lille.mp3')">Destino de la Luz de Luna</button>
         <button onclick="reproducirCancion('y2mate.com - Marisa De Lille Ilusión de Amor Tuxedo Mirage.mp3')">Ilusión de Amor</button>
         <button onclick="reproducirCancion('y2mate.com - Marisa De Lille  Quiero estar contigo siempre.mp3')">Quiero estar contigo siempre</button>
-        <button onclick="reproducirCancion('y2mate.com - Sailor Moon  La Princesa De La Luna Letra.mp3')">La Princesa De La Luna</button>
-        <button onclick="reproducirCancion('y2mate.com - SailorMoon  Moonlight  Caja musical.mp3')">Moonlight  Caja musical</button>
-        <button onclick="reproducirCancion('y2mate.com - Moon Revenge Español  Sailor Moon.mp3')">Moon Revenge</button>
-        <button onclick="reproducirCancion('y2mate.com - Sailor Moon  Nagareboshi He Sub Español.mp3')">Nagareboshi He</button>
-    </div>
-
-    <div class="fila-imagenes">
+</div>
+ 
+   <div class="fila-imagenes">
         <!-- Agrega tus 22 imágenes de la galería -->
       
             <div class="imagen-container">
@@ -358,18 +367,17 @@
                 </div>
             </div>
                 
-        <!-- Aquí continúa el resto de tus imágenes -->
+</div>
+<div id="modal">
+    <div id="modal-contenido">
+        <span id="cerrar-modal">&times;</span>
+        <img id="modal-imagen" alt="Imagen Ampliada">
     </div>
+</div>
 
-    <div id="modal">
-        <div id="modal-contenido">
-            <span id="cerrar-modal">&times;</span>
-            <img id="modal-imagen" src="" alt="Imagen ampliada">
-        </div>
-    </div>
+<audio id="audio-player"></audio>
 
-    <audio id="audio-player"></audio>
-  <script>
+<script>
     function reproducirCancion(ruta) {
         var audio = document.getElementById('audio-player');
         audio.src = ruta;
@@ -396,18 +404,5 @@
             modal.style.display = 'none';
         }
     });
-
-    function ajustarPosicionBoton() {
-        var botonGaleria = document.getElementById('boton-galeria');
-        botonGaleria.style.top = (20 + window.scrollY) + 'px';
-    }
-
-    // Ejecutar la función inicialmente para posicionar el botón correctamente
-    ajustarPosicionBoton();
-
-    // Volver a ajustar la posición del botón al desplazarse
-    window.addEventListener('scroll', ajustarPosicionBoton);
 </script>
 
-</body>
-</html>
