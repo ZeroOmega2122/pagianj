@@ -27,12 +27,12 @@
             animation: titulo-animacion 2s ease-in-out infinite alternate;
         }
 
-     #boton-galeria {
-    position: fixed;
-    top: 20px; /* Puedes ajustar esta posición según tus necesidades */
-    left: 20px; /* Puedes ajustar esta posición según tus necesidades */
-    z-index: 9999; /* Asegura que el botón esté por encima de otros elementos */
-}
+        #boton-galeria {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+        }
 
         #boton-galeria a {
             display: inline-block;
@@ -100,29 +100,29 @@
             opacity: 1;
         }
 
-     #modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Cambia el valor de opacidad aquí */
-    z-index: 999;
-    overflow: auto; /* Habilitar el desplazamiento vertical si es necesario */
-}
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            overflow: auto;
+        }
 
-#modal-contenido {
-    position: fixed; /* Cambiado de absolute a fixed */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 90%;
-    max-height: 90%;
-}
+        #modal-contenido {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 90%;
+            max-height: 90%;
+        }
 
         #modal-imagen {
             max-width: 100%;
@@ -159,16 +159,16 @@
         }
     </style>
 </head>
-     <div id="boton-galeria">
-                <a href="galeria.html">
-                    <img src="R (1).webp" alt="Ir a la Galería">
-                </a>
-            </div>
 <body>
+    <div id="boton-galeria">
+        <a href="galeria.html">
+            <img src="R (1).webp" alt="Ir a la Galería">
+        </a>
+    </div>
     <h1>Galería de Recuerdos 2</h1>
     <h2>Actualizacion 20/05</h2>
     <h2>Tuve que mover las fotos en otra pagina :)</h2>
-        <h2>Debido a un limite jsjs.</h2>
+    <h2>Debido a un limite jsjs.</h2>
 
     <div id="botones-musica">
         <button onclick="reproducirCancion('y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3')">Futari no Kimochi</button>
@@ -369,52 +369,47 @@
     </div>
 
     <audio id="audio-player"></audio>
-
- <script>
-    function reproducirCancion(ruta) {
-        var audio = document.getElementById('audio-player');
-        audio.src = ruta;
-        audio.play();
-    }
-
-    var modal = document.getElementById('modal');
-    var modalImagen = document.getElementById('modal-imagen');
-    var cerrarModal = document.getElementById('cerrar-modal');
-
-    document.querySelectorAll('.imagen-galeria').forEach(function (img) {
-        img.addEventListener('click', function () {
-            modal.style.display = 'block';
-            modalImagen.src = this.src;
-        });
-    });
-
-    cerrarModal.addEventListener('click', function () {
-        modal.style.display = 'none';
-    });
-
-    window.addEventListener('click', function (event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
+    <script>
+        function reproducirCancion(ruta) {
+            var audio = document.getElementById('audio-player');
+            audio.src = ruta;
+            audio.play();
         }
-    });
 
-    window.addEventListener('scroll', function() {
-        var botonGaleria = document.getElementById('boton-galeria');
-        botonGaleria.style.top = (20 + window.scrollY) + 'px';
-    });
-    // Función para ajustar la posición del botón al desplazarse
-    function ajustarPosicionBoton() {
-        var botonGaleria = document.getElementById('boton-galeria');
-        botonGaleria.style.top = (20 + window.scrollY) + 'px';
-    }
+        var modal = document.getElementById('modal');
+        var modalImagen = document.getElementById('modal-imagen');
+        var cerrarModal = document.getElementById('cerrar-modal');
 
-    // Ejecutar la función inicialmente para posicionar el botón correctamente
+        document.querySelectorAll('.imagen-galeria').forEach(function (img) {
+            img.addEventListener('click', function () {
+                modal.style.display = 'block';
+                modalImagen.src = this.src;
+            });
+        });
+
+        cerrarModal.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        window.addEventListener('scroll', function() {
+            var botonGaleria = document.getElementById('boton-galeria');
+            botonGaleria.style.top = (20 + window.scrollY) + 'px';
+        });
+        // Función para ajustarla posición del botón al desplazarse
+function ajustarPosicionBoton() {
+var botonGaleria = document.getElementById('boton-galeria');
+botonGaleria.style.top = (20 + window.scrollY) + 'px';
+}
+            // Ejecutar la función inicialmente para posicionar el botón correctamente
     ajustarPosicionBoton();
 
     // Volver a ajustar la posición del botón al desplazarse
     window.addEventListener('scroll', ajustarPosicionBoton);
-
 </script>
 
-</body>
-</html>
