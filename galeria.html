@@ -931,7 +931,6 @@
         <div id="modal-descripcion"></div>
     </div>
 </div>
-
 <script>
     // Manejo del modal de imagen
     document.querySelectorAll('.imagen-container').forEach(container => {
@@ -947,93 +946,73 @@
     document.getElementById('cerrar-modal').addEventListener('click', () => {
         document.getElementById('modal').style.display = 'none';
     });
-        // Función para reproducir una canción
-        function reproducirCancion(src) {
-            const reproductor = document.getElementById('reproductor-musica');
+
+    // Manejo del menú de música
+    const botonMusica = document.getElementById('boton-musica');
+    const miniMenuMusica = document.getElementById('mini-menu-musica');
+    const botonesCancion = document.querySelectorAll('#lista-musica button');
+    const reproductor = document.getElementById('reproductor-musica');
+    const botonPausarReanudar = document.getElementById('pausar-reanudar');
+    const botonRetroceder = document.getElementById('retroceder');
+    const botonAvanzar = document.getElementById('avanzar');
+    const controlVolumen = document.getElementById('control-volumen');
+    const tituloCancion = document.querySelector('.titulo-cancion');
+    let indiceCancionActual = -1;
+
+    botonMusica.addEventListener('click', () => {
+        miniMenuMusica.style.display = miniMenuMusica.style.display === 'block' ? 'none' : 'block';
+    });
+
+    botonesCancion.forEach((boton, indice) => {
+        boton.addEventListener('click', () => {
+            botonesCancion.forEach(btn => btn.classList.remove('seleccionado'));
+            boton.classList.add('seleccionado');
+            const src = boton.getAttribute('data-src');
             reproductor.src = src;
             reproductor.play();
+            tituloCancion.textContent = boton.textContent;
+            indiceCancionActual = indice;
+            botonPausarReanudar.textContent = '⏸️';
+        });
+    });
+
+    botonPausarReanudar.addEventListener('click', () => {
+        if (reproductor.paused) {
+            reproductor.play();
+            botonPausarReanudar.textContent = '⏸️';
+        } else {
+            reproductor.pause();
+            botonPausarReanudar.textContent = '▶️';
         }
+    });
 
-        // Manejo del modal de imagen
-        document.querySelectorAll('.imagen-container').forEach(container => {
-            container.addEventListener('click', () => {
-                const img = container.querySelector('img');
-                const descripcion = container.querySelector('.descripcion-imagen').textContent;
-                document.getElementById('modal-imagen').src = img.src;
-                document.getElementById('modal-descripcion').textContent = descripcion;
-                document.getElementById('modal').style.display = 'block';
-            });
-        });
+    botonRetroceder.addEventListener('click', () => {
+        if (indiceCancionActual > 0) {
+            botonesCancion[indiceCancionActual - 1].click();
+        }
+    });
 
-        document.getElementById('cerrar-modal').addEventListener('click', () => {
-            document.getElementById('modal').style.display = 'none';
-        });
+    botonAvanzar.addEventListener('click', () => {
+        if (indiceCancionActual < botonesCancion.length - 1) {
+            botonesCancion[indiceCancionActual + 1].click();
+        }
+    });
 
-        // Manejo del menú de música
-        const botonMusica = document.getElementById('boton-musica');
-        const miniMenuMusica = document.getElementById('mini-menu-musica');
-        const botonesCancion = document.querySelectorAll('#lista-musica button');
-        const reproductor = document.getElementById('reproductor-musica');
-        const botonPausarReanudar = document.getElementById('pausar-reanudar');
-        const botonRetroceder = document.getElementById('retroceder');
-        const botonAvanzar = document.getElementById('avanzar');
-        const controlVolumen = document.getElementById('control-volumen');
-        const tituloCancion = document.querySelector('.titulo-cancion');
-        let indiceCancionActual = -1;
+    controlVolumen.addEventListener('input', (event) => {
+        reproductor.volume = event.target.value;
+    });
 
-        botonMusica.addEventListener('click', () => {
-            miniMenuMusica.style.display = miniMenuMusica.style.display === 'block' ? 'none' : 'block';
-        });
+    reproductor.addEventListener('ended', () => {
+        if (indiceCancionActual < botonesCancion.length - 1) {
+            botonesCancion[indiceCancionActual + 1].click();
+        }
+    });
 
-        botonesCancion.forEach((boton, indice) => {
-            boton.addEventListener('click', () => {
-                botonesCancion.forEach(btn => btn.classList.remove('seleccionado'));
-                boton.classList.add('seleccionado');
-                const src = boton.getAttribute('data-src');
-                reproductor.src = src;
-                reproductor.play();
-                tituloCancion.textContent = boton.textContent;
-                indiceCancionActual = indice;
-                botonPausarReanudar.textContent = '⏸️';
-            });
-        });
+    document.getElementById('cerrar-volumen').addEventListener('click', () => {
+        miniMenuMusica.style.display = 'none';
+    });
 
-        botonPausarReanudar.addEventListener('click', () => {
-            if (reproductor.paused) {
-                reproductor.play();
-                botonPausarReanudar.textContent = '⏸️';
-            } else {
-                reproductor.pause();
-                botonPausarReanudar.textContent = '▶️';
-            }
-        });
+</script>
 
-        botonRetroceder.addEventListener('click', () => {
-            if (indiceCancionActual > 0) {
-                botonesCancion[indiceCancionActual - 1].click();
-            }
-        });
-
-        botonAvanzar.addEventListener('click', () => {
-            if (indiceCancionActual < botonesCancion.length - 1) {
-                botonesCancion[indiceCancionActual + 1].click();
-            }
-        });
-
-        controlVolumen.addEventListener('input', (event) => {
-            reproductor.volume = event.target.value;
-        });
-
-        reproductor.addEventListener('ended', () => {
-            if (indiceCancionActual < botonesCancion.length - 1) {
-                botonesCancion[indiceCancionActual + 1].click();
-            }
-        });
-
-        document.getElementById('cerrar-volumen').addEventListener('click', () => {
-            miniMenuMusica.style.display = 'none';
-        });
-
-    </script>
 </body>
 </html>
