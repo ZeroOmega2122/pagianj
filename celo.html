@@ -13,14 +13,13 @@
             color: #333;
             text-align: center;
             height: 100%;
+            border: 2px solid #4CAF50; /* Borde para todos los elementos */
         }
 
         body {
             background: url('./desktop-wallpaper-usagi-and-mamoru-falling-princess-usagi-mamoru-dekstop (1).webp') center/cover fixed no-repeat;
             min-height: 100vh;
             overflow-x: hidden;
-            border: 2px solid #1DB954; /* Agregado un borde sólido similar a Spotify */
-            border-radius: 10px; /* Añadido borde redondeado */
         }
 
         h1, h2 {
@@ -29,18 +28,23 @@
             margin-top: 50px;
             animation: titulo-animacion 2s ease-in-out infinite alternate;
         }
-        
-        /* Ajustes para los botones de galería */
+
         .boton-galeria {
             position: fixed;
+            top: 20px;
+            left: 20px;
             z-index: 9999;
-            border: 2px solid #4CAF50; /* Añadido borde sólido similar a Spotify */
-            border-radius: 8px; /* Añadido borde redondeado */
+        }
+
+        .boton-galeria a {
+            display: inline-block;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
             overflow: hidden;
             margin: 10px;
         }
 
-        .boton-galeria img {
+        .boton-galeria a img {
             width: 160px;
             height: 160px;
             border-radius: 8px;
@@ -48,11 +52,29 @@
             transition: transform 0.3s ease;
         }
 
-        .boton-galeria img:hover {
+        .boton-galeria a img:hover {
             transform: scale(1.1);
         }
 
-        /* Ajustes para la fila de imágenes de la galería */
+        #botones-musica {
+            margin-top: 20px;
+        }
+
+        #botones-musica button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #botones-musica button:hover {
+            background-color: #45a049;
+        }
+
         .fila-imagenes {
             display: flex;
             flex-wrap: wrap;
@@ -60,7 +82,6 @@
             width: 100%;
         }
 
-        /* Ajustes para las imágenes de la galería */
         .imagen-galeria {
             width: 300px;
             height: 300px;
@@ -77,7 +98,10 @@
             z-index: 1;
         }
 
-        /* Ajustes para la descripción de la imagen */
+        .imagen-container {
+            position: relative;
+        }
+
         .descripcion-imagen {
             position: absolute;
             bottom: 0;
@@ -97,7 +121,6 @@
             opacity: 1;
         }
 
-        /* Ajustes para el modal */
         #modal {
             display: none;
             position: fixed;
@@ -137,94 +160,79 @@
             color: #333;
         }
 
-        /* Ajustes para los botones de música */
-        #botones-musica {
-            margin-top: 20px;
-        }
-
-        #botones-musica button {
-            margin: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #botones-musica button:hover {
-            background-color: #45a049;
-        }
-
-        /* Ajustes generales para mejorar la apariencia */
-        .imagen-container, .boton-galeria {
-            border: 2px solid #1DB954; /* Añadido un borde sólido similar a Spotify */
-            border-radius: 10px; /* Añadido borde redondeado */
+        .boton-galeria a img,
+        #boton-galeria-1 img,
+        #boton-galeria-2 img {
+            max-width: 100px;
+            max-height: 100px;
         }
     </style>
 </head>
+
 <body>
+    <div class="boton-galeria" id="boton-galeria-1">
+        <a href="galeria.html">
+            <img src="R (1).webp" alt="Ir a la Galería 1">
+        </a>
+    </div>
     <h1>Galería de Recuerdos 2</h1>
     <h2>Actualizacion 20/05</h2>
     <h2>Tuve que mover las fotos en otra pagina :)</h2>
     <h2>Debido a un limite jsjs.</h2>
-
-    <!-- Botones de música -->
     <div id="botones-musica">
         <button onclick="reproducirCancion('y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3')">Futari no Kimochi</button>
         <button onclick="reproducirCancion('y2mate.com - Inuyasha Ending 3 Latino Remasterizado Digital.mp3')">Dearest</button>
-        <!-- Los demás botones de música -->
+        <button onclick="reproducirCancion('y2mate.com - Inuyasha OST 2  Beautiful Memories.mp3')">Beautiful Memories</button>
+        <button onclick="reproducirCancion('y2mate.com - Inuyasha Ending 1 Full Edit 2020   My Will  Gabriela Vega LATINO.mp3')">My will</button>
+        <button onclick="reproducirCancion('y2mate.com - Sailor Moon  En mis Sueños.mp3')"> En mis sueños </button>
+        <button onclick="reproducirCancion('y2mate.com - Resplandeciente cristal de plata Letra.mp3')">Resplandeciente cristal de plata</button>
+        <button onclick="reproducirCancion('y2mate.com - SM Destino de la Luz de Luna By Marisa De Lille.mp3')">Destino de la Luz de Luna</button>
+        <button onclick="reproducirCancion('y2mate.com - Marisa De Lille Ilusión de Amor Tuxedo Mirage.mp3')">Ilusión de Amor</button>
+        <button onclick="reproducirCancion('y2mate.com - Marisa De Lille  Quiero estar contigo siempre.mp3')">Quiero estar contigo siempre</button>
+        <button onclick="reproducirCancion('y2mate.com - Sailor Moon  La Princesa De La Luna Letra.mp3')">La Princesa De La Luna</button>
+        <button onclick="reproducirCancion('y2mate.com - SailorMoon  Moonlight  Caja musical.mp3')">Moonlight Caja musical</button>
+        <button onclick="reproducirCancion('y2mate.com - Moon Revenge Español  Sailor Moon.mp3')">Moon Revenge</button>
+        <button onclick="reproducirCancion('y2mate.com - Sailor Moon  Nagareboshi He Sub Español.mp3')">Nagareboshi He</button>
     </div>
-
-    <!-- Galería de imágenes -->
     <div class="fila-imagenes">
-        <!-- Aquí van las imágenes de la galería -->
+    <!-- Agrega tus 22 imágenes de la galería -->
+</div>
+
+<div id="modal">
+    <div id="modal-contenido">
+        <span id="cerrar-modal">&times;</span>
+        <img id="modal-imagen" alt="Imagen Ampliada">
     </div>
+</div>
 
-    <!-- Modal para visualizar las imágenes -->
-    <div id="modal">
-        <div id="modal-contenido">
-            <span id="cerrar-modal">&times;</span>
-            <img id="modal-imagen" alt="Imagen Ampliada">
-        </div>
-    </div>
+<audio id="audio-player"></audio>
 
-    <!-- Reproductor de audio -->
-    <audio id="audio-player"></audio>
+<script>
+    function reproducirCancion(ruta) {
+        var audio = document.getElementById('audio-player');
+        audio.src = ruta;
+        audio.play();
+    }
 
-    <script>
-        // Función para reproducir una canción
-        function reproducirCancion(ruta) {
-            var audio = document.getElementById('audio-player');
-            audio.src = ruta;
-            audio.play();
-        }
+    var modal = document.getElementById('modal');
+    var modalImagen = document.getElementById('modal-imagen');
+    var cerrarModal = document.getElementById('cerrar-modal');
 
-        // Referencias a elementos del DOM
-        var modal = document.getElementById('modal');
-        var modalImagen = document.getElementById('modal-imagen');
-        var cerrarModal = document.getElementById('cerrar-modal');
-
-        // Event listeners para abrir el modal al hacer clic en una imagen
-        document.querySelectorAll('.imagen-galeria').forEach(function (img) {
-            img.addEventListener('click', function () {
-                modal.style.display = 'block';
-                modalImagen.src = this.src;
-            });
+    document.querySelectorAll('.imagen-galeria').forEach(function (img) {
+        img.addEventListener('click', function () {
+            modal.style.display = 'block';
+            modalImagen.src = this.src;
         });
+    });
 
-        // Event listener para cerrar el modal
-        cerrarModal.addEventListener('click', function () {
+    cerrarModal.addEventListener('click', function () {
+        modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function (event) {
+        if (event.target === modal) {
             modal.style.display = 'none';
-        });
+        }
+    });
+</script>
 
-        // Event listener para cerrar el modal al hacer clic fuera de él
-        window.addEventListener('click', function (event) {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-    </script>
-</body>
-</html>
