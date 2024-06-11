@@ -1,12 +1,10 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <link rel="icon" type="image/webp" href="8493053.webp">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERA-GALERIA 1</title>
+    <title>ERA-GALERIA 2</title>
         <style>
         body, html {
             font-family: 'Pacifico', cursive;
@@ -307,10 +305,10 @@
   <h1> </h1>
       <h1> </h1>
     <h1>Galería de Recuerdos 1</h1>
-    <h2>Actualización 20/05</h2>
-    <h2>Las fotos tienen descripciones, haz clic en ellas para leerlas.</h2>
-    <h2>Tuve que agregar otra página por un tema de límites de la página.</h2>
-    <h2>Felices 100 FOTOS JSJS, si Dios quiere nos juntaremos más adelante de nuevo :,).</h2>
+    <h2></h2>
+    <h2></h2>
+    <h2></h2>
+    <h2></h2>
       <div class="fila-imagenes">
         <!-- Agrega tus 22 imágenes de la galería -->
       
@@ -475,21 +473,17 @@
                     <p></p>
                 </div>
             </div>
-            <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2023-12-18 at 22.25.03.webp" alt="Recuerdo 12">
-                <div class="descripcion-imagen">
-                    <p>Recuerdo 12</p>
-                    <p>N:Una visita al viejo oeste.</p>
-                </div>
-            </div>
-                
-</div>
-<div id="modal">
-    <div id="modal-contenido">
-        <span id="cerrar-modal">&times;</span>
-        <img id="modal-imagen" alt="Imagen Ampliada">
+        <!-- Aquí continúa el resto de tus imágenes -->
     </div>
-</div>
+
+
+    <div id="modal">
+        <div id="modal-contenido">
+            <span id="cerrar-modal">&times;</span>
+            <img id="modal-imagen" alt="Imagen Ampliada">
+            <div id="modal-descripcion"></div>
+        </div>
+    </div>
     <div id="boton-musica">🎵</div>
     <div id="mini-menu-musica">
         <span id="cerrar-volumen">&times;</span>
@@ -611,6 +605,17 @@
             miniMenuMusica.style.display = 'none';
         });
 
+        // Función para ajustar la posición del botón de la galería al desplazarse
+        function ajustarPosicionBoton() {
+            var botonGaleria = document.getElementById('boton-galeria');
+            botonGaleria.style.top = (20 + window.scrollY) + 'px';
+        }
+
+        // Ejecutar la función inicialmente para posicionar el botón correctamente
+        ajustarPosicionBoton();
+
+        // Volver a ajustar la posición del botón al desplazarse
+        window.addEventListener('scroll', ajustarPosicionBoton);
     </script>
 </body>
 </html>
