@@ -887,6 +887,7 @@
     <div id="modal-contenido">
         <span id="cerrar-modal">&times;</span>
         <img id="modal-imagen" alt="Imagen Ampliada">
+        <div id="modal-descripcion"></div>
     </div>
 </div>
     <div id="boton-musica">🎵</div>
@@ -923,6 +924,29 @@
     <audio id="reproductor-musica"></audio>
 
     <script>
+        <div id="modal">
+    <div id="modal-contenido">
+        <span id="cerrar-modal">&times;</span>
+        <img id="modal-imagen" alt="Imagen Ampliada">
+        <div id="modal-descripcion"></div>
+    </div>
+</div>
+
+<script>
+    // Manejo del modal de imagen
+    document.querySelectorAll('.imagen-container').forEach(container => {
+        container.addEventListener('click', () => {
+            const img = container.querySelector('img');
+            const descripcion = container.querySelector('.descripcion-imagen').textContent;
+            document.getElementById('modal-imagen').src = img.src;
+            document.getElementById('modal-descripcion').textContent = descripcion;
+            document.getElementById('modal').style.display = 'block';
+        });
+    });
+
+    document.getElementById('cerrar-modal').addEventListener('click', () => {
+        document.getElementById('modal').style.display = 'none';
+    });
         // Función para reproducir una canción
         function reproducirCancion(src) {
             const reproductor = document.getElementById('reproductor-musica');
