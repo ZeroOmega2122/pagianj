@@ -160,6 +160,8 @@
             color: #333;
         }
 
+       
+        /* Botón de música */
         #boton-musica {
             position: fixed;
             top: 20px;
@@ -167,77 +169,82 @@
             z-index: 10000;
             cursor: pointer;
             font-size: 24px;
-            background-color: #4CAF50;
-            color: #fff;
+            background-color: #4CAF50; /* Color de fondo verde */
+            color: #FFFFFF; /* Color del texto blanco */
             padding: 10px;
             border-radius: 5px;
+            border: none;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave */
         }
 
+        /* Menú emergente de música */
         #mini-menu-musica {
             position: fixed;
             top: 60px;
             right: 20px;
             width: 300px;
-            background-color: #FFFFFF;
+            background-color: #333333; /* Color de fondo oscuro para el menú emergente */
             border: 2px solid #4CAF50;
             border-radius: 10px;
             display: none;
             z-index: 10000;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave */
         }
 
-        #cerrar-volumen {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 24px;
-            color: #333;
-        }
-
+        /* Lista de música */
         #lista-musica {
             max-height: 200px;
             overflow-y: auto;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #4CAF50; /* Borde inferior verde */
+            padding: 0; /* Elimina el relleno */
+            margin: 0; /* Elimina el margen */
         }
 
+        /* Botones de la lista de música */
         #lista-musica button {
             width: 100%;
-            padding: 10px;
+            padding: 15px;
             text-align: left;
-            background-color: #2F75A6;
+            background-color: transparent; /* Fondo transparente */
             border: none;
             cursor: pointer;
             position: relative;
+            transition: background-color 0.3s ease; /* Transición suave */
         }
 
+        /* Estilo al pasar el cursor sobre los botones de música */
         #lista-musica button:hover,
         #lista-musica button.seleccionado {
-            background-color: #f0f0f0;
-            border-left: 5px solid #4CAF50;
+            background-color: #4CAF50; /* Color de fondo verde al pasar el cursor */
         }
 
+        /* Controles de música */
         #controles-musica {
             display: flex;
             flex-direction: row;
             justify-content: center;
             padding: 10px;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #4CAF50; /* Borde inferior verde */
         }
 
+        /* Estilo de los botones de control de música */
         #controles-musica button {
-            background-color: #4CAF50;
-            color: #fff;
+            background-color: #4CAF50; /* Color de fondo verde */
+            color: #FFFFFF; /* Color del texto blanco */
             border: none;
             padding: 10px;
             border-radius: 5px;
             cursor: pointer;
             margin: 0 5px;
+            transition: background-color 0.3s ease; /* Transición suave */
         }
 
+        /* Estilo al pasar el cursor sobre los botones de control de música */
         #controles-musica button:hover {
-            background-color: #45a049;
+            background-color: #45a049; /* Color de fondo verde más oscuro al pasar el cursor */
         }
 
+        /* Control de volumen */
         #volumen-musica {
             display: flex;
             flex-direction: column;
@@ -247,14 +254,27 @@
             border-radius: 10px;
         }
 
-        #volumen-musica input {
-            width: 150px;
+        /* Estilo del rango de volumen */
+        #volumen-musica input[type="range"] {
+            width: 80%; /* Anchura del rango de volumen */
+            margin-top: 10px;
+            -webkit-appearance: none; /* Eliminar la apariencia predeterminada del rango */
+            appearance: none;
+            background-color: #333333; /* Color de fondo oscuro */
         }
 
-        #volumen-musica span {
-            margin-bottom: 5px;
+        /* Estilo del rango de volumen al pasar el cursor */
+        #volumen-musica input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; /* Eliminar la apariencia predeterminada del control deslizante */
+            appearance: none;
+            width: 15px; /* Anchura del control deslizante */
+            height: 15px; /* Altura del control deslizante */
+            background: #4CAF50; /* Color del control deslizante */
+            border-radius: 50%; /* Hacer el control deslizante circular */
+            cursor: pointer;
         }
 
+        /* Estilo del título de la canción */
         .titulo-cancion {
             font-size: 16px;
             margin-bottom: 10px;
