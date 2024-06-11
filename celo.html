@@ -161,7 +161,8 @@
         }
 
         /* Botón de música */
-      #boton-musica {
+       /* Botón de música */
+        #boton-musica {
             position: fixed;
             top: 20px;
             right: 20px;
@@ -187,6 +188,7 @@
             display: none;
             z-index: 10000;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave */
+            border: 2px solid #1DB954; /* Borde sólido verde similar a Spotify */
         }
 
         /* Lista de música */
@@ -224,6 +226,7 @@
             justify-content: center;
             padding: 10px;
             border-bottom: 1px solid #535353; /* Borde inferior similar a Spotify */
+            border-top: 1px solid #535353; /* Borde superior similar a Spotify */
         }
 
         /* Estilo de los botones de control de música */
@@ -252,6 +255,7 @@
             border: 2px solid #1DB954; /* Borde sólido verde similar a Spotify */
             border-radius: 10px;
             color: #FFFFFF; /* Color del texto blanco */
+            margin-top: 10px; /* Añadido margen superior */
         }
 
         /* Estilo del rango de volumen */
@@ -261,6 +265,7 @@
             -webkit-appearance: none; /* Eliminar la apariencia predeterminada del rango */
             appearance: none;
             background-color: #282828; /* Color de fondo oscuro similar a Spotify */
+            border: none; /* Elimina el borde predeterminado */
         }
 
         /* Estilo del rango de volumen al pasar el cursor */
@@ -272,6 +277,7 @@
             background: #1DB954; /* Color del control deslizante verde similar a Spotify */
             border-radius: 50%; /* Hacer el control deslizante circular */
             cursor: pointer;
+            border: none; /* Elimina el borde predeterminado */
         }
 
         /* Estilo del porcentaje de volumen */
