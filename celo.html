@@ -27,17 +27,142 @@
             margin-top: 50px;
             animation: titulo-animacion 2s ease-in-out infinite alternate;
         }
+        #boton-galeria-1 {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+        }
 
-        /* Ajuste para contenedor de botones de música */
-        .contenedor-botones-musica {
+        #boton-galeria-2 {
+            position: fixed;
+            top: 120px;
+            left: 20px;
+            z-index: 9999;
+        }
+  /* Tamaño de los botones de cambio de página */
+        #boton-galeria-1 a img, #boton-galeria-2 a img {
+            width: 100px;  /* Ancho deseado */
+            height: 100px; /* Alto deseado */
+            border-radius: 8px; /* Mantener el radio de borde para la apariencia redondeada */
+        }
+
+        /* Ajustar el tamaño del contenedor si es necesario */
+        .boton-galeria {
+            width: 220px; /* Ajusta este tamaño según sea necesario */
+            height: 220px; /* Ajusta este tamaño según sea necesario */
+        }
+
+        .boton-galeria a {
+            display: inline-block;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+        .boton-galeria a img {
+            width: 160px;
+            height: 160px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .boton-galeria a img:hover {
+            transform: scale(1.1);
+        }
+
+        .fila-imagenes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .imagen-galeria {
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s, z-index 0s 0.3s;
+            position: relative;
+        }
+
+        .imagen-galeria:hover {
+            transform: scale(1.25);
+            z-index: 1;
+        }
+
+        .imagen-container {
+            position: relative;
+        }
+
+        .descripcion-imagen {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-size: 17px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: 10px;
+        }
+
+        .imagen-container:hover .descripcion-imagen {
+            opacity: 1;
+        }
+
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            overflow: auto;
+        }
+
+        #modal-contenido {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        #modal-imagen {
+            max-width: 100%;
+            max-height: 100%;
+            margin-bottom: 20px;
+        }
+
+        #cerrar-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+        }
+
+        #boton-musica {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 10000;
-            display: flex;
-        }
-
-        #boton-musica {
             cursor: pointer;
             font-size: 24px;
             background-color: #4CAF50;
@@ -51,19 +176,66 @@
             top: 60px;
             right: 20px;
             width: 300px;
-            background: url('./OIP (7).webp') center/cover fixed no-repeat; /* Agregar fondo */
+            background-color: #fff;
             border: 2px solid #4CAF50;
             border-radius: 10px;
             display: none;
             z-index: 10000;
         }
 
-        /* Ajuste para alinear la barra de volumen */
+        #lista-musica {
+            max-height: 200px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #lista-musica button {
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #lista-musica button:hover,
+        #lista-musica button.seleccionado {
+            background-color: #f0f0f0;
+            border-left: 5px solid #4CAF50;
+        }
+
+        #controles-musica {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #controles-musica button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px 0;
+        }
+
+        #controles-musica button:hover {
+            background-color: #45a049;
+        }
+
         #volumen-musica {
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 10px;
+            position: absolute;
+            top: 10px;
+            right: -70px;
             background-color: #fff;
             border: 2px solid #4CAF50;
             border-radius: 10px;
