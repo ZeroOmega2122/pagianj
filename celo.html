@@ -161,18 +161,18 @@
         }
 
         /* Botón de música */
-        #boton-musica {
+      #boton-musica {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 10000;
             cursor: pointer;
             font-size: 24px;
-            background-color: #4CAF50; /* Color de fondo verde */
-            color: #FFFFFF; /* Color del texto blanco */
+            background-color: transparent; /* Color de fondo transparente */
+            color: #1DB954; /* Color del texto verde de Spotify */
             padding: 10px;
-            border-radius: 5px;
-            border: none;
+            border-radius: 50%; /* Borde circular */
+            border: 2px solid #1DB954; /* Borde sólido */
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave */
         }
 
@@ -182,8 +182,7 @@
             top: 60px;
             right: 20px;
             width: 300px;
-            background-color: #333366; /* Nuevo color de fondo */
-            border: 2px solid #4CAF50;
+            background-color: #282828; /* Color de fondo oscuro similar a Spotify */
             border-radius: 10px;
             display: none;
             z-index: 10000;
@@ -194,7 +193,7 @@
         #lista-musica {
             max-height: 200px;
             overflow-y: auto;
-            border-bottom: 1px solid #4CAF50; /* Borde inferior verde */
+            border-bottom: 1px solid #535353; /* Borde inferior similar a Spotify */
             padding: 0; /* Elimina el relleno */
             margin: 0; /* Elimina el margen */
         }
@@ -215,7 +214,7 @@
         /* Estilo al pasar el cursor sobre los botones de música */
         #lista-musica button:hover,
         #lista-musica button.seleccionado {
-            background-color: #4CAF50; /* Color de fondo verde al pasar el cursor */
+            background-color: #535353; /* Color de fondo similar a Spotify al pasar el cursor */
         }
 
         /* Controles de música */
@@ -224,16 +223,16 @@
             flex-direction: row;
             justify-content: center;
             padding: 10px;
-            border-bottom: 1px solid #4CAF50; /* Borde inferior verde */
+            border-bottom: 1px solid #535353; /* Borde inferior similar a Spotify */
         }
 
         /* Estilo de los botones de control de música */
         #controles-musica button {
-            background-color: #4CAF50; /* Color de fondo verde */
+            background-color: transparent; /* Fondo transparente */
             color: #FFFFFF; /* Color del texto blanco */
             border: none;
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 50%; /* Borde circular */
             cursor: pointer;
             margin: 0 5px;
             transition: background-color 0.3s ease; /* Transición suave */
@@ -241,7 +240,7 @@
 
         /* Estilo al pasar el cursor sobre los botones de control de música */
         #controles-musica button:hover {
-            background-color: #45a049; /* Color de fondo verde más oscuro al pasar el cursor */
+            background-color: #535353; /* Color de fondo similar a Spotify al pasar el cursor */
         }
 
         /* Control de volumen */
@@ -250,7 +249,7 @@
             flex-direction: column;
             align-items: center;
             padding: 10px;
-            border: 2px solid #4CAF50;
+            border: 2px solid #1DB954; /* Borde sólido verde similar a Spotify */
             border-radius: 10px;
             color: #FFFFFF; /* Color del texto blanco */
         }
@@ -261,7 +260,7 @@
             margin-top: 10px;
             -webkit-appearance: none; /* Eliminar la apariencia predeterminada del rango */
             appearance: none;
-            background-color: #333333; /* Color de fondo oscuro */
+            background-color: #282828; /* Color de fondo oscuro similar a Spotify */
         }
 
         /* Estilo del rango de volumen al pasar el cursor */
@@ -270,7 +269,7 @@
             appearance: none;
             width: 15px; /* Anchura del control deslizante */
             height: 15px; /* Altura del control deslizante */
-            background: #4CAF50; /* Color del control deslizante */
+            background: #1DB954; /* Color del control deslizante verde similar a Spotify */
             border-radius: 50%; /* Hacer el control deslizante circular */
             cursor: pointer;
         }
