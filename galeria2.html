@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="icon" type="image/webp" href="8493053.webp">
+    <link rel="icon" type="image/webp" href="8493053.webp">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERA-GALERIA2</title>
-    <style>
+    <title>ERA-GALERIA 1</title>
+        <style>
         body, html {
             font-family: 'Pacifico', cursive;
             margin: 0;
@@ -17,7 +18,7 @@
         }
 
         body {
-            background: url('./desktop-wallpaper-usagi-and-mamoru-falling-princess-usagi-mamoru-dekstop (1).webp') center/cover fixed no-repeat;
+             background: url('./desktop-wallpaper-usagi-and-mamoru-falling-princess-usagi-mamoru-dekstop (1).webp') center/cover fixed no-repeat;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -28,21 +29,35 @@
             margin-top: 50px;
             animation: titulo-animacion 2s ease-in-out infinite alternate;
         }
-#boton-galeria-1 {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 9999;
-}
 
-#boton-galeria-2 {
-    position: fixed;
-    top: 120px; /* ajusta según sea necesario */
-    left: 20px;
-    z-index: 9999;
-}
+        #boton-galeria-1 {
+            position: fixed;
+            top: 0px;
+            left: -80px;
+            z-index: 9999;
+        }
 
-        #boton-galeria a {
+        #boton-galeria-2 {
+            position: fixed;
+            top: 60px;
+            left: -80px;
+            z-index: 9999;
+        }
+
+        /* Tamaño de los botones de cambio de página */
+        #boton-galeria-1 a img, #boton-galeria-2 a img {
+            width: 50px;  /* Ancho deseado */
+            height: 50px; /* Alto deseado */
+            border-radius: 8px; /* Mantener el radio de borde para la apariencia redondeada */
+        }
+
+        /* Ajustar el tamaño del contenedor si es necesario */
+        .boton-galeria {
+            width: 220px; /* Ajusta este tamaño según sea necesario */
+            height: 220px; /* Ajusta este tamaño según sea necesario */
+        }
+
+        .boton-galeria a {
             display: inline-block;
             border: 2px solid #4CAF50;
             border-radius: 8px;
@@ -50,7 +65,7 @@
             margin: 10px;
         }
 
-        #boton-galeria a img {
+        .boton-galeria a img {
             width: 160px;
             height: 160px;
             border-radius: 8px;
@@ -58,7 +73,7 @@
             transition: transform 0.3s ease;
         }
 
-        #boton-galeria a img:hover {
+        .boton-galeria a img:hover {
             transform: scale(1.1);
         }
 
@@ -115,13 +130,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); /* Cambia el valor de opacidad aquí */
+            background-color: rgba(0, 0, 0, 0.8);
             z-index: 999;
-            overflow: auto; /* Habilitar el desplazamiento vertical si es necesario */
+            overflow: auto;
         }
 
         #modal-contenido {
-            position: fixed; /* Cambiado de absolute a fixed */
+            position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -147,60 +162,156 @@
             color: #333;
         }
 
-        #botones-musica {
-            margin-top: 20px;
-        }
-
-        #botones-musica button {
-            margin: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
+        /* Botón de música */
+       /* Botón de música */
+        #boton-musica {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
             cursor: pointer;
+            font-size: 24px;
+            background-color: transparent; /* Color de fondo transparente */
+            color: #1DB954; /* Color del texto verde de Spotify */
+            padding: 10px;
+            border-radius: 50%; /* Borde circular */
+            border: 2px solid #1DB954; /* Borde sólido */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave */
         }
 
-        #botones-musica button:hover {
-            background-color: #45a049;
+        /* Menú emergente de música */
+        #mini-menu-musica {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            width: 300px;
+            background-color: #282828; /* Color de fondo oscuro similar a Spotify */
+            border-radius: 10px;
+            display: none;
+            z-index: 10000;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave */
+            border: 2px solid #1DB954; /* Borde sólido verde similar a Spotify */
         }
-           #boton-galeria-1 img,
-        #boton-galeria-2 img {
-            max-width: 100px; /* ajusta según sea necesario */
-            max-height: 100px; /* ajusta según sea necesario */
+
+        /* Lista de música */
+        #lista-musica {
+            max-height: 200px;
+            overflow-y: auto;
+            border-bottom: 1px solid #535353; /* Borde inferior similar a Spotify */
+            padding: 0; /* Elimina el relleno */
+            margin: 0; /* Elimina el margen */
+        }
+
+        /* Estilo del texto de la lista de música */
+        #lista-musica button {
+            width: 100%;
+            padding: 15px;
+            text-align: left;
+            background-color: transparent; /* Fondo transparente */
+            border: none;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.3s ease; /* Transición suave */
+            color: #FFFFFF; /* Color del texto blanco */
+        }
+
+        /* Estilo al pasar el cursor sobre los botones de música */
+        #lista-musica button:hover,
+        #lista-musica button.seleccionado {
+            background-color: #535353; /* Color de fondo similar a Spotify al pasar el cursor */
+        }
+
+        /* Controles de música */
+        #controles-musica {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding: 10px;
+            border-bottom: 1px solid #535353; /* Borde inferior similar a Spotify */
+            border-top: 1px solid #535353; /* Borde superior similar a Spotify */
+        }
+
+        /* Estilo de los botones de control de música */
+        #controles-musica button {
+            background-color: transparent; /* Fondo transparente */
+            color: #FFFFFF; /* Color del texto blanco */
+            border: none;
+            padding: 10px;
+            border-radius: 50%; /* Borde circular */
+            cursor: pointer;
+            margin: 0 5px;
+            transition: background-color 0.3s ease; /* Transición suave */
+        }
+
+        /* Estilo al pasar el cursor sobre los botones de control de música */
+        #controles-musica button:hover {
+            background-color: #535353; /* Color de fondo similar a Spotify al pasar el cursor */
+        }
+
+        /* Control de volumen */
+        #volumen-musica {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border: 2px solid #1DB954; /* Borde sólido verde similar a Spotify */
+            border-radius: 10px;
+            color: #FFFFFF; /* Color del texto blanco */
+            margin-top: 10px; /* Añadido margen superior */
+        }
+
+        /* Estilo del rango de volumen */
+        #volumen-musica input[type="range"] {
+            width: 80%; /* Anchura del rango de volumen */
+            margin-top: 10px;
+            -webkit-appearance: none; /* Eliminar la apariencia predeterminada del rango */
+            appearance: none;
+            background-color: #282828; /* Color de fondo oscuro similar a Spotify */
+            border: none; /* Elimina el borde predeterminado */
+        }
+
+        /* Estilo del rango de volumen al pasar el cursor */
+        #volumen-musica input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; /* Eliminar la apariencia predeterminada del control deslizante */
+            appearance: none;
+            width: 15px; /* Anchura del control deslizante */
+            height: 15px; /* Altura del control deslizante */
+            background: #1DB954; /* Color del control deslizante verde similar a Spotify */
+            border-radius: 50%; /* Hacer el control deslizante circular */
+            cursor: pointer;
+            border: none; /* Elimina el borde predeterminado */
+        }
+
+        /* Estilo del porcentaje de volumen */
+        #volumen-musica span {
+            margin-top: 5px;
+        }
+
+        /* Estilo del título de la canción */
+        .titulo-cancion {
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: #FFFFFF; /* Color del texto blanco */
         }
     </style>
 </head>
- <div class="boton-galeria" id="boton-galeria-1">
-    <a href="galeria.html">
-        <img src="R (1).webp" alt="Ir a la Galería">
-    </a>
-</div>
-
 <body>
-  <h1>Galería de Recuerdos 2</h1>
-    <h2>Actualizacion 20/05</h2>
-    <h2>Tuve que mover las fotos en otra pagina :)</h2>
-        <h2>Debido a un limite jsjs.</h2>
- <div id="botones-musica">
-        <button onclick="reproducirCancion('y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3')">Futari no Kimochi</button>
-        <button onclick="reproducirCancion('y2mate.com - Inuyasha Ending 3 Latino Remasterizado Digital.mp3')">Dearest</button>
-        <button onclick="reproducirCancion('y2mate.com - Inuyasha OST 2  Beautiful Memories.mp3')">Beautiful Memories</button>
-        <button onclick="reproducirCancion('y2mate.com - Inuyasha Ending 1 Full Edit 2020   My Will  Gabriela Vega LATINO.mp3')">My will</button>
-        <button onclick="reproducirCancion('y2mate.com - Sailor Moon  En mis Sueños.mp3')"> En mis sueños </button>
-        <button onclick="reproducirCancion('y2mate.com - Resplandeciente cristal de plata Letra.mp3')">Resplandeciente cristal de plata</button>
-        <button onclick="reproducirCancion('y2mate.com - SM Destino de la Luz de Luna By Marisa De Lille.mp3')">Destino de la Luz de Luna</button>
-        <button onclick="reproducirCancion('y2mate.com - Marisa De Lille Ilusión de Amor Tuxedo Mirage.mp3')">Ilusión de Amor</button>
-        <button onclick="reproducirCancion('y2mate.com - Marisa De Lille  Quiero estar contigo siempre.mp3')">Quiero estar contigo siempre</button>
-        <button onclick="reproducirCancion('y2mate.com - Sailor Moon  La Princesa De La Luna Letra.mp3')">La Princesa De La Luna</button>
-        <button onclick="reproducirCancion('y2mate.com - SailorMoon  Moonlight  Caja musical.mp3')">Moonlight  Caja musical</button>
-        <button onclick="reproducirCancion('y2mate.com - Moon Revenge Español  Sailor Moon.mp3')">Moon Revenge</button>
-        <button onclick="reproducirCancion('y2mate.com - Sailor Moon  Nagareboshi He Sub Español.mp3')">Nagareboshi He</button>
+    <div class="boton-galeria" id="boton-galeria-1">
+        <a href="galeria.html">
+            <img src="R (1).webp" alt="Ir a la Galería">
+        </a>
     </div>
-
- 
-   <div class="fila-imagenes">
+  
+  <h1> </h1>
+      <h1> </h1>
+    <h1>Galería de Recuerdos 1</h1>
+    <h2>Actualización 20/05</h2>
+    <h2>Las fotos tienen descripciones, haz clic en ellas para leerlas.</h2>
+    <h2>Tuve que agregar otra página por un tema de límites de la página.</h2>
+    <h2>Felices 100 FOTOS JSJS, si Dios quiere nos juntaremos más adelante de nuevo :,).</h2>
+      <div class="fila-imagenes">
         <!-- Agrega tus 22 imágenes de la galería -->
       
             <div class="imagen-container">
@@ -379,35 +490,127 @@
         <img id="modal-imagen" alt="Imagen Ampliada">
     </div>
 </div>
+    <div id="boton-musica">🎵</div>
+    <div id="mini-menu-musica">
+        <span id="cerrar-volumen">&times;</span>
+          <div id="lista-musica">
+            <button data-src="y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3">Futari no Kimochi</button>
+            <button data-src="y2mate.com - Inuyasha Ending 3 Latino Remasterizado Digital.mp3">Dearest</button>
+            <button data-src="y2mate.com - Inuyasha OST 2  Beautiful Memories.mp3">Beautiful Memories</button>
+            <button data-src="y2mate.com - Inuyasha Ending 1 Full Edit 2020   My Will  Gabriela Vega LATINO.mp3">My will</button>
+            <button data-src="y2mate.com - Sailor Moon  En mis Sueños.mp3">En mis sueños</button>
+            <button data-src="y2mate.com - Resplandeciente cristal de plata Letra.mp3">Resplandeciente cristal de plata</button>      
+            <button data-src="y2mate.com - SM Destino de la Luz de Luna By Marisa De Lille.mp3">Destino de la Luz de Luna</button>
+            <button data-src="y2mate.com - Marisa De Lille Ilusión de Amor Tuxedo Mirage.mp3">Ilusión de Amor</button>
+            <button data-src="y2mate.com - Marisa De Lille  Quiero estar contigo siempre.mp3">Quiero estar contigo siempre</button>
+            <button data-src="y2mate.com - Sailor Moon  La Princesa De La Luna Letra.mp3">La Princesa De La Luna</button>
+            <button data-src="y2mate.com - SailorMoon  Moonlight  Caja musical.mp3">Moonlight  Caja musical</button>
+            <button data-src="y2mate.com - Moon Revenge Español  Sailor Moon.mp3">Moon Revenge</button>
+            <button data-src="y2mate.com - Sailor Moon  Nagareboshi He Sub Español.mp3">Nagareboshi He</button>
+        </div>
+        
+        <div id="controles-musica">
+            <div class="titulo-cancion">Ninguna canción seleccionada</div>
+            <button id="retroceder">⏮️</button>
+            <button id="pausar-reanudar">⏸️</button>
+            <button id="avanzar">⏭️</button>
+        </div>
+        <div id="volumen-musica">
+            <span>Volumen</span>
+            <input type="range" id="control-volumen" min="0" max="1" step="0.01" value="0.5">
+        </div>
+    </div>
 
-<audio id="audio-player"></audio>
+    <audio id="reproductor-musica"></audio>
 
-<script>
-    function reproducirCancion(ruta) {
-        var audio = document.getElementById('audio-player');
-        audio.src = ruta;
-        audio.play();
-    }
-
-    var modal = document.getElementById('modal');
-    var modalImagen = document.getElementById('modal-imagen');
-    var cerrarModal = document.getElementById('cerrar-modal');
-
-    document.querySelectorAll('.imagen-galeria').forEach(function (img) {
-        img.addEventListener('click', function () {
-            modal.style.display = 'block';
-            modalImagen.src = this.src;
-        });
-    });
-
-    cerrarModal.addEventListener('click', function () {
-        modal.style.display = 'none';
-    });
-
-    window.addEventListener('click', function (event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
+    <script>
+        // Función para reproducir una canción
+        function reproducirCancion(src) {
+            const reproductor = document.getElementById('reproductor-musica');
+            reproductor.src = src;
+            reproductor.play();
         }
-    });
-</script>
 
+        // Manejo del modal de imagen
+        document.querySelectorAll('.imagen-container').forEach(container => {
+            container.addEventListener('click', () => {
+                const img = container.querySelector('img');
+                const descripcion = container.querySelector('.descripcion-imagen').textContent;
+                document.getElementById('modal-imagen').src = img.src;
+                document.getElementById('modal-descripcion').textContent = descripcion;
+                document.getElementById('modal').style.display = 'block';
+            });
+        });
+
+        document.getElementById('cerrar-modal').addEventListener('click', () => {
+            document.getElementById('modal').style.display = 'none';
+        });
+
+        // Manejo del menú de música
+        const botonMusica = document.getElementById('boton-musica');
+        const miniMenuMusica = document.getElementById('mini-menu-musica');
+        const botonesCancion = document.querySelectorAll('#lista-musica button');
+        const reproductor = document.getElementById('reproductor-musica');
+        const botonPausarReanudar = document.getElementById('pausar-reanudar');
+        const botonRetroceder = document.getElementById('retroceder');
+        const botonAvanzar = document.getElementById('avanzar');
+        const controlVolumen = document.getElementById('control-volumen');
+        const tituloCancion = document.querySelector('.titulo-cancion');
+        let indiceCancionActual = -1;
+
+        botonMusica.addEventListener('click', () => {
+            miniMenuMusica.style.display = miniMenuMusica.style.display === 'block' ? 'none' : 'block';
+        });
+
+        botonesCancion.forEach((boton, indice) => {
+            boton.addEventListener('click', () => {
+                botonesCancion.forEach(btn => btn.classList.remove('seleccionado'));
+                boton.classList.add('seleccionado');
+                const src = boton.getAttribute('data-src');
+                reproductor.src = src;
+                reproductor.play();
+                tituloCancion.textContent = boton.textContent;
+                indiceCancionActual = indice;
+                botonPausarReanudar.textContent = '⏸️';
+            });
+        });
+
+        botonPausarReanudar.addEventListener('click', () => {
+            if (reproductor.paused) {
+                reproductor.play();
+                botonPausarReanudar.textContent = '⏸️';
+            } else {
+                reproductor.pause();
+                botonPausarReanudar.textContent = '▶️';
+            }
+        });
+
+        botonRetroceder.addEventListener('click', () => {
+            if (indiceCancionActual > 0) {
+                botonesCancion[indiceCancionActual - 1].click();
+            }
+        });
+
+        botonAvanzar.addEventListener('click', () => {
+            if (indiceCancionActual < botonesCancion.length - 1) {
+                botonesCancion[indiceCancionActual + 1].click();
+            }
+        });
+
+        controlVolumen.addEventListener('input', (event) => {
+            reproductor.volume = event.target.value;
+        });
+
+        reproductor.addEventListener('ended', () => {
+            if (indiceCancionActual < botonesCancion.length - 1) {
+                botonesCancion[indiceCancionActual + 1].click();
+            }
+        });
+
+        document.getElementById('cerrar-volumen').addEventListener('click', () => {
+            miniMenuMusica.style.display = 'none';
+        });
+
+    </script>
+</body>
+</html>
