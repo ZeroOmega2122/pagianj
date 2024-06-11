@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/webp" href="8493053.webp">
+<link rel="icon" type="image/webp" href="8493053.webp">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERA-GALERIA2</title>
+    <title>ERA-GALERIA 1</title>
     <style>
         body, html {
             font-family: 'Pacifico', cursive;
@@ -13,11 +13,10 @@
             color: #333;
             text-align: center;
             height: 100%;
-            border: 2px solid #4CAF50; /* Borde para todos los elementos */
         }
 
         body {
-            background: url('./desktop-wallpaper-usagi-and-mamoru-falling-princess-usagi-mamoru-dekstop (1).webp') center/cover fixed no-repeat;
+            background: url('./OIP (7).webp') center/cover fixed no-repeat;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -28,15 +27,21 @@
             margin-top: 50px;
             animation: titulo-animacion 2s ease-in-out infinite alternate;
         }
+#boton-galeria-1 {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+}
 
-        .boton-galeria {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 9999;
-        }
+#boton-galeria-2 {
+    position: fixed;
+    top: 120px; /* ajusta según sea necesario */
+    left: 20px;
+    z-index: 9999;
+}
 
-        .boton-galeria a {
+        #boton-galeria a {
             display: inline-block;
             border: 2px solid #4CAF50;
             border-radius: 8px;
@@ -44,7 +49,7 @@
             margin: 10px;
         }
 
-        .boton-galeria a img {
+        #boton-galeria a img {
             width: 160px;
             height: 160px;
             border-radius: 8px;
@@ -52,27 +57,8 @@
             transition: transform 0.3s ease;
         }
 
-        .boton-galeria a img:hover {
+        #boton-galeria a img:hover {
             transform: scale(1.1);
-        }
-
-        #botones-musica {
-            margin-top: 20px;
-        }
-
-        #botones-musica button {
-            margin: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #botones-musica button:hover {
-            background-color: #45a049;
         }
 
         .fila-imagenes {
@@ -128,13 +114,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.8); /* Cambia el valor de opacidad aquí */
             z-index: 999;
-            overflow: auto;
+            overflow: auto; /* Habilitar el desplazamiento vertical si es necesario */
         }
 
         #modal-contenido {
-            position: fixed;
+            position: fixed; /* Cambiado de absolute a fixed */
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -160,26 +146,44 @@
             color: #333;
         }
 
-        .boton-galeria a img,
-        #boton-galeria-1 img,
+        #botones-musica {
+            margin-top: 20px;
+        }
+
+        #botones-musica button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #botones-musica button:hover {
+            background-color: #45a049;
+        }
+           #boton-galeria-1 img,
         #boton-galeria-2 img {
-            max-width: 100px;
-            max-height: 100px;
+            max-width: 100px; /* ajusta según sea necesario */
+            max-height: 100px; /* ajusta según sea necesario */
         }
     </style>
 </head>
+ <div class="boton-galeria" id="boton-galeria-1">
+    <a href="galeria.html">
+        <img src="R (1).webp" alt="Ir a la Galería">
+    </a>
+</div>
 
 <body>
-    <div class="boton-galeria" id="boton-galeria-1">
-        <a href="galeria.html">
-            <img src="R (1).webp" alt="Ir a la Galería 1">
-        </a>
-    </div>
-    <h1>Galería de Recuerdos 2</h1>
-    <h2>Actualizacion 20/05</h2>
-    <h2>Tuve que mover las fotos en otra pagina :)</h2>
-    <h2>Debido a un limite jsjs.</h2>
-    <div id="botones-musica">
+    <h1>Galería de Recuerdos 1</h1>
+    <h2>Actualización 20/05</h2>
+    <h2>Las fotos tienen descripciones, haz clic en ellas para leerlas.</h2>
+    <h2>Tuve que agregar otra página por un tema de límites de la página.</h2>
+    <h2>Felices 100 FOTOS JSJS, si Dios quiere nos juntaremos más adelante de nuevo :,).</h2>
+ <div id="botones-musica">
         <button onclick="reproducirCancion('y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3')">Futari no Kimochi</button>
         <button onclick="reproducirCancion('y2mate.com - Inuyasha Ending 3 Latino Remasterizado Digital.mp3')">Dearest</button>
         <button onclick="reproducirCancion('y2mate.com - Inuyasha OST 2  Beautiful Memories.mp3')">Beautiful Memories</button>
@@ -190,14 +194,177 @@
         <button onclick="reproducirCancion('y2mate.com - Marisa De Lille Ilusión de Amor Tuxedo Mirage.mp3')">Ilusión de Amor</button>
         <button onclick="reproducirCancion('y2mate.com - Marisa De Lille  Quiero estar contigo siempre.mp3')">Quiero estar contigo siempre</button>
         <button onclick="reproducirCancion('y2mate.com - Sailor Moon  La Princesa De La Luna Letra.mp3')">La Princesa De La Luna</button>
-        <button onclick="reproducirCancion('y2mate.com - SailorMoon  Moonlight  Caja musical.mp3')">Moonlight Caja musical</button>
+        <button onclick="reproducirCancion('y2mate.com - SailorMoon  Moonlight  Caja musical.mp3')">Moonlight  Caja musical</button>
         <button onclick="reproducirCancion('y2mate.com - Moon Revenge Español  Sailor Moon.mp3')">Moon Revenge</button>
         <button onclick="reproducirCancion('y2mate.com - Sailor Moon  Nagareboshi He Sub Español.mp3')">Nagareboshi He</button>
     </div>
-    <div class="fila-imagenes">
-    <!-- Agrega tus 22 imágenes de la galería -->
-</div>
 
+   <div class="fila-imagenes">
+        <!-- Agrega tus 22 imágenes de la galería -->
+      
+            <div class="imagen-container">
+             <img class="imagen-galeria" src= "./WhatsApp Image 2024-01-23 at 16.57.20.webp" alt="Recuerdo 81">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 81</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+              <img class="imagen-galeria" src= "./WhatsApp Image 2024-01-23 at 16.57.21.webp" alt="Recuerdo 82">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 82</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                 <img class="imagen-galeria" src= ".WhatsApp Image 2024-02-14 at 12.35.37 (1).jpeg" alt="Recuerdo 83">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 83</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                 <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.37.jpeg" alt="Recuerdo 84">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 84</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+               <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.38 (1).jpeg" alt="Recuerdo 85">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 85</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+            <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.38 (2).jpegp" alt="Recuerdo 86">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 86</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+              <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.38.jpeg" alt="Recuerdo 87">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 87</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.39.jpeg" alt="Recuerdo 88">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 88</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.41 (1).jpeg" alt="Recuerdo 89">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 89</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                 <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.41 (2).jpeg" alt="Recuerdo 90">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 90</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+              <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.41 (3).jpeg" alt="Recuerdo 91">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 91</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.41.jpeg" alt="Recuerdo 92">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 92</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42 (1).jpeg" alt="Recuerdo 93">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 93</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+               <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42 (2).jpeg" alt="Recuerdo 94">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 94</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42 (3).jpeg" alt="Recuerdo 95">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 95</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42 (4).jpeg" alt="Recuerdo 96">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 96</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+                <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42.jpeg" alt="Recuerdo 97">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 97</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="imagen-container">
+               <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42.jpeg" alt="Recuerdo 98">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 98</p>
+                    <p></p>
+                </div>
+            </div>
+        <div class="imagen-container">
+               <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.39.05 (1).jpeg" alt="Recuerdo 99">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 99</p>
+                    <p></p>
+                </div>
+            </div>
+        <div class="imagen-container">
+               <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.39.05.jpeg" alt="Recuerdo 100">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 100</p>
+                    <p></p>
+                </div>
+            </div>
+        <div class="imagen-container">
+             <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.39.06 (1).jpeg" alt="Recuerdo 101">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 101</p>
+                    <p></p>
+                </div>
+            </div>
+        <div class="imagen-container">
+               <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.39.06 (2).jpeg" alt="Recuerdo 102">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 102</p>
+                    <p></p>
+                </div>
+            </div>
+        <div class="imagen-container">
+                 <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.39.06.jpeg" alt="Recuerdo 103">
+                <div class="descripcion-imagen">
+                    <p>Recuerdo 103</p>
+                    <p></p>
+                </div>
+            </div>
+       
+</div>
 <div id="modal">
     <div id="modal-contenido">
         <span id="cerrar-modal">&times;</span>
