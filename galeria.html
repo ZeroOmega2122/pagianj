@@ -150,17 +150,19 @@
             max-height: 100%;
             margin-bottom: 20px;
         }
+#cerrar-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 32px; /* Aumentar el tamaño de la X */
+    color: #fff; /* Cambiar el color a blanco */
+    background-color: rgba(0, 0, 0, 0.5); /* Agregar un fondo para que se destaque */
+    padding: 5px; /* Añadir un poco de espacio alrededor de la X */
+    border-radius: 50%; /* Hacer la X circular */
+    z-index: 10001; /* Asegurarse de que esté por encima del modal */
+}
 
-        #cerrar-modal {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 24px;
-            color: #333;
-        }
-
-        /* Botón de música */
        /* Botón de música */
         #boton-musica {
             position: fixed;
