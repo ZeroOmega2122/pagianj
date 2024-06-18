@@ -318,7 +318,8 @@
 </head>
 <body>
     <h1>ERA-GALERIA 1</h1>
-   <div class="fila-imagenes">
+ 
+    <div class="fila-imagenes">
         <!-- Agrega tus 22 imágenes de la galería -->
         <div class="imagen-container" data-imagen="imagen-id-1">
             <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.00.webp" alt="Recuerdo 1">
@@ -897,8 +898,6 @@
             <div id="modal-descripcion"></div>
         </div>
     </div>
-    </div>
-
     <div id="boton-musica">🎵</div>
     <div id="mini-menu-musica">
         <span id="cerrar-volumen">&times;</span>
@@ -917,20 +916,7 @@
             <button data-src="y2mate.com - Moon Revenge Español  Sailor Moon.mp3">Moon Revenge</button>
             <button data-src="y2mate.com - Sailor Moon  Nagareboshi He Sub Español.mp3">Nagareboshi He</button>
         </div>
-        
-        <div id="controles-musica">
-            <div class="titulo-cancion">Ninguna canción seleccionada</div>
-            <button id="retroceder">⏮️</button>
-            <button id="pausar-reanudar">⏸️</button>
-            <button id="avanzar">⏭️</button>
-        </div>
-        <div id="volumen-musica">
-            <span>Volumen</span>
-            <input type="range" id="control-volumen" min="0" max="1" step="0.01" value="0.5">
-        </div>
-    </div>
 
-    <audio id="reproductor-musica"></audio>
     <script>
         function abrirModal(src, descripcion) {
             document.getElementById('modal').style.display = 'block';
