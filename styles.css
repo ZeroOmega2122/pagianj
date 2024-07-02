@@ -26,12 +26,27 @@ body {
   background-size: cover;
 }
 
+.Oveja-crouch {
+  height: 20px;
+  bottom: 0;
+  background-image: url('Oveja-crouch.png'); /* Image of the crouching sheep */
+}
+
 .Valla {
   position: absolute;
   bottom: 0;
   width: 20px;
   height: 40px;
   background-image: url('Valla.png'); /* Image of the fence */
+  background-size: cover;
+}
+
+.Halcon {
+  position: absolute;
+  top: 100px;
+  width: 40px;
+  height: 20px;
+  background-image: url('Halcon.png'); /* Image of the falcon */
   background-size: cover;
 }
 
