@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const oveja = document.getElementById('oveja');
+  const Oveja = document.getElementById('Oveja');
   const game = document.getElementById('game');
   const scoreDisplay = document.getElementById('score');
   let isJumping = false;
@@ -32,37 +32,37 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           position -= 5;
           position = position * gravity;
-          oveja.style.bottom = position + 'px';
+          Oveja.style.bottom = position + 'px';
         }, 20);
       }
       // Jumping
       position += 30;
-      oveja.style.bottom = position + 'px';
+      Oveja.style.bottom = position + 'px';
     }, 20);
   }
 
-  function checkCollision(valla) {
-    const ovejaRect = oveja.getBoundingClientRect();
-    const vallaRect = valla.getBoundingClientRect();
+  function checkCollision(Valla) {
+    const OvejaRect = Oveja.getBoundingClientRect();
+    const VallaRect = Valla.getBoundingClientRect();
     return (
-      ovejaRect.left < vallaRect.left + vallaRect.width &&
-      ovejaRect.left + ovejaRect.width > vallaRect.left &&
-      ovejaRect.top < vallaRect.top + vallaRect.height &&
-      ovejaRect.top + ovejaRect.height > vallaRect.top
+      OvejaRect.left < VallaRect.left + VallaRect.width &&
+      OvejaRect.left + OvejaRect.width > VallaRect.left &&
+      OvejaRect.top < VallaRect.top + VallaRect.height &&
+      OvejaRect.top + OvejaRect.height > VallaRect.top
     );
   }
 
   function generateValla() {
     if (isGameOver) return;
     let randomTime = Math.random() * 4000 + 1000;
-    let vallaPosition = 800;
-    const valla = document.createElement('div');
-    valla.classList.add('valla');
-    game.appendChild(valla);
-    valla.style.left = vallaPosition + 'px';
+    let VallaPosition = 800;
+    const Valla = document.createElement('div');
+    Valla.classList.add('Valla');
+    game.appendChild(Valla);
+    Valla.style.left = VallaPosition + 'px';
 
     let timerId = setInterval(function() {
-      if (vallaPosition > 0 && vallaPosition < 60 && checkCollision(valla)) {
+      if (VallaPosition > 0 && VallaPosition < 60 && checkCollision(Valla)) {
         clearInterval(timerId);
         isGameOver = true;
         // Remove all children
@@ -74,8 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDisplay.textContent = score;
         alert('Game Over');
       }
-      vallaPosition -= 10;
-      valla.style.left = vallaPosition + 'px';
+      VallaPosition -= 10;
+      Valla.style.left = VallaPosition + 'px';
     }, 20);
 
     if (!isGameOver) setTimeout(generateValla, randomTime);
