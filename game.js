@@ -41,6 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 20);
   }
 
+  function checkCollision(cactus) {
+    const dinoRect = dino.getBoundingClientRect();
+    const cactusRect = cactus.getBoundingClientRect();
+    return (
+      dinoRect.left < cactusRect.left + cactusRect.width &&
+      dinoRect.left + dinoRect.width > cactusRect.left &&
+      dinoRect.top < cactusRect.top + cactusRect.height &&
+      dinoRect.top + dinoRect.height > cactusRect.top
+    );
+  }
+
   function generateCactus() {
     if (isGameOver) return;
     let randomTime = Math.random() * 4000 + 1000;
@@ -51,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cactus.style.left = cactusPosition + 'px';
 
     let timerId = setInterval(function() {
-      if (cactusPosition > 0 && cactusPosition < 60 && !isJumping && cactus.getBoundingClientRect().top === dino.getBoundingClientRect().top) {
+      if (cactusPosition > 0 && cactusPosition < 60 && checkCollision(cactus)) {
         clearInterval(timerId);
         alert('Game Over');
         isGameOver = true;
@@ -67,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cactus.style.left = cactusPosition + 'px';
     }, 20);
 
-    setTimeout(generateCactus, randomTime);
+    if (!isGameOver) setTimeout(generateCactus, randomTime);
   }
 
   function startGame() {
