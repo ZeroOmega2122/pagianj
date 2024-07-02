@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cactus.style.left = cactusPosition + 'px';
 
     let timerId = setInterval(function() {
-      if (cactusPosition > 0 && cactusPosition < 60 && !isJumping) {
+      if (cactusPosition > 0 && cactusPosition < 60 && !isJumping && cactus.getBoundingClientRect().top === dino.getBoundingClientRect().top) {
         clearInterval(timerId);
         alert('Game Over');
         isGameOver = true;
