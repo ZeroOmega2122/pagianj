@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const dino = document.getElementById('dino');
+  const oveja = document.getElementById('oveja');
   const game = document.getElementById('game');
   const scoreDisplay = document.getElementById('score');
   let isJumping = false;
@@ -32,39 +32,38 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           position -= 5;
           position = position * gravity;
-          dino.style.bottom = position + 'px';
+          oveja.style.bottom = position + 'px';
         }, 20);
       }
       // Jumping
       position += 30;
-      dino.style.bottom = position + 'px';
+      oveja.style.bottom = position + 'px';
     }, 20);
   }
 
-  function checkCollision(cactus) {
-    const dinoRect = dino.getBoundingClientRect();
-    const cactusRect = cactus.getBoundingClientRect();
+  function checkCollision(valla) {
+    const ovejaRect = oveja.getBoundingClientRect();
+    const vallaRect = valla.getBoundingClientRect();
     return (
-      dinoRect.left < cactusRect.left + cactusRect.width &&
-      dinoRect.left + dinoRect.width > cactusRect.left &&
-      dinoRect.top < cactusRect.top + cactusRect.height &&
-      dinoRect.top + dinoRect.height > cactusRect.top
+      ovejaRect.left < vallaRect.left + vallaRect.width &&
+      ovejaRect.left + ovejaRect.width > vallaRect.left &&
+      ovejaRect.top < vallaRect.top + vallaRect.height &&
+      ovejaRect.top + ovejaRect.height > vallaRect.top
     );
   }
 
-  function generateCactus() {
+  function generateValla() {
     if (isGameOver) return;
     let randomTime = Math.random() * 4000 + 1000;
-    let cactusPosition = 800;
-    const cactus = document.createElement('div');
-    cactus.classList.add('cactus');
-    game.appendChild(cactus);
-    cactus.style.left = cactusPosition + 'px';
+    let vallaPosition = 800;
+    const valla = document.createElement('div');
+    valla.classList.add('valla');
+    game.appendChild(valla);
+    valla.style.left = vallaPosition + 'px';
 
     let timerId = setInterval(function() {
-      if (cactusPosition > 0 && cactusPosition < 60 && checkCollision(cactus)) {
+      if (vallaPosition > 0 && vallaPosition < 60 && checkCollision(valla)) {
         clearInterval(timerId);
-        alert('Game Over');
         isGameOver = true;
         // Remove all children
         while (game.firstChild) {
@@ -73,19 +72,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset the score
         score = 0;
         scoreDisplay.textContent = score;
+        alert('Game Over');
       }
-      cactusPosition -= 10;
-      cactus.style.left = cactusPosition + 'px';
+      vallaPosition -= 10;
+      valla.style.left = vallaPosition + 'px';
     }, 20);
 
-    if (!isGameOver) setTimeout(generateCactus, randomTime);
+    if (!isGameOver) setTimeout(generateValla, randomTime);
   }
 
   function startGame() {
     score = 0;
     isGameOver = false;
     scoreDisplay.textContent = score;
-    generateCactus();
+    generateValla();
     setInterval(function() {
       if (!isGameOver) {
         score++;
