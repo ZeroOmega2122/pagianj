@@ -1,98 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego del Dinosaurio</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f7f7f7;
-        }
-        #container {
-            position: relative;
-            width: 600px;
-            height: 200px;
-            border: 1px solid #666;
-            background-color: #f7f7f7;
-        }
-        #dinosaur {
-            position: absolute;
-            bottom: 0;
-            left: 50px;
-            width: 40px;
-            height: 40px;
-            background-color: #666;
-        }
-        .obstacle {
-            position: absolute;
-            bottom: 0;
-            width: 20px;
-            height: 40px;
-            background-color: #333;
-            animation: obstacle 3s linear infinite;
-        }
-        @keyframes obstacle {
-            0% {
-                right: 0;
-            }
-            100% {
-                right: 100%;
-            }
-        }
-    </style>
+	<meta charset="utf-8" >
+	<title></title>
+	<script type="text/javascript" src="javascript/main.js" ></script>
+	<style type="text/css">
+		.img_oculta{
+			display: none;
+		}
+	</style>
 </head>
 <body>
-    <div id="container">
-        <div id="dinosaur"></div>
-    </div>
+	<h1 id="fb-welcome"></h1>
+	<script>
+	  window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '1763771910519017',
+	      xfbml      : true,
+	      version    : 'v2.6'
+	    });
 
-    <script>
-        const dinosaur = document.getElementById('dinosaur');
-        const container = document.getElementById('container');
-        let isJumping = false;
+	    // ADD ADDITIONAL FACEBOOK CODE HERE
 
-        function jump() {
-            if (!isJumping) {
-                isJumping = true;
-                let currentPosition = 0;
-                let jumpInterval = setInterval(() => {
-                    if (currentPosition >= 100) {
-                        clearInterval(jumpInterval);
-                        let fallInterval = setInterval(() => {
-                            if (currentPosition <= 0) {
-                                clearInterval(fallInterval);
-                                isJumping = false;
-                            } else {
-                                currentPosition -= 5;
-                                dinosaur.style.bottom = currentPosition + 'px';
-                            }
-                        }, 20);
-                    } else {
-                        currentPosition += 5;
-                        dinosaur.style.bottom = currentPosition + 'px';
-                    }
-                }, 20);
-            }
-        }
+	    // Place following code after FB.init call.
 
-        document.addEventListener('keydown', (event) => {
-            if (event.code === 'Space') {
-                jump();
-            }
-        });
+		function onLogin(response) {
+		  if (response.status == 'connected') {
+		    FB.api('/me?fields=first_name', function(data) {
+		      var welcomeBlock = document.getElementById('fb-welcome');
+		      welcomeBlock.innerHTML = 'Hello, ' + data.first_name + '!';
+		    });
+		  }
+		}
 
-        function createObstacle() {
-            const obstacle = document.createElement('div');
-            obstacle.classList.add('obstacle');
-            container.appendChild(obstacle);
-        }
+		FB.getLoginStatus(function(response) {
+		  // Check login status on load, and if the user is
+		  // already logged in, go directly to the welcome message.
+		  if (response.status == 'connected') {
+		    onLogin(response);
+		  } else {
+		    // Otherwise, show Login dialog first.
+		    FB.login(function(response) {
+		      onLogin(response);
+		    }, {scope: 'user_friends, email'});
+		  }
+		});
 
-        setInterval(createObstacle, 2000); // Cada 2 segundos crea un nuevo obstáculo
-    </script>
+	  };
+
+	  (function(d, s, id){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "//connect.facebook.net/en_US/sdk.js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+	</script>
+	<canvas id="juego" width="780px" height="550px" >
+		Tu navegador no soporta Canvas :(
+	</canvas>
+	<img src="sprites/nubes.png" id="nubes" class="img_oculta" >
+	<img src="sprites/d1.png" id="d1" class="img_oculta" >
+	<img src="sprites/d2.png" id="d2" class="img_oculta" >
+	<img src="sprites/d3.png" id="d3" class="img_oculta" >
+	<img src="sprites/arbol.png" id="arbol" class="img_oculta" >
 </body>
 </html>
