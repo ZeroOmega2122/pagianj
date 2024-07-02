@@ -16,22 +16,22 @@ body {
   background-color: #fff;
 }
 
-#dino {
+#oveja {
   position: absolute;
   bottom: 0;
   left: 50px;
   width: 40px;
   height: 40px;
-  background-image: url('Oveja.png'); /* Image of the dinosaur */
+  background-image: url('Oveja.png'); /* Image of the sheep */
   background-size: cover;
 }
 
-.cactus {
+.valla {
   position: absolute;
   bottom: 0;
   width: 20px;
   height: 40px;
-  background-image: url('Valla.png'); /* Image of the cactus */
+  background-image: url('Valla.png'); /* Image of the fence */
   background-size: cover;
 }
 
