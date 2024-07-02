@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const dino = document.getElementById('dino');
-  const cactus = document.getElementById('cactus');
+  const game = document.getElementById('game');
   let isJumping = false;
   let gravity = 0.9;
   let isGameOver = false;
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let cactusPosition = 800;
     const cactus = document.createElement('div');
     if (!isGameOver) cactus.classList.add('cactus');
-    document.getElementById('game').appendChild(cactus);
+    game.appendChild(cactus);
     cactus.style.left = cactusPosition + 'px';
 
     let timerId = setInterval(function() {
