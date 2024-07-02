@@ -22,7 +22,8 @@ body {
   left: 50px;
   width: 40px;
   height: 40px;
-  background-color: #333;
+  background-image: url('dino.png'); /* Image of the dinosaur */
+  background-size: cover;
 }
 
 .cactus {
@@ -30,5 +31,14 @@ body {
   bottom: 0;
   width: 20px;
   height: 40px;
-  background-color: green;
+  background-image: url('cactus.png'); /* Image of the cactus */
+  background-size: cover;
+}
+
+#score {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  font-family: Arial, sans-serif;
 }
