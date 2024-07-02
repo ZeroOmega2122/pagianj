@@ -3,23 +3,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const game = document.getElementById('game');
   const scoreDisplay = document.getElementById('score');
   let isJumping = false;
+  let isCrouching = false;
   let gravity = 0.9;
   let isGameOver = false;
   let score = 0;
 
   function control(e) {
-    if (e.keyCode === 32) {
-      if (!isJumping) {
-        isJumping = true;
-        jump();
-      }
+    if (e.keyCode === 32 && !isJumping) { // Space key for jump
+      jump();
+    } else if (e.keyCode === 40 && !isCrouching) { // Down arrow key for crouch
+      crouch();
+    }
+  }
+
+  function stopCrouching(e) {
+    if (e.keyCode === 40) {
+      isCrouching = false;
+      Oveja.classList.remove('Oveja-crouch');
     }
   }
 
   document.addEventListener('keydown', control);
+  document.addEventListener('keyup', stopCrouching);
 
   function jump() {
+    if (isCrouching) return; // Can't jump while crouching
     let position = 0;
+    isJumping = true;
+
     let timerId = setInterval(function() {
       // Going up
       if (position >= 150) {
@@ -30,62 +41,78 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(downTimerId);
             isJumping = false;
           }
-          position -= 5;
-          position = position * gravity;
+          position -= 5 * gravity;
           Oveja.style.bottom = position + 'px';
         }, 20);
       }
       // Jumping
       position += 30;
+      position = position * gravity;
       Oveja.style.bottom = position + 'px';
     }, 20);
   }
 
-  function checkCollision(Valla) {
+  function crouch() {
+    isCrouching = true;
+    Oveja.classList.add('Oveja-crouch');
+  }
+
+  function checkCollision(obstacle) {
     const OvejaRect = Oveja.getBoundingClientRect();
-    const VallaRect = Valla.getBoundingClientRect();
+    const obstacleRect = obstacle.getBoundingClientRect();
     return (
-      OvejaRect.left < VallaRect.left + VallaRect.width &&
-      OvejaRect.left + OvejaRect.width > VallaRect.left &&
-      OvejaRect.top < VallaRect.top + VallaRect.height &&
-      OvejaRect.top + OvejaRect.height > VallaRect.top
+      OvejaRect.left < obstacleRect.left + obstacleRect.width &&
+      OvejaRect.left + OvejaRect.width > obstacleRect.left &&
+      OvejaRect.top < obstacleRect.top + obstacleRect.height &&
+      OvejaRect.top + OvejaRect.height > obstacleRect.top
     );
   }
 
-  function generateValla() {
+  function generateObstacle() {
     if (isGameOver) return;
+
     let randomTime = Math.random() * 4000 + 1000;
-    let VallaPosition = 800;
-    const Valla = document.createElement('div');
-    Valla.classList.add('Valla');
-    game.appendChild(Valla);
-    Valla.style.left = VallaPosition + 'px';
+    let obstacleType = Math.random() > 0.5 ? 'Valla' : 'Halcon';
+    let obstaclePosition = 800;
+    const obstacle = document.createElement('div');
+    obstacle.classList.add(obstacleType);
+    game.appendChild(obstacle);
+    obstacle.style.left = obstaclePosition + 'px';
 
     let timerId = setInterval(function() {
-      if (VallaPosition > 0 && VallaPosition < 60 && checkCollision(Valla)) {
+      if (checkCollision(obstacle)) {
         clearInterval(timerId);
-        isGameOver = true;
-        // Remove all children
-        while (game.firstChild) {
-          game.removeChild(game.firstChild);
-        }
-        // Reset the score
-        score = 0;
-        scoreDisplay.textContent = score;
-        alert('Game Over');
+        gameOver();
       }
-      VallaPosition -= 10;
-      Valla.style.left = VallaPosition + 'px';
+      obstaclePosition -= 10;
+      obstacle.style.left = obstaclePosition + 'px';
+
+      if (obstaclePosition < -40) {
+        clearInterval(timerId);
+        game.removeChild(obstacle);
+      }
     }, 20);
 
-    if (!isGameOver) setTimeout(generateValla, randomTime);
+    if (!isGameOver) setTimeout(generateObstacle, randomTime);
+  }
+
+  function gameOver() {
+    isGameOver = true;
+    while (game.firstChild) {
+      game.removeChild(game.firstChild);
+    }
+    score = 0;
+    scoreDisplay.textContent = score;
+    alert('Game Over');
+    setTimeout(startGame, 1000); // Restart the game after 1 second
   }
 
   function startGame() {
     score = 0;
     isGameOver = false;
     scoreDisplay.textContent = score;
-    generateValla();
+    game.appendChild(Oveja);
+    generateObstacle();
     setInterval(function() {
       if (!isGameOver) {
         score++;
