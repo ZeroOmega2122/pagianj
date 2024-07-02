@@ -25,10 +25,9 @@ body {
   background-color: #333;
 }
 
-#cactus {
+.cactus {
   position: absolute;
   bottom: 0;
-  right: -50px;
   width: 20px;
   height: 40px;
   background-color: green;
