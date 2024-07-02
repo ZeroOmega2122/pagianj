@@ -3,63 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dinosaurio Google</title>
+    <title>Juego del Dinosaurio</title>
     <style>
         body {
-            background-color: #f7f7f7;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            background-color: #f7f7f7;
+        }
+        #container {
+            position: relative;
+            width: 600px;
+            height: 200px;
+            border: 1px solid #666;
+            background-color: #f7f7f7;
         }
         #dinosaur {
-            width: 60px;
-            height: 60px;
-            background-color: #666;
             position: absolute;
             bottom: 0;
             left: 50px;
-            transition: bottom 0.2s ease-out;
+            width: 40px;
+            height: 40px;
+            background-color: #666;
         }
-        .cactus {
+        .obstacle {
+            position: absolute;
+            bottom: 0;
             width: 20px;
             height: 40px;
             background-color: #333;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            transition: right 5s linear;
+            animation: obstacle 3s linear infinite;
+        }
+        @keyframes obstacle {
+            0% {
+                right: 0;
+            }
+            100% {
+                right: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="dinosaur"></div>
+    <div id="container">
+        <div id="dinosaur"></div>
+    </div>
+
     <script>
-        let dinosaur = document.getElementById('dinosaur');
-        let gameSpeed = 5; // Velocidad de desplazamiento del cactus
+        const dinosaur = document.getElementById('dinosaur');
+        const container = document.getElementById('container');
         let isJumping = false;
 
         function jump() {
             if (!isJumping) {
                 isJumping = true;
-                let startPosition = 0;
+                let currentPosition = 0;
                 let jumpInterval = setInterval(() => {
-                    let currentPosition = parseFloat(window.getComputedStyle(dinosaur).getPropertyValue('bottom'));
                     if (currentPosition >= 100) {
                         clearInterval(jumpInterval);
                         let fallInterval = setInterval(() => {
-                            let currentPosition = parseFloat(window.getComputedStyle(dinosaur).getPropertyValue('bottom'));
                             if (currentPosition <= 0) {
                                 clearInterval(fallInterval);
                                 isJumping = false;
                             } else {
-                                dinosaur.style.bottom = (currentPosition - 5) + 'px';
+                                currentPosition -= 5;
+                                dinosaur.style.bottom = currentPosition + 'px';
                             }
                         }, 20);
                     } else {
-                        dinosaur.style.bottom = (startPosition + 5) + 'px';
-                        startPosition += 5;
+                        currentPosition += 5;
+                        dinosaur.style.bottom = currentPosition + 'px';
                     }
                 }, 20);
             }
@@ -71,25 +86,13 @@
             }
         });
 
-        function createCactus() {
-            let cactus = document.createElement('div');
-            cactus.classList.add('cactus');
-            document.body.appendChild(cactus);
-
-            let cactusInterval = setInterval(() => {
-                let currentPosition = parseFloat(window.getComputedStyle(cactus).getPropertyValue('right'));
-                if (currentPosition > window.innerWidth) {
-                    clearInterval(cactusInterval);
-                    cactus.remove();
-                } else {
-                    cactus.style.right = (currentPosition + gameSpeed) + 'px';
-                }
-            }, 20);
+        function createObstacle() {
+            const obstacle = document.createElement('div');
+            obstacle.classList.add('obstacle');
+            container.appendChild(obstacle);
         }
 
-        setInterval(createCactus, 2000); // Cada 2 segundos crea un nuevo cactus
-
+        setInterval(createObstacle, 2000); // Cada 2 segundos crea un nuevo obstáculo
     </script>
 </body>
 </html>
-
