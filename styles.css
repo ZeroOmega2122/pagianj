@@ -1,0 +1,35 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+  margin: 0;
+}
+
+#game {
+  position: relative;
+  width: 800px;
+  height: 200px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+#dino {
+  position: absolute;
+  bottom: 0;
+  left: 50px;
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+}
+
+#cactus {
+  position: absolute;
+  bottom: 0;
+  right: -50px;
+  width: 20px;
+  height: 40px;
+  background-color: green;
+}
