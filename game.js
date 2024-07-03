@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastObstacleType = '';
 
   function control(e) {
-    if (e.keyCode === 32 && !isJumping) { // Tecla espacio para saltar
+    if (e.keyCode === 32 && !isJumping) {
       jump();
-    } else if (e.keyCode === 40 && !isCrouching) { // Flecha hacia abajo para agacharse
+    } else if (e.keyCode === 40 && !isCrouching) {
       crouch();
     }
   }
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
       Oveja.style.height = '60px';
       Oveja.style.bottom = '0';
       Oveja.style.backgroundImage = 'url(Oveja2-.png)';
-      Oveja.style.animation = 'run 0.5s steps(6) infinite';
+      Oveja.style.animation = 'trot 0.5s steps(2) infinite';
     }
   }
 
@@ -37,12 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keyup', stopCrouching);
 
   function jump() {
-    if (isCrouching) return; // No puede saltar mientras está agachada
+    if (isCrouching) return;
     isJumping = true;
     Oveja.style.animation = 'jump 1s ease-in-out';
 
     setTimeout(() => {
-      Oveja.style.animation = 'run 0.5s steps(6) infinite';
+      Oveja.style.animation = 'trot 0.5s steps(2) infinite';
       isJumping = false;
     }, 1000);
   }
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Oveja.classList.add('Oveja-crouch');
     Oveja.style.width = '60px';
     Oveja.style.height = '30px';
-    Oveja.style.bottom = '20px'; // Ajuste de la posición de la oveja agachada
+    Oveja.style.bottom = '20px';
     Oveja.style.backgroundImage = 'url(AgachoOV2.png)';
     Oveja.style.animation = 'none';
   }
@@ -72,9 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isGameOver) return;
 
     let randomTime = Math.random() * 4000 + 1000;
-    let obstacleType = Math.random() > 0.5 ? 'Valla' : 'Halcon';
-    
-    // Asegúrate de que no haya dos obstáculos en la misma línea vertical
+    let obstacleType = Math.random() > 0.3 ? 'Valla' : 'Halcon'; // Ajustado para que el halcón aparezca más
+
     if (lastObstacleType === 'Valla' && obstacleType === 'Halcon') {
       obstacleType = 'Valla';
     } else if (lastObstacleType === 'Halcon' && obstacleType === 'Halcon') {
@@ -88,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     obstacle.style.left = obstaclePosition + 'px';
 
     if (obstacleType === 'Halcon') {
-      const positions = [100, 150, 200]; // Posiciones Y permitidas para los halcones
+      const positions = [100, 150, 200];
       obstacle.style.top = positions[Math.floor(Math.random() * positions.length)] + 'px';
     } else {
       obstacle.style.bottom = '0';
@@ -98,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (checkCollision(obstacle)) {
         clearInterval(timerId);
         if (obstacle.classList.contains('Halcon') && isCrouching) {
-          // No hay colisión si está agachada y es un Halcón
         } else {
           gameOver();
         }
@@ -124,9 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
       game.removeChild(game.firstChild);
     }
     game.appendChild(gameOverDisplay);
-    score = 0;
-    scoreDisplay.textContent = score;
-    setTimeout(startGame, 1000); // Reinicia el juego después de 1 segundo
+    setTimeout(startGame, 1000);
   }
 
   function startGame() {
@@ -148,5 +144,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
   }
 
-  setTimeout(startGame, 1000); // Inicia el juego después de un retraso de 1 segundo
+  setTimeout(startGame, 1000);
 });
