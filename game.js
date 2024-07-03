@@ -94,8 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isGameOver) return;
 
     let randomTime = Math.random() * 4000 + 1000;
-    let obstacleType = Math.random() > 0.5 ? 'Valla' : 'Halcon';
-    
+    let obstacleType = Math.random() > 0.4 ? 'Valla' : 'Halcon'; // Ajuste las probabilidades de aparición
+
     // Asegúrate de que no haya dos obstáculos en la misma línea vertical
     if (lastObstacleType === 'Valla' && obstacleType === 'Halcon') {
       obstacleType = 'Valla';
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     obstacle.style.left = obstaclePosition + 'px';
 
     if (obstacleType === 'Halcon') {
-      const positions = [100, 150, 200]; // Posiciones Y permitidas para los halcones
+      const positions = [50, 100, 150, 200]; // Ajusta las posiciones Y permitidas para los halcones
       obstacle.style.top = positions[Math.floor(Math.random() * positions.length)] + 'px';
     } else {
       obstacle.style.bottom = '0';
