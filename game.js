@@ -1,22 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
   const Oveja = document.getElementById('Oveja');
   const game = document.getElementById('game');
-  const scoreDisplay = document.getElementById('score');
-  const gameOverDisplay = document.createElement('div');
-  gameOverDisplay.id = 'game-over';
-  gameOverDisplay.innerText = 'Game Over';
-  game.appendChild(gameOverDisplay);
-
+  const scoreDisplay = document.getElementById('score-value');
+  const gameOverDisplay = document.getElementById('game-over');
   const restartBtn = document.getElementById('restart-btn');
-  restartBtn.addEventListener('click', startGame);
 
   let isJumping = false;
   let isCrouching = false;
   let isGameOver = false;
   let score = 0;
-  let lastObstacleType = '';
 
-  let jumpHeight = 200; // Altura máxima del salto
+  let jumpHeight = 120;
+  let jumpDuration = 600;
+  let crouchDuration = 300;
+
+  document.addEventListener('keydown', control);
+  document.addEventListener('keyup', stopCrouching);
 
   function control(e) {
     if (e.keyCode === 32 && !isJumping && !isCrouching) { // Tecla espacio para saltar
@@ -34,136 +33,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  document.addEventListener('keydown', control);
-  document.addEventListener('keyup', stopCrouching);
-
   function startJump() {
-    if (isCrouching) return; // No puede saltar mientras está agachada
     isJumping = true;
-    let jumpStart = Date.now();
+    Oveja.style.transition = `transform ${jumpDuration / 1000}s`;
+    Oveja.style.transform = `translateY(-${jumpHeight}px)`;
 
-    function jumpAnimation() {
-      let timePassed = Date.now() - jumpStart;
-      let progress = timePassed / 1000; // Tiempo de duración del salto en segundos
-      let jumpPosition = jumpHeight * Math.sin(progress * Math.PI);
+    setTimeout(() => {
+      Oveja.style.transition = `transform ${jumpDuration / 1000}s`;
+      Oveja.style.transform = `translateY(0)`;
+    }, jumpDuration);
 
-      if (progress < 0.5) {
-        Oveja.style.bottom = jumpPosition + 'px';
-      } else {
-        Oveja.style.bottom = (jumpHeight - jumpPosition) + 'px';
-      }
-
-      if (progress < 1) {
-        requestAnimationFrame(jumpAnimation);
-      } else {
-        endJump();
-      }
-    }
-
-    requestAnimationFrame(jumpAnimation);
-  }
-
-  function endJump() {
-    isJumping = false;
-    Oveja.style.bottom = '0';
+    setTimeout(() => {
+      isJumping = false;
+    }, jumpDuration * 2);
   }
 
   function crouch() {
     isCrouching = true;
     Oveja.classList.add('Oveja-crouch');
-    Oveja.style.bottom = '-30px'; // Ajusta la posición de agachado
-  }
-
-  function checkCollision(obstacle) {
-    const OvejaRect = Oveja.getBoundingClientRect();
-    const obstacleRect = obstacle.getBoundingClientRect();
-    return (
-      OvejaRect.left < obstacleRect.left + obstacleRect.width &&
-      OvejaRect.left + OvejaRect.width > obstacleRect.left &&
-      OvejaRect.top < obstacleRect.top + obstacleRect.height &&
-      OvejaRect.top + OvejaRect.height > obstacleRect.top
-    );
-  }
-
-  function generateObstacle() {
-    if (isGameOver) return;
-
-    let randomTime = Math.random() * 4000 + 1000;
-    let obstacleType = Math.random() > 0.4 ? 'Valla' : 'Halcon'; // Ajusta las probabilidades de aparición
-
-    // Asegúrate de que no haya dos obstáculos en la misma línea vertical
-    if (lastObstacleType === 'Valla' && obstacleType === 'Halcon') {
-      obstacleType = 'Valla';
-    } else if (lastObstacleType === 'Halcon' && obstacleType === 'Halcon') {
-      obstacleType = 'Valla';
-    }
-
-    let obstaclePosition = 1200;
-    const obstacle = document.createElement('div');
-    obstacle.classList.add(obstacleType);
-    game.appendChild(obstacle);
-
-    if (obstacleType === 'Halcon') {
-      const positions = [50, 100, 150, 200]; // Ajusta las posiciones Y permitidas para los halcones
-      obstacle.style.top = positions[Math.floor(Math.random() * positions.length)] + 'px';
-    } else {
-      obstacle.style.bottom = '0';
-    }
-
-    let timerId = setInterval(function() {
-      if (checkCollision(obstacle)) {
-        clearInterval(timerId);
-        if (obstacle.classList.contains('Halcon') && isCrouching) {
-          // No hay colisión si está agachada y es un Halcón
-        } else {
-          gameOver();
-        }
-      }
-      obstaclePosition -= 10;
-      obstacle.style.left = obstaclePosition + 'px';
-
-      if (obstaclePosition < -40) {
-        clearInterval(timerId);
-        game.removeChild(obstacle);
-      }
-    }, 20);
-
-    lastObstacleType = obstacleType;
-
-    if (!isGameOver) setTimeout(generateObstacle, randomTime);
+    setTimeout(() => {
+      Oveja.style.transition = `transform ${crouchDuration / 1000}s`;
+      Oveja.style.bottom = '-30px';
+    }, 0);
   }
 
   function gameOver() {
     isGameOver = true;
     gameOverDisplay.style.display = 'block';
-    restartBtn.style.display = 'block'; // Mostrar el botón de reinicio
-    while (game.firstChild) {
-      game.removeChild(game.firstChild);
-    }
-    game.appendChild(gameOverDisplay);
-    score = 0;
-    scoreDisplay.textContent = score;
+    restartBtn.style.display = 'block';
   }
 
   function startGame() {
     isGameOver = false;
     gameOverDisplay.style.display = 'none';
-    restartBtn.style.display = 'none'; // Ocultar el botón de reinicio
+    restartBtn.style.display = 'none';
     score = 0;
     scoreDisplay.textContent = score;
-    game.appendChild(Oveja);
-    generateObstacle();
-    setInterval(function() {
-      if (!isGameOver) {
-        score++;
-        scoreDisplay.textContent = score;
-        if (score > 2000) {
-          document.body.style.backgroundImage = 'url("Vnoche.png")';
-          game.style.backgroundImage = 'url("Vnoche.png")';
-        }
-      }
-    }, 100);
+
+    // Lógica para el juego (por ejemplo, generar obstáculos, manejar colisiones, aumentar puntaje)
   }
+
+  restartBtn.addEventListener('click', startGame);
 
   startGame(); // Inicia el juego automáticamente al cargar la página
 });
