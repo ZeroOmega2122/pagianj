@@ -11,10 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let isCrouching = false;
   let isGameOver = false;
   let score = 0;
+  let lastObstacleType = '';
+
+  let jumpHeight = 200; // Altura máxima del salto
+  let jumpDuration = 1000; // Duración máxima del salto en milisegundos
 
   function control(e) {
     if (e.keyCode === 32 && !isJumping) { // Tecla espacio para saltar
-      jump();
+      startJump();
     } else if (e.keyCode === 40 && !isCrouching) { // Flecha hacia abajo para agacharse
       crouch();
     }
@@ -26,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
       Oveja.classList.remove('Oveja-crouch');
       Oveja.style.width = '60px';
       Oveja.style.height = '60px';
+      Oveja.style.bottom = '0';
       Oveja.style.backgroundImage = 'url(Oveja2-.png)';
       Oveja.style.animation = 'run 0.5s steps(6) infinite';
     }
@@ -34,15 +39,34 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', control);
   document.addEventListener('keyup', stopCrouching);
 
-  function jump() {
+  function startJump() {
     if (isCrouching) return; // No puede saltar mientras está agachada
     isJumping = true;
-    Oveja.style.animation = 'jump 1s ease-in-out';
+    let jumpStart = Date.now();
 
-    setTimeout(() => {
-      Oveja.style.animation = 'run 0.5s steps(6) infinite';
-      isJumping = false;
-    }, 1000);
+    function jumpAnimation() {
+      let timePassed = Date.now() - jumpStart;
+      let progress = timePassed / jumpDuration;
+
+      if (progress > 1) progress = 1;
+
+      let jumpPosition = jumpHeight * Math.sin(progress * Math.PI);
+
+      Oveja.style.bottom = jumpPosition + 'px';
+
+      if (progress < 1) {
+        requestAnimationFrame(jumpAnimation);
+      } else {
+        endJump();
+      }
+    }
+
+    requestAnimationFrame(jumpAnimation);
+  }
+
+  function endJump() {
+    isJumping = false;
+    Oveja.style.bottom = '0';
   }
 
   function crouch() {
@@ -50,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Oveja.classList.add('Oveja-crouch');
     Oveja.style.width = '60px';
     Oveja.style.height = '30px';
+    Oveja.style.bottom = '20px'; // Ajuste de la posición de la oveja agachada
     Oveja.style.backgroundImage = 'url(AgachoOV.png)';
     Oveja.style.animation = 'none';
   }
@@ -70,11 +95,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let randomTime = Math.random() * 4000 + 1000;
     let obstacleType = Math.random() > 0.5 ? 'Valla' : 'Halcon';
+    
+    // Asegúrate de que no haya dos obstáculos en la misma línea vertical
+    if (lastObstacleType === 'Valla' && obstacleType === 'Halcon') {
+      obstacleType = 'Valla';
+    } else if (lastObstacleType === 'Halcon' && obstacleType === 'Halcon') {
+      obstacleType = 'Valla';
+    }
+
     let obstaclePosition = 1200;
     const obstacle = document.createElement('div');
     obstacle.classList.add(obstacleType);
     game.appendChild(obstacle);
     obstacle.style.left = obstaclePosition + 'px';
+
+    if (obstacleType === 'Halcon') {
+      const positions = [100, 150, 200]; // Posiciones Y permitidas para los halcones
+      obstacle.style.top = positions[Math.floor(Math.random() * positions.length)] + 'px';
+    } else {
+      obstacle.style.bottom = '0';
+    }
 
     let timerId = setInterval(function() {
       if (checkCollision(obstacle)) {
@@ -93,6 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
         game.removeChild(obstacle);
       }
     }, 20);
+
+    lastObstacleType = obstacleType;
 
     if (!isGameOver) setTimeout(generateObstacle, randomTime);
   }
