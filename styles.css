@@ -17,6 +17,7 @@ body {
   background-color: #fff;
   background-image: url('VDia.png'); /* Imagen de fondo para el juego */
   background-size: cover; /* Ajusta el tamaño para cubrir toda el área */
+  background-position: bottom; /* Alinea el fondo en la parte inferior */
   transform: scale(2); /* Aumenta el tamaño del juego */
   transform-origin: center; /* Centra el juego */
 }
@@ -46,6 +47,45 @@ body {
 .Oveja-crouch {
   width: 60px;
   height: 30px;
+  bottom: 0;
   background-image: url('AgachoOV.png'); /* Imagen de la oveja agachada */
   background-size: cover;
+}
+
+.Valla {
+  position: absolute;
+  bottom: 0;
+  width: 30px;
+  height: 60px;
+  background-image: url('Valla-.png'); /* Imagen de la valla */
+  background-size: cover;
+}
+
+.Halcon {
+  position: absolute;
+  top: 150px;
+  width: 60px;
+  height: 30px;
+  background-image: url('Ave-.png'); /* Imagen del halcón */
+  background-size: cover;
+}
+
+#score {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  color: black;
+}
+
+#game-over {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  color: red;
+  font-family: Arial, sans-serif;
 }
