@@ -20,6 +20,16 @@ body {
   background-position: bottom; /* Alinea el fondo en la parte inferior */
   transform: scale(2); /* Aumenta el tamaño del juego */
   transform-origin: center; /* Centra el juego */
+  animation: moveBackground 20s linear infinite; /* Animación del fondo en bucle */
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -2400px 0; /* Ajusta según el tamaño del fondo */
+  }
 }
 
 #Oveja {
@@ -34,14 +44,27 @@ body {
 }
 
 @keyframes run {
-  0% { background-position: 0 0; }
-  100% { background-position: -360px 0; } /* Ajusta según la hoja de sprites */
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -360px 0; /* Ajusta según la hoja de sprites */
+  }
 }
 
 @keyframes jump {
-  0% { bottom: 0; background-image: url('saltoOV.png'); }
-  50% { bottom: 200px; background-image: url('saltoOV.png'); }
-  100% { bottom: 0; background-image: url('saltoOV.png'); }
+  0% {
+    bottom: 0;
+    background-image: url('saltoOV.png');
+  }
+  50% {
+    bottom: 200px;
+    background-image: url('saltoOV.png');
+  }
+  100% {
+    bottom: 0;
+    background-image: url('saltoOV.png');
+  }
 }
 
 .Oveja-crouch {
@@ -49,7 +72,7 @@ body {
   height: 30px;
   bottom: 20px; /* Ajuste de la posición de la oveja agachada */
   background-image: url('AgachoOV.png'); /* Imagen de la oveja agachada */
-  background-size: cover;
+  animation: none;
 }
 
 .Valla {
