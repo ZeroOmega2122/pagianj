@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let timerId = setInterval(function() {
       // Going up
-      if (position >= 150) {
+      if (position >= 200) {
         clearInterval(timerId);
         // Fall down
         let downTimerId = setInterval(function() {
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let randomTime = Math.random() * 4000 + 1000;
     let obstacleType = Math.random() > 0.5 ? 'Valla' : 'Halcon';
-    let obstaclePosition = 800;
+    let obstaclePosition = 1200;
     const obstacle = document.createElement('div');
     obstacle.classList.add(obstacleType);
     game.appendChild(obstacle);
