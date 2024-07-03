@@ -3,7 +3,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url('VDia.png'); /* Imagen de fondo para los bordes */
+  background-image: url('VDia.png');
   background-size: cover;
   margin: 0;
 }
@@ -15,11 +15,11 @@ body {
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #fff;
-  background-image: url('VDia.png'); /* Imagen de fondo para el juego */
-  background-size: cover; /* Ajusta el tamaño para cubrir toda el área */
-  background-position: bottom; /* Alinea el fondo en la parte inferior */
-  transform: scale(2); /* Aumenta el tamaño del juego */
-  transform-origin: center; /* Centra el juego */
+  background-image: url('VDia.png');
+  background-size: cover;
+  background-position: bottom;
+  transform: scale(2);
+  transform-origin: center;
 }
 
 #Oveja {
@@ -28,14 +28,19 @@ body {
   left: 50px;
   width: 60px;
   height: 60px;
-  background-image: url('Oveja2-.png'); /* Imagen de la oveja corriendo */
+  background-image: url('Oveja2-.png');
   background-size: cover;
-  animation: run 0.5s steps(6) infinite;
+  animation: trot 0.5s steps(2) infinite;
+}
+
+@keyframes trot {
+  0% { background-position: 0 0; }
+  100% { background-position: -120px 0; } /* Ajusta según la hoja de sprites */
 }
 
 @keyframes run {
   0% { background-position: 0 0; }
-  100% { background-position: -360px 0; } /* Ajusta según la hoja de sprites */
+  100% { background-position: -360px 0; }
 }
 
 @keyframes jump {
@@ -47,8 +52,8 @@ body {
 .Oveja-crouch {
   width: 60px;
   height: 30px;
-  bottom: 20px; /* Ajuste de la posición de la oveja agachada */
-  background-image: url('AgachoOV2.png'); /* Imagen de la oveja agachada */
+  bottom: 20px;
+  background-image: url('AgachoOV2.png');
   background-size: cover;
 }
 
@@ -57,7 +62,7 @@ body {
   bottom: 0;
   width: 30px;
   height: 60px;
-  background-image: url('Valla-.png'); /* Imagen de la valla */
+  background-image: url('Valla-.png');
   background-size: cover;
 }
 
@@ -65,8 +70,15 @@ body {
   position: absolute;
   width: 60px;
   height: 30px;
-  background-image: url('Ave-.png'); /* Imagen del halcón */
+  background-image: url('Ave-.png');
   background-size: cover;
+  animation: fly 1s infinite;
+}
+
+@keyframes fly {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
 }
 
 #score {
