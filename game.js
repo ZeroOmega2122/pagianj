@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isGameOver) {
         score++;
         scoreDisplay.textContent = score;
-        if (score > 2000) {
+        if (score > 700) {
           document.body.style.backgroundImage = 'url("Vnoche.png")';
           game.style.backgroundImage = 'url("Vnoche.png")';
         }
