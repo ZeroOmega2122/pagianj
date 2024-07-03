@@ -13,12 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let score = 0;
   let lastObstacleType = '';
 
-  let jumpHeight = 200; // Altura máxima del salto
-  let jumpDuration = 1000; // Duración máxima del salto en milisegundos
-
   function control(e) {
     if (e.keyCode === 32 && !isJumping) { // Tecla espacio para saltar
-      startJump();
+      jump();
     } else if (e.keyCode === 40 && !isCrouching) { // Flecha hacia abajo para agacharse
       crouch();
     }
@@ -39,34 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', control);
   document.addEventListener('keyup', stopCrouching);
 
-  function startJump() {
+  function jump() {
     if (isCrouching) return; // No puede saltar mientras está agachada
     isJumping = true;
-    let jumpStart = Date.now();
+    Oveja.style.animation = 'jump 1s ease-in-out';
 
-    function jumpAnimation() {
-      let timePassed = Date.now() - jumpStart;
-      let progress = timePassed / jumpDuration;
-
-      if (progress > 1) progress = 1;
-
-      let jumpPosition = jumpHeight * Math.sin(progress * Math.PI);
-
-      Oveja.style.bottom = jumpPosition + 'px';
-
-      if (progress < 1) {
-        requestAnimationFrame(jumpAnimation);
-      } else {
-        endJump();
-      }
-    }
-
-    requestAnimationFrame(jumpAnimation);
-  }
-
-  function endJump() {
-    isJumping = false;
-    Oveja.style.bottom = '0';
+    setTimeout(() => {
+      Oveja.style.animation = 'run 0.5s steps(6) infinite';
+      isJumping = false;
+    }, 1000);
   }
 
   function crouch() {
