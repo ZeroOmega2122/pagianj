@@ -61,16 +61,19 @@ document.addEventListener('DOMContentLoaded', () => {
   function generateObstacle() {
     if (isGameOver) return;
 
-    let obstaclePosition = 600;
     const obstacle = document.createElement('div');
-    obstacle.classList.add('Valla'); // Cambiar a 'Halcon' si deseas agregar los halcones
+    obstacle.classList.add('Valla');
     game.appendChild(obstacle);
+
+    let obstaclePosition = 600;
+    obstacle.style.left = obstaclePosition + 'px';
 
     let timerId = setInterval(function() {
       if (checkCollision(obstacle)) {
         clearInterval(timerId);
         gameOver();
       }
+
       obstaclePosition -= 10;
       obstacle.style.left = obstaclePosition + 'px';
 
