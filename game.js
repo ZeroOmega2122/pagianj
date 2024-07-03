@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Oveja.style.width = '60px';
     Oveja.style.height = '30px';
     Oveja.style.bottom = '20px'; // Ajuste de la posición de la oveja agachada
-    Oveja.style.backgroundImage = 'url(AgachoOV.png)';
+    Oveja.style.backgroundImage = 'url(AgachoOV2.png)';
     Oveja.style.animation = 'none';
   }
 
