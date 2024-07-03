@@ -82,7 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let timerId = setInterval(function() {
       if (checkCollision(obstacle)) {
         clearInterval(timerId);
-        gameOver();
+        if (obstacle.classList.contains('Halcon') && isCrouching) {
+          // No collision if crouching and it's a Halcon
+        } else {
+          gameOver();
+        }
       }
       obstaclePosition -= 10;
       obstacle.style.left = obstaclePosition + 'px';
