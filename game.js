@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let isCrouching = false;
   let isGameOver = false;
   let score = 0;
+  let obstacleInterval;
 
   let jumpHeight = 120;
   let jumpDuration = 600;
@@ -57,8 +58,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 0);
   }
 
+  function generateObstacle() {
+    if (isGameOver) return;
+
+    let obstaclePosition = 600;
+    const obstacle = document.createElement('div');
+    obstacle.classList.add('Valla'); // Cambiar a 'Halcon' si deseas agregar los halcones
+    game.appendChild(obstacle);
+
+    let timerId = setInterval(function() {
+      if (checkCollision(obstacle)) {
+        clearInterval(timerId);
+        gameOver();
+      }
+      obstaclePosition -= 10;
+      obstacle.style.left = obstaclePosition + 'px';
+
+      if (obstaclePosition < -40) {
+        clearInterval(timerId);
+        game.removeChild(obstacle);
+        score++;
+        scoreDisplay.textContent = score;
+      }
+    }, 20);
+  }
+
+  function checkCollision(obstacle) {
+    const OvejaRect = Oveja.getBoundingClientRect();
+    const obstacleRect = obstacle.getBoundingClientRect();
+    return (
+      OvejaRect.left < obstacleRect.left + obstacleRect.width &&
+      OvejaRect.left + OvejaRect.width > obstacleRect.left &&
+      OvejaRect.top < obstacleRect.top + obstacleRect.height &&
+      OvejaRect.top + OvejaRect.height > obstacleRect.top
+    );
+  }
+
   function gameOver() {
     isGameOver = true;
+    clearInterval(obstacleInterval);
     gameOverDisplay.style.display = 'block';
     restartBtn.style.display = 'block';
   }
@@ -69,8 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     restartBtn.style.display = 'none';
     score = 0;
     scoreDisplay.textContent = score;
-
-    // Lógica para el juego (por ejemplo, generar obstáculos, manejar colisiones, aumentar puntaje)
+    obstacleInterval = setInterval(generateObstacle, 2000); // Genera un obstáculo cada 2 segundos
   }
 
   restartBtn.addEventListener('click', startGame);
