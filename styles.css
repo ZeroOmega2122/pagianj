@@ -14,7 +14,7 @@ body {
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #fff;
-  transform: scale(3); /* Aumenta el tamaño del juego */
+  transform: scale(1.5); /* Aumenta el tamaño del juego */
   transform-origin: center; /* Centra el juego */
 }
 
@@ -24,8 +24,14 @@ body {
   left: 50px;
   width: 60px;
   height: 60px;
-  background-image: url('Oveja.png'); /* Image of the sheep */
+  background-image: url('Oveja-run.png'); /* Image of the running sheep */
   background-size: cover;
+  animation: run 0.5s steps(6) infinite;
+}
+
+@keyframes run {
+  0% { background-position: 0 0; }
+  100% { background-position: -360px 0; } /* Adjust according to the sprite sheet */
 }
 
 .Oveja-crouch {
@@ -33,6 +39,7 @@ body {
   height: 30px;
   bottom: 0;
   background-image: url('Oveja-crouch.png'); /* Image of the crouching sheep */
+  animation: none;
 }
 
 .Valla {
@@ -49,7 +56,7 @@ body {
   top: 150px;
   width: 60px;
   height: 30px;
-  background-image: url('Ave.png'); /* Image of the falcon */
+  background-image: url('Halcon.png'); /* Image of the falcon */
   background-size: cover;
 }
 
