@@ -9,12 +9,12 @@ body {
 
 #game {
   position: relative;
-  width: 2100px;
-  height: 600px;
+  width: 1200px;
+  height: 300px;
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #fff;
-  transform: scale(1.5); /* Aumenta el tamaño del juego */
+  transform: scale(3); /* Aumenta el tamaño del juego */
   transform-origin: center; /* Centra el juego */
 }
 
