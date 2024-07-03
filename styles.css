@@ -6,20 +6,30 @@ body {
   background-image: url('VDia.png'); /* Imagen de fondo para los bordes */
   background-size: cover;
   margin: 0;
-  overflow: hidden;
 }
 
 #game {
   position: relative;
-  width: 600px;
-  height: 150px;
+  width: 1200px;
+  height: 300px;
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #fff;
   background-image: url('VDia.png'); /* Imagen de fondo para el juego */
   background-size: cover; /* Ajusta el tamaño para cubrir toda el área */
+  background-position: bottom; /* Alinea el fondo en la parte inferior */
   transform: scale(2); /* Aumenta el tamaño del juego */
   transform-origin: center; /* Centra el juego */
+  animation: moveBackground 20s linear infinite; /* Animación del fondo en bucle */
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -2400px 0; /* Ajusta según el tamaño del fondo */
+  }
 }
 
 #Oveja {
@@ -34,40 +44,52 @@ body {
 }
 
 @keyframes run {
-  0% { background-position: 0 0; }
-  100% { background-position: -360px 0; } /* Ajusta según la hoja de sprites */
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -360px 0; /* Ajusta según la hoja de sprites */
+  }
 }
 
 @keyframes jump {
-  0% { bottom: 0; background-image: url('saltoOV.png'); }
-  50% { bottom: 120px; background-image: url('saltoOV.png'); }
-  100% { bottom: 0; background-image: url('Oveja2-.png'); }
+  0% {
+    bottom: 0;
+    background-image: url('saltoOV.png');
+  }
+  50% {
+    bottom: 200px;
+    background-image: url('saltoOV.png');
+  }
+  100% {
+    bottom: 0;
+    background-image: url('saltoOV.png');
+  }
 }
 
 .Oveja-crouch {
   width: 60px;
   height: 30px;
-  bottom: 0;
+  bottom: 20px; /* Ajuste de la posición de la oveja agachada */
   background-image: url('AgachoOV.png'); /* Imagen de la oveja agachada */
   animation: none;
 }
 
-.Valla, .Halcon {
+.Valla {
   position: absolute;
   bottom: 0;
   width: 30px;
   height: 60px;
+  background-image: url('Valla-.png'); /* Imagen de la valla */
   background-size: cover;
 }
 
-.Valla {
-  background-image: url('Valla-.png'); /* Imagen de la valla */
-}
-
 .Halcon {
+  position: absolute;
   width: 60px;
   height: 30px;
   background-image: url('Ave-.png'); /* Imagen del halcón */
+  background-size: cover;
 }
 
 #score {
@@ -85,9 +107,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-#restart-btn {
-  display: none;
+  font-size: 50px;
+  color: red;
+  font-family: Arial, sans-serif;
 }
