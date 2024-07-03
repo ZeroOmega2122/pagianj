@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const scoreDisplay = document.getElementById('score');
   let isJumping = false;
   let isCrouching = false;
-  let gravity = 0.9;
   let isGameOver = false;
   let score = 0;
 
@@ -20,6 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.keyCode === 40) {
       isCrouching = false;
       Oveja.classList.remove('Oveja-crouch');
+      Oveja.style.width = '60px';
+      Oveja.style.height = '60px';
+      Oveja.style.backgroundImage = 'url(Oveja2-.png)';
+      Oveja.style.animation = 'run 0.5s steps(6) infinite';
     }
   }
 
@@ -40,6 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function crouch() {
     isCrouching = true;
     Oveja.classList.add('Oveja-crouch');
+    Oveja.style.width = '60px';
+    Oveja.style.height = '30px';
+    Oveja.style.backgroundImage = 'url(AgachoOV.png)';
+    Oveja.style.animation = 'none';
   }
 
   function checkCollision(obstacle) {
