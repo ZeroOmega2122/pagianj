@@ -1,95 +1,82 @@
 document.addEventListener('DOMContentLoaded', () => {
   const Oveja = document.getElementById('Oveja');
   const game = document.getElementById('game');
-  const scoreDisplay = document.getElementById('score-value');
-  const gameOverDisplay = document.getElementById('game-over');
-  const restartBtn = document.getElementById('restart-btn');
+  const scoreDisplay = document.getElementById('score');
+  const gameOverDisplay = document.createElement('div');
+  gameOverDisplay.id = 'game-over';
+  gameOverDisplay.innerText = 'Game Over';
+  game.appendChild(gameOverDisplay);
 
   let isJumping = false;
   let isCrouching = false;
   let isGameOver = false;
   let score = 0;
-  let obstacleInterval;
-  let jumpTimeout;
-  let crouchTimeout;
+  let lastObstacleType = '';
 
-  let jumpHeight = 120;
-  let jumpDuration = 600;
-  let crouchDuration = 300;
-
-  document.addEventListener('keydown', control);
-  document.addEventListener('keyup', stopCrouching);
+  let jumpHeight = 200; // Altura máxima del salto
+  let jumpDuration = 1000; // Duración máxima del salto en milisegundos
 
   function control(e) {
-    if (e.keyCode === 32 && !isJumping && !isCrouching) { // Space key to jump
+    if (e.keyCode === 32 && !isJumping) { // Tecla espacio para saltar
       startJump();
-    } else if (e.keyCode === 40 && !isCrouching && !isJumping) { // Down arrow to crouch
+    } else if (e.keyCode === 40 && !isCrouching) { // Flecha hacia abajo para agacharse
       crouch();
     }
   }
 
   function stopCrouching(e) {
-    if (e.keyCode === 40 && isCrouching) {
+    if (e.keyCode === 40) {
       isCrouching = false;
       Oveja.classList.remove('Oveja-crouch');
+      Oveja.style.width = '60px';
+      Oveja.style.height = '60px';
       Oveja.style.bottom = '0';
+      Oveja.style.backgroundImage = 'url(Oveja2-.png)';
+      Oveja.style.animation = 'run 0.5s steps(6) infinite';
     }
   }
 
+  document.addEventListener('keydown', control);
+  document.addEventListener('keyup', stopCrouching);
+
   function startJump() {
+    if (isCrouching) return; // No puede saltar mientras está agachada
     isJumping = true;
-    Oveja.style.transition = `bottom ${jumpDuration / 1000}s`;
-    Oveja.style.bottom = `${jumpHeight}px`;
+    let jumpStart = Date.now();
 
-    jumpTimeout = setTimeout(() => {
-      Oveja.style.bottom = '0';
-    }, jumpDuration);
+    function jumpAnimation() {
+      let timePassed = Date.now() - jumpStart;
+      let progress = timePassed / jumpDuration;
 
-    setTimeout(() => {
-      isJumping = false;
-    }, jumpDuration * 2);
+      if (progress > 1) progress = 1;
+
+      let jumpPosition = jumpHeight * Math.sin(progress * Math.PI);
+
+      Oveja.style.bottom = jumpPosition + 'px';
+
+      if (progress < 1) {
+        requestAnimationFrame(jumpAnimation);
+      } else {
+        endJump();
+      }
+    }
+
+    requestAnimationFrame(jumpAnimation);
+  }
+
+  function endJump() {
+    isJumping = false;
+    Oveja.style.bottom = '0';
   }
 
   function crouch() {
     isCrouching = true;
     Oveja.classList.add('Oveja-crouch');
-    Oveja.style.bottom = '-30px';
-    crouchTimeout = setTimeout(() => {
-      if (!isCrouching) return;
-      isCrouching = false;
-      Oveja.classList.remove('Oveja-crouch');
-      Oveja.style.bottom = '0';
-    }, crouchDuration);
-  }
-
-  function generateObstacle() {
-    if (isGameOver) return;
-
-    const obstacleType = Math.random() < 0.5 ? 'Valla' : 'Halcon';
-    const obstacle = document.createElement('div');
-    obstacle.classList.add(obstacleType);
-    game.appendChild(obstacle);
-
-    let obstaclePosition = 1200;
-    obstacle.style.left = obstaclePosition + 'px';
-    obstacle.style.bottom = obstacleType === 'Valla' ? '0px' : `${Math.random() * 60 + 30}px`; // Random height for Halcon
-
-    let timerId = setInterval(() => {
-      if (checkCollision(obstacle)) {
-        clearInterval(timerId);
-        gameOver();
-      }
-
-      obstaclePosition -= 10;
-      obstacle.style.left = obstaclePosition + 'px';
-
-      if (obstaclePosition < -40) {
-        clearInterval(timerId);
-        game.removeChild(obstacle);
-        score++;
-        scoreDisplay.textContent = score;
-      }
-    }, 20);
+    Oveja.style.width = '60px';
+    Oveja.style.height = '30px';
+    Oveja.style.bottom = '20px'; // Ajuste de la posición de la oveja agachada
+    Oveja.style.backgroundImage = 'url(AgachoOV.png)';
+    Oveja.style.animation = 'none';
   }
 
   function checkCollision(obstacle) {
@@ -103,25 +90,85 @@ document.addEventListener('DOMContentLoaded', () => {
     );
   }
 
+  function generateObstacle() {
+    if (isGameOver) return;
+
+    let randomTime = Math.random() * 4000 + 1000;
+    let obstacleType = Math.random() > 0.5 ? 'Valla' : 'Halcon';
+    
+    // Asegúrate de que no haya dos obstáculos en la misma línea vertical
+    if (lastObstacleType === 'Valla' && obstacleType === 'Halcon') {
+      obstacleType = 'Valla';
+    } else if (lastObstacleType === 'Halcon' && obstacleType === 'Halcon') {
+      obstacleType = 'Valla';
+    }
+
+    let obstaclePosition = 1200;
+    const obstacle = document.createElement('div');
+    obstacle.classList.add(obstacleType);
+    game.appendChild(obstacle);
+    obstacle.style.left = obstaclePosition + 'px';
+
+    if (obstacleType === 'Halcon') {
+      const positions = [100, 150, 200]; // Posiciones Y permitidas para los halcones
+      obstacle.style.top = positions[Math.floor(Math.random() * positions.length)] + 'px';
+    } else {
+      obstacle.style.bottom = '0';
+    }
+
+    let timerId = setInterval(function() {
+      if (checkCollision(obstacle)) {
+        clearInterval(timerId);
+        if (obstacle.classList.contains('Halcon') && isCrouching) {
+          // No hay colisión si está agachada y es un Halcón
+        } else {
+          gameOver();
+        }
+      }
+      obstaclePosition -= 10;
+      obstacle.style.left = obstaclePosition + 'px';
+
+      if (obstaclePosition < -40) {
+        clearInterval(timerId);
+        game.removeChild(obstacle);
+      }
+    }, 20);
+
+    lastObstacleType = obstacleType;
+
+    if (!isGameOver) setTimeout(generateObstacle, randomTime);
+  }
+
   function gameOver() {
     isGameOver = true;
-    clearInterval(obstacleInterval);
-    clearTimeout(jumpTimeout);
-    clearTimeout(crouchTimeout);
     gameOverDisplay.style.display = 'block';
-    restartBtn.style.display = 'block';
+    while (game.firstChild) {
+      game.removeChild(game.firstChild);
+    }
+    game.appendChild(gameOverDisplay);
+    score = 0;
+    scoreDisplay.textContent = score;
+    setTimeout(startGame, 1000); // Reinicia el juego después de 1 segundo
   }
 
   function startGame() {
+    score = 0;
     isGameOver = false;
     gameOverDisplay.style.display = 'none';
-    restartBtn.style.display = 'none';
-    score = 0;
     scoreDisplay.textContent = score;
-    obstacleInterval = setInterval(generateObstacle, 2000); // Generate obstacle every 2 seconds
+    game.appendChild(Oveja);
+    generateObstacle();
+    setInterval(function() {
+      if (!isGameOver) {
+        score++;
+        scoreDisplay.textContent = score;
+        if (score > 2000) {
+          document.body.style.backgroundImage = 'url("Vnoche.png")';
+          game.style.backgroundImage = 'url("Vnoche.png")';
+        }
+      }
+    }, 100);
   }
 
-  restartBtn.addEventListener('click', startGame);
-
-  startGame(); // Start game automatically on page load
+  setTimeout(startGame, 1000); // Inicia el juego después de un retraso de 1 segundo
 });
