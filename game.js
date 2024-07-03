@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let score = 0;
 
   function control(e) {
-    if (e.keyCode === 32 && !isJumping) { // Space key for jump
+    if (e.keyCode === 32 && !isJumping) { // Tecla espacio para saltar
       jump();
-    } else if (e.keyCode === 40 && !isCrouching) { // Down arrow key for crouch
+    } else if (e.keyCode === 40 && !isCrouching) { // Flecha hacia abajo para agacharse
       crouch();
     }
   }
@@ -27,29 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keyup', stopCrouching);
 
   function jump() {
-    if (isCrouching) return; // Can't jump while crouching
-    let position = 0;
+    if (isCrouching) return; // No puede saltar mientras está agachada
     isJumping = true;
+    Oveja.style.animation = 'jump 1s ease-in-out';
 
-    let timerId = setInterval(function() {
-      // Going up
-      if (position >= 200) {
-        clearInterval(timerId);
-        // Fall down
-        let downTimerId = setInterval(function() {
-          if (position <= 0) {
-            clearInterval(downTimerId);
-            isJumping = false;
-          }
-          position -= 5 * gravity;
-          Oveja.style.bottom = position + 'px';
-        }, 20);
-      }
-      // Jumping
-      position += 30;
-      position = position * gravity;
-      Oveja.style.bottom = position + 'px';
-    }, 20);
+    setTimeout(() => {
+      Oveja.style.animation = 'run 0.5s steps(6) infinite';
+      isJumping = false;
+    }, 1000);
   }
 
   function crouch() {
@@ -83,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (checkCollision(obstacle)) {
         clearInterval(timerId);
         if (obstacle.classList.contains('Halcon') && isCrouching) {
-          // No collision if crouching and it's a Halcon
+          // No hay colisión si está agachada y es un Halcón
         } else {
           gameOver();
         }
@@ -108,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     score = 0;
     scoreDisplay.textContent = score;
     alert('Game Over');
-    setTimeout(startGame, 1000); // Restart the game after 1 second
+    setTimeout(startGame, 1000); // Reinicia el juego después de 1 segundo
   }
 
   function startGame() {
@@ -125,5 +110,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
   }
 
-  setTimeout(startGame, 1000); // Start the game after a delay of 1 second
+  setTimeout(startGame, 1000); // Inicia el juego después de un retraso de 1 segundo
 });
