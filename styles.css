@@ -26,7 +26,7 @@ body {
   left: 50px;
   width: 60px;
   height: 60px;
-  background-image: url('Oveja-run.png'); /* Image of the running sheep */
+  background-image: url('Oveja2-.png'); /* Image of the running sheep */
   background-size: cover;
   animation: run 0.5s steps(6) infinite;
 }
@@ -58,7 +58,7 @@ body {
   top: 150px;
   width: 60px;
   height: 30px;
-  background-image: url('Halcon.png'); /* Image of the falcon */
+  background-image: url('Ave.png'); /* Image of the falcon */
   background-size: cover;
 }
 
