@@ -46,34 +46,6 @@ body {
 .Oveja-crouch {
   width: 60px;
   height: 30px;
-  bottom: 0;
   background-image: url('AgachoOV.png'); /* Imagen de la oveja agachada */
-  animation: none;
-}
-
-.Valla {
-  position: absolute;
-  bottom: 0;
-  width: 30px;
-  height: 60px;
-  background-image: url('Valla-.png'); /* Imagen de la valla */
   background-size: cover;
-}
-
-.Halcon {
-  position: absolute;
-  top: 150px;
-  width: 60px;
-  height: 30px;
-  background-image: url('Ave-.png'); /* Imagen del halcón */
-  background-size: cover;
-}
-
-#score {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 30px;
-  font-family: Arial, sans-serif;
-  color: black;
 }
