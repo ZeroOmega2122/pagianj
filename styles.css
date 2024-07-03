@@ -14,7 +14,7 @@ body {
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #fff;
-  transform: scale(1.5); /* Aumenta el tamaño del juego */
+  transform: scale(2); /* Aumenta el tamaño del juego */
   transform-origin: center; /* Centra el juego */
 }
 
