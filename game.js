@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastObstacleType = '';
 
   let jumpHeight = 200; // Altura máxima del salto
-  let jumpDuration = 1000; // Duración máxima del salto en milisegundos
 
   function control(e) {
     if (e.keyCode === 32 && !isJumping) { // Tecla espacio para saltar
@@ -28,11 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.keyCode === 40) {
       isCrouching = false;
       Oveja.classList.remove('Oveja-crouch');
-      Oveja.style.width = '60px';
-      Oveja.style.height = '60px';
       Oveja.style.bottom = '0';
-      Oveja.style.backgroundImage = 'url(Oveja2-.png)';
-      Oveja.style.animation = 'run 0.5s steps(6) infinite';
     }
   }
 
@@ -46,13 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function jumpAnimation() {
       let timePassed = Date.now() - jumpStart;
-      let progress = timePassed / jumpDuration;
-
-      if (progress > 1) progress = 1;
-
+      let progress = timePassed / 1000; // Tiempo de duración del salto en segundos
       let jumpPosition = jumpHeight * Math.sin(progress * Math.PI);
 
-      Oveja.style.bottom = jumpPosition + 'px';
+      if (progress < 0.5) {
+        Oveja.style.bottom = jumpPosition + 'px';
+      } else {
+        Oveja.style.bottom = (jumpHeight - jumpPosition) + 'px';
+      }
 
       if (progress < 1) {
         requestAnimationFrame(jumpAnimation);
@@ -72,11 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function crouch() {
     isCrouching = true;
     Oveja.classList.add('Oveja-crouch');
-    Oveja.style.width = '60px';
-    Oveja.style.height = '30px';
-    Oveja.style.bottom = '20px'; // Ajuste de la posición de la oveja agachada
-    Oveja.style.backgroundImage = 'url(AgachoOV.png)';
-    Oveja.style.animation = 'none';
+    Oveja.style.bottom = '-30px'; // Ajusta la posición de agachado
   }
 
   function checkCollision(obstacle) {
@@ -94,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isGameOver) return;
 
     let randomTime = Math.random() * 4000 + 1000;
-    let obstacleType = Math.random() > 0.4 ? 'Valla' : 'Halcon'; // Ajuste las probabilidades de aparición
+    let obstacleType = Math.random() > 0.4 ? 'Valla' : 'Halcon'; // Ajusta las probabilidades de aparición
 
     // Asegúrate de que no haya dos obstáculos en la misma línea vertical
     if (lastObstacleType === 'Valla' && obstacleType === 'Halcon') {
@@ -107,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const obstacle = document.createElement('div');
     obstacle.classList.add(obstacleType);
     game.appendChild(obstacle);
-    obstacle.style.left = obstaclePosition + 'px';
 
     if (obstacleType === 'Halcon') {
       const positions = [50, 100, 150, 200]; // Ajusta las posiciones Y permitidas para los halcones
