@@ -3,7 +3,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url('VDia.png');
+  background-image: url('VDia.png'); /* Imagen de fondo para los bordes */
   background-size: cover;
   margin: 0;
   overflow: hidden;
@@ -16,10 +16,10 @@ body {
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #fff;
-  background-image: url('VDia.png');
-  background-size: cover;
-  transform: scale(2);
-  transform-origin: center;
+  background-image: url('VDia.png'); /* Imagen de fondo para el juego */
+  background-size: cover; /* Ajusta el tamaño para cubrir toda el área */
+  transform: scale(2); /* Aumenta el tamaño del juego */
+  transform-origin: center; /* Centra el juego */
 }
 
 #Oveja {
@@ -28,14 +28,14 @@ body {
   left: 50px;
   width: 60px;
   height: 60px;
-  background-image: url('Oveja2-.png');
+  background-image: url('Oveja2-.png'); /* Imagen de la oveja corriendo */
   background-size: cover;
   animation: run 0.5s steps(6) infinite;
 }
 
 @keyframes run {
   0% { background-position: 0 0; }
-  100% { background-position: -360px 0; }
+  100% { background-position: -360px 0; } /* Ajusta según la hoja de sprites */
 }
 
 @keyframes jump {
@@ -48,7 +48,7 @@ body {
   width: 60px;
   height: 30px;
   bottom: 0;
-  background-image: url('AgachoOV.png');
+  background-image: url('AgachoOV.png'); /* Imagen de la oveja agachada */
   animation: none;
 }
 
@@ -61,13 +61,13 @@ body {
 }
 
 .Valla {
-  background-image: url('Valla-.png');
+  background-image: url('Valla-.png'); /* Imagen de la valla */
 }
 
 .Halcon {
   width: 60px;
   height: 30px;
-  background-image: url('Ave-.png');
+  background-image: url('Ave-.png'); /* Imagen del halcón */
 }
 
 #score {
