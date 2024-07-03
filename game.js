@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
   gameOverDisplay.innerText = 'Game Over';
   game.appendChild(gameOverDisplay);
 
+  const restartBtn = document.getElementById('restart-btn');
+  restartBtn.addEventListener('click', startGame);
+
   let isJumping = false;
   let isCrouching = false;
   let isGameOver = false;
@@ -16,15 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
   let jumpHeight = 200; // Altura máxima del salto
 
   function control(e) {
-    if (e.keyCode === 32 && !isJumping) { // Tecla espacio para saltar
+    if (e.keyCode === 32 && !isJumping && !isCrouching) { // Tecla espacio para saltar
       startJump();
-    } else if (e.keyCode === 40 && !isCrouching) { // Flecha hacia abajo para agacharse
+    } else if (e.keyCode === 40 && !isCrouching && !isJumping) { // Flecha hacia abajo para agacharse
       crouch();
     }
   }
 
   function stopCrouching(e) {
-    if (e.keyCode === 40) {
+    if (e.keyCode === 40 && isCrouching) {
       isCrouching = false;
       Oveja.classList.remove('Oveja-crouch');
       Oveja.style.bottom = '0';
@@ -133,19 +136,20 @@ document.addEventListener('DOMContentLoaded', () => {
   function gameOver() {
     isGameOver = true;
     gameOverDisplay.style.display = 'block';
+    restartBtn.style.display = 'block'; // Mostrar el botón de reinicio
     while (game.firstChild) {
       game.removeChild(game.firstChild);
     }
     game.appendChild(gameOverDisplay);
     score = 0;
     scoreDisplay.textContent = score;
-    setTimeout(startGame, 1000); // Reinicia el juego después de 1 segundo
   }
 
   function startGame() {
-    score = 0;
     isGameOver = false;
     gameOverDisplay.style.display = 'none';
+    restartBtn.style.display = 'none'; // Ocultar el botón de reinicio
+    score = 0;
     scoreDisplay.textContent = score;
     game.appendChild(Oveja);
     generateObstacle();
@@ -161,5 +165,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
   }
 
-  setTimeout(startGame, 1000); // Inicia el juego después de un retraso de 1 segundo
+  startGame(); // Inicia el juego automáticamente al cargar la página
 });
