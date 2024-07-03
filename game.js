@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let isGameOver = false;
   let score = 0;
   let obstacleInterval;
+  let jumpTimeout;
+  let crouchTimeout;
 
   let jumpHeight = 120;
   let jumpDuration = 600;
@@ -19,9 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keyup', stopCrouching);
 
   function control(e) {
-    if (e.keyCode === 32 && !isJumping && !isCrouching) { // Tecla espacio para saltar
+    if (e.keyCode === 32 && !isJumping && !isCrouching) { // Space key to jump
       startJump();
-    } else if (e.keyCode === 40 && !isCrouching && !isJumping) { // Flecha hacia abajo para agacharse
+    } else if (e.keyCode === 40 && !isCrouching && !isJumping) { // Down arrow to crouch
       crouch();
     }
   }
@@ -36,12 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startJump() {
     isJumping = true;
-    Oveja.style.transition = `transform ${jumpDuration / 1000}s`;
-    Oveja.style.transform = `translateY(-${jumpHeight}px)`;
+    Oveja.style.transition = `bottom ${jumpDuration / 1000}s`;
+    Oveja.style.bottom = `${jumpHeight}px`;
 
-    setTimeout(() => {
-      Oveja.style.transition = `transform ${jumpDuration / 1000}s`;
-      Oveja.style.transform = `translateY(0)`;
+    jumpTimeout = setTimeout(() => {
+      Oveja.style.bottom = '0';
     }, jumpDuration);
 
     setTimeout(() => {
@@ -52,23 +53,28 @@ document.addEventListener('DOMContentLoaded', () => {
   function crouch() {
     isCrouching = true;
     Oveja.classList.add('Oveja-crouch');
-    setTimeout(() => {
-      Oveja.style.transition = `transform ${crouchDuration / 1000}s`;
-      Oveja.style.bottom = '-30px';
-    }, 0);
+    Oveja.style.bottom = '-30px';
+    crouchTimeout = setTimeout(() => {
+      if (!isCrouching) return;
+      isCrouching = false;
+      Oveja.classList.remove('Oveja-crouch');
+      Oveja.style.bottom = '0';
+    }, crouchDuration);
   }
 
   function generateObstacle() {
     if (isGameOver) return;
 
+    const obstacleType = Math.random() < 0.5 ? 'Valla' : 'Halcon';
     const obstacle = document.createElement('div');
-    obstacle.classList.add('Valla');
+    obstacle.classList.add(obstacleType);
     game.appendChild(obstacle);
 
-    let obstaclePosition = 600;
+    let obstaclePosition = 1200;
     obstacle.style.left = obstaclePosition + 'px';
+    obstacle.style.bottom = obstacleType === 'Valla' ? '0px' : `${Math.random() * 60 + 30}px`; // Random height for Halcon
 
-    let timerId = setInterval(function() {
+    let timerId = setInterval(() => {
       if (checkCollision(obstacle)) {
         clearInterval(timerId);
         gameOver();
@@ -100,6 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function gameOver() {
     isGameOver = true;
     clearInterval(obstacleInterval);
+    clearTimeout(jumpTimeout);
+    clearTimeout(crouchTimeout);
     gameOverDisplay.style.display = 'block';
     restartBtn.style.display = 'block';
   }
@@ -110,10 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
     restartBtn.style.display = 'none';
     score = 0;
     scoreDisplay.textContent = score;
-    obstacleInterval = setInterval(generateObstacle, 2000); // Genera un obstáculo cada 2 segundos
+    obstacleInterval = setInterval(generateObstacle, 2000); // Generate obstacle every 2 seconds
   }
 
   restartBtn.addEventListener('click', startGame);
 
-  startGame(); // Inicia el juego automáticamente al cargar la página
+  startGame(); // Start game automatically on page load
 });
