@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let isGameOver = false;
   let score = 0;
   let lastObstacleType = '';
+  let gameInterval;
+  let obstacleInterval;
 
   function control(e) {
     if (e.keyCode === 32 && !isJumping) {
@@ -118,6 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function gameOver() {
     isGameOver = true;
     gameOverDisplay.style.display = 'block';
+    clearInterval(gameInterval);
+    clearTimeout(obstacleInterval);
     while (game.firstChild) {
       game.removeChild(game.firstChild);
     }
@@ -132,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
     scoreDisplay.textContent = score;
     game.appendChild(Oveja);
     generateObstacle();
-    setInterval(function() {
+    gameInterval = setInterval(function() {
       if (!isGameOver) {
         score++;
         scoreDisplay.textContent = score;
@@ -142,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }, 100);
+    obstacleInterval = setTimeout(generateObstacle, 1000);
   }
 
   setTimeout(startGame, 1000);
