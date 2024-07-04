@@ -40,8 +40,8 @@ body {
 }
 
 @keyframes jump {
-  0% { bottom: 0; background-image: url('saltoOV.png'); }
-  50% { bottom: 200px; background-image: url('saltoOV.png'); }
+  0% { bottom: 0; background-image: url('Oveja2-.png'); }
+  50% { bottom: 200px; background-image: url('Oveja2-.png'); }
   100% { bottom: 0; background-image: url('saltoOV.png'); }
 }
 
