@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
       Oveja.style.height = '60px';
       Oveja.style.bottom = '0';
       Oveja.style.backgroundImage = 'url(Oveja2-.png)';
-      Oveja.style.animation = 'trot 0.5s infinite';
+      Oveja.style.animation = 'trot 0.5s steps(2) infinite';
     }
   }
 
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Oveja.style.animation = 'jump 1s ease-in-out';
 
     setTimeout(() => {
-      Oveja.style.animation = 'trot 0.5s infinite';
+      Oveja.style.animation = 'trot 0.5s steps(2) infinite';
       isJumping = false;
     }, 1000);
   }
