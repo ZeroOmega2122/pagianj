@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
     isCrouching = true;
     Oveja.classList.add('Oveja-crouch');
     Oveja.style.width = '60px';
-    Oveja.style.height = '60px';
-    Oveja.style.bottom = '0px';
+    Oveja.style.height = '30px';
+    Oveja.style.bottom = '0';
     Oveja.style.backgroundImage = 'url(Oveja22-.png)';
     Oveja.style.animation = 'none';
   }
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isGameOver) return;
 
     let randomTime = Math.random() * 4000 + 1000;
-    let obstacleType = Math.random() > 0.3 ? 'Valla' : 'Halcon';
+    let obstacleType = Math.random() > 0.5 ? 'Valla' : 'Halcon';
 
     if (lastObstacleType === 'Valla' && obstacleType === 'Halcon') {
       obstacleType = 'Valla';
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
           gameOver();
         }
       }
-      obstaclePosition -= 10;
+      obstaclePosition -= 10 + score / 100;
       obstacle.style.left = obstaclePosition + 'px';
 
       if (obstaclePosition < -40) {
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     lastObstacleType = obstacleType;
 
-    if (!isGameOver) setTimeout(generateObstacle, randomTime);
+    if (!isGameOver) setTimeout(generateObstacle, randomTime / (1 + score / 1000));
   }
 
   function gameOver() {
