@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
       Oveja.style.height = '60px';
       Oveja.style.bottom = '0';
       Oveja.style.backgroundImage = 'url(Oveja2-.png)';
-      Oveja.style.animation = 'trot 0.5s steps(2) infinite';
+      Oveja.style.animation = 'trot 0.5s infinite';
     }
   }
 
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Oveja.style.animation = 'jump 1s ease-in-out';
 
     setTimeout(() => {
-      Oveja.style.animation = 'trot 0.5s steps(2) infinite';
+      Oveja.style.animation = 'trot 0.5s infinite';
       isJumping = false;
     }, 1000);
   }
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isGameOver) return;
 
     let randomTime = Math.random() * 4000 + 1000;
-    let obstacleType = Math.random() > 0.3 ? 'Valla' : 'Halcon'; // Ajustado para que el halcón aparezca más
+    let obstacleType = Math.random() > 0.3 ? 'Valla' : 'Halcon';
 
     if (lastObstacleType === 'Valla' && obstacleType === 'Halcon') {
       obstacleType = 'Valla';
