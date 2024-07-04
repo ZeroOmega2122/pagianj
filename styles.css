@@ -30,7 +30,7 @@ body {
   height: 60px;
   background-image: url('Oveja2-.png');
   background-size: cover;
-  animation: trot 0.5s infinite;
+  animation: trot 0.5s steps(2) infinite;
 }
 
 @keyframes trot {
