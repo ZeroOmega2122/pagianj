@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Oveja.classList.add('Oveja-crouch');
     Oveja.style.width = '60px';
     Oveja.style.height = '60px';
-    Oveja.style.bottom = '0px';
+    Oveja.style.bottom = '-20px';
     Oveja.style.backgroundImage = 'url(AgachoOV2.png)';
     Oveja.style.animation = 'none';
   }
