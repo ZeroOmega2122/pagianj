@@ -30,12 +30,12 @@ body {
   height: 60px;
   background-image: url('Oveja2-.png');
   background-size: cover;
-  animation: trot 0.5s steps(2) infinite;
+  animation: trot 0.5s infinite;
 }
 
 @keyframes trot {
   0% { background-image: url('Oveja2-.png'); }
-  50% { background-image: url('Oveja3-.png'); } /* Nueva imagen para el trote */
+  50% { background-image: url('Oveja2-2-.png'); }
   100% { background-image: url('Oveja2-.png'); }
 }
 
