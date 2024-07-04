@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     isCrouching = true;
     Oveja.classList.add('Oveja-crouch');
     Oveja.style.width = '60px';
-    Oveja.style.height = '30px';
+    Oveja.style.height = '60px';
     Oveja.style.bottom = '0';
     Oveja.style.backgroundImage = 'url(Oveja22-.png)';
     Oveja.style.animation = 'none';
