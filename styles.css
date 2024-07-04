@@ -34,13 +34,9 @@ body {
 }
 
 @keyframes trot {
-  0% { background-position: 0 0; }
-  100% { background-position: -120px 0; } /* Ajusta según la hoja de sprites */
-}
-
-@keyframes run {
-  0% { background-position: 0 0; }
-  100% { background-position: -360px 0; }
+  0% { background-image: url('Oveja2-.png'); }
+  50% { background-image: url('Oveja3-.png'); } /* Nueva imagen para el trote */
+  100% { background-image: url('Oveja2-.png'); }
 }
 
 @keyframes jump {
