@@ -46,9 +46,10 @@ body {
 }
 
 .Oveja-crouch {
- width: 60px;
+  left: 50px;
+  width: 60px;
   height: 60px;
-  bottom: 60px;
+  bottom: 00px;
   background-image: url('AgachoOV2.png');
   background-size: cover;
 }
