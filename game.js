@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
     isCrouching = true;
     Oveja.classList.add('Oveja-crouch');
     Oveja.style.width = '60px';
-    Oveja.style.height = '60px';
-    Oveja.style.bottom = '10';
+    Oveja.style.height = '30px';
+    Oveja.style.bottom = '0';
     Oveja.style.backgroundImage = 'url(Oveja22-.png)';
     Oveja.style.animation = 'none';
   }
@@ -73,14 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function generateObstacle() {
     if (isGameOver) return;
 
-    let randomTime = Math.random() * 4000 + 1000;
-    let obstacleType = Math.random() > 3 ? 'Valla' : 'Halcon';
-
-    if (lastObstacleType === 'Valla' && obstacleType === 'Halcon') {
-      obstacleType = 'Valla';
-    } else if (lastObstacleType === 'Halcon' && obstacleType === 'Halcon') {
-      obstacleType = 'Valla';
-    }
+    let randomTime = Math.random() * 3000 + 1000;
+    let obstacleType = Math.random() > 0.5 ? 'Valla' : 'Halcon';
 
     let obstaclePosition = 1200;
     const obstacle = document.createElement('div');
@@ -99,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (checkCollision(obstacle)) {
         clearInterval(timerId);
         if (obstacle.classList.contains('Halcon') && isCrouching) {
+          return;
         } else {
           gameOver();
         }
@@ -111,8 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         game.removeChild(obstacle);
       }
     }, 20);
-
-    lastObstacleType = obstacleType;
 
     if (!isGameOver) setTimeout(generateObstacle, randomTime / (1 + score / 1000));
   }
@@ -151,3 +144,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setTimeout(startGame, 1000);
 });
+
