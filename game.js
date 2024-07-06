@@ -73,7 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function generateObstacle() {
     if (isGameOver) return;
 
-    let randomTime = Math.random() * 3000 + 1000;
+    let baseTime = 2000;
+    let randomTime = Math.random() * (3000 - baseTime) + baseTime;
     let obstacleType = Math.random() > 0.5 ? 'Valla' : 'Halcon';
 
     let obstaclePosition = 1200;
@@ -89,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       obstacle.style.bottom = '0';
     }
 
+    let speed = 10 + score / 100;
     let timerId = setInterval(function() {
       if (checkCollision(obstacle)) {
         clearInterval(timerId);
@@ -98,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
           gameOver();
         }
       }
-      obstaclePosition -= 10 + score / 100;
+      obstaclePosition -= speed;
       obstacle.style.left = obstaclePosition + 'px';
 
       if (obstaclePosition < -40) {
@@ -107,7 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, 20);
 
-    if (!isGameOver) setTimeout(generateObstacle, randomTime / (1 + score / 1000));
+    if (!isGameOver) {
+      setTimeout(generateObstacle, randomTime / (1 + score / 1000));
+    }
   }
 
   function gameOver() {
@@ -144,4 +148,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setTimeout(startGame, 1000);
 });
-
