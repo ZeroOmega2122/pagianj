@@ -46,10 +46,10 @@ body {
 }
 
 .Oveja-crouch {
-  left: 60px;
+  left: 50px;
   width: 60px;
-  height: 60px;
-  bottom: 0px;
+  height: 30px;
+  bottom: 0;
   background-image: url('Oveja22-.png');
   background-size: cover;
 }
