@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   const Oveja = document.getElementById('Oveja');
   const game = document.getElementById('game');
-  const scoreDisplay = document.getElementById('score-value');
-  const gameOverDisplay = document.getElementById('game-over');
-  const restartButton = document.getElementById('restart-button');
+  const scoreDisplay = document.getElementById('score');
+  const gameOverDisplay = document.createElement('div');
+  gameOverDisplay.id = 'game-over';
+  gameOverDisplay.innerText = 'Game Over';
+  game.appendChild(gameOverDisplay);
 
   let isJumping = false;
   let isCrouching = false;
@@ -12,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastObstacleType = '';
   let gameInterval;
   let obstacleInterval;
+  let obstacleSpeed = 10; // Velocidad base de los obstáculos
+  let obstacleFrequency = 2500; // Frecuencia base de generación de obstáculos
 
   function control(e) {
     if (e.keyCode === 32 && !isJumping) {
@@ -52,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Oveja.classList.add('Oveja-crouch');
     Oveja.style.width = '60px';
     Oveja.style.height = '60px';
-    Oveja.style.bottom = '10';
+    Oveja.style.bottom = '10px'; // Ajuste menor para evitar invisibilidad al agacharse
     Oveja.style.backgroundImage = 'url(Oveja22-.png)';
     Oveja.style.animation = 'none';
   }
@@ -71,8 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function generateObstacle() {
     if (isGameOver) return;
 
-    let randomTime = Math.random() * 4000 + 1000;
-    let obstacleType = Math.random() > 3 ? 'Valla' : 'Halcon';
+    let obstacleType = Math.random() > 0.3 ? 'Valla' : 'Halcon'; // Ajuste en la probabilidad de tipos de obstáculos
 
     if (lastObstacleType === 'Valla' && obstacleType === 'Halcon') {
       obstacleType = 'Valla';
@@ -101,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
           gameOver();
         }
       }
-      obstaclePosition -= 10 + score / 100;
+      obstaclePosition -= obstacleSpeed; // Ajuste de la velocidad según el puntaje
       obstacle.style.left = obstaclePosition + 'px';
 
       if (obstaclePosition < -40) {
@@ -112,7 +115,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     lastObstacleType = obstacleType;
 
-    if (!isGameOver) setTimeout(generateObstacle, randomTime / (1 + score / 1000));
+    if (!isGameOver) {
+      let randomTime = Math.random() * obstacleFrequency + 1000;
+      setTimeout(generateObstacle, randomTime);
+    }
   }
 
   function gameOver() {
@@ -120,13 +126,30 @@ document.addEventListener('DOMContentLoaded', () => {
     gameOverDisplay.style.display = 'block';
     clearInterval(gameInterval);
     clearTimeout(obstacleInterval);
-  }
+    while (game.firstChild) {
+      game.removeChild(game.firstChild);
+    }
+    game.appendChild(gameOverDisplay);
 
-  function restartGame() {
-    window.location.reload();
-  }
+    // Mostrar botón de reinicio
+    const restartButton = document.createElement('button');
+    restartButton.textContent = 'Reiniciar';
+    restartButton.addEventListener('click', () => {
+      location.reload(); // Recargar la página para reiniciar el juego
+    });
+    document.body.appendChild(restartButton);
 
-  restartButton.addEventListener('click', restartGame);
+    // Ajustar el mensaje de Game Over y la transición día/noche según el puntaje
+    if (score > 700) {
+      document.body.style.backgroundImage = 'url("Vnoche.png")';
+      game.style.backgroundImage = 'url("Vnoche.png")';
+      gameOverDisplay.style.color = '#ffffff'; // Color de texto blanco para la noche
+    } else {
+      document.body.style.backgroundImage = 'url("VDia.png")';
+      game.style.backgroundImage = 'url("VDiav.png")';
+      gameOverDisplay.style.color = '#ff0000'; // Color de texto rojo para el día
+    }
+  }
 
   function startGame() {
     score = 0;
@@ -139,13 +162,32 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isGameOver) {
         score++;
         scoreDisplay.textContent = score;
-        if (score > 700) {
-          document.body.style.backgroundImage = 'url("Vnoche.png")';
-          game.style.backgroundImage = 'url("Vnoche.png")';
+
+        // Ajuste en la frecuencia de los obstáculos y velocidad según el puntaje
+        if (score > 200) {
+          obstacleFrequency = 2000;
+          obstacleSpeed = 12;
         }
+        if (score > 500) {
+          obstacleFrequency = 1500;
+          obstacleSpeed = 15;
+        }
+        if (score > 1000) {
+          obstacleFrequency = 1000;
+          obstacleSpeed = 18;
+        }
+
+        // Mostrar transición suave día/noche al pasar de los 700 puntos
+        if (score === 700) {
+          document.body.style.transition = 'background-image 2s ease';
+          game.style.transition = 'background-image 2s ease';
+        }
+
+        // Ajustar más gradualmente la generación de obstáculos
+        let obstacleTime = Math.random() * obstacleFrequency + 1000;
+        setTimeout(generateObstacle, obstacleTime);
       }
     }, 100);
-    obstacleInterval = setTimeout(generateObstacle, 1000);
   }
 
   setTimeout(startGame, 1000);
