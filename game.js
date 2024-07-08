@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameInterval;
   let obstacleInterval;
   let obstacleSpeed = 15; // Velocidad base de los obstáculos
-  let obstacleFrequency = 10000; // Frecuencia base de generación de obstáculos
+  let obstacleFrequency = 5000; // Frecuencia base de generación de obstáculos
 
   function control(e) {
     if (e.keyCode === 32 && !isJumping) {
