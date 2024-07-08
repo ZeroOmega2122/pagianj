@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   const Oveja = document.getElementById('Oveja');
   const game = document.getElementById('game');
-  const scoreDisplay = document.getElementById('score');
-  const gameOverDisplay = document.createElement('div');
-  gameOverDisplay.id = 'game-over';
-  gameOverDisplay.innerText = 'Game Over';
-  game.appendChild(gameOverDisplay);
+  const scoreDisplay = document.getElementById('score-value');
+  const gameOverDisplay = document.getElementById('game-over');
+  const restartButton = document.getElementById('restart-button');
 
   let isJumping = false;
   let isCrouching = false;
@@ -53,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
     isCrouching = true;
     Oveja.classList.add('Oveja-crouch');
     Oveja.style.width = '60px';
-    Oveja.style.height = '30px';
-    Oveja.style.bottom = '0';
+    Oveja.style.height = '60px';
+    Oveja.style.bottom = '10';
     Oveja.style.backgroundImage = 'url(Oveja22-.png)';
     Oveja.style.animation = 'none';
   }
@@ -73,9 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
   function generateObstacle() {
     if (isGameOver) return;
 
-    let baseTime = 2000;
-    let randomTime = Math.random() * (3000 - baseTime) + baseTime;
-    let obstacleType = Math.random() > 0.5 ? 'Valla' : 'Halcon';
+    let randomTime = Math.random() * 4000 + 1000;
+    let obstacleType = Math.random() > 3 ? 'Valla' : 'Halcon';
+
+    if (lastObstacleType === 'Valla' && obstacleType === 'Halcon') {
+      obstacleType = 'Valla';
+    } else if (lastObstacleType === 'Halcon' && obstacleType === 'Halcon') {
+      obstacleType = 'Valla';
+    }
 
     let obstaclePosition = 1200;
     const obstacle = document.createElement('div');
@@ -90,17 +93,15 @@ document.addEventListener('DOMContentLoaded', () => {
       obstacle.style.bottom = '0';
     }
 
-    let speed = 10 + score / 100;
     let timerId = setInterval(function() {
       if (checkCollision(obstacle)) {
         clearInterval(timerId);
         if (obstacle.classList.contains('Halcon') && isCrouching) {
-          return;
         } else {
           gameOver();
         }
       }
-      obstaclePosition -= speed;
+      obstaclePosition -= 10 + score / 100;
       obstacle.style.left = obstaclePosition + 'px';
 
       if (obstaclePosition < -40) {
@@ -109,9 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, 20);
 
-    if (!isGameOver) {
-      setTimeout(generateObstacle, randomTime / (1 + score / 1000));
-    }
+    lastObstacleType = obstacleType;
+
+    if (!isGameOver) setTimeout(generateObstacle, randomTime / (1 + score / 1000));
   }
 
   function gameOver() {
@@ -119,12 +120,13 @@ document.addEventListener('DOMContentLoaded', () => {
     gameOverDisplay.style.display = 'block';
     clearInterval(gameInterval);
     clearTimeout(obstacleInterval);
-    while (game.firstChild) {
-      game.removeChild(game.firstChild);
-    }
-    game.appendChild(gameOverDisplay);
-    setTimeout(startGame, 1000);
   }
+
+  function restartGame() {
+    window.location.reload();
+  }
+
+  restartButton.addEventListener('click', restartGame);
 
   function startGame() {
     score = 0;
