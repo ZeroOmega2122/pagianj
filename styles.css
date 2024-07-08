@@ -46,10 +46,10 @@ body {
 }
 
 .Oveja-crouch {
-  left: 50px;
+  left: 60px;
   width: 60px;
-  height: 30px;
-  bottom: 0;
+  height: 60px;
+  bottom: 0px;
   background-image: url('Oveja22-.png');
   background-size: cover;
 }
@@ -96,4 +96,19 @@ body {
   font-size: 50px;
   color: red;
   font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+#restart-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#restart-button:hover {
+  background-color: #45a049;
 }
