@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastObstacleType = '';
   let gameInterval;
   let obstacleInterval;
-  let obstacleSpeed = 2; // Velocidad base de los obstáculos
-  let obstacleFrequency = 50; // Frecuencia base de generación de obstáculos
+  let obstacleSpeed = 15; // Velocidad base de los obstáculos
+  let obstacleFrequency = 10000; // Frecuencia base de generación de obstáculos
 
   function control(e) {
     if (e.keyCode === 32 && !isJumping) {
@@ -164,10 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDisplay.textContent = score;
 
         // Ajuste en la frecuencia de los obstáculos y velocidad según el puntaje
-        if (score < 500) {
-          obstacleFrequency = 10000;
-          obstacleSpeed = 15;
-        }
+        
         if (score > 500) {
           obstacleFrequency = 5000;
           obstacleSpeed = 10;
