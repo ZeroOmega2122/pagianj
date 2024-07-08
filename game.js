@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     obstacle.style.left = obstaclePosition + 'px';
 
     if (obstacleType === 'Halcon') {
-      const positions = [100, 150, 200];
+      const positions = [90, 150, 200];
       obstacle.style.top = positions[Math.floor(Math.random() * positions.length)] + 'px';
     } else {
       obstacle.style.bottom = '0';
@@ -164,15 +164,15 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDisplay.textContent = score;
 
         // Ajuste en la frecuencia de los obstáculos y velocidad según el puntaje
-        if (score > 100) {
+        if (score > 500) {
           obstacleFrequency = 100;
           obstacleSpeed = 5;
         }
-        if (score > 500) {
+        if (score > 900) {
           obstacleFrequency = 500;
           obstacleSpeed = 10;
         }
-        if (score > 1000) {
+        if (score > 1500) {
           obstacleFrequency = 1000;
           obstacleSpeed = 15;
         }
