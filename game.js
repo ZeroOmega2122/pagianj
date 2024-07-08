@@ -164,17 +164,17 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDisplay.textContent = score;
 
         // Ajuste en la frecuencia de los obstáculos y velocidad según el puntaje
-        if (score > 200) {
-          obstacleFrequency = 2000;
-          obstacleSpeed = 12;
+        if (score > 100) {
+          obstacleFrequency = 100;
+          obstacleSpeed = 5;
         }
         if (score > 500) {
-          obstacleFrequency = 1500;
-          obstacleSpeed = 15;
+          obstacleFrequency = 500;
+          obstacleSpeed = 10;
         }
         if (score > 1000) {
           obstacleFrequency = 1000;
-          obstacleSpeed = 18;
+          obstacleSpeed = 15;
         }
 
         // Mostrar transición suave día/noche al pasar de los 700 puntos
