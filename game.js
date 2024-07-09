@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (checkCollision(obstacle)) {
         clearInterval(timerId);
         if (obstacle.classList.contains('Halcon') && isCrouching) {
+          // No hacer nada, la oveja está agachada y puede pasar por debajo del halcón
         } else {
           gameOver();
         }
@@ -114,11 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 20);
 
     lastObstacleType = obstacleType;
-
-    if (!isGameOver) {
-      let randomTime = Math.random() * obstacleFrequency + 1000;
-      setTimeout(generateObstacle, randomTime);
-    }
   }
 
   function gameOver() {
@@ -164,9 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDisplay.textContent = score;
 
         // Ajuste en la frecuencia de los obstáculos y velocidad según el puntaje
-        
         if (score > 500) {
-          obstacleFrequency = 3000;
+          obstacleFrequency = 5000;
           obstacleSpeed = 10;
         }
         if (score > 900) {
@@ -185,8 +180,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Ajustar más gradualmente la generación de obstáculos
-        let obstacleTime = Math.random() * obstacleFrequency + 1000;
-        setTimeout(generateObstacle, obstacleTime);
+        if (score % 100 === 0) {
+          clearTimeout(obstacleInterval); // Limpiar el intervalo actual de generación de obstáculos
+          obstacleInterval = setTimeout(generateObstacle, Math.random() * obstacleFrequency + 1000);
+        }
       }
     }, 100);
   }
