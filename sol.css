@@ -1,12 +1,14 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background: url('fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden;
 }
 
 .libro {
@@ -14,8 +16,9 @@ body {
     width: 80%;
     max-width: 1200px;
     margin: 0 auto;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .pagina {
@@ -25,7 +28,7 @@ body {
 }
 
 .pagina-izquierda {
-    border-right: 1px solid #ddd;
+    border-right: 2px solid #ddd;
 }
 
 .contenido {
@@ -94,50 +97,4 @@ body {
     font-size: 30px;
     cursor: pointer;
     color: white;
-}
-
-#boton-musica {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 30px;
-    cursor: pointer;
-    background: none;
-    border: none;
-}
-
-#mini-menu-musica {
-    display: none;
-    position: fixed;
-    bottom: 60px;
-    right: 20px;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#lista-musica {
-    display: flex;
-    flex-direction: column;
-}
-
-.titulo-cancion {
-    margin-top: 10px;
-    font-size: 14px;
-}
-
-#controles-musica {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-#volumen-musica {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-}
-
-#slider-volumen {
-    margin-left: 10px;
 }
