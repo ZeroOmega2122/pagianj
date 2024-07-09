@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameInterval;
   let obstacleInterval;
   let obstacleSpeed = 15; // Velocidad base de los obstáculos
-  let obstacleFrequency = 3000; // Frecuencia base de generación de obstáculos
+  let obstacleFrequency = 10000; // Frecuencia base de generación de obstáculos
 
   function control(e) {
     if (e.keyCode === 32 && !isJumping) {
@@ -162,16 +162,25 @@ document.addEventListener('DOMContentLoaded', () => {
         // Ajuste en la frecuencia de los obstáculos y velocidad según el puntaje
         if (score > 500) {
           obstacleFrequency = 5000;
-          obstacleSpeed = 10;
+          obstacleSpeed = 13;
         }
         if (score > 900) {
           obstacleFrequency = 1000;
-          obstacleSpeed = 5;
+          obstacleSpeed = 10;
         }
         if (score > 1500) {
           obstacleFrequency = 500;
+          obstacleSpeed = 7;
+        }
+        if (score > 2000) {
+          obstacleFrequency = 100;
+          obstacleSpeed = 5;
+        }
+        if (score > 3000) {
+          obstacleFrequency = 50;
           obstacleSpeed = 1;
         }
+
 
         // Mostrar transición suave día/noche al pasar de los 700 puntos
         if (score === 700) {
