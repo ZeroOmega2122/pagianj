@@ -5,160 +5,430 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERA-GALERIA 1</title>
-    <link rel="stylesheet" href="sol.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+        
+        body, html {
+            font-family: 'Pacifico', cursive;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+            height: 100%;
+        }
+
+        body {
+            background: url('./OIP (7).webp') center/cover fixed no-repeat;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2 {
+            font-size: 48px;
+            color: #ffffff;
+            margin-top: 50px;
+            animation: titulo-animacion 2s ease-in-out infinite alternate;
+        }
+
+        #boton-galeria-1, #boton-galeria-2 {
+            position: fixed;
+            top: 0;
+            left: -80px;
+            z-index: 9999;
+        }
+
+        #boton-galeria-2 {
+            top: 60px;
+        }
+
+        #boton-galeria-1 a img, #boton-galeria-2 a img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+        }
+
+        .boton-galeria {
+            width: 220px;
+            height: 220px;
+        }
+
+        .boton-galeria a {
+            display: inline-block;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+        .boton-galeria a img {
+            width: 160px;
+            height: 160px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .boton-galeria a img:hover {
+            transform: scale(1.1);
+        }
+
+        .fila-imagenes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .imagen-galeria {
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s, z-index 0s 0.3s;
+            position: relative;
+        }
+
+        .imagen-galeria:hover {
+            transform: scale(1.25);
+            z-index: 1;
+        }
+
+        .imagen-container {
+            position: relative;
+        }
+
+        .descripcion-imagen {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-size: 17px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: 10px;
+        }
+
+        .imagen-container:hover .descripcion-imagen {
+            opacity: 1;
+        }
+
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            overflow: auto;
+        }
+
+        #modal-contenido {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        #modal-imagen {
+            max-width: 100%;
+            max-height: 100%;
+            margin-bottom: 20px;
+        }
+
+        #cerrar-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+            z-index: 10001;
+            transition: background-color 0.3s ease;
+        }
+
+        #cerrar-modal:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #000;
+        }
+
+        #boton-musica {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            cursor: pointer;
+            font-size: 24px;
+            background-color: transparent;
+            color: #1DB954;
+            padding: 10px;
+            border-radius: 50%;
+            border: 2px solid #1DB954;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        #mini-menu-musica {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            width: 300px;
+            background-color: #282828;
+            border-radius: 10px;
+            display: none;
+            z-index: 10000;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            border: 2px solid #1DB954;
+        }
+
+        #lista-musica {
+            max-height: 200px;
+            overflow-y: auto;
+            border-bottom: 1px solid #535353;
+            padding: 0;
+            margin: 0;
+        }
+
+        #lista-musica button {
+            width: 100%;
+            padding: 15px;
+            text-align: left;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.3s ease;
+            color: #FFFFFF;
+        }
+
+        #lista-musica button:hover,
+        #lista-musica button.seleccionado {
+            background-color: #535353;
+        }
+
+        #controles-musica {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding: 10px;
+            border-bottom: 1px solid #535353;
+            border-top: 1px solid #535353;
+        }
+
+        #controles-musica button {
+            background-color: transparent;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #controles-musica button:hover {
+            background-color: #535353;
+        }
+
+        #volumen-musica {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border: 2px solid #1DB954;
+            border-radius: 10px;
+            color: #FFFFFF;
+            margin-top: 10px;
+        }
+
+        #volumen-musica input[type="range"] {
+            width: 80%;
+            margin-top: 10px;
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: #282828;
+            border: none;
+        }
+
+        #volumen-musica input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #1DB954;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+
+        #volumen-musica span {
+            margin-top: 5px;
+        }
+
+        .titulo-cancion {
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+    </style>
 </head>
 <body>
-    <div id="boton-galeria-1">
-        <a href="J2.html" class="boton-pagina" data-pagina="1">
+    <div class="boton-galeria" id="boton-galeria-1">
+        <a href="J2.html">
             <img src="R (1).webp" alt="Ir a la Galería">
         </a>
     </div>
-    <div id="boton-galeria-2">
-        <a href="galeria2.html" class="boton-pagina" data-pagina="2">
-            <img src="R (2).webp" alt="Ir a la Galería 2">
+    <div class="boton-galeria" id="boton-galeria-2">
+        <a href="galeria2.html">
+            <img src="14667704.webp" alt="Ir a la Galería">
         </a>
     </div>
-    <div class="libro">
-        <div class="pagina pagina-izquierda">
-            <div class="contenido">
-                <h1>ERA-GALERIA 1</h1>
-                <div class="fila-imagenes">
-                    <!-- Imágenes de la primera página -->
-                    <div class="imagen-container" data-imagen="imagen-id-1">
-                        <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.00.webp" alt="Recuerdo 1">
-                        <div class="descripcion-imagen">
-                            <!-- Contenido del recuerdo 1 -->
-                            <p>Descripción del recuerdo 1</p>
-                            <p>Un descanso tranquilo acompañado con melodía de Inuyasha</p>
-                            <p>y perritos de la U :D My moment favorite</p>
-                        </div>
-                    </div>
-                    <div class="imagen-container">
-                        <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.00 (1).webp" alt="Recuerdo 2">
-                        <div class="descripcion-imagen">
-                            <p>Recuerdo 2</p>
-                            <p>N: Paz en una imagen, la vale queria comer pizza jsjs</p>
-                        </div>
-                    </div>
-                    <div class="imagen-container">
-                        <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.01.webp" alt="Recuerdo 3">
-                        <div class="descripcion-imagen">
-                            <p>Recuerdo 3</p>
-                            <p>N: Un dia bastante especial al menos para el Nico, yo creo que se sorprendio mucho jsjsjs</p>
-                        </div>
-                    </div>
-                    <div class="imagen-container">
-                        <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.01 (1).webp" alt="Recuerdo 4">
-                        <div class="descripcion-imagen">
-                            <p>Recuerdo 4</p>
-                            <p>N: Los maleantes del cedehp.</p>
-                        </div>
-                    </div>
-                    <div class="imagen-container">
-                        <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 23.11.15 (1).webp" alt="Recuerdo 5">
-                        <div class="descripcion-imagen">
-                            <p>Recuerdo 5</p>
-                            <p>N: Los InuMoon o SailorYasha.</p>
-                            <p>El Seshumaru y rin JAJA</p>
-                        </div>
-                    </div>
-                    <div class="imagen-container">
-                        <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.01 (3).webp" alt="Recuerdo 6">
-                        <div class="descripcion-imagen">
-                            <p>Recuerdo 6</p>
-                            <p>N: El dia en que te convertiste en erizo.</p>
-                        </div>
-                    </div>
-                    <div class="imagen-container">
-                        <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.01 (4).webp" alt="Recuerdo 7">
-                        <div class="descripcion-imagen">
-                            <p>Recuerdo 7</p>
-                            <p>Tres</p>
-                        </div>
-                    </div>
-                    <div class="imagen-container">
-                        <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.02.webp" alt="Recuerdo 8">
-                        <div class="descripcion-imagen">
-                            <p>Recuerdo 8</p>
-                            <p>Joyas</p>
-                        </div>
-                    </div>
-                    <div class="imagen-container">
-                        <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.02 (1).webp" alt="Recuerdo 9">
-                        <div class="descripcion-imagen">
-                            <p>Recuerdo 9</p>
-                            <p>Bien pulidas.</p>
-                        </div>
-                    </div>
-                    <div class="imagen-container">
-                        <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.02 (3).webp" alt="Recuerdo 10">
-                        <div class="descripcion-imagen">
-                            <p>Recuerdo 10</p>
-                            <p>N: Volantina chismosa.</p>
-                        </div>
-                    </div>
-                    <div class="imagen-container">
-                        <img class="imagen-galeria" src="./WhatsApp Image 2023-12-18 at 22.25.02 (4).webp" alt="Recuerdo 11">
-                        <div class="descripcion-imagen">
-                            <p>Recuerdo 11</p>
-                            <p>N: Me acuerdo cuando se pusieron a bailar cueca y cuando volamos el volantin estuvo lindo ese dia.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <h1></h1>
+    <h1></h1>
+    <h1>Galería de Fotos</h1>
+    <h2>¡Explora nuestras increíbles imágenes!</h2>
+    <div class="fila-imagenes">
+        <div class="imagen-container">
+            <img class="imagen-galeria" src="R (2).webp" alt="Imagen 1" onclick="abrirModal('R (2).webp')">
+            <div class="descripcion-imagen">Descripción de la imagen 1</div>
         </div>
-        <div class="pagina pagina-derecha">
-            <div class="contenido">
-                <h2>Galería 2</h2>
-                <div class="fila-imagenes">
-                    <!-- Imágenes de la segunda página -->
-                    <div class="imagen-container">
-                        <img class="imagen-galeria" src="OIP (5).webp" alt="Descripción de la Imagen 5">
-                        <div class="descripcion-imagen">Descripción de la Imagen 5</div>
-                    </div>
-                    <div class="imagen-container">
-                        <img class="imagen-galeria" src="OIP (6).webp" alt="Descripción de la Imagen 6">
-                        <div class="descripcion-imagen">Descripción de la Imagen 6</div>
-                    </div>
-                    <div class="imagen-container">
-                        <img class="imagen-galeria" src="OIP (7).webp" alt="Descripción de la Imagen 7">
-                        <div class="descripcion-imagen">Descripción de la Imagen 7</div>
-                    </div>
-                    <div class="imagen-container">
-                        <img class="imagen-galeria" src="OIP (8).webp" alt="Descripción de la Imagen 8">
-                        <div class="descripcion-imagen">Descripción de la Imagen 8</div>
-                    </div>
-                </div>
-            </div>
+        <div class="imagen-container">
+            <img class="imagen-galeria" src="R (3).webp" alt="Imagen 2" onclick="abrirModal('R (3).webp')">
+            <div class="descripcion-imagen">Descripción de la imagen 2</div>
+        </div>
+        <div class="imagen-container">
+            <img class="imagen-galeria" src="R (4).webp" alt="Imagen 3" onclick="abrirModal('R (4).webp')">
+            <div class="descripcion-imagen">Descripción de la imagen 3</div>
+        </div>
+        <div class="imagen-container">
+            <img class="imagen-galeria" src="R (5).webp" alt="Imagen 4" onclick="abrirModal('R (5).webp')">
+            <div class="descripcion-imagen">Descripción de la imagen 4</div>
+        </div>
+        <div class="imagen-container">
+            <img class="imagen-galeria" src="R (6).webp" alt="Imagen 5" onclick="abrirModal('R (6).webp')">
+            <div class="descripcion-imagen">Descripción de la imagen 5</div>
+        </div>
+        <div class="imagen-container">
+            <img class="imagen-galeria" src="R (7).webp" alt="Imagen 6" onclick="abrirModal('R (7).webp')">
+            <div class="descripcion-imagen">Descripción de la imagen 6</div>
+        </div>
+        <div class="imagen-container">
+            <img class="imagen-galeria" src="R (8).webp" alt="Imagen 7" onclick="abrirModal('R (8).webp')">
+            <div class="descripcion-imagen">Descripción de la imagen 7</div>
         </div>
     </div>
-
     <div id="modal">
+        <span id="cerrar-modal" onclick="cerrarModal()">&times;</span>
         <div id="modal-contenido">
-            <img id="modal-imagen" src="" alt="">
-            <span id="cerrar-modal">&times;</span>
+            <img id="modal-imagen" src="" alt="Imagen Modal">
         </div>
     </div>
 
-    <button id="boton-musica">&#9835;</button>
+    <button id="boton-musica" onclick="toggleMenuMusica()"><i class="fas fa-music"></i></button>
     <div id="mini-menu-musica">
-        <div id="lista-musica">
-            <button data-cancion="cancion1.mp3" class="seleccionado">Canción 1</button>
-            <button data-cancion="cancion2.mp3">Canción 2</button>
-            <button data-cancion="cancion3.mp3">Canción 3</button>
-        </div>
-        <div class="titulo-cancion">Canción 1</div>
+        <ul id="lista-musica">
+            <li>
+                <button onclick="cambiarCancion('cancion1.mp3', 'Canción 1')">Canción 1</button>
+            </li>
+            <li>
+                <button onclick="cambiarCancion('cancion2.mp3', 'Canción 2')">Canción 2</button>
+            </li>
+            <li>
+                <button onclick="cambiarCancion('cancion3.mp3', 'Canción 3')">Canción 3</button>
+            </li>
+        </ul>
+        <div class="titulo-cancion" id="titulo-cancion">Canción 1</div>
         <div id="controles-musica">
-            <button id="anterior">&#9664;</button>
-            <button id="play">&#9654;</button>
-            <button id="siguiente">&#9654;&#9654;</button>
+            <button onclick="pausarMusica()"><i class="fas fa-pause"></i></button>
+            <button onclick="reproducirMusica()"><i class="fas fa-play"></i></button>
         </div>
         <div id="volumen-musica">
-            <input type="range" id="slider-volumen" min="0" max="100" value="50">
             <span>Volumen</span>
+            <input type="range" min="0" max="1" step="0.1" value="0.5" onchange="cambiarVolumen(this.value)">
         </div>
     </div>
+    <audio id="musica-fondo" src="cancion1.mp3" loop></audio>
+    <script>
+        const tituloElementos = ["", ""];
 
-    <script src="par.js"></script>
+        function mostrarTexto() {
+            const h1Elementos = document.querySelectorAll("h1");
+            h1Elementos.forEach((h1, index) => {
+                h1.textContent = tituloElementos[index];
+            });
+        }
+
+        window.addEventListener("load", mostrarTexto);
+
+        function abrirModal(imagenSrc) {
+            const modal = document.getElementById('modal');
+            const modalImagen = document.getElementById('modal-imagen');
+            modal.style.display = 'block';
+            modalImagen.src = imagenSrc;
+        }
+
+        function cerrarModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        const miniMenuMusica = document.getElementById("mini-menu-musica");
+
+        function toggleMenuMusica() {
+            if (miniMenuMusica.style.display === "none") {
+                miniMenuMusica.style.display = "block";
+            } else {
+                miniMenuMusica.style.display = "none";
+            }
+        }
+
+        const audioElement = document.getElementById("musica-fondo");
+
+        function cambiarCancion(archivo, titulo) {
+            audioElement.src = archivo;
+            document.getElementById("titulo-cancion").innerText = titulo;
+            reproducirMusica();
+            const botones = document.querySelectorAll("#lista-musica button");
+            botones.forEach(boton => {
+                boton.classList.remove("seleccionado");
+            });
+            event.target.classList.add("seleccionado");
+        }
+
+        function reproducirMusica() {
+            audioElement.play();
+        }
+
+        function pausarMusica() {
+            audioElement.pause();
+        }
+
+        function cambiarVolumen(volumen) {
+            audioElement.volume = volumen;
+        }
+    </script>
 </body>
 </html>
