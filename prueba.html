@@ -34,6 +34,14 @@
         <button class="nav-button prev" onclick="prevPage()">&#10094;</button>
         <button class="nav-button next" onclick="nextPage()">&#10095;</button>
     </div>
+    <div class="controls">
+        <button onclick="changeBackground()">Cambiar Fondo</button>
+        <button onclick="toggleMusic()">Reproducir/Pausar Música</button>
+    </div>
+    <audio id="background-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
     <script src="par.js"></script>
 </body>
 </html>
