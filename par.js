@@ -1,30 +1,38 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const imagenes = document.querySelectorAll('.imagen-galeria');
-    const modal = document.getElementById('modal');
-    const modalImagen = document.getElementById('modal-imagen');
-    const cerrarModal = document.getElementById('cerrar-modal');
+let currentPage = 1;
+const totalPages = document.querySelectorAll('.page').length;
 
-    imagenes.forEach(imagen => {
-        imagen.addEventListener('click', function() {
-            modal.style.display = 'flex';
-            modalImagen.src = this.src;
-        });
-    });
+window.onload = () => {
+    const bookCover = document.querySelector('.book-cover');
+    const bookContent = document.querySelector('.book-content');
 
-    cerrarModal.addEventListener('click', function() {
-        modal.style.display = 'none';
-    });
+    // Abrir el libro al cargar la página
+    setTimeout(() => {
+        bookCover.style.transform = 'rotateY(-180deg)';
+        bookContent.style.opacity = '1';
+        showPage(1);
+    }, 500);
+}
 
-    window.addEventListener('click', function(event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
+function showPage(page) {
+    document.querySelectorAll('.page').forEach((p, index) => {
+        if (index + 1 === page) {
+            p.classList.add('active');
+        } else {
+            p.classList.remove('active');
         }
     });
+}
 
-    const botonMusica = document.getElementById('boton-musica');
-    const miniMenuMusica = document.getElementById('mini-menu-musica');
+function prevPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        showPage(currentPage);
+    }
+}
 
-    botonMusica.addEventListener('click', function() {
-        miniMenuMusica.style.display = miniMenuMusica.style.display === 'block' ? 'none' : 'block';
-    });
-});
+function nextPage() {
+    if (currentPage < totalPages) {
+        currentPage++;
+        showPage(currentPage);
+    }
+}
