@@ -1,21 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
   const Oveja = document.getElementById('Oveja');
   const game = document.getElementById('game');
-  const scoreDisplay = document.getElementById('score');
-  const gameOverDisplay = document.createElement('div');
-  gameOverDisplay.id = 'game-over';
-  gameOverDisplay.innerText = 'Game Over';
-  game.appendChild(gameOverDisplay);
+  const scoreDisplay = document.getElementById('score-value');
+  const gameOverDisplay = document.getElementById('game-over');
+  const music1 = document.getElementById('background-music');
+  const music2 = document.getElementById('background-music-2');
+  const jumpSound = document.getElementById('jump-sound');
+  const crouchSound = document.getElementById('crouch-sound');
+  const hitSound = document.getElementById('hit-sound');
+  const gameOverSound = document.getElementById('game-over-sound');
 
   let isJumping = false;
   let isCrouching = false;
   let isGameOver = false;
   let score = 0;
   let lastObstacleType = '';
-  let gameInterval;
-  let obstacleInterval;
-  let obstacleSpeed = 15; // Velocidad base de los obstáculos
-  let obstacleFrequency = 100; // Frecuencia base de generación de obstáculos
+  let musicPlaying = null;
 
   function control(e) {
     if (e.keyCode === 32 && !isJumping) {
@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isCrouching) return;
     isJumping = true;
     Oveja.style.animation = 'jump 1s ease-in-out';
+    jumpSound.play();
 
     setTimeout(() => {
       Oveja.style.animation = 'trot 0.5s steps(2) infinite';
@@ -56,9 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
     Oveja.classList.add('Oveja-crouch');
     Oveja.style.width = '60px';
     Oveja.style.height = '60px';
-    Oveja.style.bottom = '10px'; // Ajuste menor para evitar invisibilidad al agacharse
-    Oveja.style.backgroundImage = 'url(Oveja22-.png)';
+    Oveja.style.bottom = '-15px';
+    Oveja.style.backgroundImage = 'url(AgachoOV2.png)';
     Oveja.style.animation = 'none';
+    crouchSound.play();
   }
 
   function checkCollision(obstacle) {
@@ -75,10 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function generateObstacle() {
     if (isGameOver) return;
 
-    let obstacleType = Math.random() > 0.3 ? 'Valla' : 'Halcon'; // Ajuste en la probabilidad de tipos de obstáculos
+    let randomTime = Math.random() * 4000 + 1000;
+    let obstacleType = Math.random() > 0.5 ? 'Valla' : 'Halcon'; // Ajustado para que el halcón aparezca más
 
     if (lastObstacleType === 'Valla' && obstacleType === 'Halcon') {
-      obstacleType = 'Valla';
+      obstacleType = 'Halcon';
     } else if (lastObstacleType === 'Halcon' && obstacleType === 'Halcon') {
       obstacleType = 'Valla';
     }
@@ -90,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     obstacle.style.left = obstaclePosition + 'px';
 
     if (obstacleType === 'Halcon') {
-      const positions = [90, 150, 200];
+      const positions = [70, 100, 150];
       obstacle.style.top = positions[Math.floor(Math.random() * positions.length)] + 'px';
     } else {
       obstacle.style.bottom = '0';
@@ -99,13 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let timerId = setInterval(function() {
       if (checkCollision(obstacle)) {
         clearInterval(timerId);
+        hitSound.play();
         if (obstacle.classList.contains('Halcon') && isCrouching) {
-          // No hacer nada, la oveja está agachada y puede pasar por debajo del halcón
         } else {
           gameOver();
         }
       }
-      obstaclePosition -= obstacleSpeed; // Ajuste de la velocidad según el puntaje
+      obstaclePosition -= 10;
       obstacle.style.left = obstaclePosition + 'px';
 
       if (obstaclePosition < -40) {
@@ -115,36 +118,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 20);
 
     lastObstacleType = obstacleType;
+
+    if (!isGameOver) setTimeout(generateObstacle, randomTime);
+  }
+
+  function playMusic() {
+    if (score < 700) {
+      if (musicPlaying !== music1) {
+        if (musicPlaying) musicPlaying.pause();
+        music1.currentTime = 0;
+        music1.play();
+        musicPlaying = music1;
+      }
+    } else {
+      if (musicPlaying !== music2) {
+        if (musicPlaying) musicPlaying.pause();
+        music2.currentTime = 0;
+        music2.play();
+        musicPlaying = music2;
+      }
+    }
   }
 
   function gameOver() {
     isGameOver = true;
     gameOverDisplay.style.display = 'block';
-    clearInterval(gameInterval);
-    clearTimeout(obstacleInterval);
     while (game.firstChild) {
       game.removeChild(game.firstChild);
     }
     game.appendChild(gameOverDisplay);
-
-    // Mostrar botón de reinicio
-    const restartButton = document.createElement('button');
-    restartButton.textContent = 'Reiniciar';
-    restartButton.addEventListener('click', () => {
-      location.reload(); // Recargar la página para reiniciar el juego
-    });
-    document.body.appendChild(restartButton);
-
-    // Ajustar el mensaje de Game Over y la transición día/noche según el puntaje
-    if (score > 700) {
-      document.body.style.backgroundImage = 'url("Vnoche.png")';
-      game.style.backgroundImage = 'url("Vnoche.png")';
-      gameOverDisplay.style.color = '#ffffff'; // Color de texto blanco para la noche
-    } else {
-      document.body.style.backgroundImage = 'url("VDia.png")';
-      game.style.backgroundImage = 'url("VDiav.png")';
-      gameOverDisplay.style.color = '#ff0000'; // Color de texto rojo para el día
-    }
+    if (musicPlaying) musicPlaying.pause();
+    gameOverSound.play();
+    setTimeout(() => {
+      window.location.reload();
+    }, 5000);
   }
 
   function startGame() {
@@ -154,48 +161,26 @@ document.addEventListener('DOMContentLoaded', () => {
     scoreDisplay.textContent = score;
     game.appendChild(Oveja);
     generateObstacle();
-    gameInterval = setInterval(function() {
+    setInterval(function() {
       if (!isGameOver) {
         score++;
         scoreDisplay.textContent = score;
-
-        // Ajuste en la frecuencia de los obstáculos y velocidad según el puntaje
-        if (score > 500) {
-          obstacleFrequency = 5000;
-          obstacleSpeed = 20;
-        }
-        if (score > 900) {
-          obstacleFrequency = 1000;
-          obstacleSpeed = 25;
-        }
-        if (score > 1500) {
-          obstacleFrequency = 500;
-          obstacleSpeed = 30;
-        }
-        if (score > 2000) {
-          obstacleFrequency = 100;
-          obstacleSpeed = 50;
-        }
-        if (score > 3000) {
-          obstacleFrequency = 50;
-          obstacleSpeed = 70;
-        }
-
-
-        // Mostrar transición suave día/noche al pasar de los 700 puntos
-        if (score === 700) {
-          document.body.style.transition = 'background-image 2s ease';
-          game.style.transition = 'background-image 2s ease';
-        }
-
-        // Ajustar más gradualmente la generación de obstáculos
-        if (score % 100 === 0) {
-          clearTimeout(obstacleInterval); // Limpiar el intervalo actual de generación de obstáculos
-          obstacleInterval = setTimeout(generateObstacle, Math.random() * obstacleFrequency + 1000);
+        playMusic();
+        if (score > 700) {
+          document.body.style.backgroundImage = 'url("Vnoche.png")';
+          game.style.backgroundImage = 'url("Vnoche2.png")';
         }
       }
     }, 100);
   }
+
+  // Para permitir la reproducción automática de audio después de una interacción del usuario
+  document.addEventListener('click', () => {
+    if (!musicPlaying) {
+      music1.play();
+      musicPlaying = music1;
+    }
+  }, { once: true });
 
   setTimeout(startGame, 1000);
 });
