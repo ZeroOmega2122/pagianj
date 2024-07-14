@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let musicPlaying = null;
 
   function control(e) {
-    if (e.keyCode === 32 && !isJumping) {
+    if ((e.keyCode === 32 || e.type === 'touchstart') && !isJumping) {
       jump();
     } else if (e.keyCode === 40 && !isCrouching) {
       crouch();
@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.addEventListener('keydown', control);
+  document.addEventListener('touchstart', control); // Escucha el evento touchstart para dispositivos táctiles
   document.addEventListener('keyup', stopCrouching);
 
   function jump() {
