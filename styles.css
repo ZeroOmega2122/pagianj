@@ -23,7 +23,7 @@ body {
 
 @keyframes scrollBackground {
   0% { background-position: 0 0; }
-  100% { background-position: -1000px 0; }
+  100% { background-position: -500px 0; }
 }
 
 #Oveja {
@@ -105,26 +105,79 @@ body {
 
 /* Estilos específicos para dispositivos móviles */
 .mobile #game {
-  width: 100px;
-  height: 80px;
+  width: 320px;
+  height: 180px;
   transform: scale(1);
 }
 
 .mobile #Oveja {
-  width: 15px;
-  height: 15px;
-  left: 10px;
+  width: 30px;
+  height: 30px;
+  left: 20px;
 }
 
 .mobile .Valla, .mobile .Halcon {
-  width: 15px;
-  height: 15px;
+  width: 30px;
+  height: 30px;
 }
 
 .mobile #score {
-  font-size: 10px;
+  font-size: 20px;
 }
 
 .mobile #game-over {
-  font-size: 35px;
+  font-size: 75px;
+}
+#boton-galeria-1 {
+  position: fixed;
+  top: 0px;
+  left: -60px;
+  z-index: 9999;
+}
+
+#boton-galeria-2 {
+  position: fixed;
+  top: 110px;
+  left: -60px;
+  z-index: 9999;
+}
+
+#boton-galeria-3 {
+  position: fixed;
+  top: 140px;
+  right: -35.5px;
+  z-index: 10000;
+}
+
+/* Tamaño de los botones de cambio de página */
+#boton-galeria-1 a img{
+  width: 100px;  /* Ancho deseado */
+  height: 100px; /* Alto deseado */
+  border-radius: 8px; /* Mantener el radio de borde para la apariencia redondeada */
+}
+
+/* Ajustar el tamaño del contenedor si es necesario */
+.boton-galeria {
+  width: 220px; /* Ajusta este tamaño según sea necesario */
+  height: 220px; /* Ajusta este tamaño según sea necesario */
+}
+
+.boton-galeria a {
+  display: inline-block;
+  border: 3px solid #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.boton-galeria a img {
+  width: 160px;
+  height: 160px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.boton-galeria a img:hover {
+  transform: scale(1.1);
 }
