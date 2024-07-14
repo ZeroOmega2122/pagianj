@@ -12,7 +12,7 @@
             padding: 0;
             color: #333;
             text-align: center;
-            height: 100%;
+            height: 10%;
         }
 
         body {
@@ -31,21 +31,33 @@
         #boton-galeria-1 {
             position: fixed;
             top: 0px;
-            left: -80px;
+            left: -60px;
             z-index: 9999;
         }
 
         #boton-galeria-2 {
             position: fixed;
-            top: 60px;
-            left: -80px;
+            top: 110px;
+            left: -60px;
             z-index: 9999;
+        }
+      
+        #boton-galeria-3 {
+            position: fixed;
+            top: 140px;
+            right: -35.5px;
+            z-index: 10000;
         }
 
         /* Tamaño de los botones de cambio de página */
-        #boton-galeria-1 a img, #boton-galeria-2 a img {
-            width: 50px;  /* Ancho deseado */
-            height: 50px; /* Alto deseado */
+        #boton-galeria-1 a img, #boton-galeria-2 a img{
+            width: 100px;  /* Ancho deseado */
+            height: 100px; /* Alto deseado */
+            border-radius: 8px; /* Mantener el radio de borde para la apariencia redondeada */
+        }
+        #boton-galeria-3 a img {
+            width: 100px;  /* Ancho deseado */
+            height: 100px; /* Alto deseado */
             border-radius: 8px; /* Mantener el radio de borde para la apariencia redondeada */
         }
 
@@ -57,7 +69,7 @@
 
         .boton-galeria a {
             display: inline-block;
-            border: 2px solid #4CAF50;
+            border: 3px solid #ffffff;
             border-radius: 8px;
             overflow: hidden;
             margin: 10px;
@@ -107,7 +119,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            font-size: 17px;
+            font-size: 20px;
             background: rgba(0, 0, 0, 0.7);
             color: #fff;
             padding: 10px;
@@ -124,13 +136,14 @@
         #modal {
             display: none;
             position: fixed;
-            top: 0;
+            top: 30;
             left: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.8);
             z-index: 999;
             overflow: auto;
+            font-size: 48px;
         }
 
         #modal-contenido {
@@ -138,17 +151,17 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 20px;
+            background-color: #ffffff;
+            padding: 0px;
             border-radius: 10px;
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 190%;
+            max-height: 190%;
         }
 
         #modal-imagen {
-            max-width: 100%;
-            max-height: 100%;
-            margin-bottom: 20px;
+            max-width: 190%;
+            max-height: 190%;
+            margin-bottom: 10px;
         }
 #cerrar-modal {
     position: absolute;
@@ -177,34 +190,34 @@
             right: 20px;
             z-index: 10000;
             cursor: pointer;
-            font-size: 24px;
+            font-size: 60px;
             background-color: transparent; /* Color de fondo transparente */
-            color: #1DB954; /* Color del texto verde de Spotify */
+            color: #ffffff; /* Color del texto verde de Spotify */
             padding: 10px;
-            border-radius: 50%; /* Borde circular */
-            border: 2px solid #1DB954; /* Borde sólido */
+            border-radius: 1000%; /* Borde circular */
+            border: 4px solid #ffffff; /* Borde sólido */
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave */
         }
 
         /* Menú emergente de música */
         #mini-menu-musica {
             position: fixed;
-            top: 60px;
+            top: 120px;
             right: 20px;
             width: 300px;
-            background-color: #282828; /* Color de fondo oscuro similar a Spotify */
+            background-color: #151b53be; /* Color de fondo oscuro similar a Spotify */
             border-radius: 10px;
             display: none;
             z-index: 10000;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave */
-            border: 2px solid #1DB954; /* Borde sólido verde similar a Spotify */
+            box-shadow: 0px 4px 6px rgba(255, 12, 12, 0.3); /* Sombra suave */
+            border: 4px solid #ffffff; /* Borde sólido verde similar a Spotify */
         }
 
         /* Lista de música */
         #lista-musica {
-            max-height: 200px;
+            max-height: 250px;
             overflow-y: auto;
-            border-bottom: 1px solid #535353; /* Borde inferior similar a Spotify */
+            border-bottom: 1px solid #363455; /* Borde inferior similar a Spotify */
             padding: 0; /* Elimina el relleno */
             margin: 0; /* Elimina el margen */
         }
@@ -218,14 +231,15 @@
             border: none;
             cursor: pointer;
             position: relative;
-            transition: background-color 0.3s ease; /* Transición suave */
+            transition: background-color 0.10s ease; /* Transición suave */
             color: #FFFFFF; /* Color del texto blanco */
+            font-size: 20px;
         }
 
         /* Estilo al pasar el cursor sobre los botones de música */
         #lista-musica button:hover,
         #lista-musica button.seleccionado {
-            background-color: #535353; /* Color de fondo similar a Spotify al pasar el cursor */
+            background-color: #302c53; /* Color de fondo similar a Spotify al pasar el cursor */
         }
 
         /* Controles de música */
@@ -313,6 +327,11 @@
     <div class="boton-galeria" id="boton-galeria-2">
         <a href="galeria2.html">
             <img src="14667704.webp" alt="Ir a la Galería">
+        </a>
+    </div>
+    <div class="boton-galeria" id="boton-galeria-3">
+        <a href="index.html">
+            <img src="gamed.webp" alt="Ir a la Galería">
         </a>
     </div>
   <h1> </h1>
@@ -865,7 +884,7 @@
                 </div>
             </div>
                  <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2024-01-23 at 16.53.57.jpg" alt="Recuerdo 76">
+                <img class="imagen-galeria" src= "./WhatsApp Image 2024-01-23 at 16.53.57.webp" alt="Recuerdo 76">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 76</p>
                     <p>J:Volantina acompaña a Doña Scarleth a la pelu. Fuimos corriendo porque llegábamos tarde y casi nos ahogamos tosiendo por el humo del incendio en febrero XD</p>
