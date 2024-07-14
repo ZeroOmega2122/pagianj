@@ -10,16 +10,22 @@ body {
 
 #game {
   position: relative;
-  width: 1200px;
+  width: 1000px;
   height: 300px;
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #fff;
-  background-image: url('VDiav.png');
+  background-image: url('VDiav2.png');
   background-size: cover;
   background-position: bottom;
-  transform: scale(2);
+  transform: scale(2.5);
   transform-origin: center;
+  animation: scrollBackground 10s linear infinite;
+}
+
+@keyframes scrollBackground {
+  0% { background-position: 0 0; }
+  100% { background-position: -1000px 0; }
 }
 
 #Oveja {
@@ -30,7 +36,7 @@ body {
   height: 60px;
   background-image: url('Oveja2-.png');
   background-size: cover;
-  animation: trot 0.5s steps(2) infinite;
+  animation: trot 0.7s steps(2) infinite;
 }
 
 @keyframes trot {
@@ -40,15 +46,15 @@ body {
 }
 
 @keyframes jump {
-  0% { bottom: 0; background-image: url('Oveja2-.png'); }
+  0% { bottom: 10px; background-image: url('Oveja2-.png'); }
   50% { bottom: 200px; background-image: url('saltoOV.png'); }
-  100% { bottom: 0; background-image: url('Oveja2-.png'); }
+  100% { bottom: 10px; background-image: url('Oveja2-.png'); }
 }
 
 .Oveja-crouch {
-  left: 60px;
-  width: 60px;
-  height: 60px;
+  left: 10px;
+  width: 10px;
+  height: 10px;
   bottom: 0px;
   background-image: url('Oveja22-.png');
   background-size: cover;
@@ -57,7 +63,7 @@ body {
 .Valla {
   position: absolute;
   bottom: 0;
-  width: 30px;
+  width: 60px;
   height: 60px;
   background-image: url('Valla-.png');
   background-size: cover;
@@ -75,14 +81,14 @@ body {
 @keyframes fly {
   0% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
-  100% { transform: translateY(0); }
+  100% { transform: translateY(0px); }
 }
 
 #score {
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size: 30px;
+  font-size: 40px;
   font-family: Arial, sans-serif;
   color: black;
 }
@@ -93,22 +99,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 50px;
-  color: red;
+  font-size: 200px;
+  color: rgb(0, 132, 255);
   font-family: Arial, sans-serif;
   text-align: center;
-}
-
-#restart-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-#restart-button:hover {
-  background-color: #45a049;
 }
