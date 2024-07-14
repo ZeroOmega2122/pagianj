@@ -18,8 +18,6 @@ body {
   background-image: url('VDiav2.png');
   background-size: cover;
   background-position: bottom;
-  transform: scale(2.5);
-  transform-origin: center;
   animation: scrollBackground 10s linear infinite;
 }
 
@@ -99,8 +97,34 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 200px;
+  font-size: 150px;
   color: rgb(0, 132, 255);
   font-family: Arial, sans-serif;
   text-align: center;
+}
+
+/* Estilos específicos para dispositivos móviles */
+.mobile #game {
+  width: 320px;
+  height: 180px;
+  transform: scale(1);
+}
+
+.mobile #Oveja {
+  width: 30px;
+  height: 30px;
+  left: 20px;
+}
+
+.mobile .Valla, .mobile .Halcon {
+  width: 30px;
+  height: 30px;
+}
+
+.mobile #score {
+  font-size: 20px;
+}
+
+.mobile #game-over {
+  font-size: 75px;
 }
