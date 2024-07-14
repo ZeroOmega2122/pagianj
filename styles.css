@@ -105,26 +105,26 @@ body {
 
 /* Estilos específicos para dispositivos móviles */
 .mobile #game {
-  width: 320px;
-  height: 180px;
+  width: 100px;
+  height: 80px;
   transform: scale(1);
 }
 
 .mobile #Oveja {
-  width: 30px;
-  height: 30px;
-  left: 20px;
+  width: 15px;
+  height: 15px;
+  left: 10px;
 }
 
 .mobile .Valla, .mobile .Halcon {
-  width: 30px;
-  height: 30px;
+  width: 15px;
+  height: 15px;
 }
 
 .mobile #score {
-  font-size: 20px;
+  font-size: 10px;
 }
 
 .mobile #game-over {
-  font-size: 75px;
+  font-size: 35px;
 }
