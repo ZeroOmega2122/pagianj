@@ -18,14 +18,12 @@ body {
   background-image: url('VDiav2.png');
   background-size: cover;
   background-position: bottom;
-  transform: scale(2.5);
-  transform-origin: center;
   animation: scrollBackground 10s linear infinite;
 }
 
 @keyframes scrollBackground {
   0% { background-position: 0 0; }
-  100% { background-position: -1000px 0; }
+  100% { background-position: -500px 0; }
 }
 
 #Oveja {
@@ -56,38 +54,41 @@ body {
   width: 10px;
   height: 10px;
   bottom: 0px;
-  background-image: url('Oveja2-.png');
-}
-
-.Valla, .Halcon {
-  position: absolute;
-  width: 40px;
-  height: 40px;
+  background-image: url('Oveja22-.png');
+  background-size: cover;
 }
 
 .Valla {
-  background-image: url('Valla1.png');
+  position: absolute;
   bottom: 0;
+  width: 60px;
+  height: 60px;
+  background-image: url('Valla-.png');
+  background-size: cover;
 }
 
 .Halcon {
-  background-image: url('Halcon1.png');
-  animation: flap 1s steps(2) infinite;
+  position: absolute;
+  width: 60px;
+  height: 30px;
+  background-image: url('Ave-.png');
+  background-size: cover;
+  animation: fly 1s infinite;
 }
 
-@keyframes flap {
-  0% { background-image: url('Halcon1.png'); }
-  50% { background-image: url('Halcon2.png'); }
-  100% { background-image: url('Halcon1.png'); }
+@keyframes fly {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
 }
 
 #score {
   position: absolute;
   top: 10px;
-  left: 10px;
+  right: 10px;
+  font-size: 40px;
   font-family: Arial, sans-serif;
-  font-size: 20px;
-  color: #333;
+  color: black;
 }
 
 #game-over {
@@ -96,15 +97,87 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-size: 150px;
+  color: rgb(0, 132, 255);
   font-family: Arial, sans-serif;
-  font-size: 30px;
-  color: red;
+  text-align: center;
 }
 
-body.mobile #game {
-  width: 100%;
-  height: 200px;
-  transform: scale(1.5);
-  transform-origin: center;
-  background-image: url('VDiav2.png');
+/* Estilos específicos para dispositivos móviles */
+.mobile #game {
+  width: 300px;
+  height: 180px;
+  transform: scale(1);
+}
+
+.mobile #Oveja {
+  width: 30px;
+  height: 30px;
+  left: 20px;
+}
+
+.mobile .Valla, .mobile .Halcon {
+  width: 30px;
+  height: 30px;
+}
+
+.mobile #score {
+  font-size: 20px;
+}
+
+.mobile #game-over {
+  font-size: 75px;
+}
+#boton-galeria-1 {
+  position: fixed;
+  top: 0px;
+  left: -60px;
+  z-index: 9999;
+}
+
+#boton-galeria-2 {
+  position: fixed;
+  top: 110px;
+  left: -60px;
+  z-index: 9999;
+}
+
+#boton-galeria-3 {
+  position: fixed;
+  top: 140px;
+  right: -35.5px;
+  z-index: 10000;
+}
+
+/* Tamaño de los botones de cambio de página */
+#boton-galeria-1 a img{
+  width: 100px;  /* Ancho deseado */
+  height: 100px; /* Alto deseado */
+  border-radius: 8px; /* Mantener el radio de borde para la apariencia redondeada */
+}
+
+/* Ajustar el tamaño del contenedor si es necesario */
+.boton-galeria {
+  width: 220px; /* Ajusta este tamaño según sea necesario */
+  height: 220px; /* Ajusta este tamaño según sea necesario */
+}
+
+.boton-galeria a {
+  display: inline-block;
+  border: 3px solid #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.boton-galeria a img {
+  width: 160px;
+  height: 160px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.boton-galeria a img:hover {
+  transform: scale(1.1);
 }
