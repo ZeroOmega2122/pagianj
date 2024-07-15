@@ -17,6 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastObstacleType = '';
   let musicPlaying = null;
 
+  // Detección de dispositivo móvil
+  const isMobileDevice = /Mobi|Android/i.test(navigator.userAgent);
+  
+  // Control de eventos
   function control(e) {
     if (e.keyCode === 32 && !isJumping) {
       jump();
@@ -40,13 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', control);
   document.addEventListener('keyup', stopCrouching);
 
-  // Detección de dispositivo móvil
-  function isMobileDevice() {
-    return /Mobi|Android/i.test(navigator.userAgent);
-  }
-
-  if (isMobileDevice()) {
-    document.body.classList.add('mobile');
+  if (isMobileDevice) {
     document.addEventListener('touchstart', jump);
   } else {
     document.addEventListener('click', jump);
@@ -111,6 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
       obstacle.style.bottom = '0';
     }
 
+    let obstacleSpeed = isMobileDevice ? 5 : 10; // Ajuste de la velocidad basado en el dispositivo
+
     let timerId = setInterval(function() {
       if (checkCollision(obstacle)) {
         clearInterval(timerId);
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
           gameOver();
         }
       }
-      obstaclePosition -= 10;
+      obstaclePosition -= obstacleSpeed;
       obstacle.style.left = obstaclePosition + 'px';
 
       if (obstaclePosition < -40) {
@@ -196,3 +196,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setTimeout(startGame, 1000);
 });
+}
