@@ -1,183 +1,198 @@
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-image: url('VDia.png');
-  background-size: cover;
-  margin: 0;
-}
+document.addEventListener('DOMContentLoaded', () => {
+  const Oveja = document.getElementById('Oveja');
+  const game = document.getElementById('game');
+  const scoreDisplay = document.getElementById('score-value');
+  const gameOverDisplay = document.getElementById('game-over');
+  const music1 = document.getElementById('background-music');
+  const music2 = document.getElementById('background-music-2');
+  const jumpSound = document.getElementById('jump-sound');
+  const crouchSound = document.getElementById('crouch-sound');
+  const hitSound = document.getElementById('hit-sound');
+  const gameOverSound = document.getElementById('game-over-sound');
 
-#game {
-  position: relative;
-  width: 1000px;
-  height: 300px;
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  background-image: url('VDiav2.png');
-  background-size: cover;
-  background-position: bottom;
-  animation: scrollBackground 10s linear infinite;
-}
+  let isJumping = false;
+  let isCrouching = false;
+  let isGameOver = false;
+  let score = 0;
+  let lastObstacleType = '';
+  let musicPlaying = null;
 
-@keyframes scrollBackground {
-  0% { background-position: 0 0; }
-  100% { background-position: -500px 0; }
-}
+  // Detección de dispositivo móvil
+  const isMobileDevice = /Mobi|Android/i.test(navigator.userAgent);
+  
+  // Control de eventos
+  function control(e) {
+    if (e.keyCode === 32 && !isJumping) {
+      jump();
+    } else if (e.keyCode === 40 && !isCrouching) {
+      crouch();
+    }
+  }
 
-#Oveja {
-  position: absolute;
-  bottom: 0;
-  left: 50px;
-  width: 60px;
-  height: 60px;
-  background-image: url('Oveja2-.png');
-  background-size: cover;
-  animation: trot 0.7s steps(2) infinite;
-}
+  function stopCrouching(e) {
+    if (e.keyCode === 40) {
+      isCrouching = false;
+      Oveja.classList.remove('Oveja-crouch');
+      Oveja.style.width = '60px';
+      Oveja.style.height = '60px';
+      Oveja.style.bottom = '0';
+      Oveja.style.backgroundImage = 'url(Oveja2-.png)';
+      Oveja.style.animation = 'trot 0.5s steps(2) infinite';
+    }
+  }
 
-@keyframes trot {
-  0% { background-image: url('Oveja2-.png'); }
-  50% { background-image: url('Oveja2-2-.png'); }
-  100% { background-image: url('Oveja2-.png'); }
-}
+  document.addEventListener('keydown', control);
+  document.addEventListener('keyup', stopCrouching);
 
-@keyframes jump {
-  0% { bottom: 10px; background-image: url('Oveja2-.png'); }
-  50% { bottom: 200px; background-image: url('saltoOV.png'); }
-  100% { bottom: 10px; background-image: url('Oveja2-.png'); }
-}
+  if (isMobileDevice) {
+    document.addEventListener('touchstart', jump);
+  } else {
+    document.addEventListener('click', jump);
+  }
 
-.Oveja-crouch {
-  left: 10px;
-  width: 10px;
-  height: 10px;
-  bottom: 0px;
-  background-image: url('Oveja22-.png');
-  background-size: cover;
-}
+  function jump() {
+    if (isCrouching) return;
+    isJumping = true;
+    Oveja.style.animation = 'jump 1s ease-in-out';
+    jumpSound.play();
 
-.Valla {
-  position: absolute;
-  bottom: 0;
-  width: 60px;
-  height: 60px;
-  background-image: url('Valla-.png');
-  background-size: cover;
-}
+    setTimeout(() => {
+      Oveja.style.animation = 'trot 0.5s steps(2) infinite';
+      isJumping = false;
+    }, 1000);
+  }
 
-.Halcon {
-  position: absolute;
-  width: 60px;
-  height: 30px;
-  background-image: url('Ave-.png');
-  background-size: cover;
-  animation: fly 1s infinite;
-}
+  function crouch() {
+    isCrouching = true;
+    Oveja.classList.add('Oveja-crouch');
+    Oveja.style.width = '60px';
+    Oveja.style.height = '60px';
+    Oveja.style.bottom = '-15px';
+    Oveja.style.backgroundImage = 'url(AgachoOV2.png)';
+    Oveja.style.animation = 'none';
+    crouchSound.play();
+  }
 
-@keyframes fly {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0px); }
-}
+  function checkCollision(obstacle) {
+    const OvejaRect = Oveja.getBoundingClientRect();
+    const obstacleRect = obstacle.getBoundingClientRect();
+    return (
+      OvejaRect.left < obstacleRect.left + obstacleRect.width &&
+      OvejaRect.left + OvejaRect.width > obstacleRect.left &&
+      OvejaRect.top < obstacleRect.top + obstacleRect.height &&
+      OvejaRect.top + OvejaRect.height > obstacleRect.top
+    );
+  }
 
-#score {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 40px;
-  font-family: Arial, sans-serif;
-  color: black;
-}
+  function generateObstacle() {
+    if (isGameOver) return;
 
-#game-over {
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 150px;
-  color: rgb(0, 132, 255);
-  font-family: Arial, sans-serif;
-  text-align: center;
-}
+    let randomTime = Math.random() * 4000 + 1000;
+    let obstacleType = Math.random() > 0.5 ? 'Valla' : 'Halcon'; // Ajustado para que el halcón aparezca más
 
-/* Estilos específicos para dispositivos móviles */
-.mobile #game {
-  width: 400px;
-  height: 280px;
-  transform: scale(1);
-}
+    if (lastObstacleType === 'Valla' && obstacleType === 'Halcon') {
+      obstacleType = 'Halcon';
+    } else if (lastObstacleType === 'Halcon' && obstacleType === 'Halcon') {
+      obstacleType = 'Valla';
+    }
 
-.mobile #Oveja {
-  width: 30px;
-  height: 30px;
-  left: 20px;
-}
+    let obstaclePosition = 1200;
+    const obstacle = document.createElement('div');
+    obstacle.classList.add(obstacleType);
+    game.appendChild(obstacle);
+    obstacle.style.left = obstaclePosition + 'px';
 
-.mobile .Valla, .mobile .Halcon {
-  width: 30px;
-  height: 30px;
-}
+    if (obstacleType === 'Halcon') {
+      const positions = [70, 100, 150];
+      obstacle.style.top = positions[Math.floor(Math.random() * positions.length)] + 'px';
+    } else {
+      obstacle.style.bottom = '0';
+    }
 
-.mobile #score {
-  font-size: 20px;
-}
+    let obstacleSpeed = isMobileDevice ? 5 : 10; // Ajuste de la velocidad basado en el dispositivo
 
-.mobile #game-over {
-  font-size: 75px;
-}
-#boton-galeria-1 {
-  position: fixed;
-  top: 0px;
-  left: -60px;
-  z-index: 9999;
-}
+    let timerId = setInterval(function() {
+      if (checkCollision(obstacle)) {
+        clearInterval(timerId);
+        hitSound.play();
+        if (obstacle.classList.contains('Halcon') && isCrouching) {
+        } else {
+          gameOver();
+        }
+      }
+      obstaclePosition -= obstacleSpeed;
+      obstacle.style.left = obstaclePosition + 'px';
 
-#boton-galeria-2 {
-  position: fixed;
-  top: 110px;
-  left: -60px;
-  z-index: 9999;
-}
+      if (obstaclePosition < -40) {
+        clearInterval(timerId);
+        game.removeChild(obstacle);
+      }
+    }, 20);
 
-#boton-galeria-3 {
-  position: fixed;
-  top: 140px;
-  right: -35.5px;
-  z-index: 10000;
-}
+    lastObstacleType = obstacleType;
 
-/* Tamaño de los botones de cambio de página */
-#boton-galeria-1 a img{
-  width: 100px;  /* Ancho deseado */
-  height: 100px; /* Alto deseado */
-  border-radius: 8px; /* Mantener el radio de borde para la apariencia redondeada */
-}
+    if (!isGameOver) setTimeout(generateObstacle, randomTime);
+  }
 
-/* Ajustar el tamaño del contenedor si es necesario */
-.boton-galeria {
-  width: 220px; /* Ajusta este tamaño según sea necesario */
-  height: 220px; /* Ajusta este tamaño según sea necesario */
-}
+  function playMusic() {
+    if (score < 700) {
+      if (musicPlaying !== music1) {
+        if (musicPlaying) musicPlaying.pause();
+        music1.currentTime = 0;
+        music1.play();
+        musicPlaying = music1;
+      }
+    } else {
+      if (musicPlaying !== music2) {
+        if (musicPlaying) musicPlaying.pause();
+        music2.currentTime = 0;
+        music2.play();
+        musicPlaying = music2;
+      }
+    }
+  }
 
-.boton-galeria a {
-  display: inline-block;
-  border: 3px solid #ffffff;
-  border-radius: 8px;
-  overflow: hidden;
-  margin: 10px;
-}
+  function gameOver() {
+    isGameOver = true;
+    gameOverDisplay.style.display = 'block';
+    while (game.firstChild) {
+      game.removeChild(game.firstChild);
+    }
+    game.appendChild(gameOverDisplay);
+    if (musicPlaying) musicPlaying.pause();
+    gameOverSound.play();
+    setTimeout(() => {
+      window.location.reload();
+    }, 5000);
+  }
 
-.boton-galeria a img {
-  width: 160px;
-  height: 160px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
+  function startGame() {
+    score = 0;
+    isGameOver = false;
+    gameOverDisplay.style.display = 'none';
+    scoreDisplay.textContent = score;
+    game.appendChild(Oveja);
+    generateObstacle();
+    setInterval(function() {
+      if (!isGameOver) {
+        score++;
+        scoreDisplay.textContent = score;
+        playMusic();
+        if (score > 700) {
+          document.body.style.backgroundImage = 'url("Vnoche.png")';
+          game.style.backgroundImage = 'url("Vnoche2.png")';
+        }
+      }
+    }, 100);
+  }
 
-.boton-galeria a img:hover {
-  transform: scale(1.1);
-}
+  // Para permitir la reproducción automática de audio después de una interacción del usuario
+  document.addEventListener('click', () => {
+    if (!musicPlaying) {
+      music1.play();
+      musicPlaying = music1;
+    }
+  }, { once: true });
+
+  setTimeout(startGame, 1000);
+});
