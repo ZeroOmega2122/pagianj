@@ -105,7 +105,7 @@ body {
 
 /* Estilos específicos para dispositivos móviles */
 .mobile #game {
-  width: 30px;
+  width: 3000px;
   height: 10px;
   transform: scale(1);
 }
