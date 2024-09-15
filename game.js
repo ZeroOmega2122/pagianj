@@ -28,11 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function stopCrouching(e) {
     if (e.keyCode === 40) {
       isCrouching = false;
-      Oveja.classList.remove('Oveja-crouch');
+      Oveja.classList.remove('Imagenes/Oveja-crouch');
       Oveja.style.width = '60px';
       Oveja.style.height = '60px';
       Oveja.style.bottom = '0';
-      Oveja.style.backgroundImage = 'url(Oveja2-.png)';
+      Oveja.style.backgroundImage = 'url(Imagenes/Oveja2-.png)';
       Oveja.style.animation = 'trot 0.5s steps(2) infinite';
     }
   }
@@ -66,11 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function crouch() {
     isCrouching = true;
-    Oveja.classList.add('Oveja-crouch');
+    Oveja.classList.add('Imagenes/Oveja-crouch');
     Oveja.style.width = '60px';
     Oveja.style.height = '60px';
     Oveja.style.bottom = '-15px';
-    Oveja.style.backgroundImage = 'url(AgachoOV2.png)';
+    Oveja.style.backgroundImage = 'url(Imagenes/AgachoOV2.png)';
     Oveja.style.animation = 'none';
     crouchSound.play();
   }
@@ -179,8 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDisplay.textContent = score;
         playMusic();
         if (score > 700) {
-          document.body.style.backgroundImage = 'url("Vnoche.png")';
-          game.style.backgroundImage = 'url("Vnoche2.png")';
+          document.body.style.backgroundImage = 'url("Imagenes/Vnoche.png")';
+          game.style.backgroundImage = 'url("Imagenes/Vnoche2.png")';
         }
       }
     }, 100);
