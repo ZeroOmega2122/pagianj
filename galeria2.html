@@ -1,50 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/webp" href="8493053.webp">
+    <link rel="icon" type="image/webp" href="Imagenes/8493053.webp">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERA-GALERIA 2</title>
         <style>
-        body, html {
-            font-family: 'Pacifico', cursive;
+    body, html {
+            font-family: 'Lato', sans-serif;
             margin: 0;
             padding: 0;
-            color: #333;
+            color: #000000;
             text-align: center;
             height: 100%;
         }
 
         body {
-             background: url('./desktop-wallpaper-usagi-and-mamoru-falling-princess-usagi-mamoru-dekstop (1).webp') center/cover fixed no-repeat;
+            background: linear-gradient(#ffffff10, rgba(255, 255, 255, 0)), url('./Imagenes/desktop-wallpaper-usagi-and-mamoru-falling-princess-usagi-mamoru-dekstop (1).webp') center/cover fixed no-repeat;
             min-height: 100vh;
             overflow-x: hidden;
         }
-
-        h1, h2 {
-            font-size: 48px;
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 50px;
             color: #ffffff;
             margin-top: 50px;
             animation: titulo-animacion 2s ease-in-out infinite alternate;
         }
 
+        h2 {
+            font-family: 'Lato', sans-serif;
+            font-size: 30px;
+            color: #dad8cf;
+            margin: 10px;
+        }
+      
         #boton-galeria-1 {
             position: fixed;
             top: 0px;
-            left: -60px;
+            left: -50px;
             z-index: 9999;
         }
 
         #boton-galeria-2 {
             position: fixed;
-            top: 110px;
-            left: -60px;
+            top: 130px;
+            left: -50px;
             z-index: 9999;
         }
       
         #boton-galeria-3 {
             position: fixed;
-            top: 140px;
+            top: 20px;
             right: -35.5px;
             z-index: 10000;
         }
@@ -96,8 +103,8 @@
         }
 
         .imagen-galeria {
-            width: 300px;
-            height: 300px;
+            width: 250px;
+            height: 250px;
             border-radius: 10px;
             margin: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -163,15 +170,15 @@
             max-height: 100%;
             margin-bottom: 20px;
         }
-#cerrar-modal {
+        #cerrar-modal {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 170px;
     cursor: pointer;
     font-size: 24px;
     color: #fff;
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
+    padding: 20px;
     border-radius: 50%;
     z-index: 10001;
     transition: background-color 0.3s ease; /* Agregar una transición suave al cambiar el color de fondo */
@@ -182,11 +189,37 @@
     color: #000; /* Cambiar el color del texto para que sea más visible */
 }
 
+.navegacion-modal {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 48px;
+            color: #fff;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 50%;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
 
-       /* Botón de música */
+        .navegacion-modal:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #000;
+        }
+
+        .navegacion-izquierda {
+            left: 20px;
+        }
+
+        .navegacion-derecha {
+            right: 20px;
+        }
+
+        /* Botón de música */
         #boton-musica {
             position: fixed;
-            top: 20px;
+            top: 150px;
             right: 20px;
             z-index: 10000;
             cursor: pointer;
@@ -202,10 +235,10 @@
         /* Menú emergente de música */
         #mini-menu-musica {
             position: fixed;
-            top: 120px;
+            top: 265px;
             right: 20px;
-            width: 300px;
-            background-color: #151b53be; /* Color de fondo oscuro similar a Spotify */
+            width: 400px;
+            background-color: #0f1970ce; /* Color de fondo oscuro similar a Spotify */
             border-radius: 10px;
             display: none;
             z-index: 10000;
@@ -215,7 +248,7 @@
 
         /* Lista de música */
         #lista-musica {
-            max-height: 250px;
+            max-height: 350px;
             overflow-y: auto;
             border-bottom: 1px solid #363455; /* Borde inferior similar a Spotify */
             padding: 0; /* Elimina el relleno */
@@ -224,7 +257,7 @@
 
         /* Estilo del texto de la lista de música */
         #lista-musica button {
-            width: 100%;
+            width: 150%;
             padding: 15px;
             text-align: left;
             background-color: transparent; /* Fondo transparente */
@@ -233,7 +266,7 @@
             position: relative;
             transition: background-color 0.10s ease; /* Transición suave */
             color: #FFFFFF; /* Color del texto blanco */
-            font-size: 20px;
+            font-size: 23px;
         }
 
         /* Estilo al pasar el cursor sobre los botones de música */
@@ -275,7 +308,7 @@
             flex-direction: column;
             align-items: center;
             padding: 10px;
-            border: 2px solid #1DB954; /* Borde sólido verde similar a Spotify */
+            border: 2px solid #1d47b9; /* Borde sólido verde similar a Spotify */
             border-radius: 10px;
             color: #FFFFFF; /* Color del texto blanco */
             margin-top: 10px; /* Añadido margen superior */
@@ -283,7 +316,7 @@
 
         /* Estilo del rango de volumen */
         #volumen-musica input[type="range"] {
-            width: 80%; /* Anchura del rango de volumen */
+            width: 90%; /* Anchura del rango de volumen */
             margin-top: 10px;
             -webkit-appearance: none; /* Eliminar la apariencia predeterminada del rango */
             appearance: none;
@@ -295,8 +328,8 @@
         #volumen-musica input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none; /* Eliminar la apariencia predeterminada del control deslizante */
             appearance: none;
-            width: 15px; /* Anchura del control deslizante */
-            height: 15px; /* Altura del control deslizante */
+            width: 25px; /* Anchura del control deslizante */
+            height: 25px; /* Altura del control deslizante */
             background: #1DB954; /* Color del control deslizante verde similar a Spotify */
             border-radius: 50%; /* Hacer el control deslizante circular */
             cursor: pointer;
@@ -310,7 +343,7 @@
 
         /* Estilo del título de la canción */
         .titulo-cancion {
-            font-size: 16px;
+            font-size: 18px;
             margin-bottom: 10px;
             text-align: center;
             font-weight: bold;
@@ -322,12 +355,12 @@
 <body>
     <div class="boton-galeria" id="boton-galeria-1">
         <a href="galeria.html">
-            <img src="R (1).webp" alt="Ir a la Galería">
+            <img src="Imagenes/R (1).webp" alt="Ir a la Galería">
         </a>
     </div>
     <div class="boton-galeria" id="boton-galeria-3">
         <a href="index.html">
-            <img src="gamed.webp" alt="Ir a la Galería">
+            <img src="Imagenes/gamed.webp" alt="Ir a la Galería">
         </a>
     </div>
   <h1> </h1>
@@ -342,167 +375,156 @@
         <!-- Agrega tus 22 imágenes de la galería -->
       
             <div class="imagen-container">
-             <img class="imagen-galeria" src= "./WhatsApp Image 2024-01-23 at 16.57.20.webp" alt="Recuerdo 81">
+             <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-01-23 at 16.57.20.webp" alt="Recuerdo 81">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 81</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-              <img class="imagen-galeria" src= "./WhatsApp Image 2024-01-23 at 16.57.21.webp" alt="Recuerdo 82">
+              <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.39.06 (1).jpeg" alt="Recuerdo 82">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 82</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-                 <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.39.06.jpeg" alt="Recuerdo 83">
+                 <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.39.06.jpeg" alt="Recuerdo 83">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 83</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-                 <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.37.jpeg" alt="Recuerdo 84">
+                 <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.35.37.jpeg" alt="Recuerdo 84">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 84</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-               <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.38 (1).jpeg" alt="Recuerdo 85">
+               <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.35.38 (1).jpeg" alt="Recuerdo 85">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 85</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-            <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.38 (2).jpeg" alt="Recuerdo 86">
+            <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.35.38 (2).jpeg" alt="Recuerdo 86">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 86</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-              <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.38.jpeg" alt="Recuerdo 87">
+              <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.35.38.jpeg" alt="Recuerdo 87">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 87</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.39.jpeg" alt="Recuerdo 88">
+                <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.35.39.jpeg" alt="Recuerdo 88">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 88</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.41 (1).jpeg" alt="Recuerdo 89">
+                <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.35.41 (1).jpeg" alt="Recuerdo 89">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 89</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-                 <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.41 (2).jpeg" alt="Recuerdo 90">
+                 <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.35.41 (2).jpeg" alt="Recuerdo 90">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 90</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-              <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.41 (3).jpeg" alt="Recuerdo 91">
+              <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.35.41 (3).jpeg" alt="Recuerdo 91">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 91</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.41.jpeg" alt="Recuerdo 92">
+                <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.35.41.jpeg" alt="Recuerdo 92">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 92</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42 (1).jpeg" alt="Recuerdo 93">
+                <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.35.42 (1).jpeg" alt="Recuerdo 93">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 93</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-               <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42 (2).jpeg" alt="Recuerdo 94">
+               <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.35.42 (2).jpeg" alt="Recuerdo 94">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 94</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42 (3).jpeg" alt="Recuerdo 95">
+                <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.35.42 (3).jpeg" alt="Recuerdo 95">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 95</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42 (4).jpeg" alt="Recuerdo 96">
+                <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.35.42 (4).jpeg" alt="Recuerdo 96">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 96</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-                <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42.jpeg" alt="Recuerdo 97">
+                <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.39.06 (2).jpeg" alt="Recuerdo 97">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 97</p>
                     <p></p>
                 </div>
             </div>
             <div class="imagen-container">
-               <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.35.42.jpeg" alt="Recuerdo 98">
+               <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.35.42.jpeg" alt="Recuerdo 98">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 98</p>
                     <p></p>
                 </div>
             </div>
         <div class="imagen-container">
-               <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.39.05 (1).jpeg" alt="Recuerdo 99">
+               <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.39.05 (1).jpeg" alt="Recuerdo 99">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 99</p>
                     <p></p>
                 </div>
             </div>
         <div class="imagen-container">
-               <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.39.05.jpeg" alt="Recuerdo 100">
+               <img class="imagen-galeria" src= "./Imagenes/WhatsApp Image 2024-02-14 at 12.39.05.jpeg" alt="Recuerdo 100">
                 <div class="descripcion-imagen">
                     <p>Recuerdo 100</p>
                     <p></p>
                 </div>
             </div>
-        <div class="imagen-container">
-             <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.39.06 (1).jpeg" alt="Recuerdo 101">
-                <div class="descripcion-imagen">
-                    <p>Recuerdo 101</p>
-                    <p></p>
-                </div>
-            </div>
-        <div class="imagen-container">
-               <img class="imagen-galeria" src= "./WhatsApp Image 2024-02-14 at 12.39.06 (2).jpeg" alt="Recuerdo 102">
-                <div class="descripcion-imagen">
-                    <p>Recuerdo 102</p>
-                    <p></p>
-                </div>
-            </div>
-      
+     
+     
         <!-- Aquí continúa el resto de tus imágenes -->
     </div>
 
 
     <div id="modal">
+        <span id="cerrar-modal">&times;</span>
+        <span class="navegacion-modal navegacion-izquierda" id="flecha-izquierda">&#10094;</span>
+        <span class="navegacion-modal navegacion-derecha" id="flecha-derecha">&#10095;</span>
         <div id="modal-contenido">
-            <span id="cerrar-modal">&times;</span>
             <img id="modal-imagen" alt="Imagen Ampliada">
             <div id="modal-descripcion"></div>
         </div>
@@ -511,19 +533,19 @@
     <div id="mini-menu-musica">
         <span id="cerrar-volumen">&times;</span>
           <div id="lista-musica">
-            <button data-src="y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3">Futari no Kimochi</button>
-            <button data-src="y2mate.com - Inuyasha Ending 3 Latino Remasterizado Digital.mp3">Dearest</button>
-            <button data-src="y2mate.com - Inuyasha OST 2  Beautiful Memories.mp3">Beautiful Memories</button>
-            <button data-src="y2mate.com - Inuyasha Ending 1 Full Edit 2020   My Will  Gabriela Vega LATINO.mp3">My will</button>
-            <button data-src="y2mate.com - Sailor Moon  En mis Sueños.mp3">En mis sueños</button>
-            <button data-src="y2mate.com - Resplandeciente cristal de plata Letra.mp3">Resplandeciente cristal de plata</button>      
-            <button data-src="y2mate.com - SM Destino de la Luz de Luna By Marisa De Lille.mp3">Destino de la Luz de Luna</button>
-            <button data-src="y2mate.com - Marisa De Lille Ilusión de Amor Tuxedo Mirage.mp3">Ilusión de Amor</button>
-            <button data-src="y2mate.com - Marisa De Lille  Quiero estar contigo siempre.mp3">Quiero estar contigo siempre</button>
-            <button data-src="y2mate.com - Sailor Moon  La Princesa De La Luna Letra.mp3">La Princesa De La Luna</button>
-            <button data-src="y2mate.com - SailorMoon  Moonlight  Caja musical.mp3">Moonlight  Caja musical</button>
-            <button data-src="y2mate.com - Moon Revenge Español  Sailor Moon.mp3">Moon Revenge</button>
-            <button data-src="y2mate.com - Sailor Moon  Nagareboshi He Sub Español.mp3">Nagareboshi He</button>
+            <button data-src="MusicaJ/y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3">Futari no Kimochi</button>
+            <button data-src="MusicaJ/y2mate.com - Inuyasha Ending 3 Latino Remasterizado Digital.mp3">Dearest</button>
+            <button data-src="MusicaJ/y2mate.com - Inuyasha OST 2  Beautiful Memories.mp3">Beautiful Memories</button>
+            <button data-src="MusicaJ/y2mate.com - Inuyasha Ending 1 Full Edit 2020   My Will  Gabriela Vega LATINO.mp3">My will</button>
+            <button data-src="MusicaJ/y2mate.com - Sailor Moon  En mis Sueños.mp3">En mis sueños</button>
+            <button data-src="MusicaJ/y2mate.com - Resplandeciente cristal de plata Letra.mp3">Resplandeciente cristal de plata</button>      
+            <button data-src="MusicaJ/y2mate.com - SM Destino de la Luz de Luna By Marisa De Lille.mp3">Destino de la Luz de Luna</button>
+            <button data-src="MusicaJ/y2mate.com - Marisa De Lille Ilusión de Amor Tuxedo Mirage.mp3">Ilusión de Amor</button>
+            <button data-src="MusicaJ/y2mate.com - Marisa De Lille  Quiero estar contigo siempre.mp3">Quiero estar contigo siempre</button>
+            <button data-src="MusicaJ/y2mate.com - Sailor Moon  La Princesa De La Luna Letra.mp3">La Princesa De La Luna</button>
+            <button data-src="MusicaJ/y2mate.com - SailorMoon  Moonlight  Caja musical.mp3">Moonlight  Caja musical</button>
+            <button data-src="MusicaJ/y2mate.com - Moon Revenge Español  Sailor Moon.mp3">Moon Revenge</button>
+            <button data-src="MusicaJ/y2mate.com - Sailor Moon  Nagareboshi He Sub Español.mp3">Nagareboshi He</button>
         </div>
         
         <div id="controles-musica">
@@ -548,21 +570,51 @@
             reproductor.play();
         }
 
-        // Manejo del modal de imagen
-        document.querySelectorAll('.imagen-container').forEach(container => {
-            container.addEventListener('click', () => {
-                const img = container.querySelector('img');
-                const descripcion = container.querySelector('.descripcion-imagen').textContent;
-                document.getElementById('modal-imagen').src = img.src;
-                document.getElementById('modal-descripcion').textContent = descripcion;
-                document.getElementById('modal').style.display = 'block';
+        const modal = document.getElementById('modal');
+        const modalImagen = document.getElementById('modal-imagen');
+        const modalDescripcion = document.getElementById('modal-descripcion');
+        const cerrarModal = document.getElementById('cerrar-modal');
+        const flechaIzquierda = document.getElementById('flecha-izquierda');
+        const flechaDerecha = document.getElementById('flecha-derecha');
+        let imagenActual = 0;
+        let imagenes = document.querySelectorAll('.imagen-container');
+
+        imagenes.forEach((imagen, index) => {
+            imagen.addEventListener('click', () => {
+                abrirModal(index);
             });
         });
 
-        document.getElementById('cerrar-modal').addEventListener('click', () => {
-            document.getElementById('modal').style.display = 'none';
+        cerrarModal.addEventListener('click', () => {
+            modal.style.display = 'none';
         });
 
+        flechaIzquierda.addEventListener('click', () => {
+            cambiarImagen(-1);
+        });
+
+        flechaDerecha.addEventListener('click', () => {
+            cambiarImagen(1);
+        });
+
+        function abrirModal(index) {
+            imagenActual = index;
+            const imagenSrc = imagenes[imagenActual].querySelector('img').src;
+            const descripcion = imagenes[imagenActual].querySelector('.descripcion-imagen').innerHTML;
+            modalImagen.src = imagenSrc;
+            modalDescripcion.innerHTML = descripcion;
+            modal.style.display = 'block';
+        }
+
+        function cambiarImagen(direccion) {
+            imagenActual += direccion;
+            if (imagenActual < 0) {
+                imagenActual = imagenes.length - 1;
+            } else if (imagenActual >= imagenes.length) {
+                imagenActual = 0;
+            }
+            abrirModal(imagenActual);
+        }
         // Manejo del menú de música
         const botonMusica = document.getElementById('boton-musica');
         const miniMenuMusica = document.getElementById('mini-menu-musica');
