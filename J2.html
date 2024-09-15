@@ -1,79 +1,68 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="icon" type="image/webp" href="Imagenes/8493053.webp">
+    <link rel="icon" type="image/webp" href="Imagenes/8493053.webp">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERA-INICIO</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-     <style>
+    <style>
         body {
             font-family: 'Pacifico', cursive;
             margin: 0;
             padding: 0;
-            background: url('./Imagenes/ovejas.webp') center/cover fixed no-repeat;
+            background: url('./Imagenes/ovejas.webp') center/cover no-repeat fixed;
             color: #333;
-            background-attachment: fixed;
-            background-size: cover;
         }
+
         #contenido {
             text-align: center;
             padding: 20px;
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
+
         #contenido.fadeIn {
             opacity: 1;
         }
-        #botones-musica {
-            text-align: center;
-            margin-top: 20px;
+
+        h1, h2 {
+            margin-bottom: 20px;
+            color: #FFC0CB;
+            transition: color 0.5s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-        #botones-musica button {
-            font-size: 24px;
-            margin-right: 10px;
-            padding: 8px 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        #botones-musica button:hover {
-            background-color: #45a049;
-        }
+
         h1 {
             font-size: 60px;
-            color: #FFC0CB;
-            margin-bottom: 20px;
-            transition: color 0.5s ease;
         }
+
         h2 {
             font-size: 45px;
-            margin-bottom: 10px;
             color: #ff4500;
-            transition: color 0.5s ease;
         }
+
         #subtitulo {
             font-size: 24px;
-            margin-top: 10px;
             color: #45a049;
-            transition: color 0.5s ease;
         }
-    #versiculo-container {
-    background: rgba(255, 255, 255, 0.1); /* Fondo blanco con 50% de opacidad */
-    /* O puedes probar con valores como:
-       background: rgba(255, 255, 255, 0.2); */ /* Fondo blanco con 20% de opacidad */
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 20px;
-    color: #0066cc;
-    transition: background-color 0.5s ease, color 0.5s ease;
-}
+
+        #versiculo-container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            color: #0066cc;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
         #versiculo {
             font-size: 24px;
             margin-bottom: 15px;
             color: #333;
-            transition: color 0.5s ease;
         }
+
         button {
             background-color: #4CAF50;
             color: white;
@@ -82,32 +71,27 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin: 0 10px;
+            margin: 10px;
             transition: background-color 0.3s ease;
         }
+
         button:hover {
             background-color: #45a049;
         }
-        #boton-galeria {
-            margin-top: 20px;
-        }
-        #boton-galeria a {
-            display: inline-block;
-            border: 2px solid #4CAF50;
-            border-radius: 8px;
-            overflow: hidden;
-            margin: 10px;
-        }
+
         #boton-galeria a img {
             width: 160px;
             height: 160px;
             border-radius: 8px;
             cursor: pointer;
             transition: transform 0.3s ease;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
         }
+
         #boton-galeria a img:hover {
             transform: scale(1.1);
         }
+
         #texto-personalizado {
             margin-top: 20px;
             color: #ffcc00;
@@ -119,10 +103,13 @@
             font-size: 35px;
             line-height: 1.5;
             transition: color 0.5s ease, border-color 0.5s ease;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
         }
+
         .fadeIn {
             animation: fadeInAnimation 0.5s ease;
         }
+
         @keyframes fadeInAnimation {
             from {
                 opacity: 0;
@@ -131,35 +118,23 @@
                 opacity: 1;
             }
         }
-       
     </style>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K596SXKPWQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-K596SXKPWQ');
-</script>
 </head>
 <body>
     <div id="contenido">
         <h1>Mi Página de Recuerdo</h1>
         <h2 id="subtitulo">Un lugar especial para recordar momentos inolvidables</h2>
+
         <div id="texto-personalizado">
-            <h1>Small Lady Litle sheep,</h1>
+            <h1>Para Small Lady Litle sheep</h1>
             <p>
-             Mi cariño permanece aquí, incondicional y silencioso, acompañándote desde la distancia. Te deseo un año universitario colmado de buenos momentos, con la certeza de que la guia de poderosa de Dios te llevará hacia la plenitud que mereces.
-            </p>
-            <p>
-              Cuidado con la lluvia D:; Su buen cafecito y un rico para el hambre en la mañana no hay mejor :D
+                Mi cariño permanece aquí, incondicional y silencioso, acompañándote desde la distancia. Te deseo un año universitario colmado de buenos momentos, con la certeza de que la guía poderosa de Dios te llevará hacia la plenitud que mereces.
             </p>
             <p><br>
-                Nicolas Andres Joven Valiente :)
+                Zero.
             </p>
         </div>
-<body>
+
         <div id="versiculo-container">
             <h2>Versículo del Día</h2>
             <p id="versiculo"></p>
@@ -171,7 +146,9 @@
             </div>
         </div>
     </div>
+
     <script>
+         
           // Evento para cargar el contenido al iniciar la página
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('contenido').classList.add('fadeIn');
@@ -249,6 +226,7 @@
                 "Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones. - Salmo 46:1",
                 "Cree en el Señor Jesucristo, y serás salvo, tú y tu casa. - Hechos 16:31",
                 "El amor sea sin fingimiento. Aborreced lo malo, seguid lo bueno. - Romanos 12:9",
+                
                 "El que guarda su boca guarda su alma, pero el que mucho abre sus labios tendrá calamidad. - Proverbios 13:3"
             ];
         }
@@ -289,5 +267,4 @@
         }
     </script>
 </body>
-
 </html>
