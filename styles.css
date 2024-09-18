@@ -3,7 +3,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url('Imagenes/VDia.png');
+  background-image: url('Imagenes1/VDia.png');
   background-size: cover;
   margin: 0;
 }
@@ -15,7 +15,7 @@ body {
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #fff;
-  background-image: url('Imagenes/VDiav2.png');
+  background-image: url('Imagenes1/VDiav2.png');
   background-size: cover;
   background-position: bottom;
   animation: scrollBackground 3s linear infinite;
@@ -32,21 +32,21 @@ body {
   left: 50px;
   width: 60px;
   height: 60px;
-  background-image: url('Imagenes/Oveja2-.png');
+  background-image: url('Imagenes1/Oveja2-.png');
   background-size: cover;
   animation: trot 0.7s steps(2) infinite;
 }
 
 @keyframes trot {
-  0% { background-image: url('./Imagenes/Oveja2-.png'); }
-  50% { background-image: url('Imagenes/Oveja2-2-.png'); }
-  100% { background-image: url('Imagenes/Oveja2-.png'); }
+  0% { background-image: url('./Imagenes1/Oveja2-.png'); }
+  50% { background-image: url('Imagenes1/Oveja2-2-.png'); }
+  100% { background-image: url('Imagenes1/Oveja2-.png'); }
 }
 
 @keyframes jump {
-  0% { bottom: 10px; background-image: url('Imagenes/Oveja2-.png'); }
-  50% { bottom: 200px; background-image: url('Imagenes/saltoOV.png'); }
-  100% { bottom: 10px; background-image: url('Imagenes/Oveja2-.png'); }
+  0% { bottom: 10px; background-image: url('Imagenes1/Oveja2-.png'); }
+  50% { bottom: 200px; background-image: url('Imagenes1/saltoOV.png'); }
+  100% { bottom: 10px; background-image: url('Imagenes1/Oveja2-.png'); }
 }
 
 .Oveja-crouch {
@@ -54,7 +54,7 @@ body {
   width: 10px;
   height: 10px;
   bottom: 0px;
-  background-image: url('Imagenes/Oveja22-.png');
+  background-image: url('Imagenes1/AgachoOV2.png');
   background-size: cover;
 }
 
@@ -63,7 +63,7 @@ body {
   bottom: 0;
   width: 60px;
   height: 60px;
-  background-image: url('Imagenes/Valla-.png');
+  background-image: url('Imagenes1/Valla-.png');
   background-size: cover;
 }
 
@@ -71,7 +71,7 @@ body {
   position: absolute;
   width: 60px;
   height: 30px;
-  background-image: url('Imagenes/Ave-.png');
+  background-image: url('Imagenes1/Ave-.png');
   background-size: cover;
   animation: fly 1s infinite;
 }
