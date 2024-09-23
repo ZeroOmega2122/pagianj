@@ -8,7 +8,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url("./Igame/VDia.png");
+    background-image: url('./Igame/VDia.png');
     background-size: cover;
     margin: 0;
 }
@@ -20,7 +20,7 @@ body {
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #fff;
-    background-image: url("./Igame/VDiav23.png");
+    background-image: url('./Igame/VDiav23.png');
     background-size: cover;
     background-position: bottom;
 }
@@ -32,7 +32,7 @@ body {
     bottom: 24px;
     left: 50px;
     z-index: 2;
-    background: url("./Igame/Oveja2-.png");
+    background: url('./Igame/Oveja2-.png');
     background-size: cover;
     transition: opacity 0.3s ease; /* Para parpadeo */
 }
