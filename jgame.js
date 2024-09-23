@@ -128,10 +128,16 @@ function ajustarEstiloParaMovil() {
     const esMovil = /Mobi|Android/i.test(navigator.userAgent);
     
     if (esMovil) {
-        // Cambiar el background-size del body
-        document.suelo.style.backgroundSize = '835px 220px'; // Cambia este valor según lo que necesites
+        // Cambiar el background-size del body para móviles
+        document.body.style.backgroundSize = '1035px 220px'; // Valor para móviles
+    } else {
+        // Restablecer el tamaño original si no es móvil
+        document.body.style.backgroundSize = '835px 220px'; // Valor original
     }
 }
+
+// Ejecutar la función al cargar la página
+window.onload = ajustarEstiloParaMovil;
 
 // Ejecutar la función al cargar la página
 window.onload = ajustarEstiloParaMovil;
