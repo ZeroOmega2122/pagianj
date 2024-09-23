@@ -22,8 +22,8 @@ hitSound.volume = 0.5;
 var scoreSound = document.getElementById("score-sound");
 scoreSound.volume = 0.9;
 
-var nuevaImagenFondo = "./Igame/night2.jpg"; // Cambia esta ruta
-var nuevaImagenSuelo = "./Igame/night.png"; // Cambia esta ruta
+var nuevaImagenFondo = './Igame/night2.jpg'; // Cambia esta ruta
+var nuevaImagenSuelo = './Igame/night.png'; // Cambia esta ruta
 var nuevaImagenContenedor = "./Igame/night22.jpg";
 
 function Init() {
