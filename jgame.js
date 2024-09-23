@@ -123,7 +123,18 @@ function TocarSuelo() {
     }
     saltado = false;
 }
+function ajustarEstiloParaMovil() {
+    // Verificar si el usuario está en un dispositivo móvil
+    const esMovil = /Mobi|Android/i.test(navigator.userAgent);
+    
+    if (esMovil) {
+        // Cambiar el background-size del body
+        document.suelo.style.backgroundSize = '835px 220px'; // Cambia este valor según lo que necesites
+    }
+}
 
+// Ejecutar la función al cargar la página
+window.onload = ajustarEstiloParaMovil;
 function DecidirCrearObstaculos() {
     tiempoHastaObstaculo -= deltaTime;
     if (tiempoHastaObstaculo <= 0) {
