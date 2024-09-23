@@ -156,7 +156,7 @@ function MoverObstaculos() {
 }
 
 function GanarPuntos() {
-score += 100;
+score += 10;
 textoScore.innerText = score;
 
 // Verificar el puntaje
