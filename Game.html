@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oveja Game</title>
+   <link rel="stylesheet" href="Sgame.css">
+</head>
+<body>
+    <div class="boton-galeria" id="boton-galeria-1">
+        <a href="J2.html">
+            <img src="/Igame/R (1).webp" alt="Ir a la Galería">
+        </a>
+    </div>
+    <div class="contenedor" onclick="Saltar()">
+        <div class="suelo"></div>
+        <div class="oveja"></div>
+        <div class="score">0</div>
+        <div class="game-over">Game Over</div>
+        <button class="reiniciar-btn" onclick="ReiniciarJuego()">Reiniciar</button>
+    </div>
+
+    <audio id="jump-sound" src="/Mgame/OV2 jump.mp3" preload="auto"></audio>
+    <audio id="game-over-sound" src="/Mgame/SMWGO GAME OVER.mp3" preload="auto"></audio>
+    <audio id="background-music" src="/Mgame/Three Bar Logos.mp3" loop preload="auto"></audio>
+    <audio id="new-background-music" src="/Mgame/Sugar Star Planetarium.mp3" loop preload="auto"></audio>
+    <audio id="hit-sound" src="/Mgame/loser.mp3" preload="auto"></audio>
+    <audio id="score-sound" src="/Mgame/coin.mp3" preload="auto"></audio>
+
+  <script src="jgame.js" ></script>
+</body>
+</html>

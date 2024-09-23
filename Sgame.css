@@ -1,0 +1,117 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(/Igame/VDia.png);
+    background-size: cover;
+    margin: 0;
+}
+
+.contenedor {
+    position: relative;
+    width: 1150px;
+    height: 400px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    background-image: url(/Igame/VDiav23.png);
+    background-size: cover;
+    background-position: bottom;
+}
+
+.oveja {
+    width: 50px;
+    height: 60px;
+    position: absolute;
+    bottom: 24px;
+    left: 50px;
+    z-index: 2;
+    background: url(/Igame/Oveja2-.png);
+    background-size: cover;
+    transition: opacity 0.3s ease; /* Para parpadeo */
+}
+
+.oveja-corriendo {
+    animation: trot 0.5s steps(2) infinite;
+}
+
+@keyframes trot {
+    0% { background-image: url(/Igame/Oveja2-.png); }
+    50% { background-image: url(/Igame/Oveja2-2-.png); }
+    100% { background-image: url(/Igame/Oveja2-.png); }
+}
+
+.suelo {
+    width: 6000px;
+    height: 170px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: url(/Igame/VDia-piso.png) repeat-x 0px 0px;
+    background-size: 1135px 220px;
+}
+
+.score {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    z-index: 10;
+    color: #fd3b06;
+    font-family: Verdana;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.valla {
+    width: 58px;
+    height: 70px;
+    position: absolute;
+    bottom: 23.5px;
+    background-size: cover;
+    z-index: 1;
+    background-image: url(/Igame/Valla-.png);
+}
+
+.game-over {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    color: red;
+}
+
+.reiniciar-btn {
+    display: none;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    padding: 10px 20px;
+    background-color: #f33500;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#boton-galeria-1 a img {
+    width: 100px; 
+    height: 100px; 
+    border-radius: 8px; 
+}
+
+#boton-galeria-1 {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 9999;
+}
