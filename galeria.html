@@ -6,375 +6,534 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERA-GALERIA 1</title>
         <style>
-        body, html {
-            font-family: 'Lato', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #000000;
-            text-align: center;
-            height: 100%;
-        }
+     /* Estilos generales para el cuerpo y el HTML */
+body, html {
+    font-family: 'Lato', sans-serif; /* Tipo de letra */
+    margin: 0; /* Sin márgenes */
+    padding: 0; /* Sin relleno */
+    color: #000000; /* Color del texto */
+    text-align: center; /* Centrar el texto */
+    height: 100%; /* Altura del 100% */
+}
 
-        body {
-            background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)), url('./Imagenes1/OIP (7).webp') center/cover fixed no-repeat;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        h1 {
-            font-family: 'Pacifico', cursive;
-            font-size: 50px;
-            color: #ffffff;
-            margin-top: 50px;
-            animation: titulo-animacion 2s ease-in-out infinite alternate;
-        }
-
-        h2 {
-            font-family: 'Lato', sans-serif;
-            font-size: 30px;
-            color: #dad8cf;
-            margin: 10px;
-        }
-
-        #boton-galeria-1 {
-            position: fixed;
-            top: 0px;
-            left: -50px;
-            z-index: 9999;
-        }
-
-        #boton-galeria-2 {
-            position: fixed;
-            top: 130px;
-            left: -50px;
-            z-index: 9999;
-        }
-      
-        #boton-galeria-3 {
-            position: fixed;
-            top: 0px;
-            right: -35.5px;
-            z-index: 10000;
-        }
-
-        /* Tamaño de los botones de cambio de página */
-        #boton-galeria-1 a img, #boton-galeria-2 a img{
-            width: 100px;  /* Ancho deseado */
-            height: 100px; /* Alto deseado */
-            border-radius: 8px; /* Mantener el radio de borde para la apariencia redondeada */
-        }
-        #boton-galeria-3 a img {
-            width: 100px;  /* Ancho deseado */
-            height: 100px; /* Alto deseado */
-            border-radius: 8px; /* Mantener el radio de borde para la apariencia redondeada */
-        }
-
-        /* Ajustar el tamaño del contenedor si es necesario */
-        .boton-galeria {
-            width: 220px; /* Ajusta este tamaño según sea necesario */
-            height: 220px; /* Ajusta este tamaño según sea necesario */
-        }
-
-        .boton-galeria a {
-            display: inline-block;
-            border: 3px solid #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            margin: 10px;
-        }
-
-        .boton-galeria a img {
-            width: 160px;
-            height: 160px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .boton-galeria a img:hover {
-            transform: scale(1.1);
-        }
-   
-        .fila-imagenes {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-        }
-
-        .imagen-galeria {
-            width: 250px;
-            height: 250px;
-            border-radius: 10px;
-            margin: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: transform 0.3s, z-index 0s 0.3s;
-            position: relative;
-        }
-
-        .imagen-galeria:hover {
-            transform: scale(1.25);
-            z-index: 1;
-        }
-
-        .imagen-container {
-            position: relative;
-        }
-
-        .descripcion-imagen {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            font-size: 17px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            padding: 10px;
-            box-sizing: border-box;
-            opacity: 0;
-            transition: opacity 0.3s;
-            border-radius: 10px;
-        }
-
-        .imagen-container:hover .descripcion-imagen {
-            opacity: 1;
-        }
-
-        #modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 999;
-            overflow: auto;
-        }
-
-        #modal-contenido {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 90%;
-            max-height: 90%;
-        }
-
-        #modal-imagen {
-            max-width: 100%;
-            max-height: 100%;
-            margin-bottom: 20px;
-        }
-        
-#cerrar-modal {
-    position: absolute;
-    top: 10px;
-    right: 170px;
-    cursor: pointer;
-    font-size: 24px;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.5);
+/* Estilos del fondo del cuerpo */
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)), url('./Imagenes1/OIP (7).webp') center/cover fixed no-repeat; /* Fondo con un degradado y una imagen */
+    min-height: 100vh; /* Altura mínima del 100% de la ventana */
+    overflow-x: hidden; /* Evitar el desbordamiento horizontal */
+}
+#sidebar {
+    /* Mantener el estilo actual */
+    width: 140px;
+    height: 60vh;
+    background: linear-gradient(135deg, #0f1549, #142bff); /* Fondo con un degradado */
+    position: fixed;
+    top: 80px;
+    left: -250px; 
+    transition: left 0.3s ease;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
     padding: 20px;
-    border-radius: 50%;
-    z-index: 10001;
-    transition: background-color 0.3s ease; /* Agregar una transición suave al cambiar el color de fondo */
 }
 
+#sidebar img {
+    width: 90%;
+    margin: 10px 0;
+    transition: transform 0.3s, filter 0.3s;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 2px solid #fff;
+    display: block;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0.9; /* Añadir un ligero efecto de transparencia */
+}
+
+#sidebar img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+/* Añadir efecto de sombra al pasar el ratón */
+#sidebar img:active {
+    transform: scale(0.95); /* Efecto de presión */
+}
+
+/* Estilo adicional para el contenedor de los botones */
+#sidebar a {
+    display: block; /* Asegurarse de que cada enlace ocupa todo el espacio */
+    text-align: center; /* Centrar el texto dentro del enlace */
+    padding: 1px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+}
+
+#sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo al pasar el ratón */
+    transform: translateY(-1px); /* Efecto de elevación */
+}
+
+#sidebar img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+        #sidebar.visible {
+            left: 0;
+        }
+/* Estilos para el botón de toggle */
+#toggle-button {
+    background-color: #2e488d; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 50px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor */
+    position: fixed; /* Posición fija */
+    top: 20px; /* Distancia desde la parte superior */
+    left: 10px; /* Distancia desde el borde izquierdo */
+    z-index: 2000; /* Apilar por encima de otros elementos */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
+    font-size: 18px; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+}
+
+/* Efecto al pasar el ratón sobre el botón de toggle */
+#toggle-button:hover {
+    background-color: #142bff; /* Cambiar color al pasar el ratón */
+    transform: scale(1.05); /* Aumentar tamaño al pasar el ratón */
+}
+
+/* Estilos para el contenido principal */
+#contenido {
+    margin-left: 0; /* Sin margen izquierdo */
+    text-align: center; /* Centrar texto */
+    padding: 20px; /* Espaciado interno */
+    opacity: 0; /* Inicialmente invisible */
+    transition: opacity 1s ease-in-out, margin-left 0.3s ease; /* Transiciones suaves */
+}
+
+/* Clase para mostrar el contenido */
+#contenido.fadeIn {
+    opacity: 1; /* Hacer visible el contenido */
+}
+
+/* Estilos para el encabezado principal */
+h1 {
+    font-family: 'Pacifico', cursive; /* Tipo de letra */
+    font-size: 50px; /* Tamaño de fuente */
+    color: #ffffff; /* Color del texto */
+    margin-top: 50px; /* Margen superior */
+    animation: titulo-animacion 2s ease-in-out infinite alternate; /* Animación */
+       /* Bordes de colores simulados con sombras de texto */
+       text-shadow: 
+        6px 6px 0 #0f1faa,  /* Sombra color rojo */
+        -2px -2px 0 #025d99, /* Sombra color azul */
+        2px -2px 0 #0f1faa,   /* Sombra color púrpura */
+        -2px 2px 0 #2e46cc;  /* Sombra color verde */
+}
+
+/* Estilos para el subtítulo */
+h2 {
+    font-family: 'Lato', sans-serif; /* Tipo de letra */
+    font-size: 30px; /* Tamaño de fuente */
+    color: #dad8cf; /* Color del texto */
+    margin: 10px; /* Margen */
+
+    text-shadow: 
+        6px 6px 0 #0f1faa,  /* Sombra color rojo */
+        -2px -2px 0 #025d99, /* Sombra color azul */
+        2px -2px 0 #0f1faa,   /* Sombra color púrpura */
+        -2px 2px 0 #2e46cc;  /* Sombra color verde */
+}
+
+/* Estilos para los botones de galería */
+#boton-galeria-1, #boton-galeria-2, #boton-galeria-3 {
+    position: fixed; /* Posición fija */
+    z-index: 9999; /* Apilar por encima de otros elementos */
+}
+
+/* Posicionamiento específico de los botones de galería */
+#boton-galeria-1 {
+    top: 30px; /* Parte superior */
+    left: -50px; /* Fuera de la pantalla */
+}
+#boton-galeria-2 {
+    top: 130px; /* Distancia desde la parte superior */
+    left: -50px; /* Fuera de la pantalla */
+}
+#boton-galeria-3 {
+    top: 30px; /* Parte superior */
+    right: -35.5px; /* Fuera de la pantalla */
+}
+
+/* Tamaño de los botones de cambio de página */
+#boton-galeria-1 a img, #boton-galeria-2 a img, #boton-galeria-3 a img {
+    width: 100px; /* Ancho deseado */
+    height: 100px; /* Alto deseado */
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+/* Ajustar tamaño del contenedor de galería */
+.boton-galeria {
+    width: 220px; /* Ancho */
+    height: 220px; /* Alto */
+}
+
+/* Enlaces de galería */
+.boton-galeria a {
+    display: inline-block; /* Mostrar como bloque en línea */
+    border: 3px solid #ffffff; /* Borde blanco */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Ocultar el desbordamiento */
+    margin: 10px; /* Margen */
+}
+
+/* Imágenes en la galería */
+.boton-galeria a img {
+    width: 160px; /* Ancho de imagen */
+    height: 160px; /* Alto de imagen */
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor */
+    transition: transform 0.3s ease; /* Transiciones suaves */
+}
+
+/* Efecto al pasar el ratón sobre las imágenes de la galería */
+.boton-galeria a img:hover {
+    transform: scale(1.1); /* Aumentar tamaño */
+}
+
+/* Estilos para la fila de imágenes */
+.fila-imagenes {
+    display: flex; /* Usar flexbox */
+    flex-wrap: wrap; /* Permitir envoltura */
+    justify-content: center; /* Centrar contenido */
+    width: 100%; /* Ancho completo */
+}
+
+/* Estilos para las imágenes de la galería */
+.imagen-galeria {
+    width: 250px; /* Ancho */
+    height: 250px; /* Alto */
+    border-radius: 10px; /* Bordes redondeados */
+    margin: 20px; /* Margen */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    cursor: pointer; /* Cambiar cursor */
+    transition: transform 0.3s, z-index 0s 0.3s; /* Transiciones suaves */
+    position: relative; /* Posición relativa */
+}
+
+/* Efecto al pasar el ratón sobre las imágenes de la galería */
+.imagen-galeria:hover {
+    transform: scale(1.25); /* Aumentar tamaño */
+    z-index: 1; /* Aumentar el índice Z */
+}
+
+/* Contenedor de imagen */
+.imagen-container {
+    position: relative; /* Posición relativa */
+}
+
+/* Descripción de la imagen */
+.descripcion-imagen {
+    position: absolute; /* Posición absoluta */
+    bottom: 0; /* Parte inferior */
+    left: 0; /* Lado izquierdo */
+    width: 100%; /* Ancho completo */
+    font-size: 17px; /* Tamaño de fuente */
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro con opacidad */
+    color: #fff; /* Color del texto */
+    padding: 10px; /* Espaciado interno */
+    box-sizing: border-box; /* Incluir padding y border en el tamaño total */
+    opacity: 0; /* Inicialmente invisible */
+    transition: opacity 0.3s; /* Transición suave */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Efecto al pasar el ratón sobre el contenedor de imagen */
+.imagen-container:hover .descripcion-imagen {
+    opacity: 1; /* Hacer visible la descripción */
+}
+/* Estilos para el modal */
+#modal {
+    display: none; /* Inicialmente oculto */
+    position: fixed; /* Posición fija */
+    top: 0; /* Parte superior */
+    left: 0; /* Lado izquierdo */
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro */
+    z-index: 999; /* Apilar por encima de otros elementos */
+    overflow: auto; /* Habilitar desplazamiento */
+}
+
+/* Contenido del modal */
+#modal-contenido {
+    position: fixed; /* Posición fija */
+    top: 50%; /* Centro vertical */
+    left: 50%; /* Centro horizontal */
+    transform: translate(-50%, -50%); /* Centrar */
+    background-color: #fdfdfd; /* Fondo oscuro */
+    padding: 30px; /* Espaciado interno */
+    border-radius: 12px; /* Bordes redondeados */
+    max-width: 80%; /* Ancho máximo */
+    max-height: 80%; /* Alto máximo */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra suave */
+}
+
+/* Imagen en el modal */
+#modal-imagen {
+    max-width: 100%; /* Ancho máximo */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Estilos para e l botón de cerrar modal */
+#cerrar-modal {
+    position: absolute; /* Posición absoluta */
+    top: 10px; /* Parte superior */
+    right: 140px; /* Lado derecho */
+    cursor: pointer; /* Cambiar cursor */
+    font-size: 24px; /* Tamaño de fuente */
+    color: #fff; /* Color del texto */
+    background-color: #643dff; /* Rojo para destacar */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 50%; /* Bordes redondeados */
+    transition: background-color 0.3s, transform 0.2s; /* Transición suave */
+}
+
+/* Efecto al pasar el ratón sobre el botón de cerrar */
 #cerrar-modal:hover {
-    background-color: rgba(255, 255, 255, 0.5); /* Cambiar el color de fondo al pasar el cursor */
-    color: #000; /* Cambiar el color del texto para que sea más visible */
+    background-color: #311aff; /* Rojo más oscuro */
+    transform: scale(1.1); /* Efecto de aumento */
 }
 
+/* Navegación en el modal */
 .navegacion-modal {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 48px;
-            color: #fff;
-            cursor: pointer;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 50%;
-            z-index: 1000;
-            transition: background-color 0.3s;
-        }
+    position: absolute; /* Posición absoluta */
+    top: 50%; /* Centro vertical */
+    transform: translateY(-50%); /* Centrar verticalmente */
+    font-size: 36px; /* Tamaño de fuente */
+    color: #fff; /* Color del texto */
+    cursor: pointer; /* Cambiar cursor */
+    background-color: #1f1f1f; /* Fondo oscuro */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 50%; /* Bordes redondeados */
+    z-index: 1000; /* Apilar por encima de otros elementos */
+    transition: background-color 0.3s, transform 0.2s; /* Transición suave */
+}
 
-        .navegacion-modal:hover {
-            background-color: rgba(255, 255, 255, 0.5);
-            color: #000;
-        }
+/* Efecto al pasar el ratón sobre los botones de navegación */
+.navegacion-modal:hover {
+    background-color: #333; /* Fondo más claro al pasar el ratón */
+}
 
-        .navegacion-izquierda {
-            left: 20px;
-        }
+/* Posición de la navegación a la izquierda */
+.navegacion-izquierda {
+    left: 20px; /* Lado izquierdo */
+}
 
-        .navegacion-derecha {
-            right: 20px;
-        }
+/* Posición de la navegación a la derecha */
+.navegacion-derecha {
+    right: 20px; /* Lado derecho */
+}
 
-       /* Botón de música */
-        #boton-musica {
-            position: fixed;
-            top: 135px;
-            right: 20px;
-            z-index: 10000;
-            cursor: pointer;
-            font-size: 60px;
-            background-color: transparent; /* Color de fondo transparente */
-            color: #ffffff; /* Color del texto verde de Spotify */
-            padding: 10px;
-            border-radius: 1000%; /* Borde circular */
-            border: 4px solid #ffffff; /* Borde sólido */
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave */
-        }
+/* Estilos generales */
 
-        /* Menú emergente de música */
-        #mini-menu-musica {
-            position: fixed;
-            top: 265px;
-            right: 20px;
-            width: 400px;
-            background-color: #0f1970ce; /* Color de fondo oscuro similar a Spotify */
-            border-radius: 10px;
-            display: none;
-            z-index: 10000;
-            box-shadow: 0px 4px 6px rgba(255, 12, 12, 0.3); /* Sombra suave */
-            border: 4px solid #ffffff; /* Borde sólido verde similar a Spotify */
-        }
+/* Botón de música */
+#boton-musica {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    cursor: pointer;
+    font-size: 60px;
+    padding: 15px;
+    background: linear-gradient(90deg, #030a22, #1a3aa1); /* Gradiente colorido */
+    border: none;
+    border-radius: 50%; /* Borde circular */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* Sombra */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
 
-        /* Lista de música */
-        #lista-musica {
-            max-height: 350px;
-            overflow-y: auto;
-            border-bottom: 1px solid #363455; /* Borde inferior similar a Spotify */
-            padding: 0; /* Elimina el relleno */
-            margin: 0; /* Elimina el margen */
-        }
+/* Efecto al pasar el ratón sobre el botón de música */
+#boton-musica:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* Sombra más pronunciada */
+}
 
-        /* Estilo del texto de la lista de música */
-        #lista-musica button {
-            width: 150%;
-            padding: 15px;
-            text-align: left;
-            background-color: transparent; /* Fondo transparente */
-            border: none;
-            cursor: pointer;
-            position: relative;
-            transition: background-color 0.10s ease; /* Transición suave */
-            color: #FFFFFF; /* Color del texto blanco */
-            font-size: 23px;
-        }
+/* Menú emergente de música */
+#mini-menu-musica {
+    position: fixed;
+    top: 80px; /* Ajustar la posición superior */
+    right: 20px;
+    width: 400px;
+    background-color: #041368a1; /* Color de fondo oscuro */
+    border-radius: 15px;
+    display: none;
+    z-index: 10000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
 
-        /* Estilo al pasar el cursor sobre los botones de música */
-        #lista-musica button:hover,
-        #lista-musica button.seleccionado {
-            background-color: #302c53; /* Color de fondo similar a Spotify al pasar el cursor */
-        }
+/* Lista de música */
+#lista-musica {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 0;
+    margin: 0;
+}
 
-        /* Controles de música */
-        #controles-musica {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            padding: 10px;
-            border-bottom: 1px solid #535353; /* Borde inferior similar a Spotify */
-            border-top: 1px solid #535353; /* Borde superior similar a Spotify */
-        }
+/* Estilo del texto de la lista de música */
+#lista-musica button {
+    width: 100%;
+    padding: 15px;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease, transform 0.3s; /* Transición suave */
+    color: #FFFFFF;
+    font-size: 18px;
+    border-radius: 8px;
+}
 
-        /* Estilo de los botones de control de música */
-        #controles-musica button {
-            background-color: transparent; /* Fondo transparente */
-            color: #FFFFFF; /* Color del texto blanco */
-            border: none;
-            padding: 10px;
-            border-radius: 50%; /* Borde circular */
-            cursor: pointer;
-            margin: 0 5px;
-            transition: background-color 0.3s ease; /* Transición suave */
-        }
+/* Efecto al pasar el cursor sobre los botones de música */
+#lista-musica button:hover,
+#lista-musica button.seleccionado {
+    background: #f3f1f133; /* Fondo rosa suave */
+    color: #000000; /* Color del texto */
+}
+ 
+/* Controles de música */
+#controles-musica {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+    border-top: 1px solid #f7f8ff; /* Borde superior */
+    margin-top: 15px; /* Margen superior */
+}
 
-        /* Estilo al pasar el cursor sobre los botones de control de música */
-        #controles-musica button:hover {
-            background-color: #535353; /* Color de fondo similar a Spotify al pasar el cursor */
-        }
+/* Estilo de los botones de control de música */
+#controles-musica button {
+    background: linear-gradient(90deg, #010436, #4538ff); /* Color vibrante */
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%; /* Borde circular */
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
 
-        /* Control de volumen */
-        #volumen-musica {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
-            border: 2px solid #1d47b9; /* Borde sólido verde similar a Spotify */
-            border-radius: 10px;
-            color: #FFFFFF; /* Color del texto blanco */
-            margin-top: 10px; /* Añadido margen superior */
-        }
+/* Efecto al pasar el cursor sobre los botones de control de música */
+#controles-musica button:hover {
+    background: linear-gradient(90deg,#4538ff,  #010436); /* Invertir el gradiente */
+    transform: scale(1.1); /* Efecto de aumento */
+}
+/* Contenedor del control de volumen */
+#volumen-musica {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid #ffffff; /* Borde blanco */
+    border-radius: 10px;
+    color: #FFFFFF;
+    margin-top: 10px;
+}
 
-        /* Estilo del rango de volumen */
-        #volumen-musica input[type="range"] {
-            width: 90%; /* Anchura del rango de volumen */
-            margin-top: 10px;
-            -webkit-appearance: none; /* Eliminar la apariencia predeterminada del rango */
-            appearance: none;
-            background-color: #282828; /* Color de fondo oscuro similar a Spotify */
-            border: none; /* Elimina el borde predeterminado */
-        }
+/* Texto del porcentaje de volumen */
+#volumen-musica .porcentaje {
+    font-size: 18px; /* Tamaño de la fuente del porcentaje */
+    margin-top: 5px; /* Espaciado superior */
+}
 
-        /* Estilo del rango de volumen al pasar el cursor */
-        #volumen-musica input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none; /* Eliminar la apariencia predeterminada del control deslizante */
-            appearance: none;
-            width: 25px; /* Anchura del control deslizante */
-            height: 25px; /* Altura del control deslizante */
-            background: #1DB954; /* Color del control deslizante verde similar a Spotify */
-            border-radius: 50%; /* Hacer el control deslizante circular */
-            cursor: pointer;
-            border: none; /* Elimina el borde predeterminado */
-        }
+/* Barra de control de volumen */
+#volumen-musica input[type="range"] {
+    width: 90%; /* Anchura del control deslizante */
+    margin-top: 10px;
+    -webkit-appearance: none; /* Remover estilos predeterminados */
+    appearance: none;
+    background-color: transparent; /* Fondo transparente */
+}
 
-        /* Estilo del porcentaje de volumen */
-        #volumen-musica span {
-            margin-top: 5px;
-        }
+/* Estilo de la barra (track) */
+#volumen-musica input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right, #0e2677, #5ba8f1); /* Gradiente de colores */
+    border-radius: 10px;
+}
 
-        /* Estilo del título de la canción */
-        .titulo-cancion {
-            font-size: 18px;
-            margin-bottom: 10px;
-            text-align: center;
-            font-weight: bold;
-            color: #FFFFFF; /* Color del texto blanco */
-        }
+#volumen-musica input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right, #0e2677, #5ba8f1);
+    border-radius: 10px;
+}
+
+/* Estilo del pulgar (thumb) */
+#volumen-musica input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px; /* Anchura del pulgar */
+    height: 25px; /* Altura del pulgar */
+    background-color: #f523e4; /* Color del pulgar */
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin-top: -10px; /* Ajusta la posición vertical del pulgar */
+}
+
+#volumen-musica input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background-color: #dd23f5;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo del porcentaje de volumen */
+#volumen-musica span {
+    margin-top: 5px;
+}
+
+/* Estilo del título de la canción */
+.titulo-cancion {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #ffffff; /* Color vibrante para el título */
+}
+
+
     </style>
 </head>
 
 <body>
-    <div class="boton-galeria" id="boton-galeria-1">
-        <a href="J2.html">
-            <img src="Imagenes1/R (1).webp" alt="Ir a la Galería">
-        </a>
-    </div>
+    <button id="toggle-button">☰</button>
 
-    <div class="boton-galeria" id="boton-galeria-2">
-        <a href="galeria2.html">
-            <img src="Imagenes1/14667704.webp" alt="Ir a la Galería">
-        </a>
+    <div id="sidebar">
+        <a href="J2.html"><img src="Imagenes1/2435.png" alt="Inicio"></a>
+        <a href="galeria.html"><img src="Imagenes1/8001320.png" alt="Galería"></a>
+        <a href="galeria2.html"><img src="Imagenes1/8344917.png" alt="Galeria2"></a>
+        <a href="Game.html"><img src="Imagenes1/gamed.webp" alt="Game"></a>
     </div>
-
-    <div class="boton-galeria" id="boton-galeria-3">
-        <a href="Game.html">
-            <img src="Imagenes1/gamed.webp" alt="Ir a la Galería">
-        </a>
-    </div>
-
     <h1> </h1>
     <h1> </h1>
     <h1>Galería de Recuerdos 1</h1>
-    <h2>Actualización 14/09</h2>
+    <h2>Actualización 06/10</h2>
     <h2>Ahora estan disponibles nuevas funciones</h2>
     <h2></h2>
     
@@ -992,12 +1151,24 @@
         <div id="volumen-musica">
             <span>Volumen</span>
             <input type="range" id="control-volumen" min="0" max="1" step="0.01" value="0.5">
+            <div class="porcentaje">50%</div> <!-- Porcentaje inicial -->
         </div>
-    </div>
 
     <audio id="reproductor-musica"></audio>
-
     <script>
+        // Evento para mostrar/ocultar la barra lateral
+        document.getElementById('toggle-button').addEventListener('click', function () {
+            // Obtener el elemento de la barra lateral y el body
+            const sidebar = document.getElementById('sidebar');
+            const body = document.body;
+    
+            // Alternar la clase 'visible' en la barra lateral
+            sidebar.classList.toggle('visible');
+            
+            // Ajustar el margen del body dependiendo de si la barra lateral está visible
+            body.style.marginLeft = sidebar.classList.contains('visible') ? '125px' : '0';
+        });
+    
         // Función para reproducir una canción
         function reproducirCancion(src) {
             const reproductor = document.getElementById('reproductor-musica');
@@ -1103,8 +1274,10 @@
         });
 
         controlVolumen.addEventListener('input', (event) => {
-            reproductor.volume = event.target.value;
-        });
+    reproductor.volume = event.target.value;
+    document.querySelector('#volumen-musica .porcentaje').textContent = Math.round(event.target.value * 100) + '%'; // Actualiza el porcentaje
+});
+
 
         reproductor.addEventListener('ended', () => {
             if (indiceCancionActual < botonesCancion.length - 1) {
