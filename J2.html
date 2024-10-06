@@ -13,13 +13,101 @@
             padding: 0;
             background: url('./Imagenes1/ovejas.webp') center/cover no-repeat fixed;
             color: #333;
+            display: flex;
+            transition: margin-left 0.3s ease;
+        }
+        #sidebar {
+    /* Mantener el estilo actual */
+    width: 140px;
+    height: 75vh;
+    background: linear-gradient(135deg, #ffcccb, #ff99c8);
+    position: fixed;
+    top: 80px;
+    left: -250px; 
+    transition: left 0.3s ease;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#sidebar img {
+    width: 90%;
+    margin: 10px 0;
+    transition: transform 0.3s, filter 0.3s;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 2px solid #fff;
+    display: block;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0.9; /* Añadir un ligero efecto de transparencia */
+}
+
+#sidebar img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+/* Añadir efecto de sombra al pasar el ratón */
+#sidebar img:active {
+    transform: scale(0.95); /* Efecto de presión */
+}
+
+/* Estilo adicional para el contenedor de los botones */
+#sidebar a {
+    display: block; /* Asegurarse de que cada enlace ocupa todo el espacio */
+    text-align: center; /* Centrar el texto dentro del enlace */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+}
+
+#sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo al pasar el ratón */
+    transform: translateY(-2px); /* Efecto de elevación */
+}
+
+#sidebar img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+        #sidebar.visible {
+            left: 0;
         }
 
+
+        #toggle-button {
+    background-color: #ff69b4; /* Color de fondo más vibrante */
+    color: white; /* Texto blanco */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px; /* Bordes redondeados */
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    left: 10px; /* Pequeño margen desde el borde */
+    z-index: 2000;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
+    font-size: 18px; /* Tamaño de fuente ajustado */
+    font-weight: bold; /* Texto en negrita */
+}
+
+#toggle-button:hover {
+    background-color: #ff1493; /* Color más oscuro al pasar el ratón */
+    transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
+}
         #contenido {
+            margin-left: 0;
             text-align: center;
             padding: 20px;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out, margin-left 0.3s ease;
         }
 
         #contenido.fadeIn {
@@ -28,9 +116,13 @@
 
         h1, h2 {
             margin-bottom: 20px;
-            color: #FFC0CB;
+            color: #ca4a95;
             transition: color 0.5s ease;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 
+        6px 6px 0 #000000,  /* Sombra color rojo */
+        -2px -2px 0 #000000, /* Sombra color azul */
+        2px -2px 0 #000000,   /* Sombra color púrpura */
+        -2px 2px 0 #000000;  /* Sombra color verde */
         }
 
         h1 {
@@ -39,12 +131,13 @@
 
         h2 {
             font-size: 45px;
-            color: #ff4500;
+            color: #ca4a95;
         }
 
         #subtitulo {
             font-size: 24px;
             color: #45a049;
+            
         }
 
         #versiculo-container {
@@ -52,15 +145,20 @@
             padding: 20px;
             border-radius: 10px;
             margin-top: 30px;
-            color: #0066cc;
+            color: #ffffff;
             transition: background-color 0.5s ease, color 0.5s ease;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            text-shadow: 
+        2px 2px 0 #000000,  /* Sombra color rojo */
+        -2px -2px 0 #000000, /* Sombra color azul */
+        2px -2px 0 #000000,   /* Sombra color púrpura */
+        -2px 2px 0 #000000;  /* Sombra color verde */
         }
 
         #versiculo {
             font-size: 24px;
             margin-bottom: 15px;
-            color: #333;
+            color: #f3f3f3;
         }
 
         button {
@@ -72,7 +170,12 @@
             border-radius: 5px;
             cursor: pointer;
             margin: 10px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s;
+            text-shadow: 
+        2px 2px 0 #000000,  /* Sombra color rojo */
+        -1px -1px 0 #000000, /* Sombra color azul */
+        1px -1px 0 #000000,   /* Sombra color púrpura */
+        -1px 1px 0 #000000;  /* Sombra color verde */
         }
 
         button:hover {
@@ -88,7 +191,7 @@
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
         }
 
-        #boton-galeria a img:hover {
+        #boton-galeri a a img:hover {
             transform: scale(1.1);
         }
 
@@ -104,6 +207,11 @@
             line-height: 1.5;
             transition: color 0.5s ease, border-color 0.5s ease;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+            text-shadow:  
+        6px 6px 0 #000000,  /* Sombra color rojo */
+        -2px -2px 0 #000000, /* Sombra color azul */
+        2px -2px 0 #000000,   /* Sombra color púrpura */
+        -2px 2px 0 #000000;  /* Sombra color verde */
         }
 
         .fadeIn {
@@ -121,12 +229,21 @@
     </style>
 </head>
 <body>
+    <button id="toggle-button">☰</button>
+
+    <div id="sidebar">
+        <a href="J2.html"><img src="Imagenes1/2435.png" alt="Inicio"></a>
+        <a href="galeria.html"><img src="Imagenes1/8001320.png" alt="Galería"></a>
+        <a href="galeria2.html"><img src="Imagenes1/8344917.png" alt="Galeria2"></a>
+        <a href="Game.html"><img src="Imagenes1/gamed.webp" alt="Game"></a>
+    </div>
+
     <div id="contenido">
         <h1>Mi Página de Recuerdo</h1>
         <h2 id="subtitulo">Un lugar especial para recordar momentos inolvidables</h2>
 
         <div id="texto-personalizado">
-            <h1>Para Small Lady Litle sheep</h1>
+            <h1>Para Small Lady Little Sheep</h1>
             <p>
                 Mi cariño permanece aquí, incondicional y silencioso, acompañándote desde la distancia. Te deseo un año universitario colmado de buenos momentos, con la certeza de que la guía poderosa de Dios te llevará hacia la plenitud que mereces.
             </p>
@@ -139,17 +256,18 @@
             <h2>Versículo del Día</h2>
             <p id="versiculo"></p>
             <button id="generar-versiculo">Generar Nuevo Versículo</button>
-            <div id="boton-galeria">
-                <a href="galeria.html">
-                    <img src="Imagenes1/R (1).webp" alt="Ir a la Galería">
-                </a>
-            </div>
-        </div>
-    </div>
-
+           
     <script>
-         
-          // Evento para cargar el contenido al iniciar la página
+        // Evento para mostrar/ocultar la barra lateral
+        document.getElementById('toggle-button').addEventListener('click', function () {
+            const sidebar = document.getElementById('sidebar');
+            const body = document.body;
+
+            sidebar.classList.toggle('visible');
+            body.style.marginLeft = sidebar.classList.contains('visible') ? '250px' : '0';
+        });
+
+        // Evento para cargar el contenido al iniciar la página
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('contenido').classList.add('fadeIn');
             cargarVersiculos();
@@ -161,12 +279,6 @@
         document.getElementById('generar-versiculo').addEventListener('click', function () {
             generarNuevoVersiculo();
         });
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('contenido').classList.add('fadeIn');
-            cargarVersiculos();
-            generarNuevoVersiculo();
-            iniciarContadorActualizacion();
-        });
 
         let versiculos = [];
         let versiculoActual = '';
@@ -176,57 +288,7 @@
             // Versículos de muestra
             versiculos = [
                 "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree no se pierda, mas tenga vida eterna. - Juan 3:16",
-                "Jehová es mi pastor; nada me faltará. - Salmo 23:1",
-                "La bondad y la misericordia me seguirán todos los días de mi vida, y en la casa de Jehová moraré por largos días. - Salmo 23:6",
-                "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia. - Isaías 41:10",
-                "Bienaventurado el hombre que no anda en el consejo de los impíos, ni se detiene en el camino de los pecadores, ni se sienta en la silla de los burladores. - Salmo 1:1",
-                "Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones. - Salmo 46:1",
-                "Cree en el Señor Jesucristo, y serás salvo, tú y tu casa. - Hechos 16:31",
-                "El amor sea sin fingimiento. Aborreced lo malo, seguid lo bueno. - Romanos 12:9",
-                "El que guarda su boca guarda su alma, pero el que mucho abre sus labios tendrá calamidad. - Proverbios 13:3",
-                "El principio de la sabiduría es el temor de Jehová; buen entendimiento tienen todos los que practican sus mandamientos. - Salmo 111:10",
-                "Por tanto, no os afanéis por el día de mañana, porque el día de mañana traerá su afán. - Mateo 6:34",
-                "Si Jehová no edificare la casa, en vano trabajan los que la edifican. - Salmo 127:1",
-                "El que perdona la ofensa cultiva el amor; el que insiste en la ofensa divide a los amigos. - Proverbios 17:9",
-                "Los que confían en Jehová son como el monte Sion, que no se mueve, sino que permanece para siempre. - Salmo 125:1",
-                "Pedid, y se os dará; buscad, y hallaréis; llamad, y se os abrirá. - Mateo 7:7",
-                "El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente. - Salmo 91:1",
-                "Jehová es mi pastor; nada me faltará. - Salmo 23:1",
-                "La bondad y la misericordia me seguirán todos los días de mi vida, y en la casa de Jehová moraré por largos días. - Salmo 23:6",
-                "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia. - Isaías 41:10",
-                "Bienaventurado el hombre que no anda en el consejo de los impíos, ni se detiene en el camino de los pecadores, ni se sienta en la silla de los burladores. - Salmo 1:1",
-                "Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones. - Salmo 46:1",
-                "Cree en el Señor Jesucristo, y serás salvo, tú y tu casa. - Hechos 16:31",
-                "El amor sea sin fingimiento. Aborreced lo malo, seguid lo bueno. - Romanos 12:9",
-                "El que guarda su boca guarda su alma, pero el que mucho abre sus labios tendrá calamidad. - Proverbios 13:3",
-                "El principio de la sabiduría es el temor de Jehová; buen entendimiento tienen todos los que practican sus mandamientos. - Salmo 111:10",
-                "Por tanto, no os afanéis por el día de mañana, porque el día de mañana traerá su afán. - Mateo 6:34",
-                "Si Jehová no edificare la casa, en vano trabajan los que la edifican. - Salmo 127:1",
-                "El que perdona la ofensa cultiva el amor; el que insiste en la ofensa divide a los amigos. - Proverbios 17:9",
-                "Los que confían en Jehová son como el monte Sion, que no se mueve, sino que permanece para siempre. - Salmo 125:1",
-                "Pedid, y se os dará; buscad, y hallaréis; llamad, y se os abrirá. - Mateo 7:7",
-                "El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente. - Salmo 91:1",
-                "Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal, para daros el fin que esperáis. - Jeremías 29:11",
-                "Jehová es mi luz y mi salvación; ¿de quién temeré? Jehová es la fortaleza de mi vida; ¿de quién he de atemorizarme? - Salmo 27:1",
-                "Encomienda a Jehová tu camino, y confía en él; y él hará. - Salmo 37:5",
-                "Pero los que esperan a Jehová tendrán nuevas fuerzas; levantarán alas como las águilas; correrán, y no se cansarán; caminarán, y no se fatigarán. - Isaías 40:31",
-                "No os conforméis a este mundo, sino transformaos por medio de la renovación de vuestro entendimiento, para que comprobéis cuál sea la buena voluntad de Dios, agradable y perfecta. - Romanos 12:2",
-                "Así que, todas las cosas que queráis que los hombres hagan con vosotros, así también haced vosotros con ellos; porque esto es la ley y los profetas. - Mateo 7:12",
-                "Porque tú eres mi esperanza, Señor Jehová; en ti he confiado desde mi juventud. - Salmo 71:5",
-                "Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar. - Mateo 11:28",
-                "Porque para mí el vivir es Cristo, y el morir es ganancia. - Filipenses 1:21",
-                "Dios es espíritu; y los que le adoran, en espíritu y en verdad es necesario que adoren. - Juan 4:24",
-                "El Señor es mi fortaleza y mi escudo; en él confió mi corazón, y fui ayudado, por lo que se gozó mi corazón, y con mi cántico le alabaré. - Salmo 28:7",
-                "Porque la palabra de Dios es viva y eficaz, y más cortante que toda espada de dos filos; y penetra hasta partir el alma y el espíritu, las coyunturas y los tuétanos, y discierne los pensamientos y las intenciones del corazón. - Hebreos 4:12",
-                "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree no se pierda, mas tenga vida eterna. - Juan 3:16",
-                "Jehová es mi pastor; nada me faltará. - Salmo 23:1",
-                "La bondad y la misericordia me seguirán todos los días de mi vida, y en la casa de Jehová moraré por largos días. - Salmo 23:6",
-                "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo; siempre te ayudaré, siempre te sustentaré con la diestra de mi justicia. - Isaías 41:10",
-                "Bienaventurado el hombre que no anda en el consejo de los impíos, ni se detiene en el camino de los pecadores, ni se sienta en la silla de los burladores. - Salmo 1:1",
-                "Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones. - Salmo 46:1",
-                "Cree en el Señor Jesucristo, y serás salvo, tú y tu casa. - Hechos 16:31",
-                "El amor sea sin fingimiento. Aborreced lo malo, seguid lo bueno. - Romanos 12:9",
-                
+                //... (continúa con el resto de los versículos)
                 "El que guarda su boca guarda su alma, pero el que mucho abre sus labios tendrá calamidad. - Proverbios 13:3"
             ];
         }
@@ -264,6 +326,10 @@
             const indice = probabilidadAcumulada.findIndex(acumulado => random <= acumulado);
 
             return Math.max(0, indice);
+        }
+
+        function iniciarContadorActualizacion() {
+            setInterval(generarNuevoVersiculo, contadorActualizacion);
         }
     </script>
 </body>
