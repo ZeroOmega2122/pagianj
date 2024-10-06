@@ -15,7 +15,7 @@ body {
 
 .contenedor {
     position: relative;
-    width: 1150px;
+    width: 1350px;
     height: 400px;
     overflow: hidden;
     border: 1px solid #ccc;
@@ -26,8 +26,8 @@ body {
 }
 
 .oveja {
-    width: 50px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     position: absolute;
     bottom: 24px;
     left: 50px;
@@ -48,13 +48,13 @@ body {
 }
 
 .suelo {
-    width: 6000px;
-    height: 170px;
+    width: 5500px;
+    height: 218px;
     position: absolute;
     bottom: 0;
     left: 0;
     background: url("./Igame/VDia-piso.png") repeat-x 0px 0px;
-    background-size: 1135px 220px;
+    background-size: 1002px 300px;
 }
 
 .score {
