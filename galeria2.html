@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" type="image/webp" href="./Imagenes/8493053.webp">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERA-GALERIA 2</title>
-        <style>
-    body, html {
+    <link rel="icon" type="image/webp" href="./Imagenes/8493053.webp">
+    
+    <style>
+        /* Estilos generales para body y html */
+        body, html {
             font-family: 'Lato', sans-serif;
             margin: 0;
             padding: 0;
@@ -16,24 +18,130 @@
         }
 
         body {
-            background: linear-gradient(#ffffff10, rgba(255, 255, 255, 0)), url('./Imagenes1/desktop-wallpaper-usagi-and-mamoru-falling-princess-usagi-mamoru-dekstop (1).webp') center/cover fixed no-repeat;
+            background: linear-gradient(#ffffff10, rgba(255, 255, 255, 0)), 
+                        url('./Imagenes1/desktop-wallpaper-usagi-and-mamoru-falling-princess-usagi-mamoru-dekstop (1).webp') 
+                        center/cover fixed no-repeat;
             min-height: 100vh;
             overflow-x: hidden;
         }
-        h1 {
-            font-family: 'Pacifico', cursive;
-            font-size: 50px;
-            color: #ffffff;
-            margin-top: 50px;
-            animation: titulo-animacion 2s ease-in-out infinite alternate;
+
+        /* Estilo para la barra lateral (sidebar) */
+        #sidebar {
+            width: 140px;
+            height: 60vh;
+            background: linear-gradient(135deg, #093ecf, #d199ff);
+            position: fixed;
+            top: 80px;
+            left: -250px; /* Fuera de la vista por defecto */
+            transition: left 0.3s ease; /* Transición suave al mostrar/ocultar */
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            padding: 20px;
         }
+
+        /* Estilo para las imágenes dentro de la barra lateral */
+        #sidebar img {
+            width: 90%;
+            margin: 10px 0;
+            transition: transform 0.3s, filter 0.3s; /* Transiciones para hover */
+            cursor: pointer;
+            border-radius: 8px;
+            border: 2px solid #fff;
+            display: block;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0.9; /* Efecto de transparencia ligera */
+        }
+
+#sidebar img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+/* Añadir efecto de sombra al pasar el ratón */
+#sidebar img:active {
+    transform: scale(0.95); /* Efecto de presión */
+}
+
+/* Estilo adicional para el contenedor de los botones */
+#sidebar a {
+    display: block; /* Asegurarse de que cada enlace ocupa todo el espacio */
+    text-align: center; /* Centrar el texto dentro del enlace */
+    padding: 1px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+}
+
+#sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo al pasar el ratón */
+    transform: translateY(-1px); /* Efecto de elevación */
+}
+
+#sidebar img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+        #sidebar.visible {
+            left: 0;
+        }
+
+/* Estilos para el botón de toggle */
+#toggle-button {
+    background-color: #145eff; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 50px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor */
+    position: fixed; /* Posición fija */
+    top: 20px; /* Distancia desde la parte superior */
+    left: 10px; /* Distancia desde el borde izquierdo */
+    z-index: 2000; /* Apilar por encima de otros elementos */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
+    font-size: 18px; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+}
+
+/* Efecto al pasar el ratón sobre el botón de toggle */
+#toggle-button:hover {
+    background-color:#4f9edf;  /* Cambiar color al pasar el ratón */
+    transform: scale(1.05); /* Aumentar tamaño al pasar el ratón */
+}
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+    color: #fcff4c; /* Color del texto principal */
+    margin-top: 50px;
+    animation: titulo-animacion 2s ease-in-out infinite alternate;
+
+    /* Bordes de colores simulados con sombras de texto */
+    text-shadow: 
+        6px 6px 0 #000000,  /* Sombra color rojo */
+        -2px -2px 0 #025d99, /* Sombra color azul */
+        2px -2px 0 #000000,  /* Sombra color púrpura */
+        -2px 2px 0 #2e46cc;  /* Sombra color verde */
+}
+
 
         h2 {
             font-family: 'Lato', sans-serif;
             font-size: 30px;
-            color: #dad8cf;
+            color: #fcff4c;
             margin: 10px;
-        }
+               /* Bordes de colores simulados con sombras de texto */
+    text-shadow: 
+        3px 3px 0 #000000,  /* Sombra color rojo */
+        -2px -2px 0 #025d99, /* Sombra color azul */
+        2px -2px 0 #000000,  /* Sombra color púrpura */
+        -2px 2px 0 #2e46cc;  /* Sombra color verde */
+}
+
       
         #boton-galeria-1 {
             position: fixed;
@@ -216,161 +324,199 @@
             right: 20px;
         }
 
-        /* Botón de música */
-        #boton-musica {
-            position: fixed;
-            top: 150px;
-            right: 20px;
-            z-index: 10000;
-            cursor: pointer;
-            font-size: 60px;
-            background-color: transparent; /* Color de fondo transparente */
-            color: #ffffff; /* Color del texto verde de Spotify */
-            padding: 10px;
-            border-radius: 1000%; /* Borde circular */
-            border: 4px solid #ffffff; /* Borde sólido */
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave */
-        }
+/* Botón de música */
+#boton-musica {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    cursor: pointer;
+    font-size: 60px;
+    padding: 15px;
+    background: linear-gradient(90deg, #c08fff, #38a5ff); /* Gradiente colorido */
+    border: none;
+    border-radius: 50%; /* Borde circular */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* Sombra */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
 
-        /* Menú emergente de música */
-        #mini-menu-musica {
-            position: fixed;
-            top: 265px;
-            right: 20px;
-            width: 400px;
-            background-color: #0f1970ce; /* Color de fondo oscuro similar a Spotify */
-            border-radius: 10px;
-            display: none;
-            z-index: 10000;
-            box-shadow: 0px 4px 6px rgba(255, 12, 12, 0.3); /* Sombra suave */
-            border: 4px solid #ffffff; /* Borde sólido verde similar a Spotify */
-        }
+/* Efecto al pasar el ratón sobre el botón de música */
+#boton-musica:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* Sombra más pronunciada */
+}
 
-        /* Lista de música */
-        #lista-musica {
-            max-height: 350px;
-            overflow-y: auto;
-            border-bottom: 1px solid #363455; /* Borde inferior similar a Spotify */
-            padding: 0; /* Elimina el relleno */
-            margin: 0; /* Elimina el margen */
-        }
+/* Menú emergente de música */
+#mini-menu-musica {
+    position: fixed;
+    top: 80px; /* Ajustar la posición superior */
+    right: 20px;
+    width: 400px;
+    background: linear-gradient(90deg, #c08fffc0, #38a5ffb4); /* Cambia background-color a background */
+    border-radius: 15px;
+    display: none;
+    z-index: 10000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
 
-        /* Estilo del texto de la lista de música */
-        #lista-musica button {
-            width: 150%;
-            padding: 15px;
-            text-align: left;
-            background-color: transparent; /* Fondo transparente */
-            border: none;
-            cursor: pointer;
-            position: relative;
-            transition: background-color 0.10s ease; /* Transición suave */
-            color: #FFFFFF; /* Color del texto blanco */
-            font-size: 23px;
-        }
 
-        /* Estilo al pasar el cursor sobre los botones de música */
-        #lista-musica button:hover,
-        #lista-musica button.seleccionado {
-            background-color: #302c53; /* Color de fondo similar a Spotify al pasar el cursor */
-        }
+/* Lista de música */
+#lista-musica {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 0;
+    margin: 0;
+}
 
-        /* Controles de música */
-        #controles-musica {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            padding: 10px;
-            border-bottom: 1px solid #535353; /* Borde inferior similar a Spotify */
-            border-top: 1px solid #535353; /* Borde superior similar a Spotify */
-        }
+/* Estilo del texto de la lista de música */
+#lista-musica button {
+    width: 100%;
+    padding: 15px;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease, transform 0.3s; /* Transición suave */
+    color: #FFFFFF;
+    font-size: 18px;
+    border-radius: 8px;
+}
 
-        /* Estilo de los botones de control de música */
-        #controles-musica button {
-            background-color: transparent; /* Fondo transparente */
-            color: #FFFFFF; /* Color del texto blanco */
-            border: none;
-            padding: 10px;
-            border-radius: 50%; /* Borde circular */
-            cursor: pointer;
-            margin: 0 5px;
-            transition: background-color 0.3s ease; /* Transición suave */
-        }
+/* Efecto al pasar el cursor sobre los botones de música */
+#lista-musica button:hover,
+#lista-musica button.seleccionado {
+    background: #f3f1f133; /* Fondo rosa suave */
+    color: #000000; /* Color del texto */
+}
+ 
+/* Controles de música */
+#controles-musica {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+    border-top: 1px solid #f7f8ff; /* Borde superior */
+    margin-top: 15px; /* Margen superior */
+}
 
-        /* Estilo al pasar el cursor sobre los botones de control de música */
-        #controles-musica button:hover {
-            background-color: #535353; /* Color de fondo similar a Spotify al pasar el cursor */
-        }
+/* Estilo de los botones de control de música */
+#controles-musica button {
+    background: linear-gradient(90deg, #c08fff, #38a5ff); /* Color vibrante */
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%; /* Borde circular */
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
 
-        /* Control de volumen */
-        #volumen-musica {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
-            border: 2px solid #1d47b9; /* Borde sólido verde similar a Spotify */
-            border-radius: 10px;
-            color: #FFFFFF; /* Color del texto blanco */
-            margin-top: 10px; /* Añadido margen superior */
-        }
+/* Efecto al pasar el cursor sobre los botones de control de música */
+#controles-musica button:hover {
+    background: linear-gradient(90deg,#c08fff, #38a5ff); /* Invertir el gradiente */
+    transform: scale(1.1); /* Efecto de aumento */
+}
+/* Contenedor del control de volumen */
+#volumen-musica {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid #ffffff; /* Borde blanco */
+    border-radius: 10px;
+    color: #FFFFFF;
+    margin-top: 10px;
+}
 
-        /* Estilo del rango de volumen */
-        #volumen-musica input[type="range"] {
-            width: 90%; /* Anchura del rango de volumen */
-            margin-top: 10px;
-            -webkit-appearance: none; /* Eliminar la apariencia predeterminada del rango */
-            appearance: none;
-            background-color: #282828; /* Color de fondo oscuro similar a Spotify */
-            border: none; /* Elimina el borde predeterminado */
-        }
+/* Texto del porcentaje de volumen */
+#volumen-musica .porcentaje {
+    font-size: 18px; /* Tamaño de la fuente del porcentaje */
+    margin-top: 5px; /* Espaciado superior */
+}
 
-        /* Estilo del rango de volumen al pasar el cursor */
-        #volumen-musica input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none; /* Eliminar la apariencia predeterminada del control deslizante */
-            appearance: none;
-            width: 25px; /* Anchura del control deslizante */
-            height: 25px; /* Altura del control deslizante */
-            background: #1DB954; /* Color del control deslizante verde similar a Spotify */
-            border-radius: 50%; /* Hacer el control deslizante circular */
-            cursor: pointer;
-            border: none; /* Elimina el borde predeterminado */
-        }
+/* Barra de control de volumen */
+#volumen-musica input[type="range"] {
+    width: 90%; /* Anchura del control deslizante */
+    margin-top: 10px;
+    -webkit-appearance: none; /* Remover estilos predeterminados */
+    appearance: none;
+    background-color: transparent; /* Fondo transparente */
+}
 
-        /* Estilo del porcentaje de volumen */
-        #volumen-musica span {
-            margin-top: 5px;
-        }
+/* Estilo de la barra (track) */
+#volumen-musica input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right, #c08fff, #38a5ff); /* Gradiente de colores */
+    border-radius: 10px;
+}
 
-        /* Estilo del título de la canción */
-        .titulo-cancion {
-            font-size: 18px;
-            margin-bottom: 10px;
-            text-align: center;
-            font-weight: bold;
-            color: #FFFFFF; /* Color del texto blanco */
-        }
+#volumen-musica input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right, #0e2677, #5ba8f1);
+    border-radius: 10px;
+}
+
+/* Estilo del pulgar (thumb) */
+#volumen-musica input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px; /* Anchura del pulgar */
+    height: 25px; /* Altura del pulgar */
+    background-color: #f523e4; /* Color del pulgar */
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin-top: -10px; /* Ajusta la posición vertical del pulgar */
+}
+
+#volumen-musica input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background-color: #dd23f5;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo del porcentaje de volumen */
+#volumen-musica span {
+    margin-top: 5px;
+}
+
+/* Estilo del título de la canción */
+.titulo-cancion {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #ffffff; /* Color vibrante para el título */
+}
+
     </style>
     </style>
 </head>
 <body>
-    <div class="boton-galeria" id="boton-galeria-1">
-        <a href="galeria.html">
-            <img src="Imagenes1/R (1).webp" alt="Ir a la Galería">
-        </a>
+    <button id="toggle-button">☰</button>
+
+    <div id="sidebar">
+        <a href="J2.html"><img src="Imagenes1/2435.png" alt="Inicio"></a>
+        <a href="galeria.html"><img src="Imagenes1/8001320.png" alt="Galería"></a>
+        <a href="galeria2.html"><img src="Imagenes1/8344917.png" alt="Galeria2"></a>
+        <a href="Game.html"><img src="Imagenes1/gamed.webp" alt="Game"></a>
     </div>
-    <div class="boton-galeria" id="boton-galeria-3">
-        <a href="Game.html">
-            <img src="Imagenes1/gamed.webp" alt="Ir a la Galería">
-        </a>
-    </div>
+
   <h1> </h1>
       <h1> </h1>
     <h1>Galería de Recuerdos 2</h1>
-    <h2>Y?</h2>
-    <h2>Tuvo suerte?</h2>
-    <h2>Que tal si me lo comenta a ver si encontro todas</h2>
-    <h2>no son muchas pero espero le de una mejor experiencia</h2>
-        <h2>A la hora de ver este album :)</h2>
+    <h2>Honra al Señor con tus bienes y con las primicias de todos tus frutos;</h2>
+    <h2>entonces tus graneros estarán rebosantes y tus bodegas desbordarán de vino nuevo.</h2>
+    <h2>Proverbios 3:9-10</h2>
       <div class="fila-imagenes">
         <!-- Agrega tus 22 imágenes de la galería -->
       
@@ -701,143 +847,161 @@
             <button id="pausar-reanudar">⏸️</button>
             <button id="avanzar">⏭️</button>
         </div>
+       
         <div id="volumen-musica">
             <span>Volumen</span>
             <input type="range" id="control-volumen" min="0" max="1" step="0.01" value="0.5">
+            <div class="porcentaje">50%</div> <!-- Porcentaje inicial -->
         </div>
-    </div>
+
 
     <audio id="reproductor-musica"></audio>
 
     <script>
-        // Función para reproducir una canción
-        function reproducirCancion(src) {
-            const reproductor = document.getElementById('reproductor-musica');
-            reproductor.src = src;
-            reproductor.play();
-        }
+        
+        // Evento para mostrar/ocultar la barra lateral
+document.getElementById('toggle-button').addEventListener('click', function () {
+   // Obtener el elemento de la barra lateral y el body
+   const sidebar = document.getElementById('sidebar');
+   const body = document.body;
 
-        const modal = document.getElementById('modal');
-        const modalImagen = document.getElementById('modal-imagen');
-        const modalDescripcion = document.getElementById('modal-descripcion');
-        const cerrarModal = document.getElementById('cerrar-modal');
-        const flechaIzquierda = document.getElementById('flecha-izquierda');
-        const flechaDerecha = document.getElementById('flecha-derecha');
-        let imagenActual = 0;
-        let imagenes = document.querySelectorAll('.imagen-container');
+   // Alternar la clase 'visible' en la barra lateral
+   sidebar.classList.toggle('visible');
+   
+   // Ajustar el margen del body dependiendo de si la barra lateral está visible
+   body.style.marginLeft = sidebar.classList.contains('visible') ? '165px' : '0';
+});
+       // Función para reproducir una canción
+       function reproducirCancion(src) {
+           const reproductor = document.getElementById('reproductor-musica');
+           reproductor.src = src;
+           reproductor.play();
+       }
 
-        imagenes.forEach((imagen, index) => {
-            imagen.addEventListener('click', () => {
-                abrirModal(index);
-            });
-        });
+       const modal = document.getElementById('modal');
+       const modalImagen = document.getElementById('modal-imagen');
+       const modalDescripcion = document.getElementById('modal-descripcion');
+       const cerrarModal = document.getElementById('cerrar-modal');
+       const flechaIzquierda = document.getElementById('flecha-izquierda');
+       const flechaDerecha = document.getElementById('flecha-derecha');
+       let imagenActual = 0;
+       let imagenes = document.querySelectorAll('.imagen-container');
 
-        cerrarModal.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
+       imagenes.forEach((imagen, index) => {
+           imagen.addEventListener('click', () => {
+               abrirModal(index);
+           });
+       });
 
-        flechaIzquierda.addEventListener('click', () => {
-            cambiarImagen(-1);
-        });
+       cerrarModal.addEventListener('click', () => {
+           modal.style.display = 'none';
+       });
 
-        flechaDerecha.addEventListener('click', () => {
-            cambiarImagen(1);
-        });
+       flechaIzquierda.addEventListener('click', () => {
+           cambiarImagen(-1);
+       });
 
-        function abrirModal(index) {
-            imagenActual = index;
-            const imagenSrc = imagenes[imagenActual].querySelector('img').src;
-            const descripcion = imagenes[imagenActual].querySelector('.descripcion-imagen').innerHTML;
-            modalImagen.src = imagenSrc;
-            modalDescripcion.innerHTML = descripcion;
-            modal.style.display = 'block';
-        }
+       flechaDerecha.addEventListener('click', () => {
+           cambiarImagen(1);
+       });
 
-        function cambiarImagen(direccion) {
-            imagenActual += direccion;
-            if (imagenActual < 0) {
-                imagenActual = imagenes.length - 1;
-            } else if (imagenActual >= imagenes.length) {
-                imagenActual = 0;
-            }
-            abrirModal(imagenActual);
-        }
-        // Manejo del menú de música
-        const botonMusica = document.getElementById('boton-musica');
-        const miniMenuMusica = document.getElementById('mini-menu-musica');
-        const botonesCancion = document.querySelectorAll('#lista-musica button');
-        const reproductor = document.getElementById('reproductor-musica');
-        const botonPausarReanudar = document.getElementById('pausar-reanudar');
-        const botonRetroceder = document.getElementById('retroceder');
-        const botonAvanzar = document.getElementById('avanzar');
-        const controlVolumen = document.getElementById('control-volumen');
-        const tituloCancion = document.querySelector('.titulo-cancion');
-        let indiceCancionActual = -1;
+       function abrirModal(index) {
+           imagenActual = index;
+           const imagenSrc = imagenes[imagenActual].querySelector('img').src;
+           const descripcion = imagenes[imagenActual].querySelector('.descripcion-imagen').innerHTML;
+           modalImagen.src = imagenSrc;
+           modalDescripcion.innerHTML = descripcion;
+           modal.style.display = 'block';
+       }
 
-        botonMusica.addEventListener('click', () => {
-            miniMenuMusica.style.display = miniMenuMusica.style.display === 'block' ? 'none' : 'block';
-        });
+       function cambiarImagen(direccion) {
+           imagenActual += direccion;
+           if (imagenActual < 0) {
+               imagenActual = imagenes.length - 1;
+           } else if (imagenActual >= imagenes.length) {
+               imagenActual = 0;
+           }
+           abrirModal(imagenActual);
+       }
 
-        botonesCancion.forEach((boton, indice) => {
-            boton.addEventListener('click', () => {
-                botonesCancion.forEach(btn => btn.classList.remove('seleccionado'));
-                boton.classList.add('seleccionado');
-                const src = boton.getAttribute('data-src');
-                reproductor.src = src;
-                reproductor.play();
-                tituloCancion.textContent = boton.textContent;
-                indiceCancionActual = indice;
-                botonPausarReanudar.textContent = '⏸️';
-            });
-        });
+       // Manejo del menú de música
+       const botonMusica = document.getElementById('boton-musica');
+       const miniMenuMusica = document.getElementById('mini-menu-musica');
+       const botonesCancion = document.querySelectorAll('#lista-musica button');
+       const reproductor = document.getElementById('reproductor-musica');
+       const botonPausarReanudar = document.getElementById('pausar-reanudar');
+       const botonRetroceder = document.getElementById('retroceder');
+       const botonAvanzar = document.getElementById('avanzar');
+       const controlVolumen = document.getElementById('control-volumen');
+       const tituloCancion = document.querySelector('.titulo-cancion');
+       let indiceCancionActual = -1;
 
-        botonPausarReanudar.addEventListener('click', () => {
-            if (reproductor.paused) {
-                reproductor.play();
-                botonPausarReanudar.textContent = '⏸️';
-            } else {
-                reproductor.pause();
-                botonPausarReanudar.textContent = '▶️';
-            }
-        });
+       botonMusica.addEventListener('click', () => {
+           miniMenuMusica.style.display = miniMenuMusica.style.display === 'block' ? 'none' : 'block';
+       });
 
-        botonRetroceder.addEventListener('click', () => {
-            if (indiceCancionActual > 0) {
-                botonesCancion[indiceCancionActual - 1].click();
-            }
-        });
+       botonesCancion.forEach((boton, indice) => {
+           boton.addEventListener('click', () => {
+               botonesCancion.forEach(btn => btn.classList.remove('seleccionado'));
+               boton.classList.add('seleccionado');
+               const src = boton.getAttribute('data-src');
+               reproductor.src = src;
+               reproductor.play();
+               tituloCancion.textContent = boton.textContent;
+               indiceCancionActual = indice;
+               botonPausarReanudar.textContent = '⏸️';
+           });
+       });
 
-        botonAvanzar.addEventListener('click', () => {
-            if (indiceCancionActual < botonesCancion.length - 1) {
-                botonesCancion[indiceCancionActual + 1].click();
-            }
-        });
+       botonPausarReanudar.addEventListener('click', () => {
+           if (reproductor.paused) {
+               reproductor.play();
+               botonPausarReanudar.textContent = '⏸️';
+           } else {
+               reproductor.pause();
+               botonPausarReanudar.textContent = '▶️';
+           }
+       });
 
-        controlVolumen.addEventListener('input', (event) => {
-            reproductor.volume = event.target.value;
-        });
+       botonRetroceder.addEventListener('click', () => {
+           if (indiceCancionActual > 0) {
+               botonesCancion[indiceCancionActual - 1].click();
+           }
+       });
 
-        reproductor.addEventListener('ended', () => {
-            if (indiceCancionActual < botonesCancion.length - 1) {
-                botonesCancion[indiceCancionActual + 1].click();
-            }
-        });
+       botonAvanzar.addEventListener('click', () => {
+           if (indiceCancionActual < botonesCancion.length - 1) {
+               botonesCancion[indiceCancionActual + 1].click();
+           }
+       });
 
-        document.getElementById('cerrar-volumen').addEventListener('click', () => {
-            miniMenuMusica.style.display = 'none';
-        });
+       controlVolumen.addEventListener('input', (event) => {
+   reproductor.volume = event.target.value;
+   document.querySelector('#volumen-musica .porcentaje').textContent = Math.round(event.target.value * 100) + '%'; // Actualiza el porcentaje
+});
 
-        // Función para ajustar la posición del botón de la galería al desplazarse
-        function ajustarPosicionBoton() {
-            var botonGaleria = document.getElementById('boton-galeria');
-            botonGaleria.style.top = (20 + window.scrollY) + 'px';
-        }
 
-        // Ejecutar la función inicialmente para posicionar el botón correctamente
-        ajustarPosicionBoton();
+       reproductor.addEventListener('ended', () => {
+           if (indiceCancionActual < botonesCancion.length - 1) {
+               botonesCancion[indiceCancionActual + 1].click();
+           }
+       });
 
-        // Volver a ajustar la posición del botón al desplazarse
-        window.addEventListener('scroll', ajustarPosicionBoton);
-    </script>
+       document.getElementById('cerrar-volumen').addEventListener('click', () => {
+           miniMenuMusica.style.display = 'none';
+       });
+
+       // Función para ajustar la posición del botón de la galería al desplazarse
+       function ajustarPosicionBoton() {
+           var botonGaleria = document.getElementById('boton-galeria');
+           botonGaleria.style.top = (20 + window.scrollY) + 'px';
+       }
+
+       // Ejecutar la función inicialmente para posicionar el botón correctamente
+       ajustarPosicionBoton();
+
+       // Volver a ajustar la posición del botón al desplazarse
+       window.addEventListener('scroll', ajustarPosicionBoton);
+   </script>
 </body>
 </html>
