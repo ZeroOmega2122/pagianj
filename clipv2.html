@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archivo de Recuerdos</title>
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: url('./Imagenes1/Ashita.no.Nadja.1024.2438066.webp') center/cover no-repeat fixed;
+      margin: 0;
+      padding: 30px;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 40px;
+      color: white;
+      text-shadow: 1px 1px 4px black;
+    }
+    .carpetas {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    .carpeta {
+      width: 160px;
+      height: 160px;
+      background: url('https://cdn-icons-png.flaticon.com/512/716/716784.png') center/contain no-repeat;
+      background-color: transparent;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 15px;
+      font-weight: bold;
+      font-size: 16px;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+    }
+    .carpeta {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: #f0f0f0;
+}
+
+.carpeta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.carpeta.abierta {
+  background-color: #d1eaff;
+  box-shadow: 0 6px 16px rgba(0, 100, 255, 0.3);
+  transform: scale(1.03);
+}
+
+    #galeria {
+  display: none; /* por defecto oculta */
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+#galeria.abierta {
+  display: flex;
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+
+    .video-thumb {
+      width: 280px;
+      height: 160px;
+      background: linear-gradient(145deg, #222, #111);
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 10px;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      z-index: 1;
+    }
+    .video-thumb:hover {
+      transform: scale(1.03);
+    }
+    .video-thumb img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border: 2px solid #333;
+      border-radius: 4px;
+    }
+    .video-thumb p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      background: #fff;
+      color: #111;
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      text-align: left;
+    }
+    .video-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .video-container video {
+      max-width: 200vw;
+      max-height: 90vh;
+      border-radius: 10px;
+    }
+    .close-btn, .flecha {
+      position: absolute;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+    .close-btn {
+      top: 10px;
+      right: 170px;
+    }
+    .flecha.izq {
+      top: 50%;
+      left: 30px;
+      transform: translateY(-50%);
+    }
+    .flecha.der {
+      top: 50%;
+      right: 30px;
+      transform: translateY(-50%);
+    }
+  
+    
+#sidebar {
+            position: fixed;
+            top: 120px;
+            left: -250px; 
+            width: 115px;
+            height: 55vh;
+            background: linear-gradient(135deg, #2de715, #34852d);
+            border-radius: 0 20px 20px 0;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+        }
+
+
+        /* Estilo para las imágenes dentro de la barra lateral */
+        #sidebar img {
+            width: 90%;
+            margin: 10px 0;
+            transition: transform 0.3s, filter 0.3s; /* Transiciones para hover */
+            cursor: pointer;
+            border-radius: 8px;
+            border: 2px solid #fff;
+            display: block;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0.9; /* Efecto de transparencia ligera */
+        }
+
+        #sidebar img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+/* Añadir efecto de sombra al pasar el ratón */
+#sidebar img:active {
+    transform: scale(0.95); /* Efecto de presión */
+}
+
+/* Estilo adicional para el contenedor de los botones */
+#sidebar a {
+    display: block; /* Asegurarse de que cada enlace ocupa todo el espacio */
+    text-align: center; /* Centrar el texto dentro del enlace */
+    padding: 1px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+}
+
+#sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo al pasar el ratón */
+    transform: translateY(-1px); /* Efecto de elevación */
+}
+
+#sidebar img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+        #sidebar.visible {
+            left: 0;
+        }
+/* Estilos para el botón de toggle */
+#toggle-button {
+    background-color: #1ad414; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 30px 30px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 50px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor */
+    position: fixed; /* Posición fija */
+    top: 20px; /* Distancia desde la parte superior */
+    left: 10px; /* Distancia desde el borde izquierdo */
+    z-index: 2000; /* Apilar por encima de otros elementos */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
+    font-size: 30px; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+
+}
+
+/* Efecto al pasar el ratón sobre el botón de toggle */
+#toggle-button:hover {
+    background-color: #0b790b; /* Cambiar color al pasar el ratón */
+    transform: scale(1.05); /* Aumentar tamaño al pasar el ratón */
+}
+
+/* Botón de música */
+#boton-musica {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    cursor: pointer;
+    font-size: 60px;
+    padding: 15px;
+    background: linear-gradient(90deg, #0de029a2, #1ea11a); /* Gradiente colorido */
+    border: none;
+    border-radius: 50%; /* Borde circular */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* Sombra */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Efecto al pasar el ratón sobre el botón de música */
+#boton-musica:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* Sombra más pronunciada */
+}
+
+/* Menú emergente de música */
+#mini-menu-musica {
+    position: fixed;
+    top: 80px; /* Ajustar la posición superior */
+    right: 20px;
+    width: 400px;
+    background-color: #04680ca1; /* Color de fondo oscuro */
+    border-radius: 15px;
+    display: none;
+    z-index: 10000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Lista de música */
+#lista-musica {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilo del texto de la lista de música */
+#lista-musica button {
+    width: 100%;
+    padding: 15px;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease, transform 0.3s; /* Transición suave */
+    color: #FFFFFF;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+/* Efecto al pasar el cursor sobre los botones de música */
+#lista-musica button:hover,
+#lista-musica button.seleccionado {
+    background: #f3f1f133; /* Fondo rosa suave */
+    color: #000000; /* Color del texto */
+}
+ 
+/* Controles de música */
+#controles-musica {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+    border-top: 1px solid #f7f8ff; /* Borde superior */
+    margin-top: 15px; /* Margen superior */
+}
+
+/* Estilo de los botones de control de música */
+#controles-musica button {
+    background: linear-gradient(90deg, #0aaf128c, #38ff42); /* Color vibrante */
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%; /* Borde circular */
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+/* Efecto al pasar el cursor sobre los botones de control de música */
+#controles-musica button:hover {
+    background: linear-gradient(90deg,#38ff49,  #0136088f); /* Invertir el gradiente */
+    transform: scale(1.1); /* Efecto de aumento */
+}
+/* Contenedor del control de volumen */
+#volumen-musica {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid #ffffff; /* Borde blanco */
+    border-radius: 10px;
+    color: #FFFFFF;
+    margin-top: 10px;
+}
+
+/* Texto del porcentaje de volumen */
+#volumen-musica .porcentaje {
+    font-size: 18px; /* Tamaño de la fuente del porcentaje */
+    margin-top: 5px; /* Espaciado superior */
+}
+
+/* Barra de control de volumen */
+#volumen-musica input[type="range"] {
+    width: 90%; /* Anchura del control deslizante */
+    margin-top: 10px;
+    -webkit-appearance: none; /* Remover estilos predeterminados */
+    appearance: none;
+    background-color: transparent; /* Fondo transparente */
+}
+
+/* Estilo de la barra (track) */
+#volumen-musica input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right, #0e7717, #74f15b); /* Gradiente de colores */
+    border-radius: 10px;
+}
+
+#volumen-musica input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right,  #0e7717, #74f15b);
+    border-radius: 10px;
+}
+
+/* Estilo del pulgar (thumb) */
+#volumen-musica input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px; /* Anchura del pulgar */
+    height: 25px; /* Altura del pulgar */
+    background-color: #f523e4; /* Color del pulgar */
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin-top: -10px; /* Ajusta la posición vertical del pulgar */
+}
+
+#volumen-musica input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background-color: #dd23f5;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo del porcentaje de volumen */
+#volumen-musica span {
+    margin-top: 5px;
+}
+
+/* Estilo del título de la canción */
+.titulo-cancion {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #ffffff; /* Color vibrante para el título */
+}
+  </style>
+</head>
+<body>
+
+  <audio id="sonido-clic" src="Songs/harp-metal-97812.mp3" preload="auto"></audio>
+  <audio id="Imusica1" src="Songs/mixkit-intro-transition-1146.wav" preload="auto"></audio>
+  <audio id="Imusica2" src="Songs/mixkit-melodical-flute-music-notification-2310.wav" preload="auto"></audio>
+
+  <h1>Archivo de Recuerdos</h1>
+  <div class="carpetas">
+    <div class="carpeta" onclick="abrirCarpeta('familia')">Carpeta 1</div>
+    <div class="carpeta" onclick="abrirCarpeta('viajes')">Carpeta 2</div>
+    <div class="carpeta" onclick="abrirCarpeta('escuela')">Carpeta 3</div>
+  </div>
+
+  <div class="galeria" id="galeria"></div>
+
+  <div class="video-container" id="videoContainer">
+    <span class="close-btn" onclick="cerrarVideo()">&times;</span>
+    <span class="flecha izq" onclick="anteriorVideo()">&#10094;</span>
+    <video id="videoPlayer" controls></video>
+    <span class="flecha der" onclick="siguienteVideo()">&#10095;</span>
+  </div>
+  <button id="toggle-button">☰</button>
+
+  <div id="sidebar">
+    <a href="J3.html"><img src="Imagenes1/2435.png" alt="Inicio"></a>
+    <a href="galeria.html"><img src="Imagenes1/8001320.png" alt="Galería"></a>
+    <a href="galeria2.html"><img src="Imagenes1/8344917.png" alt="Galeria2"></a>
+    <a href="Game.html"><img src="Imagenes1/gamed.webp" alt="Game"></a>
+ </div>
+ 
+ <div id="boton-musica">🎵</div>
+ <div id="mini-menu-musica">
+     <span id="cerrar-volumen">&times;</span>
+       <div id="lista-musica">
+         <button data-src="MusicaJ/y2mate.com - Inuyasha OST  Futari no Kimochi Extended.mp3">Futari no Kimochi</button>
+         <button data-src="MusicaJ/y2mate.com - Inuyasha Ending 3 Latino Remasterizado Digital.mp3">Dearest</button>
+         <button data-src="MusicaJ/y2mate.com - Inuyasha OST 2  Beautiful Memories.mp3">Beautiful Memories</button>
+         <button data-src="MusicaJ/y2mate.com - Inuyasha Ending 1 Full Edit 2020   My Will  Gabriela Vega LATINO.mp3">My will</button>
+         <button data-src="MusicaJ/y2mate.com - Sailor Moon  En mis Sueños.mp3">En mis sueños</button>
+         <button data-src="MusicaJ/y2mate.com - Resplandeciente cristal de plata Letra.mp3">Resplandeciente cristal de plata</button>      
+         <button data-src="MusicaJ/y2mate.com - SM Destino de la Luz de Luna By Marisa De Lille.mp3">Destino de la Luz de Luna</button>
+         <button data-src="MusicaJ/y2mate.com - Marisa De Lille Ilusión de Amor Tuxedo Mirage.mp3">Ilusión de Amor</button>
+         <button data-src="MusicaJ/y2mate.com - Marisa De Lille  Quiero estar contigo siempre.mp3">Quiero estar contigo siempre</button>
+         <button data-src="MusicaJ/y2mate.com - Sailor Moon  La Princesa De La Luna Letra.mp3">La Princesa De La Luna</button>
+         <button data-src="MusicaJ/y2mate.com - SailorMoon  Moonlight  Caja musical.mp3">Moonlight  Caja musical</button>
+         <button data-src="MusicaJ/y2mate.com - Moon Revenge Español  Sailor Moon.mp3">Moon Revenge</button>
+         <button data-src="MusicaJ/y2mate.com - Sailor Moon  Nagareboshi He Sub Español.mp3">Nagareboshi He</button>
+     </div>
+     
+     <div id="controles-musica">
+         <div class="titulo-cancion">Ninguna canción seleccionada</div>
+         <button id="retroceder">⏮️</button>
+         <button id="pausar-reanudar">⏸️</button>
+         <button id="avanzar">⏭️</button>
+     </div>
+
+     <div id="volumen-musica">
+         <span>Volumen</span>
+         <input type="range" id="control-volumen" min="0" max="1" step="0.01" value="0.5">
+         <div class="porcentaje">50%</div> <!-- Porcentaje inicial -->
+     </div>
+
+ <audio id="reproductor-musica"></audio>
+
+  <script>
+
+window.onload = function() {
+  const canciones = [
+    document.getElementById('Imusica1'),
+    document.getElementById('Imusica2')
+    
+  ];
+  const alAzar = Math.floor(Math.random() * canciones.length);
+  const musicaSeleccionada = canciones[alAzar];
+
+  musicaSeleccionada.volume = 0.1; // Volumen entre 0.0 y 1.0
+  musicaSeleccionada.play();
+};
+
+
+    const carpetas = {
+      familia: Array.from({length: 35}, (_, i) => ({
+        src: `Clips/C${i+1}.mp4`,
+        thumb: `Clips/Thumbnails/C${i+1}.png`,
+        title: `Recuerdo ${i+1}`
+      })),
+      viajes: Array.from({length: 35}, (_, i) => ({
+        src: `Clips/C${i+36}.mp4`,
+        thumb: `Clips/Thumbnails/C${i+36}.png`,
+        title: `Recuerdo ${i+36}`
+      })),
+      escuela: Array.from({length: 35}, (_, i) => ({
+        src: `Clips/C${i+71}.mp4`,
+        thumb: `Clips/Thumbnails/C${i+71}.png`,
+        title: `Recuerdo ${i+71}`
+      }))
+    };
+
+    let indiceActual = 0;
+    let videosActivos = [];
+    let carpetaAbierta = null;
+
+function abrirCarpeta(nombre) {
+  const sonido = document.getElementById('sonido-clic');
+  if (sonido) {
+    sonido.pause();          // Detiene cualquier reproducción anterior
+    sonido.currentTime = 0;  // Reinicia el sonido desde el principio
+    sonido.volume = 0.1;     // 🔉 Ajusta el volumen entre 0.0 y 1.0
+    sonido.play();           // ▶️ Reproduce el sonido
+  }
+
+  const galeria = document.getElementById('galeria');
+
+  // Si ya está abierta esa carpeta, entonces cerrar
+  if (carpetaAbierta === nombre && galeria.classList.contains('abierta')) {
+    galeria.classList.remove('abierta'); // inicia animación de salida
+
+    // Espera a que termine la animación antes de ocultar y limpiar
+    setTimeout(() => {
+      galeria.style.display = 'none';
+      galeria.innerHTML = '';
+    }, 400); // mismo tiempo que la transición CSS
+    carpetaAbierta = null;
+    return;
+  }
+
+  // Si es otra carpeta, abrir normalmente
+  carpetaAbierta = nombre;
+  galeria.innerHTML = '';
+  videosActivos = carpetas[nombre];
+
+  videosActivos.forEach((video, i) => {
+    const div = document.createElement('div');
+    div.className = 'video-thumb';
+    div.innerHTML = `<img src="${video.thumb}" alt=""><p>${video.title}</p>`;
+    div.onclick = () => mostrarVideo(i);
+    galeria.appendChild(div);
+  });
+
+  galeria.style.display = 'flex';
+
+  // Permite que el navegador pinte antes de aplicar la clase
+  requestAnimationFrame(() => {
+    galeria.classList.add('abierta'); // animación de entrada
+  });
+}
+
+
+
+    function mostrarVideo(index) {
+      const sonido = document.getElementById('sonido-clic');
+  if (sonido) {
+    sonido.pause();          // Detiene cualquier reproducción anterior
+    sonido.currentTime = 0;  // Reinicia el sonido desde el principio
+    sonido.volume = 0.1;     // 🔉 Ajusta el volumen entre 0.0 y 1.0
+    sonido.play();           // ▶️ Reproduce el sonido
+  }
+      indiceActual = index;
+      const contenedor = document.getElementById('videoContainer');
+      const player = document.getElementById('videoPlayer');
+      player.src = videosActivos[indiceActual].src;
+      contenedor.style.display = 'flex';
+      player.play();
+    }
+
+    function cerrarVideo() {
+      const sonido = document.getElementById('sonido-clic');
+  if (sonido) {
+    sonido.pause();          // Detiene cualquier reproducción anterior
+    sonido.currentTime = 0;  // Reinicia el sonido desde el principio
+    sonido.volume = 0.1;     // 🔉 Ajusta el volumen entre 0.0 y 1.0
+    sonido.play();           // ▶️ Reproduce el sonido
+  }
+      const contenedor = document.getElementById('videoContainer');
+      const player = document.getElementById('videoPlayer');
+      player.pause();
+      contenedor.style.display = 'none';
+    }
+
+    function siguienteVideo() {
+      const sonido = document.getElementById('sonido-clic');
+  if (sonido) {
+    sonido.pause();          // Detiene cualquier reproducción anterior
+    sonido.currentTime = 0;  // Reinicia el sonido desde el principio
+    sonido.volume = 0.1;     // 🔉 Ajusta el volumen entre 0.0 y 1.0
+    sonido.play();           // ▶️ Reproduce el sonido
+  }
+      indiceActual = (indiceActual + 1) % videosActivos.length;
+      mostrarVideo(indiceActual);
+    }
+
+    function anteriorVideo() {
+      const sonido = document.getElementById('sonido-clic');
+  if (sonido) {
+    sonido.pause();          // Detiene cualquier reproducción anterior
+    sonido.currentTime = 0;  // Reinicia el sonido desde el principio
+    sonido.volume = 0.1;     // 🔉 Ajusta el volumen entre 0.0 y 1.0
+    sonido.play();           // ▶️ Reproduce el sonido
+  }
+      indiceActual = (indiceActual - 1 + videosActivos.length) % videosActivos.length;
+      mostrarVideo(indiceActual);
+    }
+
+    
+    document.getElementById('toggle-button').addEventListener('click', () => {
+      const sonido = document.getElementById('sonido-clic');
+  if (sonido) {
+    sonido.pause();          // Detiene cualquier reproducción anterior
+    sonido.currentTime = 0;  // Reinicia el sonido desde el principio
+    sonido.volume = 0.1;     // 🔉 Ajusta el volumen entre 0.0 y 1.0
+    sonido.play();           // ▶️ Reproduce el sonido
+  }
+      const sidebar = document.getElementById('sidebar');
+      const body = document.body;
+      sidebar.classList.toggle('visible');
+      body.style.marginLeft = sidebar.classList.contains('visible') ? '125px' : '0';
+    });
+
+  
+    
+        // Función para reproducir una canción
+        function reproducirCancion(src) {
+          const sonido = document.getElementById('sonido-clic');
+  if (sonido) {
+    sonido.pause();          // Detiene cualquier reproducción anterior
+    sonido.currentTime = 0;  // Reinicia el sonido desde el principio
+    sonido.volume = 0.1;     // 🔉 Ajusta el volumen entre 0.0 y 1.0
+    sonido.play();           // ▶️ Reproduce el sonido
+  }
+            const reproductor = document.getElementById('reproductor-musica');
+            reproductor.src = src;
+            reproductor.play();
+        }
+
+        // Manejo del menú de música
+        const botonMusica = document.getElementById('boton-musica');
+        const miniMenuMusica = document.getElementById('mini-menu-musica');
+        const botonesCancion = document.querySelectorAll('#lista-musica button');
+        const reproductor = document.getElementById('reproductor-musica');
+        const botonPausarReanudar = document.getElementById('pausar-reanudar');
+        const botonRetroceder = document.getElementById('retroceder');
+        const botonAvanzar = document.getElementById('avanzar');
+        const controlVolumen = document.getElementById('control-volumen');
+        const tituloCancion = document.querySelector('.titulo-cancion');
+        let indiceCancionActual = -1;
+
+        botonMusica.addEventListener('click', () => {
+            miniMenuMusica.style.display = miniMenuMusica.style.display === 'block' ? 'none' : 'block';
+            const sonido = document.getElementById('sonido-clic');
+  if (sonido) {
+    sonido.pause();          // Detiene cualquier reproducción anterior
+    sonido.currentTime = 0;  // Reinicia el sonido desde el principio
+    sonido.volume = 0.1;     // 🔉 Ajusta el volumen entre 0.0 y 1.0
+    sonido.play();           // ▶️ Reproduce el sonido
+  }
+        });
+
+        botonesCancion.forEach((boton, indice) => {
+          const sonido = document.getElementById('sonido-clic');
+  if (sonido) {
+    sonido.pause();          // Detiene cualquier reproducción anterior
+    sonido.currentTime = 0;  // Reinicia el sonido desde el principio
+    sonido.volume = 0.1;     // 🔉 Ajusta el volumen entre 0.0 y 1.0
+    sonido.play();           // ▶️ Reproduce el sonido
+  }
+            boton.addEventListener('click', () => {
+                botonesCancion.forEach(btn => btn.classList.remove('seleccionado'));
+                boton.classList.add('seleccionado');
+                const src = boton.getAttribute('data-src');
+                reproductor.src = src;
+                reproductor.play();
+                tituloCancion.textContent = boton.textContent;
+                indiceCancionActual = indice;
+                botonPausarReanudar.textContent = '⏸️';
+            });
+        });
+
+        botonPausarReanudar.addEventListener('click', () => {
+          const sonido = document.getElementById('sonido-clic');
+  if (sonido) {
+    sonido.pause();          // Detiene cualquier reproducción anterior
+    sonido.currentTime = 0;  // Reinicia el sonido desde el principio
+    sonido.volume = 0.1;     // 🔉 Ajusta el volumen entre 0.0 y 1.0
+    sonido.play();           // ▶️ Reproduce el sonido
+  }
+            if (reproductor.paused) {
+                reproductor.play();
+                botonPausarReanudar.textContent = '⏸️';
+            } else {
+                reproductor.pause();
+                botonPausarReanudar.textContent = '▶️';
+            }
+        });
+
+        botonRetroceder.addEventListener('click', () => {
+          const sonido = document.getElementById('sonido-clic');
+  if (sonido) {
+    sonido.pause();          // Detiene cualquier reproducción anterior
+    sonido.currentTime = 0;  // Reinicia el sonido desde el principio
+    sonido.volume = 0.1;     // 🔉 Ajusta el volumen entre 0.0 y 1.0
+    sonido.play();           // ▶️ Reproduce el sonido
+  }
+            if (indiceCancionActual > 0) {
+                botonesCancion[indiceCancionActual - 1].click();
+            }
+        });
+
+        botonAvanzar.addEventListener('click', () => {
+          const sonido = document.getElementById('sonido-clic');
+  if (sonido) {
+    sonido.pause();          // Detiene cualquier reproducción anterior
+    sonido.currentTime = 0;  // Reinicia el sonido desde el principio
+    sonido.volume = 0.1;     // 🔉 Ajusta el volumen entre 0.0 y 1.0
+    sonido.play();           // ▶️ Reproduce el sonido
+  }
+            if (indiceCancionActual < botonesCancion.length - 1) {
+                botonesCancion[indiceCancionActual + 1].click();
+            }
+        });
+
+        controlVolumen.addEventListener('input', (event) => {
+    reproductor.volume = event.target.value;
+    document.querySelector('#volumen-musica .porcentaje').textContent = Math.round(event.target.value * 100) + '%'; // Actualiza el porcentaje
+});
+
+
+        reproductor.addEventListener('ended', () => {
+          
+            if (indiceCancionActual < botonesCancion.length - 1) {
+                botonesCancion[indiceCancionActual + 1].click();
+            }
+        });
+
+        document.getElementById('cerrar-volumen').addEventListener('click', () => {
+            miniMenuMusica.style.display = 'none';
+        });
+        let videoActual = 0;
+
+
+  </script>
+</body>
+</html>
