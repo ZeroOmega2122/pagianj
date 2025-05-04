@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERA - Recuerdo</title>
+    <link rel="icon" href="Imagenes1/8493053.webp" type="image/webp">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff6bcb;
+            --secondary-color: #ffeef81e;
+            --text-color: #333;
+            --highlight: #ffd700;
+            --dark-bg: rgba(0, 0, 0, 0.6);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background: url('./Imagenes1/ovejas2.webp') center/cover no-repeat fixed;
+            color: var(--text-color);
+            transition: margin-left 0.3s ease;
+            
+        }
+
+        #sidebar {
+            position: fixed;
+            top: 125px;
+            left: -250px; 
+            width: 115px;
+            height: 55vh;
+            background: linear-gradient(135deg, var(--primary-color), #ffa8d6);
+            border-radius: 0 20px 20px 0;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+        }
+
+
+        /* Estilo para las imágenes dentro de la barra lateral */
+        #sidebar img {
+            width: 90%;
+            margin: 10px 0;
+            transition: transform 0.3s, filter 0.3s; /* Transiciones para hover */
+            cursor: pointer;
+            border-radius: 8px;
+            border: 2px solid #fff;
+            display: block;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0.9; /* Efecto de transparencia ligera */
+        }
+
+        #sidebar img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+/* Añadir efecto de sombra al pasar el ratón */
+#sidebar img:active {
+    transform: scale(0.95); /* Efecto de presión */
+}
+
+/* Estilo adicional para el contenedor de los botones */
+#sidebar a {
+    display: block; /* Asegurarse de que cada enlace ocupa todo el espacio */
+    text-align: center; /* Centrar el texto dentro del enlace */
+    padding: 1px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+}
+
+#sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo al pasar el ratón */
+    transform: translateY(-1px); /* Efecto de elevación */
+}
+
+#sidebar img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+        #sidebar.visible {
+            left: 0;
+        }
+/* Estilos para el botón de toggle */
+#toggle-button {
+    background-color: #b41fb9; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 30px 30px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 50px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor */
+    position: fixed; /* Posición fija */
+    top: 20px; /* Distancia desde la parte superior */
+    left: 10px; /* Distancia desde el borde izquierdo */
+    z-index: 2000; /* Apilar por encima de otros elementos */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
+    font-size: 30px; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+
+}
+
+/* Efecto al pasar el ratón sobre el botón de toggle */
+#toggle-button:hover {
+    background-color: #ff14f3; /* Cambiar color al pasar el ratón */
+    transform: scale(1.05); /* Aumentar tamaño al pasar el ratón */
+}
+
+
+        #contenido {
+            text-align: center;
+            padding: 40px 20px;
+            transition: opacity 0.8s;
+            margin-left: 0;
+        }
+
+        #contenido.fadeIn {
+            opacity: 1;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 5rem;
+            margin-bottom: 10px;
+            color: #ca4a95;
+            text-shadow:  6px 6px 0 #000000,  /* Sombra color rojo */
+        -2px -2px 0 #000000, /* Sombra color azul */
+        2px -2px 0 #000000,   /* Sombra color púrpura */
+        -2px 2px 0 #000000;  /* Sombra color verde */
+            
+        }
+
+        h2 {
+            font-family: 'Pacifico', cursive;
+            font-size: 40px;
+            color: #45a049;
+            text-shadow:  6px 6px 0 #000000,  /* Sombra color rojo */
+        -2px -1px 0 #000000, /* Sombra color azul */
+        2px -1px 0 #000000,   /* Sombra color púrpura */
+        -2px 1px 0 #000000;  /* Sombra color verde */
+            
+        }
+        h3 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 5px;
+            color: #ca4a95;
+            text-shadow:  6px 6px 0 #000000,  /* Sombra color rojo */
+        -2px -2px 0 #000000, /* Sombra color azul */
+        2px -2px 0 #000000,   /* Sombra color púrpura */
+        -2px 2px 0 #000000;  /* Sombra color verde */
+            
+        }
+
+        #texto-personalizado {
+            font-family: 'Pacifico', cursive;
+            background-color: var(--dark-bg);
+            color: #ffcc00;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px auto;
+            max-width: 800px;
+            font-size: 2.2rem;
+            line-height: 1.6;
+            box-shadow: 0 4px 120px rgba(0,0,0,0.3);
+            text-shadow:  
+        6px 6px 0 #000000,  /* Sombra color rojo */
+        -2px -2px 0 #000000, /* Sombra color azul */
+        2px -2px 0 #000000,   /* Sombra color púrpura */
+        -2px 2px 0 #000000;  /* Sombra color verde */
+        }
+
+        #versiculo-container {
+            font-family: 'Pacifico', cursive;
+            background-color: var(--secondary-color);
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 105px;
+            max-width: 700px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        #versiculo {
+            font-size: 2.5rem;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.9);
+        }
+
+        button:hover {
+            background-color: #e85cb9;
+        }
+    </style>
+</head>
+<body>
+    <button id="toggle-button">☰</button>
+
+    <div id="sidebar">
+        <a href="galeria.html"><img src="Imagenes1/8001320.png" alt="Galería"></a>
+        <a href="galeria2.html"><img src="Imagenes1/8344917.png" alt="Galería 2"></a>
+        <a href="Game.html"><img src="Imagenes1/gamed.webp" alt="Juego"></a>
+        <a href="clipv2.html"><img src="Imagenes1/simple-video-library-icon-sign-design-free-png.webp" alt="Clips"></a>
+    </div>
+
+    <div id="contenido" class="fadeIn">
+        <h1>Mi Página de Recuerdo</h1>
+        <h2>Un lugar especial para recordar momentos inolvidables</h2>
+
+        <div id="texto-personalizado">
+            <h2>Para Small Lady Little Sheep</h2>
+            <p>Mi cariño permanece aquí, incondicional y silencioso, acompañándote desde la distancia. Te deseo un año universitario colmado de buenos momentos, con la certeza de que la guía poderosa de Dios te llevará hacia la plenitud que mereces.</p>
+            <p><strong>Zero.</strong></p>
+        </div>
+
+        <div id="versiculo-container">
+            <h3>Versículo del Día</h3>
+            <p id="versiculo">Cargando...</p>
+            <button id="generar-versiculo">Generar Nuevo Versículo</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('toggle-button').addEventListener('click', () => {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('visible');
+        });
+
+        const versiculos = [
+            "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree no se pierda, mas tenga vida eterna. - Juan 3:16",
+    "El Señor es mi pastor; nada me faltará. En lugares de delicados pastos me hará descansar; junto a aguas de reposo me pastoreará. - Salmo 23:1-2",
+    "No te he mandado yo? Sé fuerte y valiente; no temas ni desmayes, porque el Señor tu Dios estará contigo dondequiera que vayas. - Josué 1:9",
+    "Todo lo puedo en Cristo que me fortalece. - Filipenses 4:13",
+    "El Señor es cercano a los quebrantados de corazón, y salva a los contritos de espíritu. - Salmo 34:18",
+    "La paz os dejo, mi paz os doy; yo no os la doy como el mundo la da. No se turbe vuestro corazón, ni tenga miedo. - Juan 14:27",
+    "El que guarda su boca guarda su alma, pero el que mucho abre sus labios tendrá calamidad. - Proverbios 13:3",
+    "Porque yo sé los pensamientos que tengo acerca de vosotros, dice el Señor, pensamientos de paz y no de mal, para daros el fin que esperáis. - Jeremías 29:11",
+    "Bienaventurados los pobres en espíritu, porque de ellos es el reino de los cielos. - Mateo 5:3",
+    "Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien, esto es, a los que conforme a su propósito son llamados. - Romanos 8:28",
+    "Todo lo que pidáis en oración, creyendo, lo recibiréis. - Mateo 21:22",
+    "La gracia de nuestro Señor Jesucristo sea con todos vosotros. Amén. - Apocalipsis 22:21",
+    "El amor es paciente, es bondadoso; el amor no tiene celos, no es jactancioso, no es arrogante, no hace nada indebido, no busca lo suyo, no se irrita, no guarda rencor, no se goza de la injusticia, sino que se goza con la verdad. - 1 Corintios 13:4-6",
+    "Si Dios es por nosotros, ¿quién contra nosotros? - Romanos 8:31",
+    "El Señor te guardará de todo mal; él guardará tu alma. - Salmo 121:7",
+    "El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente. - Salmo 91:1",
+    "Sed fuertes y valientes, no temáis, ni os amedrentéis delante de ellos, porque el Señor tu Dios es el que va contigo; no te dejará ni te desamparará. - Deuteronomio 31:6",
+    "En todo tiempo ama el amigo, y el hermano nace para el tiempo de angustia. - Proverbios 17:17",
+    "El Señor es mi luz y mi salvación; ¿de quién temeré? El Señor es la fortaleza de mi vida; ¿de quién he de atemorizarme? - Salmo 27:1",
+    "Los que esperan a Jehová tendrán nuevas fuerzas; levantarán alas como las águilas; correrán, y no se cansarán; caminarán, y no se fatigarán. - Isaías 40:31",
+    "Y sabéis que él apareció para quitar nuestros pecados, y en él no hay pecado. - 1 Juan 3:5"
+];
+
+        let versiculoActual = '';
+
+        function generarNuevoVersiculo() {
+            let nuevos = versiculos.filter(v => v !== versiculoActual);
+            versiculoActual = nuevos[Math.floor(Math.random() * nuevos.length)];
+            document.getElementById('versiculo').textContent = versiculoActual;
+        }
+
+        document.getElementById('generar-versiculo').addEventListener('click', generarNuevoVersiculo);
+        document.addEventListener('DOMContentLoaded', () => {
+            generarNuevoVersiculo();
+        });
+    </script>
+</body>
+</html>
