@@ -18,31 +18,34 @@
         }
 
         body {
-            background: linear-gradient(#ffffff10, rgba(255, 255, 255, 0)), 
-                        url('./Imagenes1/desktop-wallpaper-usagi-and-mamoru-falling-princess-usagi-mamoru-dekstop (1).webp') 
-                        center/cover fixed no-repeat;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+    background-image: url('./Imagenes1/desktop-wallpaper-usagi-and-mamoru-falling-princess-usagi-mamoru-dekstop (1).webp');
+    background-position:top;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    min-height: 350vh;
+    overflow-x: hidden;
+}
 
         /* Estilo para la barra lateral (sidebar) */
+      
         #sidebar {
-            width: 140px;
-            height: 60vh;
-            background: linear-gradient(135deg, #093ecf, #d199ff);
             position: fixed;
-            top: 80px;
-            left: -250px; /* Fuera de la vista por defecto */
-            transition: left 0.3s ease; /* Transición suave al mostrar/ocultar */
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            top: 120px;
+            left: -250px; 
+            width: 115px;
+            height: 55vh;
+            background: linear-gradient(135deg, #093ecf, #d199ff);
+            border-radius: 0 20px 20px 0;
+            transition: left 0.3s ease;
             z-index: 1000;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border-radius: 10px;
-            padding: 20px;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.3);
         }
+
 
         /* Estilo para las imágenes dentro de la barra lateral */
         #sidebar img {
@@ -94,7 +97,7 @@
 #toggle-button {
     background-color: #145eff; /* Color de fondo */
     color: white; /* Color del texto */
-    padding: 10px 20px; /* Espaciado interno */
+    padding: 30px 30px; /* Espaciado interno */
     border: none; /* Sin borde */
     border-radius: 50px; /* Bordes redondeados */
     cursor: pointer; /* Cambiar cursor */
@@ -104,7 +107,7 @@
     z-index: 2000; /* Apilar por encima de otros elementos */
     transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
-    font-size: 18px; /* Tamaño de fuente */
+    font-size: 30px; /* Tamaño de fuente */
     font-weight: bold; /* Texto en negrita */
 }
 
@@ -505,11 +508,11 @@ h1 {
     <button id="toggle-button">☰</button>
 
     <div id="sidebar">
-        <a href="J2.html"><img src="Imagenes1/2435.png" alt="Inicio"></a>
+        <a href="J3.html"><img src="Imagenes1/2435.png" alt="Inicio"></a>
         <a href="galeria.html"><img src="Imagenes1/8001320.png" alt="Galería"></a>
-        <a href="galeria2.html"><img src="Imagenes1/8344917.png" alt="Galeria2"></a>
         <a href="Game.html"><img src="Imagenes1/gamed.webp" alt="Game"></a>
-    </div>
+        <a href="clipv2.html"><img src="Imagenes1/simple-video-library-icon-sign-design-free-png.webp" alt="Clips"></a>
+  </div>
 
   <h1> </h1>
       <h1> </h1>
@@ -1002,6 +1005,80 @@ document.getElementById('toggle-button').addEventListener('click', function () {
 
        // Volver a ajustar la posición del botón al desplazarse
        window.addEventListener('scroll', ajustarPosicionBoton);
+
+       window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.get('abrirModal') === 'true') {
+        abrirModal(0); // Abre la primera imagen automáticamente
+    }
+
+    if (urlParams.get('abrirUltima') === 'true') {
+        abrirModal(imagenes.length - 1); // Abre la última imagen automáticamente
+    }
+});
+
+    // Asignar clic a cada imagen para abrir modal
+    imagenes.forEach((imagen, index) => {
+        imagen.addEventListener('click', () => {
+            abrirModal(index);
+        });
+    });
+
+    // Flechas modal
+    document.getElementById('flecha-izquierda').addEventListener('click', () => {
+        cambiarImagen(-1);
+    });
+
+    document.getElementById('flecha-derecha').addEventListener('click', () => {
+        cambiarImagen(1);
+    });
+
+    // Abrir modal
+    function abrirModal(index) {
+        imagenActual = index;
+        const imagenSrc = imagenes[imagenActual].querySelector('img').src;
+        const descripcion = imagenes[imagenActual].querySelector('.descripcion-imagen').innerHTML;
+        document.getElementById('modal-imagen').src = imagenSrc;
+        document.getElementById('modal-descripcion').innerHTML = descripcion;
+        document.getElementById('modal').style.display = 'block';
+    }
+
+    // Cambiar imagen y navegar entre galerías
+    function cambiarImagen(direccion) {
+        imagenActual += direccion;
+
+        if (imagenActual < 0) {
+            if (window.location.href.includes("galeria2.html")) {
+                window.location.href = "galeria.html?abrirUltima=true";
+                return;
+            } else {
+                imagenActual = 0;
+            }
+        } else if (imagenActual >= imagenes.length) {
+            if (window.location.href.includes("galeria.html")) {
+                window.location.href = "galeria2.html?abrirModal=true";
+                return;
+            } else {
+                imagenActual = imagenes.length - 1;
+            }
+        }
+
+        abrirModal(imagenActual);
+    }
+
+    // Detectar si debe abrir modal automáticamente
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+
+        if (urlParams.get('abrirModal') === 'true') {
+            abrirModal(0);
+        }
+
+        if (urlParams.get('abrirUltima') === 'true') {
+            abrirModal(imagenes.length - 1);
+        }
+    });
    </script>
 </body>
 </html>
