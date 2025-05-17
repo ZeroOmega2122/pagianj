@@ -3,7 +3,7 @@
   "dir": "ltr",
   "name": "ERA - Recuerdo",
   "short_name": "ERA",
-  "start_url": "J3.html",
+  "start_url": "/J3.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ff6bcb",
