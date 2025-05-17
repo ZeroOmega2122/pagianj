@@ -1,0 +1,38 @@
+{
+     "lang": "en",
+  "dir": "ltr",
+  "name": "ERA - Recuerdo",
+  "short_name": "ERA",
+  "start_url": "J3.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff6bcb",
+  "display_override": ["fullscreen", "minimal-ui"],
+
+  "icons": [
+
+    {
+      "src": "Imagenes1/icon-192.png",
+      "sizes": "192x203",
+      "type": "image/png"
+    },
+    {
+      "src": "Imagenes1/icon-512.png",
+      "sizes": "512x539",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "Imagenes1/screenshot1.png",
+      "sizes": "540x568",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "Imagenes1/screenshot2.png",
+      "sizes": "540x568",
+      "type": "image/png"
+    }
+  ]
+}
