@@ -213,6 +213,7 @@
 </head>
 <body>
     <button id="toggle-button">☰</button>
+<button id="instalar-app" style="display: none;">📲 Instalar esta app</button>
 
     <div id="sidebar">
         <a href="galeria.html"><img src="Imagenes1/8001320.png" alt="Galería"></a>
@@ -285,6 +286,26 @@
     navigator.serviceWorker.register('./service-worker.js')
       .then(() => console.log("Service Worker registrado"));
   }
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    const installBtn = document.getElementById('instalar-app');
+    installBtn.style.display = 'block';
+
+    installBtn.addEventListener('click', async () => {
+        installBtn.style.display = 'none';
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            console.log('Usuario aceptó la instalación');
+        } else {
+            console.log('Usuario canceló la instalación');
+        }
+        deferredPrompt = null;
+    });
+});
 
     </script>
 </body>
