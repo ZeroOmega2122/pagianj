@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamagotchi Jorchire</title>
+    <link rel="stylesheet" href="tama.css">
+</head>
+<body>
+<div class="container">
+    <h1>Tamagotchi Jorchire</h1>
+    <div class="switch-frame">
+        <!-- Joy-Con izquierdo: ESTADOS -->
+        <div class="joycon joycon-left">
+            <div class="status-bar">
+                <div class="status-card"><span class="emoji">😊</span><span id="happiness">100</span><span class="label">Feliz</span></div>
+                <div class="status-card"><span class="emoji">🍗</span><span id="hunger">0</span><span class="label">Hambre</span></div>
+                <div class="status-card"><span class="emoji">❤️</span><span id="health">100</span><span class="label">Salud</span></div>
+                <div class="status-card"><span class="emoji">💤</span><span id="energy">100</span><span class="label">Energía</span></div>
+                <div class="status-card"><span class="emoji">🛁</span><span id="hygiene">100</span><span class="label">Higiene</span></div>
+                <div class="status-card"><span class="emoji">🤒</span><span id="sick">Sano</span><span class="label">Estado</span></div>
+                <div class="status-card"><span class="emoji">📝</span><span id="discipline">50</span><span class="label">Disciplina</span></div>
+            </div>
+        </div>
+
+        <!-- Pantalla central -->
+        <div class="switch-screen">
+            <div class="tamagotchi-big">
+                <img src="assets/jorchire_huevo.jpg" alt="Tamagotchi Jorchire" id="jorchire-image">
+            </div>
+            <div id="status-message" class="status-message"></div>
+            <div class="exp-bar-mc-container">
+                <div class="exp-bar-mc-bg">
+                    <div class="exp-bar-mc-fill" id="exp-bar"></div>
+                </div>
+                <span class="exp-bar-mc-text" id="exp-text">0 / 100</span>
+                <span class="exp-bar-mc-timer" id="evo-timer"></span>
+            </div>
+            <div id="recovery-timer" class="recovery-timer"></div>
+        </div>
+
+        <!-- Joy-Con derecho: BOTONES DE ACCIÓN -->
+        <div class="joycon joycon-right">
+            <div class="actions-bar">
+                <button class="switch-btn" id="feed-button" title="Comida">🍗</button>
+                <button class="switch-btn" id="clean-button" title="Baño">🛁</button>
+                <button class="switch-btn" id="medicine-button" title="Medicina">💊</button>
+                <button class="switch-btn" id="sleep-button" title="Dormir">💤</button>
+                <button class="switch-btn" id="play-button" title="Jugar">🎾</button>
+                <button class="switch-btn" id="scold-button" title="Regañar">😠</button>
+                <button class="switch-btn" id="games-button" title="Minijuegos">🎮</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de selección de minijuegos -->
+    <div id="mini-games-modal" class="mini-games-modal" style="display:none;">
+        <div class="mini-games-modal-content">
+            <h2>Elige un minijuego</h2>
+            <button id="mini-game-guess" class="mini-game-btn">Adivina el número</button>
+            <button id="mini-game-clicker" class="mini-game-btn">Clicker rápido</button>
+            <button id="mini-game-memory" class="mini-game-btn">Memoria</button>
+            <button id="close-mini-games" class="mini-game-btn close-btn">Cerrar</button>
+        </div>
+    </div>
+</div>
+<script src="tama.js"></script>
+</body>
+</html>
